@@ -1,34 +1,35 @@
 const Navdata = [
   {
-    id: 1,
-    NavLink: '',
-    Linkaddress: '',
-    description: '',
+    name: 'Condo/Apart',
+    Link: '/rentcondo',
+    subtitle: 'Room rent for condo',
   },
   {
-    id: 2,
-    NavLink: '',
-    Linkaddress: '',
-    description: '',
+    name: 'House',
+    Link: '/renthouse',
+    subtitle: 'Room rent for house',
   },
   {
-    id: 3,
-    NavLink: '',
-    Linkaddress: '',
-    description: '',
+    name: 'Long term Rent',
+    Link: '/rentlongterm',
+    subtitle: 'Whole Condo or house',
   },
   {
-    id: 4,
-    NavLink: '',
-    Linkaddress: '',
-    description: '',
-  },
-  {
-    id: 5,
-    NavLink: '',
-    Linkaddress: '',
-    description: '',
+    name: 'Short term Rent',
+    Link: '/rentshortterm',
+    subtitle: 'Whole Condo or house',
   },
 ];
 
-export {Navdata};
+const Footerdata={
+  title: "ON ROOM",
+  tel: "647-530-8134",
+  email:"rudwo8134@gmail.com",
+  Address: "19 Western Battery Road, Toronto, ON",
+
+  cutomerserviceemail: "rudwo8134@gmail.com",
+  cutomerservicephone:"647-530-8134",
+  copyright:` Copyright © ONROOM. All Rights Reserved at ${new Date().getFullYear()}.`
+}
+
+export { Navdata, Footerdata };
