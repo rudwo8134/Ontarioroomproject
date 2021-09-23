@@ -33,15 +33,28 @@ export function*signInwithgoogle(){
     yield put(signInFailure(err))
   }
 }
+export function*signOut(){
+  try{
+    yield auth.signOut();
+    yield put(signOutSuccess());
+  }catch(err){
+    yield put(signOutFailure(err))
+  }
+}
 
 
 export function*onGoogleSignInStart(){
   yield takeLatest(Useractiontypes.GOOGLE_SIGN_IN_START, signInwithgoogle)
 }
 
+export function* onSignOutStart() {
+  yield takeLatest(Useractiontypes.SIGN_OUT_START, signOut);
+}
+
 
 export function* userSagas(){
   yield all([
-    call(onGoogleSignInStart)
+    call(onGoogleSignInStart),
+    call(onSignOutStart)
   ]);
 }

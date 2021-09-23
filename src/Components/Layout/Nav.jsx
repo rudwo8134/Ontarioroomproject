@@ -1,9 +1,15 @@
-import React from 'react'
+import React,{useCallback} from 'react'
 import { Navdata } from '../../static/staticdata'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom';
+import { Link,useHistory } from 'react-router-dom';
 import Logo from '../../assets/Logo.png'
 import style from '../../static/staticcss';
+import ButtonComponents from '../util/button';
+import { connect } from 'react-redux';
+import {createStructuredSelector} from 'reselect'
+import { selectCurrentUser } from '../../Redux/Users/user.selector';
+import { signOutStart } from '../../Redux/Users/user.action';
+
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -55,7 +61,15 @@ const NavLinkWrapper = styled.div`
   }
 `;
 
-const Nav = () => {
+const Nav = (props) => {
+  const { User, signout } = props
+  const history = useHistory();
+  const handleclicklogin = useCallback(() => {
+    history.push('/login');
+  }, [history]);
+  const handleclickregister = useCallback(() => {
+    history.push('/register');
+  }, [history]);
   return (
     <Wrapper>
       <NavWrapper>
@@ -68,17 +82,37 @@ const Nav = () => {
               const { name, subtitle } = data;
               return (
                 <li key={index}>
-                  <Linkwrapper href={data.Link}>
-                      {name} <br /> <span>{subtitle}</span>
+                  <Linkwrapper to={data.Link}>
+                    {name} <br /> <span>{subtitle}</span>
                   </Linkwrapper>
                 </li>
               );
             })}
           </ul>
         </NavLinkWrapper>
+        {User ? (
+          <ButtonComponents text="Logout" onClick={signout} />
+        ) : (
+          <>
+            <ButtonComponents text="Login" onClick={handleclicklogin} />
+            <ButtonComponents
+              text="Register"
+              black
+              onClick={handleclickregister}
+            />
+          </>
+        )}
       </NavWrapper>
     </Wrapper>
   );
-}
+};
 
-export default Nav
+const maptoprops = createStructuredSelector({
+  User:selectCurrentUser
+})
+
+const dispatchtoprops = (dispatch) => ({
+  signout: () => dispatch(signOutStart()),
+});
+
+export default connect(maptoprops, dispatchtoprops)(Nav);

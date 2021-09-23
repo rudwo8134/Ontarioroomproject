@@ -23,3 +23,4 @@ E-mail : rudwo8134@gmail.com
  1. add the redux function and firestore
  2. add the Layout Components
  3. add the Hero page
+ 4. add the login function and logout with google provider

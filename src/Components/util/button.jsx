@@ -23,9 +23,10 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-const ButtonComponents = ({ text, big, black }) => {
+const ButtonComponents = (props) => {
+  const {big,black,text} =props
   return (
-    <ButtonWrapper big={big ? big : undefined} black={black}>
+    <ButtonWrapper big={big ? big : undefined} black={black} {...props}>
       {text}
     </ButtonWrapper>
   );

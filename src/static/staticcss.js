@@ -41,6 +41,9 @@ const style = {
     blackDark: '#000000',
     blackLight: '#888888',
   },
+  boxshaow:{
+    normal: "0px 4px 11px rgba(0,0,0,0.3)"
+  }
 };
 
 export default style;
