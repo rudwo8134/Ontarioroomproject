@@ -14,6 +14,19 @@ const config = {
 
 firebase.initializeApp(config);
 
+export const createrentcondopost = async(data) =>{
+
+  const rentconforef = await firestore.doc(`/rentcondo/${data.id}`)
+  try{
+    await rentconforef.set({
+      ...data
+    })
+  }catch(err){
+    console.log('error creating rentcondo',err.message);
+  }
+
+  return rentconforef
+}
 
 export const createUserProfileDocument = async (userauth, additionaldata) =>{
   if(!userauth) return;

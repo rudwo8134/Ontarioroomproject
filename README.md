@@ -12,6 +12,8 @@ this website will make people easy to find the room in Ontario
   - redux-persist
   - reselect
   - firebase
+  - react-places-autocomplete
+  - react-async-script-loader
 
 
 #### publisher
@@ -35,3 +37,7 @@ E-mail : rudwo8134@gmail.com
   8. add the redux for rent room in condo. and add the post page
 
 #### Day2 (9.24 , 2021)
+  1. add the post page and post redux
+  2. add the google geometry to get lat lng
+  3. add the autocomplete api to get specific address 
+  4. add the react-async-script-loader to hide the API key
