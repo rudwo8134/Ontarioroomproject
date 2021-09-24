@@ -34,7 +34,8 @@ const Buttonlink = styled.button`
   display: ${({ big }) => (big ? 'flex' : '')};
   align-items: ${({ big }) => (big ? 'center' : '')};
   justify-content: ${({ big }) => (big ? 'center' : '')};
-  border:none;
+  border: none;
+  cursor: pointer;
 
   @media screen and (max-width: 468px) {
     width: 100px;
@@ -92,6 +93,7 @@ const NormalButton = styled.button`
   align-items: ${({ big }) => (big ? 'center' : '')};
   justify-content: ${({ big }) => (big ? 'center' : '')};
   border: none;
+  cursor: pointer;
 
   :hover {
     transition: all 0.5s ease-in-out;
@@ -122,10 +124,10 @@ const Googlelog = styled(FaGooglePlus)`
 `;
 
 const LoginButton = (props) => {
-  const { text, big, Link = '/pricing', type } = props
-  if (type) {
+  const { text, big, Link = '/pricing', google } = props
+  if (google) {
     return (
-      <NormalButton type={type} big={big} {...props}>
+      <NormalButton big={big} {...props}>
         <Googlelog />
         {text}
       </NormalButton>

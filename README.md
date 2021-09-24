@@ -24,3 +24,14 @@ E-mail : rudwo8134@gmail.com
  2. add the Layout Components
  3. add the Hero page
  4. add the login function and logout with google provider
+ 5. add the register page.
+ 6. add the user saga for register and after register, log-in
+ 7. add the register function and emaillogin function
+    ----------------
+    didn't finish the design. I need to discuss about the proper design with graphic designer
+    -----------------
+    without the design, it is done
+
+  8. add the redux for rent room in condo. and add the post page
+
+#### Day2 (9.24 , 2021)
