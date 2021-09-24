@@ -10,7 +10,7 @@ import {
   rentcondoupdateFail, 
   rentcondoupdateSuccess
   } from "./rentcondo.action";
-import { createrentcondopost } from '../../Firebase/firebase.utils';
+import { createrentcondopost, firestore } from '../../Firebase/firebase.utils';
 
 
   export function*postrentcondo({payload}){
@@ -26,12 +26,35 @@ import { createrentcondopost } from '../../Firebase/firebase.utils';
     }
   }
 
+  export function*readrentcondo(){
+    try{
+      const collectionref = yield firestore.collection("rentcondo");
+      const snapshot = yield collectionref.get();
+      const transformdata = snapshot.docs.map(doc=>{
+        const data = doc.data();
+        return(
+          {...data}
+        )
+      })
+      yield put(rentcondoreadSuccess(transformdata))
+  
+      
+    }catch(err){
+      yield put(rentcondoreadFail(err))
+    }
+  }
+
   export function*onrentcondopoststart(){
     yield takeLatest(rentcondotype.POST_CONDOROOM_START, postrentcondo)
   }
 
+  export function*onrentcondoreadstart(){
+    yield takeLatest(rentcondotype.READ_CONDOROOM_START, readrentcondo)
+  }
+
   export function*rentcondoSagas(){
     yield all([
-      call(onrentcondopoststart)
+      call(onrentcondopoststart),
+      call(onrentcondoreadstart)
     ])
   }
