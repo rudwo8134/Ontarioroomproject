@@ -48,6 +48,7 @@ import { createrentcondopost, firestore } from '../../Firebase/firebase.utils';
     yield takeLatest(rentcondotype.POST_CONDOROOM_START, postrentcondo)
   }
 
+
   export function*onrentcondoreadstart(){
     yield takeLatest(rentcondotype.READ_CONDOROOM_START, readrentcondo)
   }

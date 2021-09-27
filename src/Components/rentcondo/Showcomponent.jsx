@@ -93,7 +93,7 @@ const Showcomponent = (props) => {
   return (
     <Wrapper>
       <div className="imgwrapper">
-        <img src={defaultimage} alt="img" />
+        <img src={data.image[0]} alt="img" />
         <button>
           <Goback />
         </button>

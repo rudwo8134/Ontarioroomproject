@@ -1,6 +1,7 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import 'firebase/compat/storage'
 
 const config = {
   apiKey: process.env.REACT_APP_APIKEY,
@@ -62,6 +63,17 @@ export const getCurrentUser = () => {
   });
 };
 
+
+export const Uploadimage = async(imagefile) =>{
+  try{
+    var storageRef =await  firebase.storage().ref("img/"+imagefile.name)
+    var task = await storageRef.put(imagefile)
+    var result = task.ref.getDownloadURL()
+    return result;
+  }catch(err){
+    return err
+  }
+}
 
 
 export const auth = firebase.auth();

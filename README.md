@@ -45,3 +45,4 @@ E-mail : rudwo8134@gmail.com
 #### Day3 (9.27, 2021)
   1. add the option for post. change the option
   need to add the image upload function.
+  2. add the upload image to storage and redad the image. they can upload multiple files -- but i have to fix the file size.

@@ -8,6 +8,8 @@ import { v4 as uuid } from 'uuid';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import scriptLoader from 'react-async-script-loader'
 import { useHistory } from 'react-router';
+import { Uploadimage } from '../../Firebase/firebase.utils';
+import image from '../../assets/main.png'
 const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
@@ -24,9 +26,27 @@ const Formcontainer = styled.form`
   flex-direction: column;
 `;
 
+const Imageuploadcontainer = styled.div`
+  margin-top:1rem;
+  width:1300px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 2rem;
+  row-gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  img{
+    width: 300px;
+    border-radius: 30px;
+
+  }
+`
+
 const Rentcondopost = (props) => {
   const { user, poststart, isScriptLoaded, isScriptLoadSucceed } = props;
   const [address, setaddress] = useState([])
+  const [imageresults,setimageresults] = useState([])
+  const [imageloading, setimageloading] = useState(false)
   const history=useHistory()
   const [postcredential, setpostcredential] = useState({
     unit: '',
@@ -70,6 +90,22 @@ const Rentcondopost = (props) => {
       console.log(err)
     }
   }
+
+  const handleimage = async (e) =>{
+    setimageloading(true)
+    var results = [];
+    for(var i = 0; i <e.target.files.length; i++){  
+      var imagefile = e.target.files[i]
+      var result = await Uploadimage(imagefile)
+      results.push(result);
+
+    }
+    setimageresults([...results])
+    setimageloading(false)
+  }
+
+  console.log(imageresults)
+
   const handlecredentialchange = (e) =>{
     const {name,value} = e.target;
     setpostcredential({...postcredential, [name]:value})
@@ -93,6 +129,7 @@ const Rentcondopost = (props) => {
         phonenumber: user.phonenumber,
         email: user.email,
       },
+      image: imageresults,
       address: reultaddress,
       ...postcredential,
     });
@@ -149,8 +186,28 @@ const Rentcondopost = (props) => {
               value={postcredential.unit}
               onChange={handlecredentialchange}
             />
-            <label htmlFor="">attach the picture</label>
-            <input type="file" />
+            {imageloading ? (
+              <h1>...loading</h1>
+            ) : (
+              <>
+                <label htmlFor="">attach the picture</label>
+              </>
+            )}
+            <input
+              type="file"
+              onChange={handleimage}
+              multiple
+              accept="image/*"
+            />
+            <Imageuploadcontainer>
+              {imageresults &&
+                imageresults.map((imgurl, index) => {
+                  return (
+                    <img src={imgurl} alt={`uploaded${index}`} key={index} />
+                  );
+                })}
+            </Imageuploadcontainer>
+
             <label htmlFor="deposit">deposit</label>
             <input
               type="number"
