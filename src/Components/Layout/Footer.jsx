@@ -4,6 +4,11 @@ import style from '../../static/staticcss';
 import { Link } from 'react-router-dom';
 import { Footerdata,Navdata } from '../../static/staticdata';
 
+const Background = styled.div`
+  background: ${style.backgroundColor.secondary};
+  width: 100vw;
+  margin-bottom: -2rem;
+`;
 const FooterWrapper = styled.div`
   max-width: 1300px;
   margin: 0 auto;
@@ -56,6 +61,7 @@ const LinkContainer = styled(Link)`
 
 const Footer = () => {
   return (
+    <Background>
     <FooterWrapper>
       <div className="Container">
         <div className="row">
@@ -92,6 +98,7 @@ const Footer = () => {
         <span className="copyright">{Footerdata.copyright}</span>
       </div>
     </FooterWrapper>
+    </Background>
   );
 }
 

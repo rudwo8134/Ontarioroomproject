@@ -46,3 +46,5 @@ E-mail : rudwo8134@gmail.com
   1. add the option for post. change the option
   need to add the image upload function.
   2. add the upload image to storage and redad the image. they can upload multiple files -- but i have to fix the file size.
+  3. finish the room side-detail page
+  4. 

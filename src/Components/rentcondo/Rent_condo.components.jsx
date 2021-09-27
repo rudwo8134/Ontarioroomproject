@@ -18,6 +18,7 @@ const containerStyle = {
   width: '100%',
   height: '100%',
   flex:"3"
+  
 };
 
 
@@ -28,6 +29,7 @@ const Wrapper = styled.div`
   height: 90vh;
   display: flex;
   position: relative;
+ 
   .searchbarcontainer {
     width: 420px;
     height: 120px;
@@ -218,7 +220,7 @@ const RentCondocomponents = (props) => {
         </>
       </GoogleMap>
       <Searchresultcontainer popup={popup}>
-        <Showcomponent id={selected} />
+        <Showcomponent id={selected}  />
       </Searchresultcontainer>
     </Wrapper>
   ) : (
