@@ -10,7 +10,11 @@ const style = {
     FooterMain: '1.0rem',
     FooterSub: '0.8rem',
     ButtonFont: "1rem",
-    MainFont: "2.5rem"
+    MainFont: "2.5rem",
+
+    detail_detailbutton: "16px",
+    detail_title:"23px",
+    detail_description:"15px",
   },
   fontColor: {
     Primary: '#ffa80b',

@@ -10,6 +10,8 @@ import { rentcondoreadstart } from '../../Redux/Rentcondo/rentcondo.action';
 import {createStructuredSelector} from 'reselect'
 import { selectitems } from '../../Redux/Rentcondo/rentcondo.selector';
 import Markericons from '../../assets/marker.svg'
+import Showcomponent from './Showcomponent';
+import { Link } from 'react-router-dom';
 
 
 const containerStyle = {
@@ -40,6 +42,7 @@ const Wrapper = styled.div`
     align-items: center;
     border: 2px solid black;
     border-radius: 7px;
+ 
 
     .inputcontainer {
       background-color: white;
@@ -118,10 +121,11 @@ color:white;
 `
 
 const Searchresultcontainer = styled.div`
-  display: ${({popup})=>popup ? "none" : "inline"};
+  display: ${({ popup }) => (!popup ? 'none' : 'inline')};
   width: 100%;
-  height: 100vh;
-  background-color: red;
+  height: 90vh;
+  overflow-y: scroll;
+  background-color: ${style.backgroundColor.Primary};
   flex: 1;
   transition: all 0.3s ease-in-out;
 `;
@@ -137,8 +141,6 @@ const RentCondocomponents = (props) => {
   const { readdatastart, rooms } = props;
   const [selected, setselected] = useState("")
   const [popup, setpopup] =useState(false)
-  console.log(popup)
-  console.log(selected)
   useEffect(() => {
     readdatastart();
   }, [readdatastart]);
@@ -166,7 +168,7 @@ const RentCondocomponents = (props) => {
           <form action="">
             <div className="seactchCcontainer">
               <input type="text" />
-              <button >
+              <button>
                 <Searchicons />
               </button>
             </div>
@@ -178,6 +180,7 @@ const RentCondocomponents = (props) => {
               </button>
             </div>
           </form>
+          <Link to="/rentcondopost">Post your home</Link>
         </div>
       </div>
       <GoogleMap
@@ -193,26 +196,29 @@ const RentCondocomponents = (props) => {
       >
         {/* Child components, such as markers, info windows, etc. */}
         <>
-        {rooms && rooms.map(data=>{
-        
-          return (
-            <Marker
-              key={data.id}
-              position={{ lat: data.address.lat, lng: data.address.lng }}
-              icon={{
-                url: Markericons,
-                scaledSize: new window.google.maps.Size(30, 30),
-                origin: new window.google.maps.Point(0, 0),
-                anchor: new window.google.maps.Point(15, 15),
-              }}
-              onClick={()=>{setselected(data.id); setpopup(!popup)}}
-            />
-          );
-        })}
+          {rooms &&
+            rooms.map((data) => {
+              return (
+                <Marker
+                  key={data.id}
+                  position={{ lat: data.address.lat, lng: data.address.lng }}
+                  icon={{
+                    url: Markericons,
+                    scaledSize: new window.google.maps.Size(30, 30),
+                    origin: new window.google.maps.Point(0, 0),
+                    anchor: new window.google.maps.Point(15, 15),
+                  }}
+                  onClick={() => {
+                    setselected(data.id);
+                    setpopup(!popup);
+                  }}
+                />
+              );
+            })}
         </>
       </GoogleMap>
       <Searchresultcontainer popup={popup}>
-
+        <Showcomponent id={selected} />
       </Searchresultcontainer>
     </Wrapper>
   ) : (

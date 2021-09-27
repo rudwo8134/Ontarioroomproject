@@ -11,6 +11,7 @@ import { useHistory } from 'react-router';
 const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
+  overflow-x: scroll;
 `
 const Container = styled.div`
   width: 1300px;
@@ -27,17 +28,31 @@ const Rentcondopost = (props) => {
   const { user, poststart, isScriptLoaded, isScriptLoadSucceed } = props;
   const [address, setaddress] = useState([])
   const history=useHistory()
-  const [postcredential,setpostcredential] =useState({
-    unit:"",
-    deposit:"",
-    monthlyfee:"",
-    roomtype:"1 room",
-    sqf:"",
-    parking:"yes",
-    availabledate:"",
-    posttitle:"",
-    description:""
-  })
+  const [postcredential, setpostcredential] = useState({
+    unit: '',
+    deposit: '',
+    monthlyfee: '',
+    roomtype: '1 room',
+    sqf: '',
+    parking: 'yes',
+    availabledate: '',
+    posttitle: '',
+    description: '',
+
+    petavailable: 'yes',
+    smoking: 'yes',
+    internet: 'yes',
+    kitchen: 'yes',
+    Laundry: 'yes',
+    Dryer: 'yes',
+    Fridge: 'yes',
+    Freezer: 'yes',
+    hairDryer: 'yes',
+    aircondition: 'yes',
+    tv: 'yes',
+    privateenterance: 'yes',
+    howmanypeople: '',
+  });
 
   const handleaddressdata = async(address) =>{
     try{
@@ -161,9 +176,7 @@ const Rentcondopost = (props) => {
               onChange={handlecredentialchange}
               required
             >
-              <option  value="1 room">
-                1 room
-              </option>
+              <option value="1 room">1 room</option>
               <option value="1 room + 1 bath">1 room and 1 bath</option>
               <option value="living room">living room</option>
             </select>
@@ -183,11 +196,163 @@ const Rentcondopost = (props) => {
               onChange={handlecredentialchange}
               required
             >
-              <option  value="yes">
-                Yes
-              </option>
+              <option value="yes">Yes</option>
               <option value="no">No</option>
             </select>
+
+            <label htmlFor="petavailable">Pet</label>
+            <select
+              name="petavailable"
+              id="petavailable"
+              value={postcredential.petavailable}
+              onChange={handlecredentialchange}
+              required
+            >
+              <option value="yes">Available</option>
+              <option value="no">No available</option>
+            </select>
+
+            <label htmlFor="smoking">smoking</label>
+            <select
+              name="smoking"
+              id="smoking"
+              value={postcredential.smoking}
+              onChange={handlecredentialchange}
+              required
+            >
+              <option value="yes">Available</option>
+              <option value="no">No available</option>
+            </select>
+
+            <label htmlFor="internet">Internet</label>
+            <select
+              name="internet"
+              id="internet"
+              value={postcredential.internet}
+              onChange={handlecredentialchange}
+              required
+            >
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+
+            <label htmlFor="kitchen">Kitchen</label>
+            <select
+              name="kitchen"
+              id="kitchen"
+              value={postcredential.kitchen}
+              onChange={handlecredentialchange}
+              required
+            >
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+
+            <label htmlFor="Laundry">Laundry</label>
+            <select
+              name="Laundry"
+              id="Laundry"
+              value={postcredential.Laundry}
+              onChange={handlecredentialchange}
+              required
+            >
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+
+            <label htmlFor="Dryer">Dryer</label>
+            <select
+              name="Dryer"
+              id="Dryer"
+              value={postcredential.Dryer}
+              onChange={handlecredentialchange}
+              required
+            >
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+
+            <label htmlFor="Fridge">Fridge</label>
+            <select
+              name="Fridge"
+              id="Fridge"
+              value={postcredential.Fridge}
+              onChange={handlecredentialchange}
+              required
+            >
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+
+            <label htmlFor="Freezer">Freezer</label>
+            <select
+              name="Freezer"
+              id="Freezer"
+              value={postcredential.Freezer}
+              onChange={handlecredentialchange}
+              required
+            >
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+
+            <label htmlFor="Freezer">Freezer</label>
+            <select
+              name="Freezer"
+              id="Freezer"
+              value={postcredential.Freezer}
+              onChange={handlecredentialchange}
+              required
+            >
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+
+            <label htmlFor="aircondition">aircondition</label>
+            <select
+              name="aircondition"
+              id="aircondition"
+              value={postcredential.aircondition}
+              onChange={handlecredentialchange}
+              required
+            >
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+
+            <label htmlFor="tv">tv</label>
+            <select
+              name="tv"
+              id="tv"
+              value={postcredential.tv}
+              onChange={handlecredentialchange}
+              required
+            >
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+
+            <label htmlFor="privateenterance">privateenterance</label>
+            <select
+              name="privateenterance"
+              id="privateenterance"
+              value={postcredential.privateenterance}
+              onChange={handlecredentialchange}
+              required
+            >
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+            <label htmlFor="howmanypeople">Number of people to share</label>
+            <input
+              type="number"
+              name="howmanypeople"
+              id="howmanypeople"
+              value={postcredential.howmanypeople}
+              onChange={handlecredentialchange}
+              required
+            />
+
             <label htmlFor="availabledate">Available to live</label>
             <input
               type="date"

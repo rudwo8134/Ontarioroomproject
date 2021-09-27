@@ -41,3 +41,7 @@ E-mail : rudwo8134@gmail.com
   2. add the google geometry to get lat lng
   3. add the autocomplete api to get specific address 
   4. add the react-async-script-loader to hide the API key
+
+#### Day3 (9.27, 2021)
+  1. add the option for post. change the option
+  need to add the image upload function.
