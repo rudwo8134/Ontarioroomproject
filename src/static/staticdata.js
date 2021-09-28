@@ -51,8 +51,11 @@ const Footerdata = {
 
 const Filterdata = {
   title: 'Search by Filter',
-  filtericon: <IoFilterCircleSharp/>,
+  filtericon: <IoFilterCircleSharp />,
+  payment: 'Monthly Fee',
+  paymenticon: <GiTakeMyMoney />,
   Category: [
+
     {
       name: 'Parking',
       icon: <FaParking />,

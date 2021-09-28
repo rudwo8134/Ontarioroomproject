@@ -55,3 +55,14 @@ export const rentcondoupdateSuccess = (item) => ({
   type: rentcondotype.UPDATE_CONDOROOM_SUCCESS,
   payload: item,
 });
+
+export const filterdatasuccess = (filter) =>({
+  type: rentcondotype.FILTER_CONDOROOM_SUCCESS,
+  payload: filter
+})
+
+
+export const filterdatafail = (err) => ({
+  type: rentcondotype.FILTER_CONDOROOM_SUCCESS,
+  payload: err,
+});

@@ -4,7 +4,8 @@ import rentcondotype from "./rentcondo.type";
 const INITIAL_VALUE = {
   targetItem:null,
   items:null,
-  error:null
+  error:null,
+  filter:null
 }
 
 const rentcondoReducer = (state=INITIAL_VALUE, action)=>{
@@ -23,6 +24,12 @@ const rentcondoReducer = (state=INITIAL_VALUE, action)=>{
         targetItem: action.payload,
         error:null
       }
+    case rentcondotype.FILTER_CONDOROOM_SUCCESS:
+    return{
+      ...state,
+      filter:action.payload
+    }
+    case rentcondotype.FILTER_CONDOROOM_FAIL:
     case rentcondotype.POST_CONDOROOM_FAILURE:
     case rentcondotype.READ_CONDOROOM_FAILURE:
     case rentcondotype.UPDATE_CONDOROOM_FAILURE:

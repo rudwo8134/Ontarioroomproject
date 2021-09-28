@@ -48,3 +48,12 @@ E-mail : rudwo8134@gmail.com
   2. add the upload image to storage and redad the image. they can upload multiple files -- but i have to fix the file size.
   3. finish the room side-detail page
   4. add the filter design and catergory. need to fix working properly
+  5. working on filter data depends on price
+
+
+
+
+
+
+need to add
+반경, 돈 보이는거, 돈 라인으로 설정, 보이는거 15개,백버튼 리스트로 

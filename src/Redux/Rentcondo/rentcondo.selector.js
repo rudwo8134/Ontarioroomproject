@@ -10,3 +10,7 @@ export const selectitems = createSelector(
   [seletRentcondo],
   (rentcondo) => rentcondo.items
 );
+export const selectfilter = createSelector(
+  [seletRentcondo],
+  (rentcondo) => rentcondo.filter
+);

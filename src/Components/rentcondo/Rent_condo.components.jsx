@@ -9,7 +9,7 @@ import style from '../../static/staticcss';
 import { connect } from 'react-redux';
 import { rentcondoreadstart } from '../../Redux/Rentcondo/rentcondo.action';
 import {createStructuredSelector} from 'reselect'
-import { selectitems } from '../../Redux/Rentcondo/rentcondo.selector';
+import { selectfilter, selectitems } from '../../Redux/Rentcondo/rentcondo.selector';
 import Markericons from '../../assets/marker.svg'
 import Showcomponent from './Showcomponent';
 import { Link } from 'react-router-dom';
@@ -175,7 +175,7 @@ const options = {
 const RentCondocomponents = (props) => {
   const [searchmap, setsearchmap] = useState("")
   const [addressinfo,setaddressinfo] = useState(null)
-  const { readdatastart, rooms } = props;
+  const { readdatastart, rooms, settingfilter } = props;
   const [selected, setselected] = useState("")
   const [popup, setpopup] =useState(false)
   const [filter, setfilter] = useState(false)
@@ -225,6 +225,8 @@ const RentCondocomponents = (props) => {
    const data = await handleaddressdata(searchmap);
    setaddressinfo(data)
  }
+
+
 
  useEffect(() => {}, [addressinfo]);
 
@@ -303,7 +305,7 @@ const RentCondocomponents = (props) => {
           lat: addressinfo ? Number(addressinfo.lat) : 43.6532,
           lng: addressinfo ? Number(addressinfo.lng) : -79.3832,
         }}
-        zoom={16}
+        zoom={15}
         options={options}
         onLoad={onLoad}
         onUnmount={onUnmount}
@@ -342,7 +344,8 @@ const RentCondocomponents = (props) => {
 }
 
 const maptoprops = createStructuredSelector({
-  rooms: selectitems
+  rooms: selectitems,
+  settingfilter: selectfilter
 })
 
 const dispatchtomaps = dispatch =>({
