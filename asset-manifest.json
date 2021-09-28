@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Ontarioroomproject/static/css/main.9d38ea22.chunk.css",
-    "main.js": "/Ontarioroomproject/static/js/main.acc688fd.chunk.js",
-    "main.js.map": "/Ontarioroomproject/static/js/main.acc688fd.chunk.js.map",
+    "main.js": "/Ontarioroomproject/static/js/main.1e8f6a62.chunk.js",
+    "main.js.map": "/Ontarioroomproject/static/js/main.1e8f6a62.chunk.js.map",
     "runtime-main.js": "/Ontarioroomproject/static/js/runtime-main.ac923eb1.js",
     "runtime-main.js.map": "/Ontarioroomproject/static/js/runtime-main.ac923eb1.js.map",
-    "static/js/2.1d421df1.chunk.js": "/Ontarioroomproject/static/js/2.1d421df1.chunk.js",
-    "static/js/2.1d421df1.chunk.js.map": "/Ontarioroomproject/static/js/2.1d421df1.chunk.js.map",
+    "static/js/2.0ca35d39.chunk.js": "/Ontarioroomproject/static/js/2.0ca35d39.chunk.js",
+    "static/js/2.0ca35d39.chunk.js.map": "/Ontarioroomproject/static/js/2.0ca35d39.chunk.js.map",
     "index.html": "/Ontarioroomproject/index.html",
     "static/css/main.9d38ea22.chunk.css.map": "/Ontarioroomproject/static/css/main.9d38ea22.chunk.css.map",
-    "static/js/2.1d421df1.chunk.js.LICENSE.txt": "/Ontarioroomproject/static/js/2.1d421df1.chunk.js.LICENSE.txt",
+    "static/js/2.0ca35d39.chunk.js.LICENSE.txt": "/Ontarioroomproject/static/js/2.0ca35d39.chunk.js.LICENSE.txt",
     "static/media/Logoremovebg.721fabd9.png": "/Ontarioroomproject/static/media/Logoremovebg.721fabd9.png",
     "static/media/login.9c8a80d3.jpg": "/Ontarioroomproject/static/media/login.9c8a80d3.jpg",
     "static/media/main.8d33cea8.png": "/Ontarioroomproject/static/media/main.8d33cea8.png",
@@ -18,8 +18,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.ac923eb1.js",
-    "static/js/2.1d421df1.chunk.js",
+    "static/js/2.0ca35d39.chunk.js",
     "static/css/main.9d38ea22.chunk.css",
-    "static/js/main.acc688fd.chunk.js"
+    "static/js/main.1e8f6a62.chunk.js"
   ]
 }
