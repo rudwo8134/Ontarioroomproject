@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import styled from 'styled-components';
 import { GoogleMap, useJsApiLoader,Marker,InfoWindow } from '@react-google-maps/api';
+
 import maystylesdata from './mapstyle';
 import { BsSearch } from 'react-icons/bs';
 import { AiTwotoneFilter } from 'react-icons/ai';
@@ -12,13 +13,15 @@ import { selectitems } from '../../Redux/Rentcondo/rentcondo.selector';
 import Markericons from '../../assets/marker.svg'
 import Showcomponent from './Showcomponent';
 import { Link } from 'react-router-dom';
+import PlacesAutocomplete from 'react-places-autocomplete/dist/PlacesAutocomplete';
+import Filter from './Filter';
 
 
 const containerStyle = {
   width: '100%',
   height: '100%',
   flex:"3"
-  
+
 };
 
 
@@ -29,28 +32,31 @@ const Wrapper = styled.div`
   height: 90vh;
   display: flex;
   position: relative;
- 
+
   .searchbarcontainer {
-    width: 420px;
+    width: 450px;
     height: 120px;
     position: absolute;
     top: 30px;
     left: 30px;
-    background-color: white;
+    background-color: transparent;
     z-index: 30;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px solid black;
     border-radius: 7px;
- 
 
     .inputcontainer {
-      background-color: white;
+      background-color: transparent;
       form {
+        width: 450px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         .seactchCcontainer {
-          width: 390px;
+          width: 400px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -59,6 +65,8 @@ const Wrapper = styled.div`
             width: 350px;
             height: 40px;
             border: 2px solid ${style.backgroundColor.Primary};
+            padding: 0.4rem;
+            font-size: 1rem;
           }
           button {
             width: 40px;
@@ -72,30 +80,33 @@ const Wrapper = styled.div`
         }
       }
     }
-    .divider {
-      width: 100%;
-      height: 1px;
-      background-color: grey;
-      margin: 0.5rem 0;
-    }
+    .filtercontentsWrapper{
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    
+    } 
+    
     .filterCcontainer {
+      margin: 0;
       margin-top: 0.5rem;
-      width: 390px;
+      width: 440px;
       display: flex;
       justify-content: center;
       align-items: center;
       border-radius: 16px;
 
       span {
-        width: 350px;
+        width: 400px;
         height: 40px;
-        border: 2px solid ${style.backgroundColor.blackLight};
+        border: 2px solid ${style.backgroundColor.blackDark};
         display: flex;
         justify-content: center;
         align-items: center;
         font-size: 1.2rem;
         text-transform: capitalize;
         font-weight: 300;
+        color: ${style.fontColor.blackDark};
       }
       button {
         width: 40px;
@@ -103,7 +114,8 @@ const Wrapper = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        border: 2px solid ${style.backgroundColor.blackLight};
+        border: 2px solid ${style.backgroundColor.blackDark};
+        color: ${style.fontColor.blackDark};
         border-left: none;
         svg {
           width: 40px;
@@ -122,6 +134,8 @@ color:white;
 
 `
 
+
+
 const Searchresultcontainer = styled.div`
   display: ${({ popup }) => (!popup ? 'none' : 'inline')};
   width: 100%;
@@ -132,6 +146,26 @@ const Searchresultcontainer = styled.div`
   transition: all 0.3s ease-in-out;
 `;
 
+const Postcomponentcontainer= styled.div`
+  
+  width: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: .5rem;
+`
+
+const Postcomponent = styled(Link)`
+  color:white;
+  background: black;
+  padding: 0.5rem 2rem;
+  border-radius: 30px;
+  border: 1px solid black;
+  text-align:center;
+  font-weight: 500;
+  text-transform: capitalize;
+`
+
 const libraries = ["places"]
 const options = {
   styles: maystylesdata,
@@ -139,10 +173,12 @@ const options = {
   zoomControl:true
 };
 const RentCondocomponents = (props) => {
-
+  const [searchmap, setsearchmap] = useState("")
+  const [addressinfo,setaddressinfo] = useState(null)
   const { readdatastart, rooms } = props;
   const [selected, setselected] = useState("")
   const [popup, setpopup] =useState(false)
+  const [filter, setfilter] = useState(false)
   useEffect(() => {
     readdatastart();
   }, [readdatastart]);
@@ -160,6 +196,38 @@ const RentCondocomponents = (props) => {
     setMap(map)
   }, [])
 
+  const handlechnageforaddress= (value) =>{
+    setsearchmap(value)
+  }
+  const handleselectforaddress = (select) => {
+    setsearchmap(select);
+  };
+
+   const handleaddressdata = async (address) => {
+     try {
+       const response = await fetch(
+         `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GOOGLEAPI}`
+       );
+       const data = await response.json();
+       const result = {
+         Formattedaddress: data.results[0].formatted_address,
+         lat: data.results[0].geometry.location.lat,
+         lng: data.results[0].geometry.location.lng,
+       };
+       return result;
+     } catch (err) {
+       console.log(err);
+     }
+   };
+
+ const handlesearchsubmit = async(e)=>{
+   e.preventDefault();
+   const data = await handleaddressdata(searchmap);
+   setaddressinfo(data)
+ }
+
+ useEffect(() => {}, [addressinfo]);
+
   const onUnmount = React.useCallback(function callback(map) {
     setMap(null)
   }, [])
@@ -167,31 +235,75 @@ const RentCondocomponents = (props) => {
     <Wrapper>
       <div className="searchbarcontainer">
         <div className="inputcontainer">
-          <form action="">
+          <form onSubmit={handlesearchsubmit}>
             <div className="seactchCcontainer">
-              <input type="text" />
-              <button>
+              <PlacesAutocomplete
+                value={searchmap}
+                onChange={handlechnageforaddress}
+                onSelect={handleselectforaddress}
+              >
+                {({
+                  getInputProps,
+                  suggestions,
+                  getSuggestionItemProps,
+                  loading,
+                }) => (
+                  <div>
+                    <input
+                      {...getInputProps({
+                        placeholder: 'Enter address...',
+                      })}
+                      style={{
+                        width: '400px',
+                        position: 'relative',
+                        height: '40px',
+                      }}
+                    />
+                    <div style={{ position: 'absolute', top: '40px' }}>
+                      {loading && <div>...loading</div>}
+                      {suggestions.map((suggestions, index) => {
+                        const style = suggestions.active
+                          ? { backgroundColor: '#a83232', cursor: 'pointer' }
+                          : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                        return (
+                          <div
+                            key={index}
+                            {...getSuggestionItemProps(suggestions, { style })}
+                          >
+                            {suggestions.description}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+              </PlacesAutocomplete>
+              <button type="submit">
                 <Searchicons />
               </button>
             </div>
-            <div className="divider"></div>
-            <div className="filterCcontainer">
-              <span>Set your condition</span>
-              <button>
-                <AiTwotoneFilter />
-              </button>
+            <div className="filtercontentsWrapper">
+              <div className="filterCcontainer">
+                <span>Set your condition</span>
+                <button onClick={()=>setfilter(!filter)}>
+                  <AiTwotoneFilter />
+                </button>
+              </div>
+                <Filter filter={filter}/>
             </div>
           </form>
-          <Link to="/rentcondopost">Post your home</Link>
+          <Postcomponentcontainer>
+            <Postcomponent to="/rentcondopost">Post your home</Postcomponent>
+          </Postcomponentcontainer>
         </div>
       </div>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={{
-          lat: 43.6532,
-          lng: -79.3832,
+          lat: addressinfo ? Number(addressinfo.lat) : 43.6532,
+          lng: addressinfo ? Number(addressinfo.lng) : -79.3832,
         }}
-        zoom={11}
+        zoom={16}
         options={options}
         onLoad={onLoad}
         onUnmount={onUnmount}
@@ -220,7 +332,7 @@ const RentCondocomponents = (props) => {
         </>
       </GoogleMap>
       <Searchresultcontainer popup={popup}>
-        <Showcomponent id={selected}  />
+        <Showcomponent id={selected} />
       </Searchresultcontainer>
     </Wrapper>
   ) : (

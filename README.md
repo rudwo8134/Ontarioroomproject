@@ -47,4 +47,4 @@ E-mail : rudwo8134@gmail.com
   need to add the image upload function.
   2. add the upload image to storage and redad the image. they can upload multiple files -- but i have to fix the file size.
   3. finish the room side-detail page
-  4. 
+  4. add the filter design and catergory. need to fix working properly

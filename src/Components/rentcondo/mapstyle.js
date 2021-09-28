@@ -1,79 +1,76 @@
 const maystylesdata = [
   {
-    featureType: 'all',
-    elementType: 'geometry',
+    featureType: 'administrative.locality',
+    elementType: 'all',
     stylers: [
       {
-        color: '#202c3e',
-      },
-    ],
-  },
-  {
-    featureType: 'all',
-    elementType: 'labels.text.fill',
-    stylers: [
-      {
-        gamma: 0.01,
+        hue: '#2c2e33',
       },
       {
-        lightness: 20,
+        saturation: 7,
       },
       {
-        weight: '1.39',
-      },
-      {
-        color: '#ffffff',
-      },
-    ],
-  },
-  {
-    featureType: 'all',
-    elementType: 'labels.text.stroke',
-    stylers: [
-      {
-        weight: '0.96',
-      },
-      {
-        saturation: '9',
+        lightness: 19,
       },
       {
         visibility: 'on',
       },
+    ],
+  },
+  {
+    featureType: 'administrative.locality',
+    elementType: 'labels.text',
+    stylers: [
       {
-        color: '#000000',
+        visibility: 'on',
+      },
+      {
+        saturation: '-3',
       },
     ],
   },
   {
-    featureType: 'all',
-    elementType: 'labels.icon',
+    featureType: 'administrative.locality',
+    elementType: 'labels.text.fill',
     stylers: [
       {
-        visibility: 'off',
+        color: '#f39247',
       },
     ],
   },
   {
     featureType: 'landscape',
-    elementType: 'geometry',
+    elementType: 'all',
     stylers: [
       {
-        lightness: 30,
+        hue: '#ff0000',
       },
       {
-        saturation: '9',
+        saturation: '-80',
       },
       {
-        color: '#29446b',
+        lightness: '-1',
+      },
+      {
+        visibility: 'simplified',
       },
     ],
   },
   {
     featureType: 'poi',
-    elementType: 'geometry',
+    elementType: 'all',
     stylers: [
       {
-        saturation: 20,
+        hue: '#ff0000',
+      },
+      {
+        saturation: -100,
+      },
+      {
+        lightness: 100,
+      },
+      {
+        visibility: 'off',
       },
     ],
   },
@@ -82,10 +79,22 @@ const maystylesdata = [
     elementType: 'geometry',
     stylers: [
       {
-        lightness: 20,
+        lightness: '-53',
+      },
+    ],
+  },
+  {
+    featureType: 'poi.school',
+    elementType: 'geometry.fill',
+    stylers: [
+      {
+        visibility: 'on',
       },
       {
-        saturation: -20,
+        color: '#ff8157',
+      },
+      {
+        lightness: '40',
       },
     ],
   },
@@ -94,19 +103,16 @@ const maystylesdata = [
     elementType: 'geometry',
     stylers: [
       {
-        lightness: 10,
+        hue: '#ff6f00',
       },
       {
-        saturation: -30,
+        saturation: '100',
       },
-    ],
-  },
-  {
-    featureType: 'road',
-    elementType: 'geometry.fill',
-    stylers: [
       {
-        color: '#193a55',
+        lightness: 31,
+      },
+      {
+        visibility: 'simplified',
       },
     ],
   },
@@ -115,13 +121,181 @@ const maystylesdata = [
     elementType: 'geometry.stroke',
     stylers: [
       {
-        saturation: 25,
+        color: '#f39247',
       },
       {
-        lightness: 25,
+        saturation: '0',
+      },
+    ],
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels',
+    stylers: [
+      {
+        saturation: -93,
       },
       {
-        weight: '0.01',
+        lightness: 31,
+      },
+      {
+        visibility: 'on',
+      },
+    ],
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels.text',
+    stylers: [
+      {
+        weight: '4.00',
+      },
+      {
+        saturation: '-91',
+      },
+    ],
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels.icon',
+    stylers: [
+      {
+        saturation: '1',
+      },
+      {
+        lightness: '1',
+      },
+      {
+        gamma: '1.00',
+      },
+      {
+        visibility: 'on',
+      },
+    ],
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'geometry',
+    stylers: [
+      {
+        saturation: '100',
+      },
+      {
+        lightness: '10',
+      },
+    ],
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'labels.text.stroke',
+    stylers: [
+      {
+        lightness: '1',
+      },
+    ],
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'labels.icon',
+    stylers: [
+      {
+        weight: '10.00',
+      },
+      {
+        visibility: 'on',
+      },
+      {
+        lightness: '-2',
+      },
+    ],
+  },
+  {
+    featureType: 'road.highway.controlled_access',
+    elementType: 'all',
+    stylers: [
+      {
+        saturation: '0',
+      },
+      {
+        lightness: '10',
+      },
+    ],
+  },
+  {
+    featureType: 'road.arterial',
+    elementType: 'geometry.stroke',
+    stylers: [
+      {
+        visibility: 'on',
+      },
+      {
+        color: '#f3dbc8',
+      },
+      {
+        saturation: '0',
+      },
+    ],
+  },
+  {
+    featureType: 'road.arterial',
+    elementType: 'labels',
+    stylers: [
+      {
+        hue: '#bbc0c4',
+      },
+      {
+        saturation: -93,
+      },
+      {
+        lightness: -2,
+      },
+      {
+        visibility: 'simplified',
+      },
+    ],
+  },
+  {
+    featureType: 'road.arterial',
+    elementType: 'labels.text',
+    stylers: [
+      {
+        visibility: 'off',
+      },
+    ],
+  },
+  {
+    featureType: 'road.local',
+    elementType: 'geometry',
+    stylers: [
+      {
+        hue: '#007fff',
+      },
+      {
+        saturation: '-100',
+      },
+      {
+        lightness: '14',
+      },
+      {
+        visibility: 'simplified',
+      },
+    ],
+  },
+  {
+    featureType: 'transit',
+    elementType: 'all',
+    stylers: [
+      {
+        hue: '#e9ebed',
+      },
+      {
+        saturation: 10,
+      },
+      {
+        lightness: 69,
+      },
+      {
+        visibility: 'on',
       },
     ],
   },
@@ -130,10 +304,19 @@ const maystylesdata = [
     elementType: 'all',
     stylers: [
       {
-        lightness: -20,
+        hue: '#007fff',
+      },
+      {
+        saturation: '-100',
+      },
+      {
+        lightness: '100',
+      },
+      {
+        visibility: 'simplified',
       },
     ],
   },
-]
+];
 
 export default maystylesdata;
