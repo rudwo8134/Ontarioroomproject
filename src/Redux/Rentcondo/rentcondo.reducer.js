@@ -5,7 +5,8 @@ const INITIAL_VALUE = {
   targetItem:null,
   items:null,
   error:null,
-  filter:null
+  filter:null,
+  detailitem:null
 }
 
 const rentcondoReducer = (state=INITIAL_VALUE, action)=>{
@@ -14,6 +15,11 @@ const rentcondoReducer = (state=INITIAL_VALUE, action)=>{
       return{
         ...state,
         items: action.payload
+      }
+    case rentcondotype.READ_DETAIL_CONDOROOM_SUCCESS:
+      return{
+        ...state,
+        detailitem: action.payload
       }
     case rentcondotype.UPDATE_CONDOROOM_SUCCESS:
     case rentcondotype.DELETE_CONDOROOM_SUCCESS:
@@ -29,6 +35,7 @@ const rentcondoReducer = (state=INITIAL_VALUE, action)=>{
       ...state,
       filter:action.payload
     }
+    case rentcondotype.READ_DETAIL_CONDOROOM_FAILURE:
     case rentcondotype.FILTER_CONDOROOM_FAIL:
     case rentcondotype.POST_CONDOROOM_FAILURE:
     case rentcondotype.READ_CONDOROOM_FAILURE:

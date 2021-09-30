@@ -9,12 +9,15 @@ const style = {
     NavSub: '0.9rem',
     FooterMain: '1.0rem',
     FooterSub: '0.8rem',
-    ButtonFont: "1rem",
-    MainFont: "2.5rem",
+    ButtonFont: '1rem',
+    MainFont: '2.5rem',
 
-    detail_detailbutton: "16px",
-    detail_title:"23px",
-    detail_description:"15px",
+    detail_detailbutton: '16px',
+    detail_title: '23px',
+    detail_description: '15px',
+
+    detailroommainheader: "26px",
+    detailroomsubheader: "14px",
   },
   fontColor: {
     Primary: '#ffa80b',
@@ -29,6 +32,11 @@ const style = {
     black: '#444444',
     blackDark: '#000000',
     blackLight: '#888888',
+
+    detailpageheader: "#222",
+    detailpagesubheader: "#777",
+    detailpageiconcolor:"#ff385c"
+
   },
 
   backgroundColor: {
@@ -44,10 +52,13 @@ const style = {
     black: '#444444',
     blackDark: '#000000',
     blackLight: '#888888',
+    linear: "#EBEBEB",
+
+    Detailpage_Background: '#f7f7f7',
   },
-  boxshaow:{
-    normal: "0px 4px 11px rgba(0,0,0,0.3)"
-  }
+  boxshaow: {
+    normal: '0px 4px 11px rgba(0,0,0,0.3)',
+  },
 };
 
 export default style;

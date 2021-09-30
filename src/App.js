@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { checkUserSession } from "./Redux/Users/user.action";
 import {createStructuredSelector} from 'reselect'
 import { selectCurrentUser } from "./Redux/Users/user.selector";
+import Rentcondodetail from "./Pages/Rentcondo/Rentcondodetail";
 
 
 
@@ -29,6 +30,7 @@ function App(props) {
           <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/register" render={() => <Register />} />
           <Route exact path="/rentcondo" render={() => <Rentcondohome />} />
+          <Route exact path="/rentcondo/:id" render={(props)=><Rentcondodetail {...props}/>}/>
           <Route exact path="/rentcondopost" render={() => !current ? <Redirect to="/login"/> : <Rentcondopost />} />
           <Route render={() => <Errorpage />} />
         </Switch>

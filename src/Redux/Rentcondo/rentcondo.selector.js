@@ -14,3 +14,8 @@ export const selectfilter = createSelector(
   [seletRentcondo],
   (rentcondo) => rentcondo.filter
 );
+
+export const selectdetailitem = createSelector(
+  [seletRentcondo],
+  (rentcondo) => rentcondo.detailitem
+);

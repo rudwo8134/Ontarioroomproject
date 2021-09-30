@@ -339,7 +339,7 @@ const Showcomponent = (props) => {
         </button>
       </div>
       <div className="buttonwrapper">
-        <DetailLink>Detail</DetailLink>
+        <DetailLink to={`rentcondo/${data.id}`}>Detail</DetailLink>
       </div>
       <div className="titlecontainer">
         <h1 className="title">{data.posttitle}</h1>

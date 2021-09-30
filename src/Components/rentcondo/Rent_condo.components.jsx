@@ -230,6 +230,23 @@ const RentCondocomponents = (props) => {
 
  useEffect(() => {}, [addressinfo]);
 
+ const filterdata = rooms && rooms.filter((item)=>{
+  if(!settingfilter){
+    return item
+  }else{
+    if(settingfilter.minmoney){
+      return settingfilter.minmoney < item.monthlyfee
+    }
+    if (settingfilter.maxmoney) {
+      return settingfilter.maxmoney > item.monthlyfee;
+    }
+    else{
+      return item
+    }
+  }
+})
+ console.log(filterdata)
+ 
   const onUnmount = React.useCallback(function callback(map) {
     setMap(null)
   }, [])

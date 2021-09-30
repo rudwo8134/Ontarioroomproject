@@ -8,7 +8,9 @@ import {
   rentcondodeleteFail,
   rentcondodeleteSuccess,
   rentcondoupdateFail, 
-  rentcondoupdateSuccess
+  rentcondoupdateSuccess,
+  detailroomfailed,
+  detailroomsuccess
   } from "./rentcondo.action";
 import { createrentcondopost, firestore } from '../../Firebase/firebase.utils';
 
@@ -44,6 +46,17 @@ import { createrentcondopost, firestore } from '../../Firebase/firebase.utils';
     }
   }
 
+  export function*readdetailroom({payload}){
+     try{
+       const detailroodref = yield firestore.doc(`/rentcondo/${payload}`)
+       const ref = yield detailroodref.get()
+       const data = yield ref.data();
+      yield put(detailroomsuccess(data))
+     }catch(err){
+       yield put(detailroomfailed(err))
+     }
+  }
+
   export function*onrentcondopoststart(){
     yield takeLatest(rentcondotype.POST_CONDOROOM_START, postrentcondo)
   }
@@ -53,9 +66,14 @@ import { createrentcondopost, firestore } from '../../Firebase/firebase.utils';
     yield takeLatest(rentcondotype.READ_CONDOROOM_START, readrentcondo)
   }
 
+  export function*onDetailreadstart(){
+    yield takeLatest(rentcondotype.READ_DETAIL_CONDOROOM_START, readdetailroom)
+  }
+
   export function*rentcondoSagas(){
     yield all([
       call(onrentcondopoststart),
-      call(onrentcondoreadstart)
+      call(onrentcondoreadstart),
+      call(onDetailreadstart)
     ])
   }

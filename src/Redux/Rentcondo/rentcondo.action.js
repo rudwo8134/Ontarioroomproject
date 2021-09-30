@@ -1,5 +1,20 @@
 import rentcondotype from "./rentcondo.type";
 
+export const detailroomstart = (query) =>({
+  type: rentcondotype.READ_DETAIL_CONDOROOM_START,
+  payload: query
+})
+
+export const detailroomsuccess = (data) =>({
+  type: rentcondotype.READ_DETAIL_CONDOROOM_SUCCESS,
+  payload:data
+})
+
+export const detailroomfailed = (error) => ({
+  type: rentcondotype.READ_DETAIL_CONDOROOM_FAILURE,
+  payload:error
+})
+
 export const rentcondopoststart = (data) =>({
   type: rentcondotype.POST_CONDOROOM_START,
   payload:data

@@ -49,8 +49,7 @@ E-mail : rudwo8134@gmail.com
   3. finish the room side-detail page
   4. add the filter design and catergory. need to fix working properly
   5. working on filter data depends on price
-
-
+  6. working on detail page. need to design
 
 
 
