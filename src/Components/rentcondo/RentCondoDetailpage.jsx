@@ -173,6 +173,9 @@ const Categorycontainer = styled.div`
 
 const RentCondoDetailpage = (props) => {
   console.log(props)
+  if(props === "null"){
+    return <div>loading....</div>
+  }
   return (
     <Background>
       <Wrapper>
@@ -181,7 +184,7 @@ const RentCondoDetailpage = (props) => {
           <div className="userinfo">
             <h3>
               <FaLocationArrow />
-              {props.address.Formattedaddress}
+              {props && props.address.Formattedaddress}
             </h3>
           </div>
         </PostNav>
@@ -238,10 +241,15 @@ const RentCondoDetailpage = (props) => {
         <Linearbar />
         <Categorycontainer>
           {Filterdata.Category.map((item,index)=>{
-            <div className="itemcontainer" key={index}>
-              <h1>{item.icon}{item.name}</h1>
-
-            </div>
+            return (
+              <div className="itemcontainer" key={index}>
+                <h1>
+                  {item.icon}
+                  {item.name}
+                </h1>
+              </div>
+            );
+            
           })}
 
         </Categorycontainer>

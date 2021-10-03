@@ -179,6 +179,8 @@ const RentCondocomponents = (props) => {
   const [selected, setselected] = useState("")
   const [popup, setpopup] =useState(false)
   const [filter, setfilter] = useState(false)
+
+
   useEffect(() => {
     readdatastart();
   }, [readdatastart]);
@@ -202,6 +204,39 @@ const RentCondocomponents = (props) => {
   const handleselectforaddress = (select) => {
     setsearchmap(select);
   };
+
+  console.log(rooms)
+  console.log(settingfilter)
+
+  const filterdata = rooms && rooms.filter((item)=>{
+    const {
+      monthlyfee,
+      Dryer,
+      Freezeer,
+      Fridge,
+      Laundry,
+      aricondition,
+      availalbledate,
+      internet,
+      kitchen,
+      parking,
+      petavailable,
+      privateenterance,
+      smoking,
+      tv,
+    } = item;
+    if(settingfilter){
+      const {
+        minmonth,
+        maxmonth,
+    
+      } = settingfilter;
+      return Number(minmonth) <= Number(monthlyfee) && Number(maxmonth) >= Number(monthlyfee)
+    }
+   return item;
+ 
+  })
+  console.log("filterdata", filterdata)
 
    const handleaddressdata = async (address) => {
      try {
@@ -230,22 +265,11 @@ const RentCondocomponents = (props) => {
 
  useEffect(() => {}, [addressinfo]);
 
- const filterdata = rooms && rooms.filter((item)=>{
-  if(!settingfilter){
-    return item
-  }else{
-    if(settingfilter.minmoney){
-      return settingfilter.minmoney < item.monthlyfee
-    }
-    if (settingfilter.maxmoney) {
-      return settingfilter.maxmoney > item.monthlyfee;
-    }
-    else{
-      return item
-    }
-  }
-})
- console.log(filterdata)
+//  const filterdata = rooms && rooms.filter((item)=>{
+//   return settingfilter.minmoney < item.monthlyfee;
+// })
+
+//  console.log(filterdata)
  
   const onUnmount = React.useCallback(function callback(map) {
     setMap(null)
