@@ -11,6 +11,11 @@ import { RiFridgeFill } from 'react-icons/ri';
 
 const Navdata = [
   {
+    name: 'Info',
+    Link: '/intro',
+    subtitle: 'About Us',
+  },
+  {
     name: 'Condo/Apart',
     Link: '/rentcondo',
     subtitle: 'Room rent for condo',
@@ -23,11 +28,6 @@ const Navdata = [
   {
     name: 'Long term Rent',
     Link: '/rentlongterm',
-    subtitle: 'Whole Condo or house',
-  },
-  {
-    name: 'Short term Rent',
-    Link: '/rentshortterm',
     subtitle: 'Whole Condo or house',
   },
 ];
