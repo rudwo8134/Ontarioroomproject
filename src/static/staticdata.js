@@ -1,18 +1,12 @@
-import { IoMdArrowRoundBack } from 'react-icons/io';
-import { FiMapPin } from 'react-icons/fi';
-import { GiTakeMyMoney, GiReceiveMoney } from 'react-icons/gi';
-import { FiInfo } from 'react-icons/fi';
-import { BsPeopleFill, BsHouseDoor } from 'react-icons/bs';
+import { GiTakeMyMoney,} from 'react-icons/gi';
 import { FaParking } from 'react-icons/fa';
 import { MdPets, MdSmokingRooms, MdLocalLaundryService } from 'react-icons/md';
-import { IoIosBed } from 'react-icons/io';
 import {IoFilterCircleSharp} from 'react-icons/io5'
-import { AiOutlineWifi, AiFillPhone, AiOutlineMail } from 'react-icons/ai';
+import { AiOutlineWifi} from 'react-icons/ai';
 import { CgSmartHomeCooker } from 'react-icons/cg';
-import { BiFridge, BiDoorOpen } from 'react-icons/bi';
-import { RiTempColdLine, RiMovieLine, RiFridgeFill } from 'react-icons/ri';
-import { IoMdContact } from 'react-icons/io';
-import { HiOutlineIdentification } from 'react-icons/hi';
+import { BiFridge } from 'react-icons/bi';
+import { RiFridgeFill } from 'react-icons/ri';
+
 
 
 const Navdata = [

@@ -14,6 +14,7 @@ this website will make people easy to find the room in Ontario
   - firebase
   - react-places-autocomplete
   - react-async-script-loader
+  - readt-spinner
 
 
 #### publisher
@@ -50,6 +51,11 @@ E-mail : rudwo8134@gmail.com
   4. add the filter design and catergory. need to fix working properly
   5. working on filter data depends on price
   6. working on detail page. need to design
+
+
+#### Day4( 10.1, 2021)
+  1. disscuss the problem and resolutuin
+  2. add the info page
 
 
 
