@@ -112,10 +112,18 @@ const Intropeoplecontainer = styled.div`
   .jobcontainer{
     h4{
       font-size:12px;
-      font-weight: 600;
+      font-weight: 500;
     }
   }
 `;
+
+const Peopletitile= styled.h4`
+  font-size: 2rem;
+  max-width: 1300px ;
+  margin:2rem auto;
+  text-align:center;
+  
+`
 
 const IntroComponent = () => {
   return (
@@ -178,7 +186,9 @@ const IntroComponent = () => {
           </span>
         </div>
       </DescriptionContainer>
-
+      <Peopletitile>
+        대표이사 소개
+      </Peopletitile>
       <Intropeoplecontainer>
         <div className="card">
           <div className="imagecontainer">
