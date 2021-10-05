@@ -2,6 +2,7 @@ import React from 'react'
 import style from '../../static/staticcss'
 import styled from 'styled-components'
 import main from '../../assets/main.png'
+import video from '../../assets/video.mp4'
 
 const ImageContainer = styled.div`
   width: 100vw;
@@ -46,16 +47,22 @@ const ImageContainer = styled.div`
   }
 `;
 
-const Imagetag = styled.img`
-  opacity: 0.6;
+const Imagetag = styled.video`
+  opacity: 0.8;
   width: 100vw;
   height: 100vh;
+  -o-object-fit: cover;
+  object-fit: cover;
+  background: #232a34;
 `;
+
+
 
 const Hero = () => {
   return (
     <ImageContainer>
-      <Imagetag src={main} layout="responsive" />
+      <Imagetag playsInline src={video} autoPlay loop muted type="video/mp4">
+      </Imagetag>
       <div className="mainholder">
         <h1 className="MainText">Which Location are you looking for?</h1>
         <form className="search" action="submit">

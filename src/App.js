@@ -15,6 +15,7 @@ import {createStructuredSelector} from 'reselect'
 import { selectCurrentUser } from "./Redux/Users/user.selector";
 import Rentcondodetail from "./Pages/Rentcondo/Rentcondodetail";
 import Intropages from "./Pages/Intropages";
+import Newhome from "./Pages/Newhome";
 
 
 
@@ -28,6 +29,7 @@ function App(props) {
       <Layout>
         <Switch>
           <Route exact path="/" render={() => <Home />} />
+          <Route exact path="/home" render={()=> <Newhome/>}/>
           <Route exact path='/intro' render={()=><Intropages/>}/>
           <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/register" render={() => <Register />} />
