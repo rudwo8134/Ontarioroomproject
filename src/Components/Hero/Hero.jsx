@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react';
 import style from '../../static/staticcss'
 import styled from 'styled-components'
 import main from '../../assets/main.png'
 import video from '../../assets/video.mp4'
 
 const ImageContainer = styled.div`
+  position: relative;
   width: 100vw;
   .mainholder {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     display: flex;
     flex-direction: column;
@@ -55,11 +56,35 @@ const Imagetag = styled.video`
   object-fit: cover;
   background: #232a34;
 `;
+const Pallarlax = styled.div`
+  position: absolute;
+  bottom: -80px;
+  z-index: 3;
+  left: 0;
+  width: 100vw;
+  height: 50vh;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.0) 0%,
+    rgba(0, 0, 0, 0.1) 20%,
+    rgba(0, 0, 0, 0.2) 40%,
+    rgba(0, 0, 0, 0.3) 60%,
+    rgba(0, 0, 0, 0.6) 70%,
+    rgba(0, 0, 0, 1) 80%,
+    rgba(0, 0, 0, 1) 90%,
+    rgba(0, 0, 0, 1) 100%
+  );
+`;
+
 
 
 
 const Hero = () => {
+  const [loading,setloading] = useState(true)
+  
+ 
   return (
+    <>
     <ImageContainer>
       <Imagetag playsInline src={video} autoPlay loop muted type="video/mp4">
       </Imagetag>
@@ -70,7 +95,9 @@ const Hero = () => {
           <button type="submit">Search</button>
         </form>
       </div>
+      <Pallarlax/>
     </ImageContainer>
+    </>
   );
 }
 

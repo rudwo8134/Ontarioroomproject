@@ -57,6 +57,11 @@ E-mail : rudwo8134@gmail.com
   1. disscuss the problem and resolutuin
   2. add the info page
 
+
+#### Day5(10,04 2021)
+   1. add the video clip on the hero page.
+   -Test mode... not Confirmed
+
 -to do
 change the data format
 
