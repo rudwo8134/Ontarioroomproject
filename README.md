@@ -68,6 +68,10 @@ E-mail : rudwo8134@gmail.com
   2. add the new heropage
   3. add the intro page
   4. add the featurepage
+  5. add the calltoaction
+  6. add the contactform
+  7. add the testmonials
+  -finish the new home design. it need to discuss
 
 -to do
 change the data format
