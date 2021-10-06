@@ -11,24 +11,19 @@ import { RiFridgeFill } from 'react-icons/ri';
 
 const Navdata = [
   {
-    name: 'Info',
-    Link: '/intro',
+    name: '방구하기',
+    Link: '/rentcondo',
     subtitle: 'About Us',
   },
   {
-    name: 'Condo/Apart',
+    name: '방올리기',
     Link: '/rentcondo',
     subtitle: 'Room rent for condo',
   },
   {
-    name: 'House',
+    name: '고객센터',
     Link: '/renthouse',
     subtitle: 'Room rent for house',
-  },
-  {
-    name: 'Long term Rent',
-    Link: '/rentlongterm',
-    subtitle: 'Whole Condo or house',
   },
 ];
 

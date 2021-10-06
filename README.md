@@ -62,6 +62,13 @@ E-mail : rudwo8134@gmail.com
    1. add the video clip on the hero page.
    -Test mode... not Confirmed
 
+### Day6(10,06 2021)
+  deside to make a new homepage
+  1. add the new navbar
+  2. add the new heropage
+  3. add the intro page
+  4. add the featurepage
+
 -to do
 change the data format
 
