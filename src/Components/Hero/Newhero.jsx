@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled,{keyframes} from 'styled-components'
 import Background from '../../assets/newbg.png'
 import Secondarybutton from '../util/Secondarybutton'
 const Newhero = () => {
@@ -14,9 +14,37 @@ const Newhero = () => {
           <Secondarybutton name="검색"/>
         </div>
       </form>
+
+      <span className="scrollBtn">
+        <a href="/">
+          <span className="mouse">
+            <h3>
+              scroll down
+            </h3>
+          </span>
+        </a>
+      </span>
     </Newherostyle>
   )
 }
+
+const animouse = keyframes`
+0% {
+	opacity: 1;
+	top: 29%;
+	}
+	15% {
+	opacity: 1;
+	top: 50%;
+	}
+	50% {
+	opacity: 0;
+	top: 50%;
+	}
+	100% {
+	opacity: 0;
+	top: 29%;
+	}`;
 
 const Newherostyle = styled.div`
   width: 100vw;
@@ -55,6 +83,50 @@ const Newherostyle = styled.div`
         font-size: 20px;
         line-height: 26px;
         color: rgba(21, 20, 57, 0.4);
+      }
+    }
+  }
+  .scrollBtn {
+    display: inline-block;
+    line-height: 18px;
+    font-size: 13px;
+    font-weight: normal;
+    color: #7f8c8d;
+    color: #ffffff;
+    letter-spacing: 2px;
+    position: absolute;
+    bottom: 40px;
+    .mouse {
+      position: relative;
+      display: block;
+      width: 35px;
+      height: 55px;
+      margin: 0 auto 20px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      border: 3px solid white;
+      border-radius: 23px;
+      ::before {
+        content: "";
+        position: absolute;
+        display: block;
+        top: 29%;
+        left: 50%;
+        width: 8px;
+        height: 8px;
+        margin: -4px 0 0 -4px;
+        background: white;
+        border-radius: 50%;
+        animation: ${animouse} 2.5s linear infinite;
+      }
+      h3{
+        position: absolute;
+        top:55px;
+        left: -45px;
+        width: 200px;
+        text-transform: uppercase;
+        font-size: 0.8rem;
       }
     }
   }
