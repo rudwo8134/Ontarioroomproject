@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/static/js/main.e83c70a1.chunk.js",
-    "main.js.map": "/static/js/main.e83c70a1.chunk.js.map",
+    "main.js": "/static/js/main.e7aee0d8.chunk.js",
+    "main.js.map": "/static/js/main.e7aee0d8.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.d71508b5.js",
     "runtime-main.js.map": "/static/js/runtime-main.d71508b5.js.map",
-    "static/js/2.a9331fbf.chunk.js": "/static/js/2.a9331fbf.chunk.js",
-    "static/js/2.a9331fbf.chunk.js.map": "/static/js/2.a9331fbf.chunk.js.map",
+    "static/js/2.9383da9a.chunk.js": "/static/js/2.9383da9a.chunk.js",
+    "static/js/2.9383da9a.chunk.js.map": "/static/js/2.9383da9a.chunk.js.map",
     "index.html": "/index.html",
-    "static/js/2.a9331fbf.chunk.js.LICENSE.txt": "/static/js/2.a9331fbf.chunk.js.LICENSE.txt",
+    "static/js/2.9383da9a.chunk.js.LICENSE.txt": "/static/js/2.9383da9a.chunk.js.LICENSE.txt",
     "static/media/Introbanner.8fc22aef.jpg": "/static/media/Introbanner.8fc22aef.jpg",
     "static/media/Logoremovebg.721fabd9.png": "/static/media/Logoremovebg.721fabd9.png",
     "static/media/Monitor.5dc9d994.png": "/static/media/Monitor.5dc9d994.png",
@@ -28,11 +28,13 @@
     "static/media/person1.4ab3cd46.png": "/static/media/person1.4ab3cd46.png",
     "static/media/register.e20b4376.jpg": "/static/media/register.e20b4376.jpg",
     "static/media/ring_orange.25b28ee1.svg": "/static/media/ring_orange.25b28ee1.svg",
+    "static/media/uer1.aad0ab39.png": "/static/media/uer1.aad0ab39.png",
+    "static/media/usr2.5b4d377c.png": "/static/media/usr2.5b4d377c.png",
     "static/media/video.a0703970.mp4": "/static/media/video.a0703970.mp4"
   },
   "entrypoints": [
     "static/js/runtime-main.d71508b5.js",
-    "static/js/2.a9331fbf.chunk.js",
-    "static/js/main.e83c70a1.chunk.js"
+    "static/js/2.9383da9a.chunk.js",
+    "static/js/main.e7aee0d8.chunk.js"
   ]
 }
