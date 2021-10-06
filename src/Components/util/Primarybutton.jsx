@@ -3,8 +3,9 @@ import styled from 'styled-components'
 
 
 
-const Primarybutton = ({name}) => {
-  return <Primarybuttonstyle><span>{name}</span></Primarybuttonstyle>;
+const Primarybutton = (props) => {
+  const {name} = props
+  return <Primarybuttonstyle {...props}><span>{name}</span></Primarybuttonstyle>;
 }
 
 const Primarybuttonstyle = styled.button`

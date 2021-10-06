@@ -74,7 +74,7 @@ const Footer = () => {
 }
 
 const Footerstyle = styled.footer`
-  height: 260px;
+  height: 20vh;
   .container {
     display: flex;
     flex-direction: column;
