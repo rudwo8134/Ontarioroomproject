@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.js": "/static/js/main.7d765fd2.chunk.js",
-    "main.js.map": "/static/js/main.7d765fd2.chunk.js.map",
+    "main.js": "/static/js/main.e83c70a1.chunk.js",
+    "main.js.map": "/static/js/main.e83c70a1.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.d71508b5.js",
     "runtime-main.js.map": "/static/js/runtime-main.d71508b5.js.map",
-    "static/js/2.4fabdbb1.chunk.js": "/static/js/2.4fabdbb1.chunk.js",
-    "static/js/2.4fabdbb1.chunk.js.map": "/static/js/2.4fabdbb1.chunk.js.map",
+    "static/js/2.a9331fbf.chunk.js": "/static/js/2.a9331fbf.chunk.js",
+    "static/js/2.a9331fbf.chunk.js.map": "/static/js/2.a9331fbf.chunk.js.map",
     "index.html": "/index.html",
-    "static/js/2.4fabdbb1.chunk.js.LICENSE.txt": "/static/js/2.4fabdbb1.chunk.js.LICENSE.txt",
+    "static/js/2.a9331fbf.chunk.js.LICENSE.txt": "/static/js/2.a9331fbf.chunk.js.LICENSE.txt",
     "static/media/Introbanner.8fc22aef.jpg": "/static/media/Introbanner.8fc22aef.jpg",
     "static/media/Logoremovebg.721fabd9.png": "/static/media/Logoremovebg.721fabd9.png",
     "static/media/Monitor.5dc9d994.png": "/static/media/Monitor.5dc9d994.png",
+    "static/media/calltocation.f0b1e000.png": "/static/media/calltocation.f0b1e000.png",
     "static/media/feature2.535dd75e.png": "/static/media/feature2.535dd75e.png",
     "static/media/feature3.685f274c.png": "/static/media/feature3.685f274c.png",
     "static/media/feature4.c3ca4c4a.png": "/static/media/feature4.c3ca4c4a.png",
@@ -31,7 +32,7 @@
   },
   "entrypoints": [
     "static/js/runtime-main.d71508b5.js",
-    "static/js/2.4fabdbb1.chunk.js",
-    "static/js/main.7d765fd2.chunk.js"
+    "static/js/2.a9331fbf.chunk.js",
+    "static/js/main.e83c70a1.chunk.js"
   ]
 }
