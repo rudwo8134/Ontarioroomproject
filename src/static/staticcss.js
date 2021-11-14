@@ -16,11 +16,11 @@ const style = {
     detail_title: '23px',
     detail_description: '15px',
 
-    detailroommainheader: "26px",
-    detailroomsubheader: "14px",
+    detailroommainheader: '26px',
+    detailroomsubheader: '14px',
   },
   fontColor: {
-    Primary: '#ffa80b',
+    Primary: '#DF1B52',
     primaryDark: '#996406',
     primaryLight: '#ffca6c',
     secondary: '#2d60a3',
@@ -32,17 +32,17 @@ const style = {
     black: '#444444',
     blackDark: '#000000',
     blackLight: '#888888',
+    ButtonColor: `#15143999`,
 
-    detailpageheader: "#222",
-    detailpagesubheader: "#777",
-    detailpageiconcolor:"#ff385c"
-
+    detailpageheader: '#222',
+    detailpagesubheader: '#777',
+    detailpageiconcolor: '#ff385c',
   },
 
   backgroundColor: {
-    Primary: '#ffa80b',
-    primaryDark: '#996406',
-    primaryLight: '#ffca6c',
+    Primary: '#DF1B52',
+    primaryDark: '#9c1239',
+    primaryLight: '#e85f85',
     secondary: '#2d60a3',
     secondaryDark: '#163051',
     secondaryLight: '#819fc7',
@@ -52,7 +52,7 @@ const style = {
     black: '#444444',
     blackDark: '#000000',
     blackLight: '#888888',
-    linear: "#EBEBEB",
+    linear: '#EBEBEB',
 
     Detailpage_Background: '#f7f7f7',
   },
