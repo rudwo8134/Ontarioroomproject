@@ -71,8 +71,9 @@ const Nav = (props) => {
 };
 const Wrapper = styled.section`
   width: 100vw;
+  height: 100px;
   position: fixed;
-  z-index: 30;
+  z-index: 100;
   top: 0;
   background: ${({ scroll }) => (scroll ? 'white' : 'transparent')};
   transition: all 0.5s ease-in-out;
