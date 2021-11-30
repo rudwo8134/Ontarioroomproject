@@ -9,15 +9,15 @@ const Secondarybutton = ({name}) => {
   )
 }
 const Secondarybuttonstyle = styled.button`
-  width: 141.22px;
-  height: 60px;
+  width: 100.43px;
+  height: 62px;
+  background: #df1b52;
   border-radius: 100px;
-  background-color: var(--text-Primary);
   border: none;
   outline: none;
   cursor: pointer;
   transition: 0.3s ease-in-out all;
-  :hover{
+  :hover {
     background-color: black;
   }
   span {

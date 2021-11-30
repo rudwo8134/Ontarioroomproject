@@ -1,534 +1,296 @@
-import React from 'react'
+import React,{useState} from 'react'
 import styled from 'styled-components'
 import defaultimage from '../../assets/main.png'
 import { connect } from 'react-redux'
 import { selectitems } from '../../Redux/Rentcondo/rentcondo.selector'
 import { selectCurrentUser } from '../../Redux/Users/user.selector'
 import {createStructuredSelector} from 'reselect'
-import { Link } from 'react-router-dom'
+
 import style from '../../static/staticcss.js'
 
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import {FiMapPin} from 'react-icons/fi'
 import { GiTakeMyMoney, GiReceiveMoney } from 'react-icons/gi';
 import {FiInfo} from 'react-icons/fi'
-import { BsPeopleFill, BsHouseDoor } from 'react-icons/bs';
+import { BsPeopleFill, BsHouseDoor, BsHeartFill } from 'react-icons/bs';
 import {FaParking} from 'react-icons/fa'
 import { MdPets, MdSmokingRooms,MdLocalLaundryService } from 'react-icons/md';
 import {IoIosBed} from 'react-icons/io'
-import { AiOutlineWifi, AiFillPhone, AiOutlineMail } from 'react-icons/ai';
+import { AiOutlineWifi, AiFillPhone, AiOutlineMail, AiOutlineArrowRight } from 'react-icons/ai';
 import {CgSmartHomeCooker} from 'react-icons/cg'
 import { BiFridge, BiDoorOpen } from 'react-icons/bi';
 import { RiTempColdLine, RiMovieLine,RiFridgeFill } from 'react-icons/ri';
 import {IoMdContact} from 'react-icons/io'
 import {HiOutlineIdentification} from 'react-icons/hi'
+import { BsFilter } from 'react-icons/bs';
+
+import Showitem from './Showitem'
+
 
 
 const Wrapper = styled.div`
   width: 100%;
+  height: 100%;
+  overflow-x: scroll;
   background: white;
-
-  .imgwrapper {
-    position: relative;
-    button {
-      z-index: 2;
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      width: 50px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: transparent;
-      border: none;
-      color: ${style.fontColor.White};
-      transition: 0.3 ease-in-out all;
-      cursor: pointer;
-      :hover {
-        svg {
-          color: ${style.fontColor.blackDark};
-        }
-      }
-    }
-    img {
-      width: 100%;
-    }
-  }
-  .buttonwrapper {
-    width: 100%;
-    height: 3rem;
-    background: ${style.backgroundColor.primaryLight};
-    margin-top: -0.5rem;
+  padding: 2rem;
+  .descriptioncontainer {
     display: flex;
-    justify-content: center;
     align-items: center;
-    transition: all 0.3s ease-in-out;
-    :hover {
-      background: ${style.backgroundColor.secondary};
-      color: black;
-    }
-  }
-  .titlecontainer {
-    width: 100%;
-    padding: 12px;
-    .title {
-      margin: 0;
-      font-size: ${style.fontSize.detail_title};
-      font-weight: bold;
-      text-overflow: ellipsis;
+    margin-bottom: 3rem;
+    .description {
+      width: 80%;
+      height: 90px;
+      white-space: wrap;
       overflow: hidden;
-      margin-bottom: 1rem;
-      white-space: nowrap;
-      resize: horizontal;
+      text-overflow: ellipsis;
+      margin-right: 27px;
+      font-size: 18px;
+      line-height: 30px;
+      /* or 167% */
+      display: flex;
+      color: rgba(29, 24, 13, 0.9);
     }
-  }
-  .locationinfomation {
-    width: 100%;
-    padding: 12px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 1rem;
-    span {
-      color: black;
-      font-weight: 500;
-      font-size: 1.5rem;
+    a {
+      background: #fff;
+      border: 1px solid #df1b52;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+      width: 137px;
+      height: 60px;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 26px;
+      /* identical to box height, or 130% */
+
       display: flex;
       align-items: center;
-      svg {
-        margin-right: 0.5rem;
-        font-size: 1.5rem;
-        color: ${style.fontColor.blackLight};
-      }
-    }
-    h4 {
-      font-weight: 300;
+
+      color: #df1b52;
+      justify-content: center;
+
+      border-radius: 100px;
     }
   }
-  .priceinfomation {
+  .pricecontainer {
     width: 100%;
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    span {
-      color: black;
-      font-weight: 500;
-      font-size: 1.5rem;
-      display: flex;
-      align-items: center;
-      svg {
-        margin-right: 0.5rem;
-        font-size: 1.5rem;
-        color: ${style.fontColor.blackLight};
-      }
-    }
-    h4 {
-      margin: 0;
-      font-size: 1.5rem;
-      margin-left: 1rem;
-      font-weight: 300;
-      padding: 0;
-      b {
-        letter-spacing: 0.25rem;
-        font-size: 1.6rem;
-        font-weight: 600;
-        color: ${style.fontColor.secondaryDark};
-      }
-    }
-  }
-  .depositinfomation {
-    width: 100%;
-    padding: 12px;
     display: flex;
     align-items: center;
+    margin-top: 16px;
+    justify-content: flex-start;
+    .price {
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 26px;
+      /* identical to box height, or 108% */
+
+      display: flex;
+      align-items: center;
+
+      color: #df1b52;
+
+      border-radius: 100px;
+      margin-right: 10px;
+    }
+    .roomtype {
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 26px;
+      /* identical to box height, or 108% */
+
+      display: flex;
+      align-items: center;
+
+      color: #1d180d;
+
+      border-radius: 100px;
+    }
     span {
-      color: black;
-      font-weight: 500;
-      font-size: 1.5rem;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 26px;
+      /* identical to box height, or 108% */
+
       display: flex;
       align-items: center;
-      svg {
-        margin-right: 0.5rem;
-        font-size: 1.5rem;
-        color: ${style.fontColor.blackLight};
-      }
+
+      color: #1d180d;
+
+      border-radius: 100px;
+      margin: 0 1rem;
     }
-    h4 {
-      margin: 0;
-      font-size: 1.5rem;
-      margin-left: 1rem;
-      font-weight: 300;
-      padding: 0;
-      b {
-        letter-spacing: 0.25rem;
-        font-size: 1.6rem;
-        font-weight: 600;
-        color: ${style.fontColor.blackLight};
-      }
+    .rocation {
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 26px;
+      /* identical to box height, or 108% */
+
+      display: flex;
+      align-items: center;
+
+      color: #1d180d;
+
+      border-radius: 100px;
     }
   }
-  .spaceline {
-    width: 100%;
-    height: 1px;
-    margin-top: 1.5rem;
-    background: rgba(0, 0, 0, 0.1);
-  }
-  .infornmationcontainer {
-    width: 100%;
-    padding: 12px;
+  .imagecontainer {
+    width: 800px;
+    height: 400px;
     display: flex;
+    margin: 0 auto;
+    position: relative;
     justify-content: center;
-    flex-direction: column;
-    .informationtitle {
-      color: black;
-      font-weight: 500;
-      font-size: 1.5rem;
+    img {
+      width: 900px;
+      height: 400px;
+    }
+  }
+  .liner {
+    width: 100%;
+    height: 2px;
+    border: 1px solid #c4c4c4;
+    margin: 1.5rem 0;
+  }
+  .searchresult {
+    .quearydata {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 24px;
+      line-height: 26px;
+      /* identical to box height, or 108% */
+
       display: flex;
+      align-items: center;
+
+      color: #1d180d;
+
+      border-radius: 100px;
+      margin-bottom: 7px;
+    }
+    .dataresult {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 26px;
+      /* identical to box height, or 144% */
+
+      display: flex;
+      align-items: center;
+
+      color: rgba(35, 31, 32, 0.61);
+
+      border-radius: 100px;
+    }
+  }
+  .filtercontainer {
+    width: 100%;
+    .set {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
       svg {
-        margin-right: 0.5rem;
-        font-size: 1.5rem;
-        color: ${style.fontColor.blackLight};
+        font-size: 2rem;
+        font-weight: bold;
+        color: #000;
       }
-    }
-    .detailed {
-      width: 100%;
-      margin: 0;
-      padding: 12px;
-      display: flex;
-      align-items: center;
-      flex-direction: row;
-      span {
-        color: black;
-        font-weight: 500;
-        font-size: 1.2rem;
-        display: flex;
-        align-items: center;
+      select {
         width: 150px;
-        svg {
-          margin-right: 0.5rem;
-          font-size: 1.2rem;
-          color: ${style.fontColor.blackLight};
+        height: 34px;
+        background: rgba(255, 255, 255, 0.6);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 30px;
+        padding: 1.2rem;
+        border: none;
+        option {
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          letter-spacing: 0.5rem;
+          line-height: 26px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: rgba(29, 24, 13, 0.8);
         }
       }
-      h4 {
-        font-size: 1.2rem;
-        color: ${style.fontColor.blackLight};
-        margin-left: 1rem;
-        padding: 0;
-        margin: 0;
-        margin-left: 2rem;
-        text-transform: capitalize;
-      }
-    }
-  }
-  .utilinfo {
-    width: 100%;
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    .utilinfomation {
-      color: black;
-      font-weight: 500;
-      font-size: 1.5rem;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      svg {
-        margin-right: 0.5rem;
-        font-size: 1.5rem;
-        color: ${style.fontColor.blackLight};
-      }
-    }
-    .detailed {
-      width: 100%;
-      margin: 0;
-      padding: 12px;
-      display: flex;
-      align-items: center;
-      flex-direction: row;
-      span {
-        color: black;
-        font-weight: 500;
-        font-size: 1.2rem;
-        display: flex;
-        align-items: center;
+      input {
         width: 150px;
-        svg {
-          margin-right: 0.5rem;
-          font-size: 1.2rem;
-          color: ${style.fontColor.blackLight};
+        height: 34px;
+        background: rgba(255, 255, 255, 0.6);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 30px;
+        padding: 1.2rem;
+        border: none;
+        ::placeholder {
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          letter-spacing: 0.5rem;
+          line-height: 26px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          color: rgba(29, 24, 13, 0.8);
         }
       }
-      h4 {
-        font-size: 1.2rem;
-        color: ${style.fontColor.blackLight};
-        margin-left: 1rem;
-        padding: 0;
-        margin: 0;
-        margin-left: 2rem;
-        text-transform: capitalize;
-      }
     }
   }
-  .contactinformation {
-    width: 100%;
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    h2 {
-      display: flex;
-      align-items: center;
-      text-transform: capitalize;
-      svg {
-        margin-right: 0.5rem;
-        font-size: 1.8rem;
-        color: ${style.fontColor.blackLight};
-        
-      }
-    }
-   .detailed{
-    display: flex;
-    align-items: center;
-    span{
-      display: flex;
-      align-items: center;
-      font-size: 1.2rem;
-      font-weight: 500;
-      width: 150px;
-      svg{
-        margin-right: 0.5rem;
-      }
-    }
-    h4{
-      font-weight: 400;
-    }
-   }
-  }
 `;
-const Goback = styled(IoMdArrowRoundBack)`
-  transition: 0.3 ease-in-out all;
-  font-size: 2rem;
-`;
-const DetailLink = styled(Link)`
-  width: 100%;
-  text-align:center;
-  font-size: ${style.fontSize.detail_detailbutton};
-  letter-spacing: 0.2rem;
-  font-weight: 500;
-  color: ${style.fontColor.WhiteLight};
-`;
+
 
 const Showcomponent = (props) => {
   const { id, rooms, user } = props;
-  const data =
-    rooms &&
-    rooms.find((data) =>{
-      return id === data.id
-    });
-  if(!data){
-    return <div>Loading....</div>
+  const {minPrice, setminprice} = useState(null);
+
+  let data = rooms 
+
+  const handlemin = (e) =>{
+    console.log(e)
+  }
+  console.log(rooms)
+  if(minPrice){
+    data = rooms.filter((data)=>{
+      return data.monthlyfee > minPrice
+    })
   }
   return (
     <Wrapper>
-      <div className="imgwrapper">
-        <img src={data.image[0]} alt="img" />
-        <button>
-          <Goback />
-        </button>
+      <div className="filtercontainer">
+        <form action="" className="set">
+          <input
+            onChange={handlemin()}
+            type="number"
+            placeholder="최소금액"
+            className="minprice"
+          />
+          <input type="number" placeholder="최대금액" className="maxprice" />
+          <select name="distance" id="distance">
+            <option value="3">3km</option>
+            <option value="5">5km</option>
+            <option value="10">10km</option>
+            <option value="15">15km</option>
+            <option value="25">25km</option>
+            <option value="50">50km</option>
+            <option value="100">100km</option>
+          </select>
+          <select name="date" id="date">
+            <option value="3">날짜순</option>
+            <option value="5">가격순(비싼)</option>
+            <option value="5">가격순(저렴한)</option>
+            <option value="5">거리순(가까운)</option>
+          </select>
+          <BsFilter />
+        </form>
       </div>
-      <div className="buttonwrapper">
-        <DetailLink to={`rentcondo/${data.id}`}>Detail</DetailLink>
+      <div className="liner"></div>
+      <div className="searchresult">
+        <div className="quearydata">Toronto, ON Rooms For Rent</div>
+        <div className="dataresult">Showing 1 - 28 of 28 results</div>
       </div>
-      <div className="titlecontainer">
-        <h1 className="title">{data.posttitle}</h1>
-        <span className="description">{data.posttitle}</span>
-      </div>
-      <div className="spaceline"></div>
-      <div className="locationinfomation">
-        <span className="location">
-          <FiMapPin />
-          Location
-        </span>
-        <h4>{data.address.Formattedaddress}</h4>
-      </div>
-      <div className="spaceline"></div>
-      <div className="priceinfomation">
-        <span>
-          <GiTakeMyMoney />
-          Monthly Fee
-        </span>
-        <h4>
-          <b>{data.monthlyfee}$</b>/Monthly
-        </h4>
-      </div>
-      <div className="depositinfomation">
-        <span>
-          <GiReceiveMoney />
-          Deposit Fee
-        </span>
-        <h4>
-          <b>{data.deposit}$</b>
-        </h4>
-      </div>
-
-      <div className="spaceline"></div>
-
-      <div className="infornmationcontainer">
-        <span className="informationtitle">
-          <FiInfo />
-          Information
-        </span>
-        <div className="detailed">
-          <span>
-            <BsHouseDoor />
-            Room type
-          </span>
-          <h4>{data.roomtype}</h4>
-        </div>
-        <div className="detailed">
-          <span>
-            <BsPeopleFill />
-            Rommate
-          </span>
-          <h4>{data.howmanypeople}</h4>
-        </div>
-        <div className="detailed">
-          <span>
-            <FaParking />
-            Parking
-          </span>
-          <h4>{data.parking}</h4>
-        </div>
-        <div className="detailed">
-          <span>
-            <MdPets />
-            PET
-          </span>
-          <h4>{data.petavailable}</h4>
-        </div>
-        <div className="detailed">
-          <span>
-            <MdSmokingRooms />
-            Smoking
-          </span>
-          <h4>{data.smoking}</h4>
-        </div>
-      </div>
-      <div className="spaceline"></div>
-
-      <div className="utilinfo">
-        <span className="utilinfomation">
-          <FiInfo />
-          More Infomation
-        </span>
-
-        <div className="detailed">
-          <span>
-            <IoIosBed />
-            Funished
-          </span>
-          <h4>{data.funished}</h4>
-        </div>
-        <div className="detailed">
-          <span>
-            <AiOutlineWifi />
-            Internet
-          </span>
-          <h4>{data.internet}</h4>
-        </div>
-        <div className="detailed">
-          <span>
-            <CgSmartHomeCooker />
-            Kitchen
-          </span>
-          <h4>{data.kitchen}</h4>
-        </div>
-        <div className="detailed">
-          <span>
-            <MdLocalLaundryService />
-            Laundry
-          </span>
-          <h4>{data.Laundry}</h4>
-        </div>
-        <div className="detailed">
-          <span>
-            <MdLocalLaundryService />
-            Dryer
-          </span>
-          <h4>{data.Dryer}</h4>
-        </div>
-        <div className="detailed">
-          <span>
-            <BiFridge />
-            Fridge
-          </span>
-          <h4>{data.Fridge}</h4>
-        </div>
-        <div className="detailed">
-          <span>
-            <RiFridgeFill />
-            Freezer
-          </span>
-          <h4>{data.Freezer}</h4>
-        </div>
-        <div className="detailed">
-          <span>
-            <RiTempColdLine />
-            Aircondition
-          </span>
-          <h4>{data.aircondition}</h4>
-        </div>
-        <div className="detailed">
-          <span>
-            <RiMovieLine />
-            TV
-          </span>
-          <h4>{data.tv}</h4>
-        </div>
-        <div className="detailed">
-          <span>
-            <BiDoorOpen />
-            Private Enterance
-          </span>
-          <h4>{data.privateenterance}</h4>
-        </div>
-      </div>
-
-      <div className="spaceline"></div>
-
-      {user ? (
-        <div className="contactinformation">
-          <h2>
-            <IoMdContact />
-            Contact info
-          </h2>
-          <div className="detailed">
-            <span>
-              <HiOutlineIdentification />
-              Owner
-            </span>
-            <h4>{data.userinfo.postname}</h4>
-          </div>
-          <div className="detailed">
-            <span>
-              <AiOutlineMail />
-              Email
-            </span>
-            <h4>{data.userinfo.email}</h4>
-          </div>
-          <div className="detailed">
-            <span>
-              <AiFillPhone />
-              Phone
-            </span>
-            <h4>{data.userinfo.phonenumber}</h4>
-          </div>
-        </div>
-      ) : (
-        <div>please login to see Contact Info</div>
-      )}
+      <div className="liner"></div>
+      {data && data.map((data, index) => {
+        return <Showitem data={data} key={index} />;
+      })}
     </Wrapper>
   );
 }

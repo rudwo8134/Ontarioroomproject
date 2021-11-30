@@ -11,6 +11,7 @@ import { useHistory } from 'react-router';
 import { Uploadimage } from '../../Firebase/firebase.utils';
 import image from '../../assets/main.png'
 const Wrapper = styled.div`
+  margin-top:10vh;
   width: 100vw;
   height: 100vh;
   overflow-x: scroll;

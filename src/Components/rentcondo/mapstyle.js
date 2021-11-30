@@ -34,7 +34,7 @@ const maystylesdata = [
     elementType: 'labels.text.fill',
     stylers: [
       {
-        color: '#f39247',
+        color: '#B9375C',
       },
     ],
   },
@@ -91,7 +91,7 @@ const maystylesdata = [
         visibility: 'on',
       },
       {
-        color: '#ff8157',
+        color: '#DF1B52',
       },
       {
         lightness: '40',
@@ -103,7 +103,7 @@ const maystylesdata = [
     elementType: 'geometry',
     stylers: [
       {
-        hue: '#ff6f00',
+        hue: '#e54874',
       },
       {
         saturation: '100',
@@ -121,7 +121,7 @@ const maystylesdata = [
     elementType: 'geometry.stroke',
     stylers: [
       {
-        color: '#f39247',
+        color: '#DF1B52',
       },
       {
         saturation: '0',

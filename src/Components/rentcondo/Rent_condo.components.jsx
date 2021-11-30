@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { rentcondoreadstart } from '../../Redux/Rentcondo/rentcondo.action';
 import {createStructuredSelector} from 'reselect'
 import { selectfilter, selectitems } from '../../Redux/Rentcondo/rentcondo.selector';
-import Markericons from '../../assets/marker.svg'
+import Markericons from '../../assets/findroom/Makrer.png'
 import Showcomponent from './Showcomponent';
 import { Link } from 'react-router-dom';
 import PlacesAutocomplete from 'react-places-autocomplete/dist/PlacesAutocomplete';
@@ -29,10 +29,21 @@ const containerStyle = {
 
 const Wrapper = styled.div`
   width: 100vw;
+  
   height: 90vh;
-  display: flex;
   position: relative;
+  margin-top:10vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 
+  .line{
+    position: absolute;
+    margin:0 auto;
+    top:-10px;
+    width: 100vw;
+    height: 2px;
+   border: 2px solid #EDEDED;
+  }
   .searchbarcontainer {
     width: 450px;
     height: 120px;
@@ -40,8 +51,8 @@ const Wrapper = styled.div`
     top: 30px;
     left: 30px;
     background-color: transparent;
-    z-index: 30;
-    display: flex;
+    z-index: 5;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -177,7 +188,7 @@ const RentCondocomponents = (props) => {
   const [addressinfo,setaddressinfo] = useState(null)
   const { readdatastart, rooms, settingfilter } = props;
   const [selected, setselected] = useState("")
-  const [popup, setpopup] =useState(false)
+  const [popup, setpopup] =useState(true)
   const [filter, setfilter] = useState(false)
 
 
@@ -185,7 +196,7 @@ const RentCondocomponents = (props) => {
     readdatastart();
   }, [readdatastart]);
 
-    const { isLoaded } = useJsApiLoader({
+  const { isLoaded } = useJsApiLoader({
       id: 'google-map-script',
       googleMapsApiKey: process.env.REACT_APP_GOOGLEAPI,
       libraries,
@@ -274,114 +285,51 @@ const RentCondocomponents = (props) => {
   const onUnmount = React.useCallback(function callback(map) {
     setMap(null)
   }, [])
-  return isLoaded ? (
+  return (
     <Wrapper>
-      <div className="searchbarcontainer">
-        <div className="inputcontainer">
-          <form onSubmit={handlesearchsubmit}>
-            <div className="seactchCcontainer">
-              <PlacesAutocomplete
-                value={searchmap}
-                onChange={handlechnageforaddress}
-                onSelect={handleselectforaddress}
-              >
-                {({
-                  getInputProps,
-                  suggestions,
-                  getSuggestionItemProps,
-                  loading,
-                }) => (
-                  <div>
-                    <input
-                      {...getInputProps({
-                        placeholder: 'Enter address...',
-                      })}
-                      style={{
-                        width: '400px',
-                        position: 'relative',
-                        height: '40px',
-                      }}
-                    />
-                    <div style={{ position: 'absolute', top: '40px' }}>
-                      {loading && <div>...loading</div>}
-                      {suggestions.map((suggestions, index) => {
-                        const style = suggestions.active
-                          ? { backgroundColor: '#a83232', cursor: 'pointer' }
-                          : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                        return (
-                          <div
-                            key={index}
-                            {...getSuggestionItemProps(suggestions, { style })}
-                          >
-                            {suggestions.description}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-              </PlacesAutocomplete>
-              <button type="submit">
-                <Searchicons />
-              </button>
-            </div>
-            <div className="filtercontentsWrapper">
-              <div className="filterCcontainer">
-                <span>Set your condition</span>
-                <button onClick={()=>setfilter(!filter)}>
-                  <AiTwotoneFilter />
-                </button>
-              </div>
-                <Filter filter={filter}/>
-            </div>
-          </form>
-          <Postcomponentcontainer>
-            <Postcomponent to="/rentcondopost">Post your home</Postcomponent>
-          </Postcomponentcontainer>
-        </div>
-      </div>
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={{
-          lat: addressinfo ? Number(addressinfo.lat) : 43.6532,
-          lng: addressinfo ? Number(addressinfo.lng) : -79.3832,
-        }}
-        zoom={15}
-        options={options}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
-      >
-        {/* Child components, such as markers, info windows, etc. */}
-        <>
-          {rooms &&
-            rooms.map((data) => {
-              return (
-                <Marker
-                  key={data.id}
-                  position={{ lat: data.address.lat, lng: data.address.lng }}
-                  icon={{
-                    url: Markericons,
-                    scaledSize: new window.google.maps.Size(30, 30),
-                    origin: new window.google.maps.Point(0, 0),
-                    anchor: new window.google.maps.Point(15, 15),
-                  }}
-                  onClick={() => {
-                    setselected(data.id);
-                    setpopup(!popup);
-                  }}
-                />
-              );
-            })}
-        </>
-      </GoogleMap>
+      <div className="line"></div>
       <Searchresultcontainer popup={popup}>
         <Showcomponent id={selected} />
       </Searchresultcontainer>
+      {isLoaded && (
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={{
+            lat: addressinfo ? Number(addressinfo.lat) : 43.6532,
+            lng: addressinfo ? Number(addressinfo.lng) : -79.3832,
+          }}
+          zoom={15}
+          options={options}
+          onLoad={onLoad}
+          onUnmount={onUnmount}
+        >
+          {/* Child components, such as markers, info windows, etc. */}
+          <>
+            {rooms &&
+              rooms.map((data) => {
+                return (
+                  <Marker
+                    key={data.id}
+                    position={{ lat: data.address.lat, lng: data.address.lng }}
+                    icon={{
+                      url: Markericons,
+                      scaledSize: new window.google.maps.Size(30, 30),
+                      origin: new window.google.maps.Point(0, 0),
+                      anchor: new window.google.maps.Point(15, 15),
+                    }}
+                    onClick={() => {
+                      setselected(data.id);
+                      setpopup(!popup);
+                    }}
+                    label="3"
+                  />
+                );
+              })}
+          </>
+        </GoogleMap>
+      )}
     </Wrapper>
-  ) : (
-    <div>...loading</div>
   );
-
 }
 
 const maptoprops = createStructuredSelector({

@@ -2,7 +2,7 @@ import React,{useCallback,useEffect,useState} from 'react'
 import { Navdata } from '../../static/staticdata'
 import styled from 'styled-components'
 import { Link,useHistory } from 'react-router-dom';
-import Logo from '../../assets/Logo.png'
+
 import style from '../../static/staticcss';
 import ButtonComponents from '../util/button';
 import { connect } from 'react-redux';
@@ -11,6 +11,7 @@ import { selectCurrentUser } from '../../Redux/Users/user.selector';
 import { signOutStart } from '../../Redux/Users/user.action';
 import { Innerlayout } from '../../styles/layout';
 import Primarybutton from '../util/Primarybutton';
+import Logo from '../../assets/nav/LOGO.png'
 
 
 const Nav = (props) => {
@@ -46,7 +47,9 @@ const Nav = (props) => {
     <Wrapper scroll={scroll}>
       <Navstyle scroll={scroll}>
         <div className="logo">
-          <h2 className="Onroommainlogo">ONROOM</h2>
+          <Link to="/">
+            <img src={Logo} alt="mainlogo" className="logocomponent" />
+          </Link>
         </div>
         <ul className="navlink">
           {Navdata.map((link, index) => {
@@ -57,11 +60,10 @@ const Nav = (props) => {
             );
           })}
         </ul>
-        <div className="sign">
-          <Link to="/">
-            <span className="linkstyle">Login</span>
-          </Link>
-          <Primarybutton name="Sign up" />
+        <div className="logincontainer">
+          <Link>Login</Link>
+          <span>|</span>
+          <Link>Sign Up</Link>
         </div>
       </Navstyle>
     </Wrapper>
@@ -83,6 +85,7 @@ const Navstyle = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 
   .logo {
     .Onroommainlogo {
@@ -95,19 +98,56 @@ const Navstyle = styled.nav`
       color: var(--text-Primary);
     }
   }
+  .logincontainer {
+    position: absolute;
+    top:5px;
+    right:0px;
+    a {
+      font-style: normal;
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 26px;
+      /* or 217% */
+
+      text-align: center;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+
+      color: #df1b52;
+    }
+    span {
+      margin:0 5px;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 12px;
+      line-height: 26px;
+      /* or 217% */
+
+      text-align: center;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+
+      color: #df1b52;
+    }
+  }
   .navlink {
     display: flex;
     justify-content: space-between;
     width: 40%;
+    margin-right: 100px;
     li {
-      list-style: none;
       font-style: normal;
       font-weight: bold;
       font-size: 14px;
       line-height: 26px;
-      color: var(--text-normal-black);
+      /* or 186% */
+
       text-align: center;
       letter-spacing: 2px;
+      text-transform: uppercase;
+
+      color: #000000;
+      list-style: none;
       text-transform: uppercase;
       transition: all 0.3s ease-in-out;
       :hover {

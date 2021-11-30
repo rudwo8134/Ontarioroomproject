@@ -5,8 +5,9 @@ import Layout from "./Components/Layout/Layout";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import Errorpage from './Pages/Errorpage';
-import Rentcondohome from './Pages/Rentcondo/Rentcondohome';
 import Rentcondopost from './Pages/Rentcondo/Rentcondopost';
+import RentcondoHome from './Pages/findroom/Home';
+
 
 
 import { connect } from "react-redux";
@@ -35,7 +36,7 @@ function App(props) {
           <Route exact path="/intro" render={() => <Intropages />} />
           <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/register" render={() => <Register />} />
-          <Route exact path="/rentcondo" render={() => <Rentcondohome />} />
+          <Route exact path="/rentcondo" render={() => <RentcondoHome />} />
           <Route
             exact
             path="/rentcondo/:id"
