@@ -9,8 +9,8 @@ import { filterdatafail } from '../../Redux/Rentcondo/rentcondo.action'
 
 const Background = styled.section`
   width: 100vw;
-  height: 100vh;
   background-color: ${style.backgroundColor.Detailpage_Background};
+  margin-top: 80px;
 `
 const Wrapper = styled.div`
   width: 1300px;
@@ -184,13 +184,13 @@ const RentCondoDetailpage = (props) => {
           <div className="userinfo">
             <h3>
               <FaLocationArrow />
-              {props && props.address.Formattedaddress}
+              {props && props?.address?.Formattedaddress}
             </h3>
           </div>
         </PostNav>
 
         <ImageWrapper>
-          {props.image.map((image, index) => {
+          {props?.image?.map((image, index) => {
             return (
               <Customimagetag src={image} alt={`viewer${index}`} key={index} />
             );
@@ -202,15 +202,15 @@ const RentCondoDetailpage = (props) => {
           <div className="conatactinfo">
             <h3 className="postname">
               <BiUserCircle />
-              {props.userinfo.postname}
+              {props?.userinfo?.postname}
             </h3>
             <h3 className="useremail">
               <AiOutlineMail />
-              {props.userinfo.email}
+              {props?.userinfo?.email}
             </h3>
             <h3 className="phonenumber">
               <AiFillPhone />
-              {props.userinfo.phonenumber}
+              {props?.userinfo?.phonenumber}
             </h3>
           </div>
         </Ownerinfomation>
@@ -219,23 +219,23 @@ const RentCondoDetailpage = (props) => {
           <div className="monthly">
             <h2 className="monthlyprice">Monthly Fee</h2>
             <h3>
-              <b>{props.monthlyfee}$</b> / Monthly
+              <b>{props?.monthlyfee}$</b> / Monthly
             </h3>
           </div>
           <div className="deposit">
             <h2 className="depositprice">Deposit Fee</h2>
-            <h3>{props.deposit}$</h3>
+            <h3>{props?.deposit}$</h3>
           </div>
         </PriceInformation>
         <Linearbar />
         <Utilityinfo>
           <div className="monthly">
             <h2 className="monthlyprice">Room Type</h2>
-            <h3>{props.roomtype}</h3>
+            <h3>{props?.roomtype}</h3>
           </div>
           <div className="deposit">
             <h2 className="depositprice">Roomate</h2>
-            <h3>{props.howmanypeople}</h3>
+            <h3>{props?.howmanypeople}</h3>
           </div>
         </Utilityinfo>
         <Linearbar />
