@@ -180,9 +180,9 @@ const RentCondocomponents = (props) => {
   const [filter, setfilter] = useState(false)
 
 
-  useEffect(() => {
-    readdatastart();
-  }, [readdatastart]);
+  // useEffect(() => {
+  //   readdatastart();
+  // }, [readdatastart]);
 
   const { isLoaded } = useJsApiLoader({
       id: 'google-map-script',
@@ -239,28 +239,28 @@ const RentCondocomponents = (props) => {
       return item;
     });
 
-  const handleaddressdata = async (address) => {
-    try {
-      const response = await fetch(
-        `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GOOGLEAPI}`
-      );
-      const data = await response.json();
-      const result = {
-        Formattedaddress: data.results[0].formatted_address,
-        lat: data.results[0].geometry.location.lat,
-        lng: data.results[0].geometry.location.lng,
-      };
-      return result;
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const handleaddressdata = async (address) => {
+  //   try {
+  //     const response = await fetch(
+  //       `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GOOGLEAPI}`
+  //     );
+  //     const data = await response.json();
+  //     const result = {
+  //       Formattedaddress: data.results[0].formatted_address,
+  //       lat: data.results[0].geometry.location.lat,
+  //       lng: data.results[0].geometry.location.lng,
+  //     };
+  //     return result;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
-  const handlesearchsubmit = async (e) => {
-    e.preventDefault();
-    const data = await handleaddressdata(searchmap);
-    setaddressinfo(data);
-  };
+  // const handlesearchsubmit = async (e) => {
+  //   e.preventDefault();
+  //   const data = await handleaddressdata(searchmap);
+  //   setaddressinfo(data);
+  // };
 
   useEffect(() => {}, [addressinfo]);
 
@@ -276,10 +276,8 @@ const RentCondocomponents = (props) => {
   return (
     <Wrapper>
       <div className="line"></div>
-      <Searchresultcontainer popup={popup}>
         {/* <Showcomponent id={selected} /> */}
-        <HomeScreen />
-      </Searchresultcontainer>
+        {/* <HomeScreen /> */}
       {isLoaded && (
         <GoogleMap
           mapContainerStyle={containerStyle}
@@ -289,11 +287,10 @@ const RentCondocomponents = (props) => {
           }}
           zoom={15}
           options={options}
-          onLoad={onLoad}
           onUnmount={onUnmount}
         >
           {/* Child components, such as markers, info windows, etc. */}
-          <>
+          {/* <>
             {rooms &&
               rooms.map((data) => {
                 return (
@@ -314,7 +311,7 @@ const RentCondocomponents = (props) => {
                   />
                 );
               })}
-          </>
+          </> */}
         </GoogleMap>
       )}
     </Wrapper>

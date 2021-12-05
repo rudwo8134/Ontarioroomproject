@@ -9,28 +9,28 @@ export const Contents = {
       {
         id: 2,
         linkName: '방 올리기',
-        linkAddress: '',
+        linkAddress: 'rentcondo',
       },
       {
         id: 3,
         linkName: '고객 센터',
-        linkAddress: '',
+        linkAddress: '/ContactUs',
       },
       {
         id: 4,
         linkName: '문의 사항',
-        linkAddress: '',
+        linkAddress: '/ContactUs',
       },
     ],
     login: {
       id: 1,
       linkName: '로그인',
-      linkAddress: '',
+      linkAddress: '/login',
     },
     register: {
       id: 2,
       linkName: '회원가입',
-      linkAddress: '',
+      linkAddress: '/login',
     },
   },
 };

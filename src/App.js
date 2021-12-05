@@ -18,6 +18,7 @@ import Rentcondodetail from "./Pages/Rentcondo/Rentcondodetail";
 import Intropages from "./Pages/Intropages";
 import Newhome from "./Pages/Newhome";
 import Mainhomepage from "./Pages/Mainhomepage";
+import Contactuspage from "./Pages/ContactUs/Contactuspage";
 
 
 
@@ -37,6 +38,7 @@ function App(props) {
           <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/register" render={() => <Register />} />
           <Route exact path="/rentcondo" render={() => <RentcondoHome />} />
+          <Route exact path="/ContactUs" render={()=> <Contactuspage/>} />
           <Route
             exact
             path="/rentcondo/:id"

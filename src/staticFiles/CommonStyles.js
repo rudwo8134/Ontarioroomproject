@@ -18,6 +18,7 @@ export const CommonStyles = {
     ExtraLarge2: '54px',
     ExtraLarge1: '38px',
     Large: '28px',
+    MediumLarge: '24px',
     Medium: '18px',
     Normal: '16px',
     Small: '14px',

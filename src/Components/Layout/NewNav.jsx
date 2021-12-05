@@ -87,7 +87,7 @@ const NewNav = () => {
         })}
       </div>
       <div className="loginContainer">
-        <Link style={{ marginRight: `${CommonStyles.margin.Reuglar}` }}>
+        <Link to={Contents.nav.login.linkAddress} style={{ marginRight: `${CommonStyles.margin.Reuglar}` }}>
           {Contents.nav.login.linkName}
         </Link>
         <Link>{Contents.nav.register.linkName}</Link>
