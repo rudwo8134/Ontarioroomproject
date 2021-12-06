@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import LoginHeader from '../../assets/loginheader.png';
+import LoginHeader from '../../assets/loginheader.jpg';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
 import { Link } from 'react-router-dom';
 import {FcGoogle} from 'react-icons/fc'
@@ -10,9 +10,12 @@ const Wrapper = styled.div`
   height: 100vh;
   margin-top: 80px;
   .loginheaderimg {
+    height: 25%;
     width: 100vw;
-    height: 25vh;
     margin-bottom: 22px;
+    background-image: url(${LoginHeader});
+    background-position: center center;
+    background-repeat: no-repeat;
   }
   .Container {
     max-width: 1440px;
@@ -124,10 +127,8 @@ const GoogleLogo = styled(FcGoogle)`
 const NewRegisterandLoginpage = () => {
   return (
     <Wrapper>
-      <img
+      <div
         className="loginheaderimg"
-        src={LoginHeader}
-        alt="login-header-img"
       />
       <div className="Container">
         <div className="left">
