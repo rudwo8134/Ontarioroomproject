@@ -8,7 +8,7 @@ import { createStructuredSelector } from 'reselect';
 import { selectitems } from '../../Redux/Rentcondo/rentcondo.selector';
 import { connect } from 'react-redux';
 import { rentcondoreadstart } from '../../Redux/Rentcondo/rentcondo.action';
-import Markericons from '../../assets/findroom/Makrer.png';
+import Markericons from '../../assets/mapMarker.svg';
 
 
 import { handleaddressdata } from './Functionhandler';
@@ -189,6 +189,8 @@ const Home = (props) => {
     setaddress(select);
   };
 
+
+  
   const handlesubmitaddress = async (e) => {
     e.preventDefault();
     const data = await handleaddressdata(address);
@@ -214,6 +216,11 @@ const Home = (props) => {
     <Wrapper>
       <div className="statebar">
         <form onSubmit={handlesubmitaddress} className="searchform">
+          {/* <Autocompletesearch
+            address={address}
+            handlechange={handlechange}
+            handleselect={handleselect}
+          /> */}
           <button type="submit" className="search">
             Search
           </button>

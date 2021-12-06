@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import scriptLoader from 'react-async-script-loader';
 
@@ -47,6 +47,4 @@ const Autocompletesearch = ({ address, handlechange, handleselect }) => {
   );
 };
 
-export default scriptLoader(
-  `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLEAPI}&libraries=places`
-)(Autocompletesearch);
+export default Autocompletesearch;
