@@ -5,13 +5,11 @@ import { CommonStyles } from '../../staticFiles/CommonStyles';
 import { FaLocationArrow } from 'react-icons/fa';
 import { StaticGoogleMap, Marker } from 'react-static-google-map';
 import { AiFillCar, AiOutlineCalendar } from 'react-icons/ai';
-import {
-  BsPeopleFill,
-
-} from 'react-icons/bs';
+import { BsPeopleFill, BsHouseDoor } from 'react-icons/bs';
 import {RiTempColdFill} from 'react-icons/ri'
-import { FaDog, FaSmokingBan, FaDoorClosed } from 'react-icons/fa';
-import {GiWaterDrop} from 'react-icons/gi'
+import { FaDog, FaSmokingBan } from 'react-icons/fa';
+import { GiWaterDrop, GiDoor } from 'react-icons/gi';
+import {IoWifiOutline} from 'react-icons/io5'
 
 const Background = styled.section`
   width: 100vw;
@@ -236,7 +234,7 @@ const RentCondoDetailpage = (props) => {
               <div className="left">
                 <div className="container">
                   <h3 className="name">
-                    <FaDoorClosed />
+                    <BsHouseDoor />
                     Property Type
                   </h3>
                   <h3 className="value">{props?.roomtype}</h3>
@@ -281,7 +279,7 @@ const RentCondoDetailpage = (props) => {
                 </div>
                 <div className="container">
                   <h3 className="name">
-                
+                    <GiDoor />
                     Private Enterance
                   </h3>
                   <h3 className="value">{props?.privateenterance}</h3>
@@ -301,10 +299,7 @@ const RentCondoDetailpage = (props) => {
                   <h3 className="value">{props?.howmanypeople}</h3>
                 </div>
                 <div className="container">
-                  <h3 className="name">
-              
-                    Internet
-                  </h3>
+                  <h3 className="name"><IoWifiOutline/>Internet</h3>
                   <h3 className="value">{props?.internet}</h3>
                 </div>
               </div>

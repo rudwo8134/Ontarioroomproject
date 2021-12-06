@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { CommonStyles } from '../../staticFiles/CommonStyles';
 
 const Wrapper = styled.div`
-  height: 80vh;
   width: 40vw;
   margin: 0 auto;
   margin-top: 80px;

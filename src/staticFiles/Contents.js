@@ -16,20 +16,15 @@ export const Contents = {
         linkName: '고객 센터',
         linkAddress: '/ContactUs',
       },
-      {
-        id: 4,
-        linkName: '문의 사항',
-        linkAddress: '/ContactUs',
-      },
     ],
     login: {
       id: 1,
-      linkName: '로그인',
+      linkName: '로그인 | 회원가입',
       linkAddress: '/login',
     },
     register: {
       id: 2,
-      linkName: '회원가입',
+      linkName: '',
       linkAddress: '/login',
     },
   },

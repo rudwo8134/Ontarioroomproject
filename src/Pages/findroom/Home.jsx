@@ -216,11 +216,7 @@ const Home = (props) => {
     <Wrapper>
       <div className="statebar">
         <form onSubmit={handlesubmitaddress} className="searchform">
-          {/* <Autocompletesearch
-            address={address}
-            handlechange={handlechange}
-            handleselect={handleselect}
-          /> */}
+          <input className="searchinput" placeholder="enter address"/>
           <button type="submit" className="search">
             Search
           </button>
