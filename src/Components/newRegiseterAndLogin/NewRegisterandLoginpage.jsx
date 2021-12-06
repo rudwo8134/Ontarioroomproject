@@ -107,7 +107,7 @@ const Wrapper = styled.div`
       height: 60vh;
       width: 2px;
       background-color: ${CommonStyles.color.Darkbold1};
-      margin: 0 70px;
+      margin: 0 40px;
     }
     .right {
       flex: 1;
@@ -149,7 +149,8 @@ const NewRegisterandLoginpage = () => {
             <input type="text" placeholder="Email" className="email" />
             <input type="text" placeholder="Password" className="password" />
             <span className="description">
-              Lorem ipsum dolor sit amet consectetur, adipisicing eli
+              This site is protected by reCAPTCHA and the Google Privacy Policy
+              and Terms of Service apply.
             </span>
             <button className="submitbutton" type="submit">
               SIGN IN
@@ -170,7 +171,11 @@ const NewRegisterandLoginpage = () => {
             <input type="text" placeholder="Email" className="password" />
             <input type="text" placeholder="Phone" className="password" />
             <input type="text" placeholder="Password" className="password" />
-            <input type="text" placeholder="Confirm Password" className="password" />
+            <input
+              type="text"
+              placeholder="Confirm Password"
+              className="password"
+            />
             <span className="description">
               Lorem ipsum dolor sit amet consectetur, adipisicing eli
             </span>

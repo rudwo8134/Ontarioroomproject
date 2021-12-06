@@ -9,6 +9,7 @@ import {
   FaGooglePlusSquare,
   FaTwitterSquare,
 } from 'react-icons/fa';
+import Logo from '../../assets/nav/LOGO.png'
 
 const linkdata = [
   {
@@ -40,7 +41,7 @@ const Footer = () => {
         <div className="container">
           <div className="top">
             <div className="left">
-              <h3 className="logo">ONROOM</h3>
+              <img src={Logo} alt="logo" />
               <span className="copyright">
                 © {new Date().getFullYear()} Onroom. All rights reserved.
               </span>
@@ -140,7 +141,9 @@ const Footerstyle = styled.footer`
         display: flex;
         align-items: center;
         justify-content: space-between;
-        .logo {
+        img{
+          width:180px;
+          height: 40px;
           font-style: normal;
           font-weight: bold;
           font-size: 24px;
