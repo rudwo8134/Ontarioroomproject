@@ -53,11 +53,11 @@ const CardWrapper = styled.div`
 `;
 
 const Cardcontainer = ({ data }) => {
-  console.log(data);
+
   const address = data?.address?.Formattedaddress.split(',')[0];
   const city = data?.address?.Formattedaddress.split(',')[1];
   const postalcode = data?.address?.Formattedaddress.split(',')[2];
-  console.log(data);
+
   return (
     <CardWrapper>
       <Link to={`/rentcondo/${data.id}`}>

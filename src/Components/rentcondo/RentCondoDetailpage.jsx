@@ -6,10 +6,10 @@ import { FaLocationArrow } from 'react-icons/fa';
 import { StaticGoogleMap, Marker } from 'react-static-google-map';
 import { AiFillCar, AiOutlineCalendar } from 'react-icons/ai';
 import { BsPeopleFill, BsHouseDoor } from 'react-icons/bs';
-import {RiTempColdFill} from 'react-icons/ri'
+import { RiTempColdFill } from 'react-icons/ri';
 import { FaDog, FaSmokingBan } from 'react-icons/fa';
 import { GiWaterDrop, GiDoor } from 'react-icons/gi';
-import {IoWifiOutline} from 'react-icons/io5'
+import { IoWifiOutline } from 'react-icons/io5';
 
 const Background = styled.section`
   width: 100vw;
@@ -178,8 +178,7 @@ const RentCondoDetailpage = (props) => {
         props?.monthlyfee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       );
   }, [props]);
-  console.log(props);
-  console.log(`${props?.address?.lat},${props?.location?.lng}`);
+
   if (props === 'null') {
     return <div>loading....</div>;
   }
@@ -299,7 +298,10 @@ const RentCondoDetailpage = (props) => {
                   <h3 className="value">{props?.howmanypeople}</h3>
                 </div>
                 <div className="container">
-                  <h3 className="name"><IoWifiOutline/>Internet</h3>
+                  <h3 className="name">
+                    <IoWifiOutline />
+                    Internet
+                  </h3>
                   <h3 className="value">{props?.internet}</h3>
                 </div>
               </div>

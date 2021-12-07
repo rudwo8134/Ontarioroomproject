@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
 import maystylesdata from '../../Components/rentcondo/mapstyle';
 import Cardcontainer from './Cardcontainer';
 import { createStructuredSelector } from 'reselect';
@@ -9,10 +8,11 @@ import { selectitems } from '../../Redux/Rentcondo/rentcondo.selector';
 import { connect } from 'react-redux';
 import { rentcondoreadstart } from '../../Redux/Rentcondo/rentcondo.action';
 import Markericons from '../../assets/mapMarker.svg';
-
+import useSupercluster, { supercluster } from 'use-supercluster';
+import GoogleMapReact from 'google-map-react';
 
 import { handleaddressdata } from './Functionhandler';
-import Autocompletesearch from './Autocompletesearch';
+
 const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
@@ -91,6 +91,7 @@ const Wrapper = styled.div`
     display: flex;
     .mapContainer {
       height: 100%;
+      width: 100%;
       flex: 2;
       border-radius: 13px;
     }
@@ -168,29 +169,15 @@ const containerStyle = {
   flex: '1',
 };
 
+const Marker = ({ children }) => children;
+
 const Home = (props) => {
   const { rooms, getData } = props;
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_GOOGLEAPI,
-    libraries,
-  });
 
-  const onUnmount = React.useCallback(function callback(map) {
-
-  }, []);
   const [loading, setLoading] = useState(false);
   const [address, setaddress] = useState([]);
   const [googlemapcenter, setgooglemapcenter] = useState(null);
-  const handlechange = (value) => {
-    setaddress(value);
-  };
-  const handleselect = (select) => {
-    setaddress(select);
-  };
 
-
-  
   const handlesubmitaddress = async (e) => {
     e.preventDefault();
     const data = await handleaddressdata(address);
@@ -199,24 +186,62 @@ const Home = (props) => {
       lng: data.lng,
     });
   };
-  const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds();
-    map.fitBounds(bounds);
-  }, []);
+
+  // map ref
+  const mapref = useRef();
+  const [zoom, setZoom] = useState(10);
+  const [bounds, setBounds] = useState(null);
+  const [points, setPoints] = useState([]);
+  useEffect(() => {
+    const data =
+      rooms &&
+      rooms?.map((data) => {
+        console.log(data);
+        return {
+          type: 'Feature',
+          properties: {
+            cluster: false,
+            crimeId: data.id,
+            category: data.roomtype,
+            price: data.monthlyfee,
+          },
+          geometry: {
+            type: 'Point',
+            coordinates: [
+              parseFloat(data.address.lng),
+              parseFloat(data.address.lat),
+            ],
+          },
+        };
+      });
+
+    setPoints(data);
+  }, [rooms]);
+
+  // load and format data
+  // get cluster
+  const { clusters, supercluster } = useSupercluster({
+    points: points,
+    bounds,
+    zoom,
+    options: { radius: 75, maxZoom: 25 },
+  });
+  console.log('cluster', clusters);
+
   useEffect(() => {
     setLoading(true);
     getData();
     setLoading(false);
   }, [getData, googlemapcenter]);
 
-  if (loading || !isLoaded) {
+  if (loading) {
     <h1>Loading ....</h1>;
   }
   return (
     <Wrapper>
       <div className="statebar">
         <form onSubmit={handlesubmitaddress} className="searchform">
-          <input className="searchinput" placeholder="enter address"/>
+          <input className="searchinput" placeholder="enter address" />
           <button type="submit" className="search">
             Search
           </button>
@@ -226,45 +251,102 @@ const Home = (props) => {
 
       <div className="showContainer">
         <div className="mapContainer">
-          {isLoaded && (
-            <GoogleMap
-              mapContainerStyle={containerStyle}
-              center={
-                googlemapcenter
-                  ? googlemapcenter
-                  : {
-                      lat: 43.6532,
-                      lng: -79.3832,
-                    }
-              }
-              zoom={googlemapcenter ? 17 : 10}
-              options={options}
-              onLoad={onLoad}
-              onUnmount={onUnmount}
+          <>
+            <GoogleMapReact
+              bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLEAPI }}
+              defaultCenter={{ lat: 43.6532, lng: -79.3832 }}
+              defaultZoom={10}
+              yesIWantToUseGoogleMapApiInternals
+              onGoogleApiLoaded={({ map }) => {
+                mapref.current = map;
+              }}
+              onChange={({ zoom, bounds }) => {
+                setZoom(zoom);
+                setBounds([
+                  bounds.nw.lng,
+                  bounds.se.lat,
+                  bounds.se.lng,
+                  bounds.nw.lat,
+                ]);
+              }}
             >
-              <>
-                {rooms &&
-                  rooms.map((data) => {
+              {clusters &&
+                clusters?.map((cluster) => {
+                  const [longitude, latitude] = cluster?.geometry?.coordinates;
+                  const {
+                    cluster: isCluster,
+                    point_count: pointCount,
+                    price,
+                  } = cluster.properties;
+
+                  if (isCluster) {
                     return (
                       <Marker
-                        key={data?.id}
-                        position={{
-                          lat: data?.address?.lat,
-                          lng: data?.address?.lng,
-                        }}
-                        icon={{
-                          url: Markericons,
-                          scaledSize: new window.google.maps.Size(40, 40),
-                          origin: new window.google.maps.Point(0, 0),
-                          anchor: new window.google.maps.Point(15, 15),
-                        }}
-                        label={`${data?.monthlyfee}`}
-                      />
+                        key={`cluster-${cluster.id}`}
+                        lat={latitude}
+                        lng={longitude}
+                      >
+                        <div
+                          className="cluster-marker"
+                          style={{
+                            width: `${
+                              10 + (pointCount / points.length) * 20
+                            }px`,
+                            height: `${
+                              10 + (pointCount / points.length) * 20
+                            }px`,
+                            background: 'black',
+                            borderRadius: '50%',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            color: 'white',
+                            fontSize: '16px',
+                            fontWeight: 800,
+                          }}
+                          onClick={() => {
+                            const expansionzoom = Math.min(
+                              supercluster.getClusterExpansionZoom(cluster.id),
+                              20
+                            );
+                            mapref?.current.setZoom(expansionzoom);
+                            mapref?.current.panTo({
+                              lat: latitude,
+                              lng: longitude,
+                            });
+                          }}
+                        >
+                          {pointCount}
+                        </div>
+                      </Marker>
                     );
-                  })}
-              </>
-            </GoogleMap>
-          )}
+                  }
+                  return (
+                    <Marker
+                      key={`crime-${cluster.properties.crimeId}`}
+                      lat={latitude}
+                      lng={longitude}
+                    >
+                      <button
+                        className="crime-marker"
+                        style={{
+                          background: `${CommonStyles.color.Dark}`,
+                          borderRadius: '50%',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          color: 'white',
+                          fontSize: '12px',
+                          fontWeight: 800,
+                        }}
+                      >
+                        ${price}
+                      </button>
+                    </Marker>
+                  );
+                })}
+            </GoogleMapReact>
+          </>
         </div>
         <div className="dropContainer">
           {/* filter container */}
