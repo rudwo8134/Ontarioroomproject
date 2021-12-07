@@ -338,6 +338,7 @@ const Home = (props) => {
                           color: 'white',
                           fontSize: '12px',
                           fontWeight: 800,
+                          padding: '2px',
                         }}
                       >
                         ${price}
