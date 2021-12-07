@@ -268,7 +268,7 @@ const Home = (props) => {
                 ]);
               }}
             >
-              {!clusters === [] &&
+              {clusters &&
                 clusters?.map((cluster) => {
                   const [longitude, latitude] = cluster?.geometry?.coordinates;
                   const {
