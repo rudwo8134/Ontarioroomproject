@@ -196,7 +196,6 @@ const Home = (props) => {
     const data =
       rooms &&
       rooms?.map((data) => {
-        console.log(data);
         return {
           type: 'Feature',
           properties: {
@@ -221,12 +220,11 @@ const Home = (props) => {
   // load and format data
   // get cluster
   const { clusters, supercluster } = useSupercluster({
-    points: points,
+    points: points ? points : [],
     bounds,
     zoom,
     options: { radius: 75, maxZoom: 25 },
   });
-  console.log('cluster', clusters);
 
   useEffect(() => {
     setLoading(true);
@@ -270,14 +268,14 @@ const Home = (props) => {
                 ]);
               }}
             >
-              {clusters &&
+              {!clusters === [] &&
                 clusters?.map((cluster) => {
                   const [longitude, latitude] = cluster?.geometry?.coordinates;
                   const {
                     cluster: isCluster,
                     point_count: pointCount,
                     price,
-                  } = cluster.properties;
+                  } = cluster?.properties;
 
                   if (isCluster) {
                     return (
@@ -290,10 +288,12 @@ const Home = (props) => {
                           className="cluster-marker"
                           style={{
                             width: `${
-                              10 + (pointCount / points.length) * 20
+                              10 +
+                              (pointCount && pointCount / points?.length) * 20
                             }px`,
                             height: `${
-                              10 + (pointCount / points.length) * 20
+                              10 +
+                              (pointCount && pointCount / points?.length) * 20
                             }px`,
                             background: 'black',
                             borderRadius: '50%',
@@ -306,11 +306,11 @@ const Home = (props) => {
                           }}
                           onClick={() => {
                             const expansionzoom = Math.min(
-                              supercluster.getClusterExpansionZoom(cluster.id),
+                              supercluster?.getClusterExpansionZoom(cluster.id),
                               20
                             );
-                            mapref?.current.setZoom(expansionzoom);
-                            mapref?.current.panTo({
+                            mapref?.current?.setZoom(expansionzoom);
+                            mapref?.current?.panTo({
                               lat: latitude,
                               lng: longitude,
                             });
