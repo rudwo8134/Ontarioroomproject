@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
 import Background from '../../assets/feature3.png';
+import { createStructuredSelector } from 'reselect';
+import { selectitems } from '../../Redux/Rentcondo/rentcondo.selector';
+import { connect } from 'react-redux';
+import { rentcondoreadstart } from '../../Redux/Rentcondo/rentcondo.action';
 
 const NewupdateWrapper = styled.div`
   width: 100vw;
@@ -66,7 +70,18 @@ const NewupdateWrapper = styled.div`
   }
 `;
 
-const NewUpdate = () => {
+const NewUpdate = ({ rooms, readStart }) => {
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    readStart();
+    setLoading(false);
+  }, [readStart]);
+  console.log(rooms);
+
+  if (loading) {
+    return <h1>loading.....</h1>;
+  }
   return (
     <NewupdateWrapper>
       <div className="headerContainer">
@@ -75,45 +90,37 @@ const NewUpdate = () => {
         <span>최근 7일 이전 집구하기 목록 </span>
       </div>
       <div className="cardContainer">
-        <div className="rentCard" img={Background}>
-          <div className="textcontainer">
-            <h2 className="address">c-162 77 finch ave e</h2>
-            <h3 className="price"> $300 </h3>
-            <span>Load more</span>
-          </div>
-          <img className="imgfile" src={Background} alt="img" />
-        </div>
-        <div className="rentCard" img={Background}>
-          <div className="textcontainer">
-            <h2 className="address">c-162 77 finch ave e</h2>
-            <h3 className="price"> $300 </h3>
-          </div>
-          <img className="imgfile" src={Background} alt="img" />
-        </div>
-        <div className="rentCard" img={Background}>
-          <div className="textcontainer">
-            <h2 className="address">c-162 77 finch ave e</h2>
-            <h3 className="price"> $300 </h3>
-          </div>
-          <img className="imgfile" src={Background} alt="img" />
-        </div>
-        <div className="rentCard" img={Background}>
-          <div className="textcontainer">
-            <h2 className="address">c-162 77 finch ave e</h2>
-            <h3 className="price"> $300 </h3>
-          </div>
-          <img className="imgfile" src={Background} alt="img" />
-        </div>
-        <div className="rentCard" img={Background}>
-          <div className="textcontainer">
-            <h2 className="address">c-162 77 finch ave e</h2>
-            <h3 className="price"> $300 </h3>
-          </div>
-          <img className="imgfile" src={Background} alt="img" />
-        </div>
+        {rooms &&
+          rooms?.slice(0, 5)?.map((data) => {
+            return (
+              <div key={data.id} className="rentCard">
+                <div className="textcontainer">
+                  <h2 className="address">{data?.address?.Formattedaddress}</h2>
+                  <h3 className="price"> {data.monthlyfee}</h3>
+                  <span>Load more</span>
+                </div>
+                <img
+                  className="imgfile"
+                  src={data?.image[0] ? data?.image[0] : data?.image[1]}
+                  alt="img"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = `${Background}`;
+                  }}
+                />
+              </div>
+            );
+          })}
       </div>
     </NewupdateWrapper>
   );
 };
 
-export default NewUpdate;
+const maptoprops = createStructuredSelector({
+  rooms: selectitems,
+});
+const dispatchtomaps = (dispatch) => ({
+  readStart: () => dispatch(rentcondoreadstart()),
+});
+
+export default connect(maptoprops, dispatchtomaps)(NewUpdate);
