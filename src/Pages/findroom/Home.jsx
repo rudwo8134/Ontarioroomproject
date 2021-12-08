@@ -12,6 +12,8 @@ import useSupercluster, { supercluster } from 'use-supercluster';
 import GoogleMapReact from 'google-map-react';
 
 import { handleaddressdata } from './Functionhandler';
+import { selectCurrentUser } from '../../Redux/Users/user.selector';
+import { useHistory } from 'react-router-dom';
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -172,12 +174,12 @@ const containerStyle = {
 const Marker = ({ children }) => children;
 
 const Home = (props) => {
-  const { rooms, getData } = props;
+  const { rooms, getData, User } = props;
 
   const [loading, setLoading] = useState(false);
   const [address, setaddress] = useState([]);
   const [googlemapcenter, setgooglemapcenter] = useState(null);
-
+  const history = useHistory();
   const handlesubmitaddress = async (e) => {
     e.preventDefault();
     const data = await handleaddressdata(address);
@@ -380,6 +382,7 @@ const Home = (props) => {
 
 const maptoprops = createStructuredSelector({
   rooms: selectitems,
+  User: selectCurrentUser
 });
 const dispatchmap = (dispatch) => ({
   getData: () => dispatch(rentcondoreadstart()),

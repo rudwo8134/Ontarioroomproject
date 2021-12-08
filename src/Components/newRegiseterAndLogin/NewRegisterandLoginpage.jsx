@@ -10,6 +10,7 @@ import { selectCurrentUser } from '../../Redux/Users/user.selector';
 import {
   emailSigninStart,
   googleSigninStart,
+  signUpStart,
 } from '../../Redux/Users/user.action';
 
 const Wrapper = styled.div`
@@ -64,11 +65,11 @@ const Wrapper = styled.div`
         background-color: ${CommonStyles.color.Darkbold1};
         display: flex;
         align-items: center;
-        border:none;
+        border: none;
         cursor: pointer;
         border-radius: 10px;
         transition: 0.5s ease-in-out all;
-        :hover{
+        :hover {
           background-color: ${CommonStyles.color.Darkbold3};
         }
       }
@@ -114,7 +115,7 @@ const Wrapper = styled.div`
           align-self: flex-end;
           transition: 0.5s ease-in-out all;
           cursor: pointer;
-          :hover{
+          :hover {
             background-color: ${CommonStyles.color.PrimaryLight4};
           }
         }
@@ -148,8 +149,27 @@ const NewRegisterandLoginpage = (props) => {
     email: '',
     password: '',
   });
+  const [credential, setcredential] = useState({
+    signemail: '',
+    signpassword: '',
+    confirmpassword: '',
+    firstName: '',
+    LastName:'',
+    phonenumber: '',
+    address: '',
+  });
+  console.log(credential);
   const { email, password } = user;
-  const { googlelogin, User, emailSignin } = props;
+   const {
+     signemail,
+     signpassword,
+     confirmpassword,
+     firstName,
+     LastName,
+     phonenumber,
+     address,
+   } = credential;
+  const { googlelogin, User, emailSignin, signupstart } = props;
   const history = useHistory();
   const handlesubmit = (e) => {
     e.preventDefault();
@@ -161,6 +181,26 @@ const NewRegisterandLoginpage = (props) => {
   const handlechange = (e) => {
     const { name, value } = e.target;
     Setuser({ ...user, [name]: value });
+  };
+  const handlechange2 = (e) => {
+    const { name, value } = e.target;
+    setcredential({ ...credential, [name]: value });
+  };
+
+  const handleSubmit2 = (e) => {
+    e.preventDefault();
+
+    if (signpassword !== confirmpassword) {
+      alert('password does not matched. Try again');
+      return;
+    }
+    signupstart({
+      displayName: LastName + firstName,
+      email: signemail,
+      password: signpassword,
+      address,
+      phonenumber,
+    });
   };
 
   useEffect(() => {
@@ -209,10 +249,7 @@ const NewRegisterandLoginpage = (props) => {
               This site is protected by reCAPTCHA and the Google Privacy Policy
               and Terms of Service apply.
             </span>
-            <button
-              className="submitbutton"
-              type="submit"
-            >
+            <button className="submitbutton" type="submit">
               SIGN IN
             </button>
           </form>
@@ -225,14 +262,65 @@ const NewRegisterandLoginpage = (props) => {
           <span className="description2">
             Lorem ipsum dolor sit amet consectetur, adipisicing eli
           </span>
-          <form action="" className="Signin">
-            <input type="text" placeholder="FirstName" className="email" />
-            <input type="text" placeholder="LastName" className="password" />
-            <input type="text" placeholder="Email" className="password" />
-            <input type="text" placeholder="Phone" className="password" />
-            <input type="text" placeholder="Password" className="password" />
+          <form onSubmit={handleSubmit2} className="Signin">
             <input
+              required
+              onChange={handlechange2}
               type="text"
+              name="firstName"
+              id="firstName"
+              value={firstName}
+              placeholder="FirstName"
+              className="email"
+            />
+            <input
+              required
+              onChange={handlechange2}
+              type="text"
+              name="LastName"
+              id="LastName"
+              value={LastName}
+              placeholder="LastName"
+              className="password"
+            />
+            <input
+              required
+              type="Email"
+              name="signemail"
+              id="signemail"
+              value={signemail}
+              onChange={handlechange2}
+              placeholder="Email"
+              className="password"
+            />
+            <input
+              required
+              onChange={handlechange2}
+              type="number"
+              name="phonenumber"
+              id="phonenumber"
+              value={phonenumber}
+              placeholder="Phone"
+              className="password"
+            />
+            <input
+              minLength={8}
+              required
+              onChange={handlechange2}
+              type="password"
+              name="signpassword"
+              value={signpassword}
+              placeholder="Password"
+              className="password"
+            />
+            <input
+              minLength={8}
+              required
+              type="password"
+              value={confirmpassword}
+              name="confirmpassword"
+              id="confirmpassword"
+              onChange={handlechange2}
               placeholder="Confirm Password"
               className="password"
             />
@@ -255,6 +343,7 @@ const maptoprops = createStructuredSelector({
 const maptodispatch = (dispatch) => ({
   googlelogin: () => dispatch(googleSigninStart()),
   emailSignin: (user) => dispatch(emailSigninStart(user)),
+  signupstart: (credential) => dispatch(signUpStart(credential)),
 });
 
 export default connect(maptoprops, maptodispatch)(NewRegisterandLoginpage);

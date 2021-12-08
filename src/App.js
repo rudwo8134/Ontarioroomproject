@@ -1,32 +1,28 @@
-import React,{useEffect} from "react";
-import {Switch,Route, Redirect} from 'react-router-dom'
-import Home from "./Pages/Home";
-import Layout from "./Components/Layout/Layout";
-import Login from "./Pages/Login";
-import Register from "./Pages/Register";
+import React, { useEffect } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import Home from './Pages/Home';
+import Layout from './Components/Layout/Layout';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
 import Errorpage from './Pages/Errorpage';
 import Rentcondopost from './Pages/Rentcondo/Rentcondopost';
 import RentcondoHome from './Pages/findroom/Home';
 
-
-
-import { connect } from "react-redux";
-import { checkUserSession } from "./Redux/Users/user.action";
-import {createStructuredSelector} from 'reselect'
-import { selectCurrentUser } from "./Redux/Users/user.selector";
-import Rentcondodetail from "./Pages/Rentcondo/Rentcondodetail";
-import Intropages from "./Pages/Intropages";
-import Newhome from "./Pages/Newhome";
-import Mainhomepage from "./Pages/Mainhomepage";
-import Contactuspage from "./Pages/ContactUs/Contactuspage";
-
-
+import { connect } from 'react-redux';
+import { checkUserSession } from './Redux/Users/user.action';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from './Redux/Users/user.selector';
+import Rentcondodetail from './Pages/Rentcondo/Rentcondodetail';
+import Intropages from './Pages/Intropages';
+import Newhome from './Pages/Newhome';
+import Mainhomepage from './Pages/Mainhomepage';
+import Contactuspage from './Pages/ContactUs/Contactuspage';
 
 function App(props) {
   const { checkUserSession, current } = props;
-  useEffect(()=>{
+  useEffect(() => {
     checkUserSession();
-  },[checkUserSession])
+  }, [checkUserSession]);
   return (
     <>
       <Layout>
@@ -37,12 +33,24 @@ function App(props) {
           <Route exact path="/intro" render={() => <Intropages />} />
           <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/register" render={() => <Register />} />
-          <Route exact path="/rentcondo" render={() => <RentcondoHome />} />
-          <Route exact path="/ContactUs" render={()=> <Contactuspage/>} />
+          <Route
+            exact
+            path="/rentcondo"
+            render={() =>
+              !current ? <Redirect to="/login" /> : <RentcondoHome />
+            }
+          />
+          <Route exact path="/ContactUs" render={() => <Contactuspage />} />
           <Route
             exact
             path="/rentcondo/:id"
-            render={(props) => <Rentcondodetail {...props} />}
+            render={(props) =>
+              !current ? (
+                <Redirect to="/login" />
+              ) : (
+                <Rentcondodetail {...props} />
+              )
+            }
           />
           <Route
             exact
@@ -58,8 +66,8 @@ function App(props) {
   );
 }
 const maptcprops = createStructuredSelector({
-  current: selectCurrentUser
-})
+  current: selectCurrentUser,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   checkUserSession: () => dispatch(checkUserSession()),
