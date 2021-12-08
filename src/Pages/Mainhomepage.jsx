@@ -13,6 +13,7 @@ const Mainhomepage = () => {
     <>
       <Newhero />
       <NewUpdate/>
+      <Ourteam/>
     </>
   );
 }

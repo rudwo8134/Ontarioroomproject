@@ -5,6 +5,7 @@ import {
   FaGooglePlusSquare,
   FaTwitterSquare,
 } from 'react-icons/fa';
+import { CommonStyles } from '../../staticFiles/CommonStyles';
 
 const PersonCard = ({image,name,job,job2}) => {
   return (
@@ -35,6 +36,9 @@ const Personcardstyle = styled.div`
   img {
     margin-top: 50px;
     margin-bottom: 22.8px;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
   }
   .text {
     display: flex;
@@ -45,13 +49,14 @@ const Personcardstyle = styled.div`
       font-weight: normal;
       font-size: 22px;
       line-height: 32px;
+      letter-spacing: 0.15rem;
       /* identical to box height, or 145% */
 
       text-align: center;
 
       /* Colors / Heading */
 
-      color: #1e0e62;
+      color: ${CommonStyles.color.Dark};
       margin-bottom: 16px;
     }
     .job {
