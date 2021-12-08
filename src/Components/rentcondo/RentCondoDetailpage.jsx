@@ -5,7 +5,12 @@ import { CommonStyles } from '../../staticFiles/CommonStyles';
 import { FaLocationArrow } from 'react-icons/fa';
 import { StaticGoogleMap, Marker } from 'react-static-google-map';
 import { AiFillCar, AiOutlineCalendar } from 'react-icons/ai';
-import { BsPeopleFill, BsHouseDoor } from 'react-icons/bs';
+import {
+  BsPeopleFill,
+  BsHouseDoor,
+  BsFillCaretRightFill,
+} from 'react-icons/bs';
+import {GoPrimitiveDot} from 'react-icons/go'
 import { RiTempColdFill } from 'react-icons/ri';
 import { FaDog, FaSmokingBan } from 'react-icons/fa';
 import { GiWaterDrop, GiDoor } from 'react-icons/gi';
@@ -14,6 +19,13 @@ import { IoWifiOutline } from 'react-icons/io5';
 const Background = styled.section`
   width: 100vw;
   margin-top: 80px;
+`;
+const Dotfolder = styled.div`
+  width: 100%;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
 `;
 const Wrapper = styled.div`
   width: 1300px;
@@ -41,13 +53,27 @@ const PostNav = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 400px 400px 400px;
-  height: 500px;
-  overflow-x: hidden;
+  position: relative;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  .slide {
+    opacity: 0;
+    transition: 0.8s all ease-in-out;
+  }
+  .slideactive {
+    opacity: 1;
+    transition: 0.8s all ease-in-out;
+    transform: scale(1.08);
+  }
 `;
 const Customimagetag = styled.img`
-  width: 380px;
+  width: 1000px;
+  height: 400px;
+  border-radius: 10px;
 `;
 const Roominformation = styled.div`
   .roominfo {
@@ -169,15 +195,59 @@ const Roominformation = styled.div`
   }
 `;
 
+const Arrowleft = styled(BsFillCaretRightFill)`
+  transform: rotate(-180deg);
+  position: absolute;
+  top: 50%;
+  left: 32px;
+  font-size: 3rem;
+  color: ${CommonStyles.color.Dark};
+  cursor: pointer;
+  user-select: none;
+  z-index: 10;
+  transition: 0.5s all ease-in-out;
+  :hover {
+    color: ${CommonStyles.color.Primary};
+  }
+`;
+const Arrowright = styled(BsFillCaretRightFill)`
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  font-size: 3rem;
+  color: ${CommonStyles.color.Dark};
+  cursor: pointer;
+  user-select: none;
+  z-index: 10;
+  transition: 0.5s all ease-in-out;
+  :hover {
+    color: ${CommonStyles.color.Primary};
+  }
+`;
+
 const RentCondoDetailpage = (props) => {
   const [price, setprice] = useState(null);
+  const [currentImg, setCurrentImg] = useState(0);
+  const length = props?.image?.length;
 
+  const nextSlide = () => {
+    setCurrentImg(currentImg === length - 1 ? 0 : currentImg + 1);
+  };
+  const previousSlide = () => {
+    setCurrentImg(currentImg === 0 ? length - 1 : currentImg - 1);
+  };
+
+  console.log(length);
   useEffect(() => {
     if (props.monthlyfee)
       setprice(
         props?.monthlyfee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       );
   }, [props]);
+
+  if (!Array.isArray(props?.image || props?.image?.length <= 0)) {
+    return null;
+  }
 
   if (props === 'null') {
     return <div>loading....</div>;
@@ -196,12 +266,26 @@ const RentCondoDetailpage = (props) => {
         </PostNav>
 
         <ImageWrapper>
+          <Arrowleft onClick={previousSlide} />
+          <Arrowright onClick={nextSlide} />
           {props?.image?.map((image, index) => {
             return (
-              <Customimagetag src={image} alt={`viewer${index}`} key={index} />
+              <div
+                key={index}
+                className={index === currentImg ? 'slideactive' : 'slide'}
+              >
+                {index === currentImg && (
+                  <Customimagetag src={image} alt={`viewer${index}`} />
+                )}
+              </div>
             );
           })}
         </ImageWrapper>
+        <Dotfolder>
+          {props?.image?.map((data, index)=>{
+            return <GoPrimitiveDot color={index === currentImg && `${CommonStyles.color.Primary}`}/>
+          })}
+        </Dotfolder>
         <Roominformation>
           <div className="divider" />
           <div className="roominfo">

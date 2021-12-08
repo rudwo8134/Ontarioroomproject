@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import LoginHeader from '../../assets/loginheader.jpg';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
-import { Link } from 'react-router-dom';
-import {FcGoogle} from 'react-icons/fc'
+import { Link, useHistory } from 'react-router-dom';
+import { FcGoogle } from 'react-icons/fc';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../Redux/Users/user.selector';
+import {
+  emailSigninStart,
+  googleSigninStart,
+} from '../../Redux/Users/user.action';
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -57,6 +64,13 @@ const Wrapper = styled.div`
         background-color: ${CommonStyles.color.Darkbold1};
         display: flex;
         align-items: center;
+        border:none;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: 0.5s ease-in-out all;
+        :hover{
+          background-color: ${CommonStyles.color.Darkbold3};
+        }
       }
       .buttondivider {
         display: flex;
@@ -98,6 +112,11 @@ const Wrapper = styled.div`
           border: none;
           border-radius: 3px;
           align-self: flex-end;
+          transition: 0.5s ease-in-out all;
+          cursor: pointer;
+          :hover{
+            background-color: ${CommonStyles.color.PrimaryLight4};
+          }
         }
       }
       .forgetthepassword {
@@ -121,15 +140,37 @@ const Wrapper = styled.div`
 const GoogleLogo = styled(FcGoogle)`
   width: 20px;
   height: 20px;
-  margin:0 16px;
-`
+  margin: 0 16px;
+`;
 
-const NewRegisterandLoginpage = () => {
+const NewRegisterandLoginpage = (props) => {
+  const [user, Setuser] = useState({
+    email: '',
+    password: '',
+  });
+  const { email, password } = user;
+  const { googlelogin, User, emailSignin } = props;
+  const history = useHistory();
+  const handlesubmit = (e) => {
+    e.preventDefault();
+    emailSignin({
+      email,
+      password,
+    });
+  };
+  const handlechange = (e) => {
+    const { name, value } = e.target;
+    Setuser({ ...user, [name]: value });
+  };
+
+  useEffect(() => {
+    if (User) {
+      history.push('/');
+    }
+  }, [history, User]);
   return (
     <Wrapper>
-      <div
-        className="loginheaderimg"
-      />
+      <div className="loginheaderimg" />
       <div className="Container">
         <div className="left">
           <h4 className="Header">SIGN IN</h4>
@@ -137,23 +178,41 @@ const NewRegisterandLoginpage = () => {
           <span className="description">
             Lorem ipsum dolor sit amet consectetur, adipisicing eli
           </span>
-          <buttonv className="googlelogin">
+          <button onClick={googlelogin} className="googlelogin">
             <GoogleLogo />
             Continue With Google Sign in
-          </buttonv>
+          </button>
           <div className="buttondivider">
             <div className="divederline" />
             <span className="name">OR</span>
             <div className="divederline" />
           </div>
-          <form action="" className="Signin">
-            <input type="text" placeholder="Email" className="email" />
-            <input type="text" placeholder="Password" className="password" />
+          <form onSubmit={handlesubmit} className="Signin">
+            <input
+              type="Email"
+              id="email"
+              name="email"
+              placeholder="Email"
+              onChange={handlechange}
+              className="email"
+            />
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              placeholder="password"
+              onChange={handlechange}
+              className="password"
+            />
             <span className="description">
               This site is protected by reCAPTCHA and the Google Privacy Policy
               and Terms of Service apply.
             </span>
-            <button className="submitbutton" type="submit">
+            <button
+              className="submitbutton"
+              type="submit"
+            >
               SIGN IN
             </button>
           </form>
@@ -190,4 +249,12 @@ const NewRegisterandLoginpage = () => {
   );
 };
 
-export default NewRegisterandLoginpage;
+const maptoprops = createStructuredSelector({
+  User: selectCurrentUser,
+});
+const maptodispatch = (dispatch) => ({
+  googlelogin: () => dispatch(googleSigninStart()),
+  emailSignin: (user) => dispatch(emailSigninStart(user)),
+});
+
+export default connect(maptoprops, maptodispatch)(NewRegisterandLoginpage);
