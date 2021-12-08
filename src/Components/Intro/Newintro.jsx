@@ -13,26 +13,27 @@ const Newintro = () => {
       <Newintrostyle>
         <div className="rightContent">
           <div className="paragraph1">
-            <span className="title">Ready for Use</span>
+            <span className="title">Why ONROOM?</span>
             <span className="description">
-              Startup Framework contains components and compex blocks which can
-              wasily be integrated into almost any design.
+              신속, 간편 원하는 것들만 한눈에 효율적이고 짧은 시간에 볼 수 있는
+              시스템을 만들도록 노력하였습니다.
             </span>
           </div>
           <div className="paragraph2">
             <IoDocumentsOutline />
-            <span className="title2">Many Useful Components</span>
+            <span className="title2">마인드,소통</span>
             <span className="description2">
-              Startup Framework contains components and complex blocks which can
-              easily be inte-grated into almost any design.{' '}
+              우리는 이익보다는 이용자들의 편의를 중심적으로 나아갈
+              것입니다.이용자의 소리를 최우선적으로 생각하며 융통적으로 니즈에
+              맞게 시스템을 구축해 나갈 것입니다.
             </span>
           </div>
           <div className="paragraph3">
             <FaRocket />
-            <span className="title3">Feel Our Design</span>
+            <span className="title3">신용</span>
             <span className="description3">
-              Samples will show you the feeling on how to play around using the
-              components in the website building process.
+              이용자의 소리를 최우선적으로 생각하며 융통적으로 니즈에 맞게
+              시스템을 구축해 나갈 것입니다.
             </span>
           </div>
         </div>

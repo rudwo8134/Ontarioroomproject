@@ -13,7 +13,10 @@ const PersonCard = ({image,name,job,job2}) => {
       <img src={image} alt="img" />
       <div className="text">
         <span className="name">{name}</span>
-        <span className="job">{job}<br></br> {job2}</span>
+        <span className="job">
+          {job}
+          <br></br> <b className={'text'}>{job2}</b>
+        </span>
       </div>
       <div className="social">
         <FaGooglePlusSquare />
@@ -72,7 +75,10 @@ const Personcardstyle = styled.div`
 
       /* Colors / Text */
 
-      color: rgba(21, 20, 57, 0.4);
+      color: ${CommonStyles.color.Darkbold3};
+      .text{
+        color:${CommonStyles.color.PrimaryLight3};
+      }
     }
   }
   .social {

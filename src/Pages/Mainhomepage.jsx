@@ -12,8 +12,9 @@ const Mainhomepage = () => {
   return (
     <>
       <Newhero />
-      <NewUpdate/>
-      <Ourteam/>
+      <NewUpdate />
+      <Newintro />
+      <Ourteam />
     </>
   );
 }

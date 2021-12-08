@@ -12,7 +12,7 @@ import p4 from '../../assets/profile/person4.png';
 const Ourtemadata = [
   {
     name: '이준서',
-    job: 'Design Director',
+    job: 'Creative Director',
     job2: 'CDO(Chief Design Officer)',
     image: p1,
   },
