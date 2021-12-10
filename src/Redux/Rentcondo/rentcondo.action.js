@@ -81,3 +81,18 @@ export const filterdatafail = (err) => ({
   type: rentcondotype.FILTER_CONDOROOM_SUCCESS,
   payload: err,
 });
+
+export const addressupdatestart = (data) => ({
+  type: rentcondotype.ADDRESS_SET_CONDOROOM_START,
+  data: data,
+});
+
+export const addressupdateFail = (error) => ({
+  type: rentcondotype.ADDRESS_SET_CONDOROOM_FAILURE,
+  payload: error,
+});
+
+export const addressupdateSuccess = (data) => ({
+  type: rentcondotype.ADDRESS_SET_CONDOROOM_SUCCESS,
+  payload: data,
+});

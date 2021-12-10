@@ -1,13 +1,30 @@
-import React from 'react'
-import styled from 'styled-components'
-
-const Secondarybutton = ({name}) => {
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { selectdetailaddress } from '../../Redux/Rentcondo/rentcondo.selector';
+import { useHistory } from 'react-router-dom';
+const Secondarybutton = ({ name, data }) => {
+  const [value, setValue] = useState(name);
+  console.log('lol', data);
+  const history = useHistory();
+  const handleClick = () => {
+    if (!data) {
+      setValue('검색입력');
+      return;
+    }
+    console.log('woriking.....');
+    history.push({
+      pathname: '/rentcondo',
+      state: { params: data },
+    });
+  };
   return (
-    <Secondarybuttonstyle>
-      <span>{name}</span>
+    <Secondarybuttonstyle onClick={handleClick}>
+      <span>{value}</span>
     </Secondarybuttonstyle>
-  )
-}
+  );
+};
 const Secondarybuttonstyle = styled.button`
   width: 100.43px;
   height: 62px;
@@ -31,5 +48,8 @@ const Secondarybuttonstyle = styled.button`
     color: #fff;
   }
 `;
+const maptoprops = createStructuredSelector({
+  data: selectdetailaddress,
+});
 
-export default Secondarybutton
+export default connect(maptoprops)(Secondarybutton);

@@ -19,3 +19,8 @@ export const selectdetailitem = createSelector(
   [seletRentcondo],
   (rentcondo) => rentcondo.detailitem
 );
+
+export const selectdetailaddress = createSelector(
+  [seletRentcondo],
+  (rentcondo) => rentcondo.address
+);

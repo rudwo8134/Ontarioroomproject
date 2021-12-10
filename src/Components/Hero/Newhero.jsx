@@ -1,19 +1,32 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import PlacesAutocomplete from 'react-places-autocomplete'
 import styled,{keyframes} from 'styled-components'
 import Background from '../../assets/Background1.jpg'
+import Autocompletesearch from '../../Pages/findroom/Autocompletesearch'
 import { CommonStyles } from '../../staticFiles/CommonStyles'
 import Secondarybutton from '../util/Secondarybutton'
-const Newhero = () => {
+import { connect } from 'react-redux';
+import { selectdetailaddress } from '../../Redux/Rentcondo/rentcondo.selector'
+import { createStructuredSelector } from 'reselect'
+const Newhero = ({ address }) => {
+  const [Address, setAddress] = useState(false);
+ useEffect(() => {
+   if(address){
+     setAddress(true);
+   }
+ }, [address]);
   return (
     <Newherostyle>
       <form action="" className="search">
         <h2 className="englishslogan">
           캐나다에서 빠르고 편하게 <br /> 집을 찾는 <b>ONROOM</b>
         </h2>
-        <h1 className="slogan">방을 쉽고 빠르고 정확하게 찾을수 있는 믿음 가는 사이트!</h1>
+        <h1 className="slogan">
+          방을 쉽고 빠르고 정확하게 찾을수 있는 믿음 가는 사이트!
+        </h1>
         <div className="searchcontainer">
-          <input type="text" placeholder="주소를 입력해 주세요" />
-          <Secondarybutton name="검색하기" />
+          <Autocompletesearch />
+          <Secondarybutton name={'검색하기'} disable={'검색입력'} />
         </div>
       </form>
 
@@ -26,7 +39,7 @@ const Newhero = () => {
       </span>
     </Newherostyle>
   );
-}
+};
 
 const animouse = keyframes`
 0% {
@@ -58,16 +71,16 @@ const Newherostyle = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  .search{
+  .search {
     position: absolute;
-    top:40%;
-    left:50%;
+    top: 40%;
+    left: 50%;
     width: 700px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    transform: translate(-40%,-50%);
+    transform: translate(-40%, -50%);
   }
   .englishslogan {
     font-style: normal;
@@ -80,8 +93,8 @@ const Newherostyle = styled.div`
     letter-spacing: -1px;
     margin-bottom: -20px;
     color: ${CommonStyles.color.Dark};
-    b{
-      color: ${CommonStyles.color.Primary}
+    b {
+      color: ${CommonStyles.color.Primary};
     }
   }
   .slogan {
@@ -99,6 +112,8 @@ const Newherostyle = styled.div`
     width: 70%;
   }
   .searchcontainer {
+    display: flex;
+    flex-direction: row;
     input {
       width: 434px;
       height: 62px;
@@ -112,7 +127,7 @@ const Newherostyle = styled.div`
         font-weight: normal;
         font-size: 20px;
         line-height: 26px;
-        color: ${CommonStyles.color.PrimaryLight4}
+        color: ${CommonStyles.color.PrimaryLight4};
       }
     }
   }
@@ -162,4 +177,8 @@ const Newherostyle = styled.div`
   }
 `;
 
-export default Newhero
+const maptoprops = createStructuredSelector({
+  address: selectdetailaddress
+})
+
+export default connect(maptoprops)(Newhero);
