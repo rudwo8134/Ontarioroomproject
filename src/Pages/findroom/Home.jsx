@@ -14,6 +14,7 @@ import GoogleMapReact from 'google-map-react';
 import { handleaddressdata } from './Functionhandler';
 import { selectCurrentUser } from '../../Redux/Users/user.selector';
 import { useHistory } from 'react-router-dom';
+import { readrentcondo } from '../../Redux/Rentcondo/rentcondo.saga';
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -174,7 +175,7 @@ const containerStyle = {
 const Marker = ({ children }) => children;
 
 const Home = (props) => {
-  const { rooms, getData, User } = props;
+  const { rooms, getData, User, getroomData } = props;
 
   const [loading, setLoading] = useState(false);
   const [address, setaddress] = useState([]);
@@ -194,6 +195,24 @@ const Home = (props) => {
   const [zoom, setZoom] = useState(10);
   const [bounds, setBounds] = useState(null);
   const [points, setPoints] = useState([]);
+  const [selected, setSelected] = useState(null);
+  const [selectInfo, setSelectInfo] = useState(null);
+
+  const handleClick = (id) => {
+    setSelected(id);
+  };
+
+  useEffect(() => {
+    const readdata = async () => {
+      if (selected) {
+        const data = rooms.filter((data) => data.id === selected);
+        setSelectInfo(data);
+      }
+    };
+    readdata();
+  }, [selected, rooms]);
+
+
   useEffect(() => {
     const data =
       rooms &&
@@ -277,6 +296,7 @@ const Home = (props) => {
                     cluster: isCluster,
                     point_count: pointCount,
                     price,
+                    crimeId,
                   } = cluster?.properties;
 
                   if (isCluster) {
@@ -330,9 +350,13 @@ const Home = (props) => {
                       lng={longitude}
                     >
                       <button
+                        onClick={() => handleClick(crimeId)}
                         className="crime-marker"
                         style={{
-                          background: `${CommonStyles.color.Dark}`,
+                          background:
+                            crimeId === selected
+                              ? `${CommonStyles.color.Primary}`
+                              : `${CommonStyles.color.Dark}`,
                           borderRadius: '50%',
                           display: 'flex',
                           justifyContent: 'center',
@@ -340,7 +364,7 @@ const Home = (props) => {
                           color: 'white',
                           fontSize: '12px',
                           fontWeight: 800,
-                          padding: '2px',
+                          padding: crimeId === selected ? '4px' : '2px',
                         }}
                       >
                         ${price}
@@ -369,10 +393,23 @@ const Home = (props) => {
           </div>
           {/* card container */}
           <div className="CardWrapper">
-            {rooms &&
-              rooms.map((data, index) => {
-                return <Cardcontainer data={data} key={index} />;
+            {selectInfo &&
+              selectInfo.map((data, index) => {
+                return (
+                  <>
+                    <h4>선택한 집</h4>
+                    <Cardcontainer data={data} key={index} />
+                  </>
+                );
               })}
+            <h4>집 목록</h4>
+            {selectInfo
+              ? rooms?.filter(data=> data.id !== selected)?.map((data, index) => {
+                  return <Cardcontainer data={data} key={index} />;
+                })
+              : rooms?.map((data, index) => {
+                  return <Cardcontainer data={data} key={index} />;
+                })}
           </div>
         </div>
       </div>
@@ -382,10 +419,11 @@ const Home = (props) => {
 
 const maptoprops = createStructuredSelector({
   rooms: selectitems,
-  User: selectCurrentUser
+  User: selectCurrentUser,
 });
 const dispatchmap = (dispatch) => ({
   getData: () => dispatch(rentcondoreadstart()),
+  getroomData: (id) => dispatch(readrentcondo(id)),
 });
 
 export default connect(maptoprops, dispatchmap)(Home);

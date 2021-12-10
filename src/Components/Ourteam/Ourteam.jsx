@@ -7,7 +7,7 @@ import { CommonStyles } from '../../staticFiles/CommonStyles';
 import p1 from '../../assets/profile/person1.jpeg';
 import p2 from '../../assets/profile/person2.png';
 import p3 from '../../assets/profile/person3.jpeg';
-import p4 from '../../assets/profile/person4.png';
+import p4 from '../../assets/profile/person4.jpeg';
 
 const Ourtemadata = [
   {
