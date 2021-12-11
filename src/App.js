@@ -17,6 +17,7 @@ import Intropages from './Pages/Intropages';
 import Newhome from './Pages/Newhome';
 import Mainhomepage from './Pages/Mainhomepage';
 import Contactuspage from './Pages/ContactUs/Contactuspage';
+import Postrentroom from './Pages/findroom/Postrentroom';
 
 function App(props) {
   const { checkUserSession, current } = props;
@@ -56,7 +57,7 @@ function App(props) {
             exact
             path="/rentcondopost"
             render={() =>
-              !current ? <Redirect to="/login" /> : <Rentcondopost />
+              !current ? <Redirect to="/login" /> : <Postrentroom/>
             }
           />
           <Route render={() => <Errorpage />} />

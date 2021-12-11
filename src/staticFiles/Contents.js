@@ -9,7 +9,7 @@ export const Contents = {
       {
         id: 2,
         linkName: '방 올리기',
-        linkAddress: 'rentcondo',
+        linkAddress: '/rentcondopost',
       },
       {
         id: 3,
