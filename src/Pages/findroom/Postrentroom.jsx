@@ -464,63 +464,62 @@ const Postrentroom = ({ poststart, user }) => {
     <>
       {next && (
         <Wrapper>
-          <form onSubmit={handlesubmit2}>
-            <div className="nextheader">
-              <h1 className="nextname">List your place</h1>
-              <div className="skipbuttonconatiner">
-                <h4>
-                  꼭 맞는 세입자를 찾기 위한 과정입니다. 최대한 많은 항목을
-                  응답해주세요.
-                </h4>
-                <button type="submit" className="post">
-                  Skip {'>>'}
-                </button>
-              </div>
+          <div className="nextheader">
+            <h1 className="nextname">List your place</h1>
+            <div className="skipbuttonconatiner">
+              <h4>
+                꼭 맞는 세입자를 찾기 위한 과정입니다. 최대한 많은 항목을
+                응답해주세요.
+              </h4>
+              {/* <button type="submit" className="post">
+                Skip {'>>'}
+              </button> */}
             </div>
-            <div className="nextbody">
-              {filter.map((data, index) => {
-                const { title } = data && data;
-                return (
-                  <div className="container" key={index}>
-                    <h5 className="name">{data?.name}</h5>
-                    <div className="buttoncontainer">
-                      {data?.button?.map((data2, index) => {
-                        const filtercolor =
-                          postcredential &&
-                          Object.entries(postcredential)?.filter((data) => {
-                            return data[0] === title;
-                          });
-                        return (
-                          <button
-                            onClick={handlecredentialchange}
-                            name={title}
-                            value={data2}
-                            key={index}
-                            style={{
-                              backgroundColor:
-                                filtercolor[0][1] === data2 && `#e85f85`,
-                              color: filtercolor[0][1] === data2 && 'white',
-                            }}
-                          >
-                            {data2}
-                          </button>
-                        );
-                      })}
-                    </div>
+          </div>
+          <div className="nextbody">
+            {filter.map((data, index) => {
+              const { title } = data && data;
+              return (
+                <div className="container" key={index}>
+                  <h5 className="name">{data?.name}</h5>
+                  <div className="buttoncontainer">
+                    {data?.button?.map((data2, index) => {
+                      const filtercolor =
+                        postcredential &&
+                        Object.entries(postcredential)?.filter((data) => {
+                          return data[0] === title;
+                        });
+                      return (
+                        <button
+                          onClick={handlecredentialchange}
+                          name={title}
+                          value={data2}
+                          key={index}
+                          style={{
+                            backgroundColor:
+                              filtercolor[0][1] === data2 && `#e85f85`,
+                            color: filtercolor[0][1] === data2 && 'white',
+                          }}
+                        >
+                          {data2}
+                        </button>
+                      );
+                    })}
                   </div>
-                );
-              })}
-              <div className="submitbutton">
-                <button onClick={() => setNext(false)} className="backbutton">
-                  {'<'}back
-                </button>
-
+                </div>
+              );
+            })}
+            <div className="submitbutton">
+              <button onClick={() => setNext(false)} className="backbutton">
+                {'<'}back
+              </button>
+              <form onSubmit={handlesubmit2}>
                 <button type="submit" className="post">
                   글 올리기
                 </button>
-              </div>
+              </form>
             </div>
-          </form>
+          </div>
         </Wrapper>
       )}
       {!next && (
