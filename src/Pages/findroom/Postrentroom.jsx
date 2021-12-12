@@ -283,9 +283,9 @@ const Imageuploadcontainer = styled.div`
   align-items: center;
 
   img {
-    height: 150px;
-    width: 150px;
-    border-radius: 30px;
+    max-height: 150px;
+    max-width: 150px;
+    border-radius: 6px;
   }
 `;
 const Searchbutton = styled.button`
