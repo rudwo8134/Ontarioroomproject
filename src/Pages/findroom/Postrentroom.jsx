@@ -295,7 +295,7 @@ const Postrentroom = ({ poststart, user }) => {
     utility: '',
     funished: '',
     monthlyfee: '',
-    roomtype: '1 room',
+    roomtype: '',
     sqf: '',
     parking: 'yes',
     availabledate: '',
@@ -315,6 +315,7 @@ const Postrentroom = ({ poststart, user }) => {
     tv: 'yes',
     privateenterance: 'yes',
     howmanypeople: '',
+    properytype:'',
   });
   const handlecredentialchange = (e) => {
     const { name, value } = e.target;
@@ -338,6 +339,7 @@ const Postrentroom = ({ poststart, user }) => {
     setimageresults([...results]);
     setimageloading(false);
   };
+  console.log(postcredential);
   const filter = [
     {
       name: '선호 성별',
@@ -467,8 +469,15 @@ const Postrentroom = ({ poststart, user }) => {
             <div className="left">
               <div className="propertytype">
                 <span className="name">Property type*</span>
-                <select>
-                  <option value="">1</option>
+                <select
+                  onChange={handlecredentialchange}
+                  name="properytype"
+                  value={postcredential?.properytype}
+                >
+                  <option value="apart">apart</option>
+                  <option value="condo">condo</option>
+                  <option value="house">house</option>
+                  <option value="townhouse">townhouse</option>
                 </select>
               </div>
               <div className="location">
@@ -557,8 +566,9 @@ const Postrentroom = ({ poststart, user }) => {
               </div>
               <div className="propertytype">
                 <span className="name">Type of Rental*</span>
-                <select>
-                  <option value="">1</option>
+                <select name="roomtype" value={postcredential?.roomtype} onChange={handlecredentialchange}>
+                  <option value="whole">전체렌트</option>
+                  <option value="room">룸렌트</option>
                 </select>
               </div>
               <div className="propertytype">
