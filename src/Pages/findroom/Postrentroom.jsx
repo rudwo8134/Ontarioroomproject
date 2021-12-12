@@ -11,6 +11,8 @@ import { selectCurrentUser } from '../../Redux/Users/user.selector';
 import { rentcondopoststart } from '../../Redux/Rentcondo/rentcondo.action';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
+import { withRouter } from 'react-router-dom';
+
 
 
 const Wrapper = styled.div`
@@ -319,7 +321,7 @@ const Postrentroom = ({ poststart, user }) => {
       address: reultaddress,
       ...postcredential,
     });
-    history.push('/rentcondo');
+    history.push('/');
   };
   const handleaddressdata = async (address) => {
     try {
@@ -395,7 +397,6 @@ const Postrentroom = ({ poststart, user }) => {
   const submithandler = (e)=>{
     e.preventDefault();
     setNext(true);
-    console.log('wroking');
   }
   const filter = [
     {
@@ -722,4 +723,4 @@ const dispathtoprops = (dispatch) => ({
   poststart: (data) => dispatch(rentcondopoststart(data)),
 });
 
-export default connect(maptoprops, dispathtoprops)(Postrentroom);
+export default withRouter(connect(maptoprops, dispathtoprops)(Postrentroom));

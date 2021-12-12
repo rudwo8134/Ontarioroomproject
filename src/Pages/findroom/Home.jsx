@@ -176,7 +176,7 @@ const Marker = ({ children }) => children;
 
 const Home = (props) => {
   const { rooms, getData, User, getroomData } = props;
-
+  console.log(props);
   const [loading, setLoading] = useState(false);
   const [address, setaddress] = useState([]);
   const [googlemapcenter, setgooglemapcenter] = useState(null);
@@ -202,6 +202,7 @@ const Home = (props) => {
     setSelected(id);
   };
 
+
   useEffect(() => {
     const readdata = async () => {
       if (selected) {
@@ -211,7 +212,6 @@ const Home = (props) => {
     };
     readdata();
   }, [selected, rooms]);
-
 
   useEffect(() => {
     const data =
@@ -404,9 +404,11 @@ const Home = (props) => {
               })}
             <h4>집 목록</h4>
             {selectInfo
-              ? rooms?.filter(data=> data.id !== selected)?.map((data, index) => {
-                  return <Cardcontainer data={data} key={index} />;
-                })
+              ? rooms
+                  ?.filter((data) => data.id !== selected)
+                  ?.map((data, index) => {
+                    return <Cardcontainer data={data} key={index} />;
+                  })
               : rooms?.map((data, index) => {
                   return <Cardcontainer data={data} key={index} />;
                 })}
