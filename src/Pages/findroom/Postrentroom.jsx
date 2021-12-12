@@ -2,6 +2,15 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
 import { StaticGoogleMap, Marker } from 'react-static-google-map';
+import { Uploadimage } from '../../Firebase/firebase.utils';
+import Noimage from '../../assets/noimage.png';
+import PlacesAutocomplete from 'react-places-autocomplete';
+import { v4 as uuid } from 'uuid';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../Redux/Users/user.selector';
+import { rentcondopoststart } from '../../Redux/Rentcondo/rentcondo.action';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router';
 
 const Wrapper = styled.div`
   border-top: 1px solid ${CommonStyles.color.Darkbold1};
@@ -137,7 +146,24 @@ const Wrapper = styled.div`
       flex: 1;
       display: flex;
       flex-direction: column;
-
+      .propertytypeimage {
+        width: 60%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: ${CommonStyles.margin.Reuglar};
+        h1 {
+          font-size: 16px;
+          width: 250px;
+          font-weight: 700;
+          color: ${CommonStyles.color.Primary};
+        }
+        label {
+          width: 250px;
+          font-weight: 700;
+          color: ${CommonStyles.color.Darkbold3};
+        }
+      }
       .buttoncontainer {
         display: flex;
         justify-content: flex-end;
@@ -201,64 +227,180 @@ const Wrapper = styled.div`
   }
 `;
 
-const Postrentroom = () => {
+const Imageuploadcontainer = styled.div`
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 2rem;
+  row-gap: 2rem;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    height: 150px;
+    width: 150px;
+    border-radius: 30px;
+  }
+`;
+
+const Postrentroom = ({ poststart, user }) => {
+  const history = useHistory();
   const [next, setNext] = useState(false);
+  const [address, setaddress] = useState([]);
+  const [lat, SetLat] = useState(null);
+  const [imageresults, setimageresults] = useState(null);
+  const [imageloading, setimageloading] = useState(false);
+  console.log(lat);
+
+  const handlesubmit2 = async (e) => {
+    e.preventDefault();
+    const reultaddress = await handleaddressdata(address);
+    poststart({
+      id: uuid(),
+      userinfo: {
+        userid: user?.id,
+        postname: user?.displayName,
+        phonenumber: user?.phonenumber,
+        email: user?.email,
+      },
+      image: imageresults,
+      address: reultaddress,
+      ...postcredential,
+    });
+    history.push('/rentcondo');
+  };
+  const handleaddressdata = async (address) => {
+    try {
+      const response = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GOOGLEAPI}`
+      );
+      const data = await response.json();
+      const result = {
+        Formattedaddress: data.results[0].formatted_address,
+        lat: data.results[0].geometry.location.lat,
+        lng: data.results[0].geometry.location.lng,
+      };
+      await SetLat(result);
+      return result;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const [postcredential, setpostcredential] = useState({
+    unit: '',
+    deposit: '',
+    sex: '',
+    utility: '',
+    funished: '',
+    monthlyfee: '',
+    roomtype: '1 room',
+    sqf: '',
+    parking: 'yes',
+    availabledate: '',
+    posttitle: '',
+    description: '',
+    petavailable: 'yes',
+    smoking: 'yes',
+    internet: 'yes',
+    privateBathroom: '',
+    kitchen: 'yes',
+    Laundry: 'yes',
+    Dryer: 'yes',
+    Fridge: 'yes',
+    Freezer: 'yes',
+    hairDryer: 'yes',
+    aircondition: 'yes',
+    tv: 'yes',
+    privateenterance: 'yes',
+    howmanypeople: '',
+  });
+  const handlecredentialchange = (e) => {
+    const { name, value } = e.target;
+    setpostcredential({ ...postcredential, [name]: value });
+  };
+  const handlechange = (value) => {
+    setaddress(value);
+  };
+  const handleselect = (select) => {
+    setaddress(select);
+    handleaddressdata(address);
+  };
+  const handleimage = async (e) => {
+    setimageloading(true);
+    var results = [];
+    for (var i = 0; i < e.target.files.length; i++) {
+      var imagefile = e.target.files[i];
+      var result = await Uploadimage(imagefile);
+      results.push(result);
+    }
+    setimageresults([...results]);
+    setimageloading(false);
+  };
   const filter = [
     {
       name: '선호 성별',
       button: ['남', '여', '남녀무관'],
+      title: 'sex',
     },
     {
       name: '유틸리티 포함',
-      button: [
-        'Cable',
-        'heating',
-        'Hydro/electricity',
-        'internet/Wifi',
-        'water',
-      ],
+      button: ['네', '아니오'],
+      title: 'utility',
     },
     {
       name: 'funished',
       button: ['네', '아니오'],
+      title: 'funished',
     },
     {
       name: '주차장',
-      button: ['유', '무'],
+      button: ['네', '아니오'],
+      title: 'parking',
     },
     {
       name: '인터넷',
-      button: ['유', '무'],
+      button: ['네', '아니오'],
+      title: 'internet',
     },
     {
       name: '세탁기',
-      button: ['유', '무'],
+      button: ['네', '아니오'],
+      title: 'Laundry',
     },
     {
       name: '개인 출입문',
-      button: ['유', '무'],
+      button: ['네', '아니오'],
+      title: 'privateenterance',
     },
     {
       name: '흡연',
-      button: ['허용', '불허용'],
+      button: ['네', '아니오'],
+      title: 'smoking',
     },
     {
       name: '펫',
-      button: ['허용', '불허용'],
+      button: ['네', '아니오'],
+      title: 'petavailable',
     },
     {
-      name: '화장실',
-      button: ['개인', '쉐어'],
+      name: '개인 화장실',
+      button: ['네', '아니오'],
+      title: 'privateBathroom',
     },
     {
-      name: '냉장고',
-      button: ['개인', '쉐어', '없음'],
+      name: '개인 냉장고',
+      button: ['네', '아니오'],
+      title: 'Fridge',
     },
     {
       name: '주방',
-      button: ['개인', '쉐어'],
+      button: ['네', '아니오'],
+      title: 'kitchen',
     },
   ];
+
   return (
     <>
       {next && (
@@ -272,20 +414,46 @@ const Postrentroom = () => {
           </div>
           <div className="nextbody">
             {filter.map((data, index) => {
+              const { title } = data && data;
               return (
-                <div className="container">
+                <div className="container" key={index}>
                   <h5 className="name">{data?.name}</h5>
                   <div className="buttoncontainer">
                     {data?.button?.map((data2, index) => {
-                      return <button key={index}>{data2}</button>;
+                      const filtercolor =
+                        postcredential &&
+                        Object.entries(postcredential)?.filter((data) => {
+                          return data[0] === title;
+                        });
+                      return (
+                        <button
+                          onClick={handlecredentialchange}
+                          name={title}
+                          value={data2}
+                          key={index}
+                          style={{
+                            backgroundColor:
+                              filtercolor[0][1] === data2 && `#e85f85`,
+                            color: filtercolor[0][1] === data2 && 'white',
+                          }}
+                        >
+                          {data2}
+                        </button>
+                      );
                     })}
                   </div>
                 </div>
               );
             })}
             <div className="submitbutton">
-              <button onClick={()=>setNext(false)} className="backbutton">{'<'}back</button>
-              <button className="post">글 올리기</button>
+              <button onClick={() => setNext(false)} className="backbutton">
+                {'<'}back
+              </button>
+              <form onSubmit={handlesubmit2}>
+                <button type="submit" className="post">
+                  글 올리기
+                </button>
+              </form>
             </div>
           </div>
         </Wrapper>
@@ -306,22 +474,87 @@ const Postrentroom = () => {
               <div className="location">
                 <div className="propertytype">
                   <span className="name">Location*</span>
-                  <input type="text" />
+                  <PlacesAutocomplete
+                    value={address}
+                    onChange={handlechange}
+                    onSelect={handleselect}
+                  >
+                    {({
+                      getInputProps,
+                      suggestions,
+                      getSuggestionItemProps,
+                      loading,
+                    }) => (
+                      <div>
+                        <input
+                          {...getInputProps({
+                            placeholder: 'Enter address...',
+                          })}
+                          style={{ width: '250px' }}
+                        />
+                        <div style={{ position: 'absolute', width: '250px' }}>
+                          {loading && <div>...Searching</div>}
+                          {suggestions.map((suggestions, index) => {
+                            const style = suggestions.active
+                              ? {
+                                  backgroundColor: `${CommonStyles.color.Primary}`,
+                                  cursor: 'pointer',
+                                  borderBottom: '1px solid black',
+                                  fontSize: '14px',
+                                }
+                              : {
+                                  backgroundColor: '#ffffff',
+                                  cursor: 'pointer',
+                                  borderBottom: '1px solid black',
+                                  fontSize: '14px',
+                                };
+                            return (
+                              <div
+                                key={index}
+                                {...getSuggestionItemProps(suggestions, {
+                                  style,
+                                })}
+                              >
+                                {suggestions.description}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+                  </PlacesAutocomplete>
                 </div>
                 <div className="mapcontainer">
                   <StaticGoogleMap
                     apiKey={process.env.REACT_APP_GOOGLEAPI}
                     size="600x400"
                     className="img-fluid"
-                    zoom="15"
+                    zoom="17"
                   >
-                    <Marker location={(33, 33)} label="H" color="red" />
+                    <Marker
+                      location={
+                        lat
+                          ? `${lat?.lat}, ${lat?.lng}`
+                          : `43.651070, -79.347015`
+                      }
+                      label="H"
+                      color="red"
+                    />
                   </StaticGoogleMap>
                 </div>
               </div>
             </div>
             <div className="divider"></div>
             <div className="right">
+              <div className="propertytype">
+                <span className="name">Title</span>
+                <input
+                  onChange={handlecredentialchange}
+                  value={postcredential?.posttitle}
+                  name="posttitle"
+                  type="text"
+                />
+              </div>
               <div className="propertytype">
                 <span className="name">Type of Rental*</span>
                 <select>
@@ -330,14 +563,53 @@ const Postrentroom = () => {
               </div>
               <div className="propertytype">
                 <span className="name">Rent fee*</span>
-                <input type="text" />
+                $
+                <input
+                  onChange={handlecredentialchange}
+                  value={postcredential?.monthlyfee}
+                  name="monthlyfee"
+                  type="number"
+                />
               </div>
+              <div className="propertytypeimage">
+                {imageloading ? (
+                  <h1>...loading</h1>
+                ) : (
+                  <>
+                    <label htmlFor="">attach the picture</label>
+                  </>
+                )}
+                <input
+                  type="file"
+                  onChange={handleimage}
+                  multiple
+                  accept="image/*"
+                />
+              </div>
+              <Imageuploadcontainer>
+                {imageresults ? (
+                  imageresults.map((imgurl, index) => {
+                    return (
+                      <img src={imgurl} alt={`uploaded${index}`} key={index} />
+                    );
+                  })
+                ) : (
+                  <img src={Noimage} alt="noimage" />
+                )}
+              </Imageuploadcontainer>
               <div className="description">
                 <span className="name">Description</span>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <textarea
+                  onChange={handlecredentialchange}
+                  value={postcredential?.description}
+                  name="description"
+                  id="description"
+                  cols="30"
+                  rows="10"
+                ></textarea>
               </div>
               <div className="buttoncontainer">
-                <button onClick={()=>setNext(true)}>continue</button>
+                <button onClick={() => setNext(true)}>continue</button>
               </div>
             </div>
           </div>
@@ -346,5 +618,12 @@ const Postrentroom = () => {
     </>
   );
 };
+const maptoprops = createStructuredSelector({
+  user: selectCurrentUser,
+});
 
-export default Postrentroom;
+const dispathtoprops = (dispatch) => ({
+  poststart: (data) => dispatch(rentcondopoststart(data)),
+});
+
+export default connect(maptoprops, dispathtoprops)(Postrentroom);
