@@ -339,7 +339,6 @@ const Postrentroom = ({ poststart, user }) => {
     setimageresults([...results]);
     setimageloading(false);
   };
-  console.log(postcredential);
   const filter = [
     {
       name: '선호 성별',
