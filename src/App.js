@@ -18,7 +18,7 @@ import Newhome from './Pages/Newhome';
 import Mainhomepage from './Pages/Mainhomepage';
 import Contactuspage from './Pages/ContactUs/Contactuspage';
 import Postrentroom from './Pages/findroom/Postrentroom';
-
+import ScrooltoTop from './staticFiles/ScrooltoTop';
 function App(props) {
   const { checkUserSession, current } = props;
   useEffect(() => {
@@ -27,6 +27,7 @@ function App(props) {
   return (
     <>
       <Layout>
+        <ScrooltoTop/>
         <Switch>
           <Route exact path="/" render={() => <Mainhomepage />} />
           <Route exact path="/oldverson" render={() => <Home />} />

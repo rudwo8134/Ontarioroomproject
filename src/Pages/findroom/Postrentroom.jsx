@@ -12,6 +12,7 @@ import { rentcondopoststart } from '../../Redux/Rentcondo/rentcondo.action';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 
+
 const Wrapper = styled.div`
   border-top: 1px solid ${CommonStyles.color.Darkbold1};
   width: 1300px;
@@ -63,6 +64,31 @@ const Wrapper = styled.div`
       text-transform: uppercase;
       font-size: ${CommonStyles.fontSize.Large};
       color: ${CommonStyles.color.Primary};
+    }
+    .skipbuttonconatiner {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      button {
+        width: 70px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid ${CommonStyles.color.Primary};
+        background-color: white;
+        border-radius: 30px;
+        margin-left: 10px;
+        color: ${CommonStyles.color.Primary};
+        font-size: 15px;
+        transition: all 0.3s ease-in-out;
+        text-transform: uppercase;
+        cursor: pointer;
+        :hover {
+          background-color: ${CommonStyles.color.Primary};
+          color:white;
+        }
+      }
     }
   }
   .nextbody {
@@ -366,6 +392,11 @@ const Postrentroom = ({ poststart, user }) => {
     setimageresults([...results]);
     setimageloading(false);
   };
+  const submithandler = (e)=>{
+    e.preventDefault();
+    setNext(true);
+    console.log('wroking');
+  }
   const filter = [
     {
       name: '선호 성별',
@@ -433,233 +464,252 @@ const Postrentroom = ({ poststart, user }) => {
     <>
       {next && (
         <Wrapper>
-          <div className="nextheader">
-            <h1 className="nextname">List your place</h1>
-            <h4>
-              꼭 맞는 세입자를 찾기 위한 과정입니다. 최대한 많은 항목을
-              응답해주세요.
-            </h4>
-          </div>
-          <div className="nextbody">
-            {filter.map((data, index) => {
-              const { title } = data && data;
-              return (
-                <div className="container" key={index}>
-                  <h5 className="name">{data?.name}</h5>
-                  <div className="buttoncontainer">
-                    {data?.button?.map((data2, index) => {
-                      const filtercolor =
-                        postcredential &&
-                        Object.entries(postcredential)?.filter((data) => {
-                          return data[0] === title;
-                        });
-                      return (
-                        <button
-                          onClick={handlecredentialchange}
-                          name={title}
-                          value={data2}
-                          key={index}
-                          style={{
-                            backgroundColor:
-                              filtercolor[0][1] === data2 && `#e85f85`,
-                            color: filtercolor[0][1] === data2 && 'white',
-                          }}
-                        >
-                          {data2}
-                        </button>
-                      );
-                    })}
+          <form onSubmit={handlesubmit2}>
+            <div className="nextheader">
+              <h1 className="nextname">List your place</h1>
+              <div className="skipbuttonconatiner">
+                <h4>
+                  꼭 맞는 세입자를 찾기 위한 과정입니다. 최대한 많은 항목을
+                  응답해주세요.
+                </h4>
+                <button type="submit" className="post">
+                  Skip {'>>'}
+                </button>
+              </div>
+            </div>
+            <div className="nextbody">
+              {filter.map((data, index) => {
+                const { title } = data && data;
+                return (
+                  <div className="container" key={index}>
+                    <h5 className="name">{data?.name}</h5>
+                    <div className="buttoncontainer">
+                      {data?.button?.map((data2, index) => {
+                        const filtercolor =
+                          postcredential &&
+                          Object.entries(postcredential)?.filter((data) => {
+                            return data[0] === title;
+                          });
+                        return (
+                          <button
+                            onClick={handlecredentialchange}
+                            name={title}
+                            value={data2}
+                            key={index}
+                            style={{
+                              backgroundColor:
+                                filtercolor[0][1] === data2 && `#e85f85`,
+                              color: filtercolor[0][1] === data2 && 'white',
+                            }}
+                          >
+                            {data2}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-            <div className="submitbutton">
-              <button onClick={() => setNext(false)} className="backbutton">
-                {'<'}back
-              </button>
-              <form onSubmit={handlesubmit2}>
+                );
+              })}
+              <div className="submitbutton">
+                <button onClick={() => setNext(false)} className="backbutton">
+                  {'<'}back
+                </button>
+
                 <button type="submit" className="post">
                   글 올리기
                 </button>
-              </form>
+              </div>
             </div>
-          </div>
+          </form>
         </Wrapper>
       )}
       {!next && (
         <Wrapper>
-          <div className="header">
-            <h1 className="name">List your place</h1>
-          </div>
-          <div className="body">
-            <div className="left">
-              <div className="propertytype">
-                <span className="name">Property type*</span>
-                <select
-                  onChange={handlecredentialchange}
-                  name="properytype"
-                  value={postcredential?.properytype}
-                >
-                  <option value="apart">apart</option>
-                  <option value="condo">condo</option>
-                  <option value="house">house</option>
-                  <option value="townhouse">townhouse</option>
-                </select>
-              </div>
-              <div className="location">
-                <div className="locationtype">
-                  <span className="name">Location*</span>
-                  <PlacesAutocomplete
-                    value={address}
-                    onChange={handlechange}
-                    onSelect={handleselect}
+          <form onSubmit={submithandler}>
+            <div className="header">
+              <h1 className="name">List your place</h1>
+            </div>
+            <div className="body">
+              <div className="left">
+                <div className="propertytype">
+                  <span className="name">Property type*</span>
+                  <select
+                    required
+                    onChange={handlecredentialchange}
+                    name="properytype"
+                    value={postcredential?.properytype}
                   >
-                    {({
-                      getInputProps,
-                      suggestions,
-                      getSuggestionItemProps,
-                      loading,
-                    }) => (
-                      <div>
-                        <input
-                          {...getInputProps({
-                            placeholder: 'Enter address...',
-                          })}
-                          style={{ width: '250px' }}
-                        />
-                        <div
-                          style={{
-                            position: 'absolute',
-                            width: '250px',
-                            marginLeft: '40px',
-                          }}
-                        >
-                          {loading && <div>...Searching</div>}
-                          {suggestions.map((suggestions, index) => {
-                            const style = suggestions.active
-                              ? {
-                                  backgroundColor: `${CommonStyles.color.Primary}`,
-                                  cursor: 'pointer',
-                                  borderBottom: '1px solid black',
-                                  fontSize: '14px',
-                                }
-                              : {
-                                  backgroundColor: '#ffffff',
-                                  cursor: 'pointer',
-                                  borderBottom: '1px solid black',
-                                  fontSize: '14px',
-                                };
-                            return (
-                              <div
-                                key={index}
-                                {...getSuggestionItemProps(suggestions, {
-                                  style,
-                                })}
-                              >
-                                {suggestions.description}
-                              </div>
-                            );
-                          })}
+                    <option value="apart">apart</option>
+                    <option value="condo">condo</option>
+                    <option value="house">house</option>
+                    <option value="townhouse">townhouse</option>
+                  </select>
+                </div>
+                <div className="location">
+                  <div className="locationtype">
+                    <span className="name">Location*</span>
+                    <PlacesAutocomplete
+                      value={address}
+                      onChange={handlechange}
+                      onSelect={handleselect}
+                    >
+                      {({
+                        getInputProps,
+                        suggestions,
+                        getSuggestionItemProps,
+                        loading,
+                      }) => (
+                        <div>
+                          <input
+                            required
+                            {...getInputProps({
+                              placeholder: 'Enter address...',
+                            })}
+                            style={{ width: '250px' }}
+                          />
+                          <div
+                            style={{
+                              position: 'absolute',
+                              width: '250px',
+                              marginLeft: '40px',
+                            }}
+                          >
+                            {loading && <div>...Searching</div>}
+                            {suggestions.map((suggestions, index) => {
+                              const style = suggestions.active
+                                ? {
+                                    backgroundColor: `${CommonStyles.color.Primary}`,
+                                    cursor: 'pointer',
+                                    borderBottom: '1px solid black',
+                                    fontSize: '14px',
+                                  }
+                                : {
+                                    backgroundColor: '#ffffff',
+                                    cursor: 'pointer',
+                                    borderBottom: '1px solid black',
+                                    fontSize: '14px',
+                                  };
+                              return (
+                                <div
+                                  key={index}
+                                  {...getSuggestionItemProps(suggestions, {
+                                    style,
+                                  })}
+                                >
+                                  {suggestions.description}
+                                </div>
+                              );
+                            })}
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </PlacesAutocomplete>
-                  <Searchbutton onClick={buttonclick}>검색</Searchbutton>
+                      )}
+                    </PlacesAutocomplete>
+                    <Searchbutton onClick={buttonclick}>검색</Searchbutton>
+                  </div>
+                  <div className="mapcontainer">
+                    <StaticGoogleMap
+                      apiKey={process.env.REACT_APP_GOOGLEAPI}
+                      size="600x400"
+                      className="img-fluid"
+                      zoom="17"
+                    >
+                      <Marker
+                        location={
+                          lat
+                            ? `${lat?.lat}, ${lat?.lng}`
+                            : `43.651070, -79.347015`
+                        }
+                        label="H"
+                        color="red"
+                      />
+                    </StaticGoogleMap>
+                  </div>
                 </div>
-                <div className="mapcontainer">
-                  <StaticGoogleMap
-                    apiKey={process.env.REACT_APP_GOOGLEAPI}
-                    size="600x400"
-                    className="img-fluid"
-                    zoom="17"
+              </div>
+              <div className="divider"></div>
+              <div className="right">
+                <div className="propertytype">
+                  <span className="name">Title*</span>
+                  <input
+                    required
+                    onChange={handlecredentialchange}
+                    value={postcredential?.posttitle}
+                    name="posttitle"
+                    type="text"
+                  />
+                </div>
+                <div className="propertytype">
+                  <span className="name">Type of Rental*</span>
+                  <select
+                    required
+                    name="roomtype"
+                    value={postcredential?.roomtype}
+                    onChange={handlecredentialchange}
                   >
-                    <Marker
-                      location={
-                        lat
-                          ? `${lat?.lat}, ${lat?.lng}`
-                          : `43.651070, -79.347015`
-                      }
-                      label="H"
-                      color="red"
-                    />
-                  </StaticGoogleMap>
+                    <option value="whole">전체렌트</option>
+                    <option value="room">룸렌트</option>
+                  </select>
+                </div>
+                <div className="propertytype">
+                  <span className="name">Rent fee*</span>
+                  $
+                  <input
+                    required
+                    onChange={handlecredentialchange}
+                    value={postcredential?.monthlyfee}
+                    name="monthlyfee"
+                    type="number"
+                  />
+                </div>
+                <div className="propertytypeimage">
+                  {imageloading ? (
+                    <h1>...loading</h1>
+                  ) : (
+                    <>
+                      <label htmlFor="">attach the picture</label>
+                    </>
+                  )}
+                  <input
+                    required
+                    type="file"
+                    onChange={handleimage}
+                    multiple
+                    accept="image/*"
+                  />
+                </div>
+                <Imageuploadcontainer>
+                  {imageresults ? (
+                    imageresults.map((imgurl, index) => {
+                      return (
+                        <img
+                          src={imgurl}
+                          alt={`uploaded${index}`}
+                          key={index}
+                        />
+                      );
+                    })
+                  ) : (
+                    <img src={Noimage} alt="noimage" />
+                  )}
+                </Imageuploadcontainer>
+                <div className="description">
+                  <span className="name">Description</span>
+                  <textarea
+                    required
+                    onChange={handlecredentialchange}
+                    value={postcredential?.description}
+                    name="description"
+                    id="description"
+                    cols="30"
+                    rows="10"
+                  ></textarea>
+                </div>
+                <div className="buttoncontainer">
+                  <button type="submit">continue</button>
                 </div>
               </div>
             </div>
-            <div className="divider"></div>
-            <div className="right">
-              <div className="propertytype">
-                <span className="name">Title</span>
-                <input
-                  onChange={handlecredentialchange}
-                  value={postcredential?.posttitle}
-                  name="posttitle"
-                  type="text"
-                />
-              </div>
-              <div className="propertytype">
-                <span className="name">Type of Rental*</span>
-                <select
-                  name="roomtype"
-                  value={postcredential?.roomtype}
-                  onChange={handlecredentialchange}
-                >
-                  <option value="whole">전체렌트</option>
-                  <option value="room">룸렌트</option>
-                </select>
-              </div>
-              <div className="propertytype">
-                <span className="name">Rent fee*</span>
-                $
-                <input
-                  onChange={handlecredentialchange}
-                  value={postcredential?.monthlyfee}
-                  name="monthlyfee"
-                  type="number"
-                />
-              </div>
-              <div className="propertytypeimage">
-                {imageloading ? (
-                  <h1>...loading</h1>
-                ) : (
-                  <>
-                    <label htmlFor="">attach the picture</label>
-                  </>
-                )}
-                <input
-                  type="file"
-                  onChange={handleimage}
-                  multiple
-                  accept="image/*"
-                />
-              </div>
-              <Imageuploadcontainer>
-                {imageresults ? (
-                  imageresults.map((imgurl, index) => {
-                    return (
-                      <img src={imgurl} alt={`uploaded${index}`} key={index} />
-                    );
-                  })
-                ) : (
-                  <img src={Noimage} alt="noimage" />
-                )}
-              </Imageuploadcontainer>
-              <div className="description">
-                <span className="name">Description</span>
-                <textarea
-                  onChange={handlecredentialchange}
-                  value={postcredential?.description}
-                  name="description"
-                  id="description"
-                  cols="30"
-                  rows="10"
-                ></textarea>
-              </div>
-              <div className="buttoncontainer">
-                <button onClick={() => setNext(true)}>continue</button>
-              </div>
-            </div>
-          </div>
+          </form>
         </Wrapper>
       )}
     </>
