@@ -71,9 +71,9 @@ const ImageWrapper = styled.div`
   }
 `;
 const Customimagetag = styled.img`
-  width: 1000px;
-  height: 400px;
-  border-radius: 10px;
+  max-width: 1000px;
+  max-height: 400px;
+  border-radius: 3px;
 `;
 const Roominformation = styled.div`
   .roominfo {
