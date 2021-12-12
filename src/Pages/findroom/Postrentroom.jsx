@@ -117,6 +117,25 @@ const Wrapper = styled.div`
       .location {
         margin-top: ${CommonStyles.margin.Reuglar};
       }
+      .locationtype {
+        width: 70%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .name {
+          font-weight: 700;
+          color: ${CommonStyles.color.Darkbold3};
+        }
+        select,
+        input {
+          margin-left: 40px;
+          width: 250px;
+          height: 30px;
+          border: 1px solid ${CommonStyles.color.Primary};
+          background-color: white;
+          border-radius: 8px;
+        }
+      }
       .propertytype {
         width: 60%;
         display: flex;
@@ -243,7 +262,14 @@ const Imageuploadcontainer = styled.div`
     border-radius: 30px;
   }
 `;
-
+const Searchbutton = styled.button`
+  width: 100px;
+  background-color: ${CommonStyles.color.Primary};
+  border:none;
+  color:white;
+  border-radius: 16px;
+  margin-left: 10px;
+`
 const Postrentroom = ({ poststart, user }) => {
   const history = useHistory();
   const [next, setNext] = useState(false);
@@ -251,7 +277,6 @@ const Postrentroom = ({ poststart, user }) => {
   const [lat, SetLat] = useState(null);
   const [imageresults, setimageresults] = useState(null);
   const [imageloading, setimageloading] = useState(false);
-  console.log(lat);
 
   const handlesubmit2 = async (e) => {
     e.preventDefault();
@@ -315,7 +340,7 @@ const Postrentroom = ({ poststart, user }) => {
     tv: 'yes',
     privateenterance: 'yes',
     howmanypeople: '',
-    properytype:'',
+    properytype: '',
   });
   const handlecredentialchange = (e) => {
     const { name, value } = e.target;
@@ -326,6 +351,8 @@ const Postrentroom = ({ poststart, user }) => {
   };
   const handleselect = (select) => {
     setaddress(select);
+  };
+  const buttonclick = () => {
     handleaddressdata(address);
   };
   const handleimage = async (e) => {
@@ -480,7 +507,7 @@ const Postrentroom = ({ poststart, user }) => {
                 </select>
               </div>
               <div className="location">
-                <div className="propertytype">
+                <div className="locationtype">
                   <span className="name">Location*</span>
                   <PlacesAutocomplete
                     value={address}
@@ -500,7 +527,13 @@ const Postrentroom = ({ poststart, user }) => {
                           })}
                           style={{ width: '250px' }}
                         />
-                        <div style={{ position: 'absolute', width: '250px' }}>
+                        <div
+                          style={{
+                            position: 'absolute',
+                            width: '250px',
+                            marginLeft: '40px',
+                          }}
+                        >
                           {loading && <div>...Searching</div>}
                           {suggestions.map((suggestions, index) => {
                             const style = suggestions.active
@@ -531,6 +564,7 @@ const Postrentroom = ({ poststart, user }) => {
                       </div>
                     )}
                   </PlacesAutocomplete>
+                  <Searchbutton onClick={buttonclick}>검색</Searchbutton>
                 </div>
                 <div className="mapcontainer">
                   <StaticGoogleMap
@@ -565,7 +599,11 @@ const Postrentroom = ({ poststart, user }) => {
               </div>
               <div className="propertytype">
                 <span className="name">Type of Rental*</span>
-                <select name="roomtype" value={postcredential?.roomtype} onChange={handlecredentialchange}>
+                <select
+                  name="roomtype"
+                  value={postcredential?.roomtype}
+                  onChange={handlecredentialchange}
+                >
                   <option value="whole">전체렌트</option>
                   <option value="room">룸렌트</option>
                 </select>
