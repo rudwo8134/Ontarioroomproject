@@ -39,7 +39,7 @@ const rentcondoReducer = (state=INITIAL_VALUE, action)=>{
     case rentcondotype.ADDRESS_SET_CONDOROOM_SUCCESS:
       return{
         ...state,
-        filter: action.payload,
+        address: action.payload,
       }
     case rentcondotype.READ_DETAIL_CONDOROOM_FAILURE:
     case rentcondotype.FILTER_CONDOROOM_FAIL:

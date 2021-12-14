@@ -53,7 +53,6 @@ export function* readdetailroom({ payload }) {
 
 export function* addressSETUP({payload}){
   try{
-    console.log('payload', payload);
     yield put(addressupdateSuccess(payload))
   } catch(err){
     yield put(addressupdateFail(err))

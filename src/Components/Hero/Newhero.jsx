@@ -10,9 +10,12 @@ import { selectdetailaddress } from '../../Redux/Rentcondo/rentcondo.selector'
 import { createStructuredSelector } from 'reselect'
 const Newhero = ({ address }) => {
   const [Address, setAddress] = useState(false);
+
+
  useEffect(() => {
    if(address){
      setAddress(true);
+     console.log('lol', address);
    }
  }, [address]);
   return (

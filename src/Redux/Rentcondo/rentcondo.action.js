@@ -84,7 +84,7 @@ export const filterdatafail = (err) => ({
 
 export const addressupdatestart = (data) => ({
   type: rentcondotype.ADDRESS_SET_CONDOROOM_START,
-  data: data,
+  payload: data,
 });
 
 export const addressupdateFail = (error) => ({
