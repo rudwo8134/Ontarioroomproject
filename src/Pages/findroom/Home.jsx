@@ -13,7 +13,7 @@ import GoogleMapReact from 'google-map-react';
 
 import { handleaddressdata } from './Functionhandler';
 import { selectCurrentUser } from '../../Redux/Users/user.selector';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { readrentcondo } from '../../Redux/Rentcondo/rentcondo.saga';
 
 const Wrapper = styled.div`
@@ -176,11 +176,13 @@ const Marker = ({ children }) => children;
 
 const Home = (props) => {
   const { rooms, getData, User, getroomData } = props;
-  console.log(props);
+ 
   const [loading, setLoading] = useState(false);
   const [address, setaddress] = useState([]);
   const [googlemapcenter, setgooglemapcenter] = useState(null);
   const history = useHistory();
+  const location = useLocation();
+  const locationhistory = location?.state?.params;
   const handlesubmitaddress = async (e) => {
     e.preventDefault();
     const data = await handleaddressdata(address);
@@ -197,6 +199,14 @@ const Home = (props) => {
   const [points, setPoints] = useState([]);
   const [selected, setSelected] = useState(null);
   const [selectInfo, setSelectInfo] = useState(null);
+  const [searchLatlng, setsearchLatlng] = useState(null);
+
+  useEffect(()=>{
+    if(locationhistory){
+      setsearchLatlng(locationhistory?.geo)
+    }
+  },[locationhistory])
+
 
   const handleClick = (id) => {
     setSelected(id);
@@ -273,8 +283,8 @@ const Home = (props) => {
           <>
             <GoogleMapReact
               bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLEAPI }}
-              defaultCenter={{ lat: 43.6532, lng: -79.3832 }}
-              defaultZoom={10}
+              defaultCenter={searchLatlng ? searchLatlng : { lat: 43.6532, lng: -79.3832 }}
+              defaultZoom={searchLatlng ? 14 : 10}
               yesIWantToUseGoogleMapApiInternals
               onGoogleApiLoaded={({ map }) => {
                 mapref.current = map;

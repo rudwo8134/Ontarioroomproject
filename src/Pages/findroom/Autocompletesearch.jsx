@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
-} from 'react-places-autocomplete';
-import scriptLoader from 'react-async-script-loader';
-import styled from 'styled-components';
-import { connect, useDispatch } from 'react-redux';
-import { addressupdatestart } from '../../Redux/Rentcondo/rentcondo.action';
-import { Redirect } from 'react-router-dom';
+} from "react-places-autocomplete";
+import scriptLoader from "react-async-script-loader";
+import styled from "styled-components";
+import { connect, useDispatch } from "react-redux";
+import { addressupdatestart } from "../../Redux/Rentcondo/rentcondo.action";
+import { Redirect, useHistory } from "react-router-dom";
 
 const Divcontainer = styled.div`
   width: 400px;
@@ -16,12 +16,14 @@ const Divcontainer = styled.div`
 `;
 
 const Autocompletesearch = () => {
+  const history = useHistory();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setInterval(() => setLoading(false), 1000);
   }, []);
   const [compeletedata, setcomplete] = useState(null);
-  const [address, setAddress] = useState('');
+  const [address, setAddress] = useState("");
+  const [enter, setenter] = useState(false);
   const dispatch = useDispatch();
   const handleselect = async (value) => {
     const data = await geocodeByAddress(value);
@@ -32,8 +34,17 @@ const Autocompletesearch = () => {
       address: value,
     });
     setAddress(value);
-    console.log('complete', compeletedata);
-    await dispatch(addressupdatestart(compeletedata));
+    if (compeletedata) {
+      console.log("complete", compeletedata);
+      await dispatch(addressupdatestart(compeletedata));
+      history.push({
+        pathname: '/rentcondo',
+        state: { params: compeletedata },
+      });
+    }
+    if (!compeletedata) {
+      setenter(true);
+    }
   };
 
   if (loading) {
@@ -50,8 +61,8 @@ const Autocompletesearch = () => {
         <div>
           <input
             {...getInputProps({
-              placeholder: 'Search Places ...',
-              className: 'location-search-input',
+              placeholder: "Search Places ...",
+              className: "location-search-input",
             })}
             className="searchinput"
             placeholder="주소를 검색해주세요 :)"
@@ -60,12 +71,12 @@ const Autocompletesearch = () => {
             {loading && <div>Loading...</div>}
             {suggestions.map((suggestion) => {
               const className = suggestion.active
-                ? 'suggestion-item--active'
-                : 'suggestion-item';
+                ? "suggestion-item--active"
+                : "suggestion-item";
               // inline style for demonstration purpose
               const style = suggestion.active
-                ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                ? { backgroundColor: "#fafafa", cursor: "pointer" }
+                : { backgroundColor: "#ffffff", cursor: "pointer" };
               return (
                 <div
                   {...getSuggestionItemProps(suggestion, {
@@ -77,6 +88,7 @@ const Autocompletesearch = () => {
                 </div>
               );
             })}
+            <h1>{enter && "ENTER키를 눌러주세요"}</h1>
           </Divcontainer>
         </div>
       )}

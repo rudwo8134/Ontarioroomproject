@@ -4,9 +4,8 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectdetailaddress } from '../../Redux/Rentcondo/rentcondo.selector';
 import { useHistory } from 'react-router-dom';
-const Secondarybutton = ({ name, data }) => {
+const Secondarybutton = ({ name, data,setting }) => {
   const [value, setValue] = useState(name);
-  console.log('lol', data);
   const history = useHistory();
   const handleClick = () => {
     if (!data) {
@@ -20,7 +19,7 @@ const Secondarybutton = ({ name, data }) => {
     });
   };
   return (
-    <Secondarybuttonstyle onClick={handleClick}>
+    <Secondarybuttonstyle disabled={setting} onClick={handleClick}>
       <span>{value}</span>
     </Secondarybuttonstyle>
   );

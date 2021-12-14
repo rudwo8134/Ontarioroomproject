@@ -1,23 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import PlacesAutocomplete from 'react-places-autocomplete'
-import styled,{keyframes} from 'styled-components'
-import Background from '../../assets/Background1.jpg'
-import Autocompletesearch from '../../Pages/findroom/Autocompletesearch'
-import { CommonStyles } from '../../staticFiles/CommonStyles'
-import Secondarybutton from '../util/Secondarybutton'
-import { connect } from 'react-redux';
-import { selectdetailaddress } from '../../Redux/Rentcondo/rentcondo.selector'
-import { createStructuredSelector } from 'reselect'
-const Newhero = ({ address }) => {
-  const [Address, setAddress] = useState(false);
-
-
- useEffect(() => {
-   if(address){
-     setAddress(true);
-     console.log('lol', address);
-   }
- }, [address]);
+import React from "react";
+import styled, { keyframes } from "styled-components";
+import Background from "../../assets/Background1.jpg";
+import Autocompletesearch from "../../Pages/findroom/Autocompletesearch";
+import { CommonStyles } from "../../staticFiles/CommonStyles";
+const Newhero = () => {
   return (
     <Newherostyle>
       <form action="" className="search">
@@ -29,7 +15,6 @@ const Newhero = ({ address }) => {
         </h1>
         <div className="searchcontainer">
           <Autocompletesearch />
-          <Secondarybutton name={'검색하기'} disable={'검색입력'} />
         </div>
       </form>
 
@@ -156,7 +141,7 @@ const Newherostyle = styled.div`
       border: 3px solid white;
       border-radius: 23px;
       ::before {
-        content: '';
+        content: "";
         position: absolute;
         display: block;
         top: 29%;
@@ -180,8 +165,4 @@ const Newherostyle = styled.div`
   }
 `;
 
-const maptoprops = createStructuredSelector({
-  address: selectdetailaddress
-})
-
-export default connect(maptoprops)(Newhero);
+export default Newhero;
