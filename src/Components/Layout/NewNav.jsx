@@ -25,7 +25,7 @@ const NavWrapper = styled.nav`
   z-index: 30;
   top: 0;
   width: 100%;
-  height: 80px;
+  height: 100px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -48,9 +48,10 @@ const NavWrapper = styled.nav`
     align-items: center;
     .Username {
       text-transform: capitalize;
-      font-size: ${CommonStyles.fontSize.Small};
+      font-size: ${CommonStyles.fontSize.Medium};
       color: ${CommonStyles.color.Dark};
       font-weight: ${CommonStyles.bold.Bold};
+      margin-right: 10px;
     }
     .logoutbutton {
       text-transform: uppercase;
@@ -59,6 +60,7 @@ const NavWrapper = styled.nav`
       font-weight: ${CommonStyles.bold.Bold};
       border: none;
       cursor: pointer;
+      background-color: ${CommonStyles.color.White};
       :hover {
         transform: scale(1.05) translateY(-3px);
         color: ${CommonStyles.color.PrimaryLight2};
