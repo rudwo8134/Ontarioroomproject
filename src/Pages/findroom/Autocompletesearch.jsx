@@ -8,12 +8,21 @@ import styled from "styled-components";
 import { connect, useDispatch } from "react-redux";
 import { addressupdatestart } from "../../Redux/Rentcondo/rentcondo.action";
 import { Redirect, useHistory } from "react-router-dom";
+import { CommonStyles } from "../../staticFiles/CommonStyles";
 
 const Divcontainer = styled.div`
   width: 400px;
   position: absolute;
   transform: translateX(15px);
 `;
+
+const EnterKey = styled.span`
+  color: ${CommonStyles.color.Primary};
+  width: 480px;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5px;
+`
 
 const Autocompletesearch = () => {
   const history = useHistory();
@@ -65,7 +74,7 @@ const Autocompletesearch = () => {
               className: "location-search-input",
             })}
             className="searchinput"
-            placeholder="주소를 검색해주세요 :)"
+            placeholder="주소 입력 후 Enter키를 눌러주세요!"
           />
           <Divcontainer>
             {loading && <div>Loading...</div>}
@@ -88,7 +97,7 @@ const Autocompletesearch = () => {
                 </div>
               );
             })}
-            <h1>{enter && "ENTER키를 눌러주세요"}</h1>
+            <EnterKey>{enter && "ENTER키를 눌러주세요"}</EnterKey>
           </Divcontainer>
         </div>
       )}

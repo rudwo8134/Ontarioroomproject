@@ -7,14 +7,17 @@ const CardWrapper = styled.div`
   background-color: #ffffffaa;
   width: 100%;
 
-  margin-bottom: ${CommonStyles.margin.Reuglar};
+  margin-bottom: 40px;
   box-shadow: ${CommonStyles.shadow.BoxShadow};
-  border-radius: 3px;
+  border-radius: 16px;
   border: ${CommonStyles.border.regular};
+
   .cardimage {
     width: 100%;
-    height: 200px;
-    border-radius: 3px;
+    height: 300px;
+    object-fit: cover;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
   }
   .detailcontainer {
     padding: ${CommonStyles.padding.Reuglar};
@@ -23,7 +26,8 @@ const CardWrapper = styled.div`
     .city,
     .postalcode {
       font-size: 15px;
-      font-weight: ${CommonStyles.bold.Medium};
+      font-weight: ${CommonStyles.bold.ExtraBold};
+      color: ${CommonStyles.color.Darkbold4};
       text-transform: capitalize;
     }
     .postalcode {
@@ -35,8 +39,9 @@ const CardWrapper = styled.div`
     justify-content: space-between;
     margin-bottom: ${CommonStyles.margin.Small};
     .price {
-      font-size: ${CommonStyles.fontSize.regular};
+      font-size: 20px;
       font-weight: ${CommonStyles.bold.LittleBold};
+      color: ${CommonStyles.color.Primary};
       text-transform: uppercase;
     }
     .type {
@@ -49,6 +54,7 @@ const CardWrapper = styled.div`
     padding: ${CommonStyles.padding.Reuglar};
     font-size: ${CommonStyles.fontSize.ExtraSmall1};
     font-weight: ${CommonStyles.bold.Medium};
+    color: ${CommonStyles.color.Darkbold4};
   }
 `;
 
@@ -57,7 +63,7 @@ const Cardcontainer = ({ data }) => {
   const address = data?.address?.Formattedaddress.split(',')[0];
   const city = data?.address?.Formattedaddress.split(',')[1];
   const postalcode = data?.address?.Formattedaddress.split(',')[2];
-
+  console.log(data);
   return (
     <CardWrapper>
       <Link to={`/rentcondo/${data.id}`}>
@@ -76,14 +82,11 @@ const Cardcontainer = ({ data }) => {
             <span className="type">{data?.roomtype}</span>
           </div>
           <span className="address">
-            {address && address}
-            <br />
+            {address && address}, {city && city}, {postalcode && postalcode}
           </span>
-          <span className="city">{city && city}</span>
-          <span className="postalcode">{postalcode && postalcode}</span>
         </div>
         <div className="bedtype">
-          <span>2 bed / 2 bath available</span>
+          <span>{data?.posttitle}</span>
         </div>
       </Link>
     </CardWrapper>

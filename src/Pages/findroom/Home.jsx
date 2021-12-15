@@ -15,16 +15,20 @@ import { handleaddressdata } from './Functionhandler';
 import { selectCurrentUser } from '../../Redux/Users/user.selector';
 import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { readrentcondo } from '../../Redux/Rentcondo/rentcondo.saga';
+import Autocompletesearch from './Autocompletesearch';
+import { BiSearch } from 'react-icons/bi';
 
 const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
-  margin-top: 80px;
+  margin-top: 100px;
+  border-top: 1px solid ${CommonStyles.color.Darkbold1};
 
   .statebar {
     width: 100%;
-    height: 5%;
-    background-color: ${CommonStyles.color.Darkbold1};
+    height: 10%;
+    background-color: ${CommonStyles.color.White};
+    border-bottom: 1px solid ${CommonStyles.color.Darkbold1};
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -38,9 +42,9 @@ const Wrapper = styled.div`
       .searchinput {
         width: auto;
         min-width: 400px;
-        height: 30px;
+        height: 55px;
         line-height: 1.3;
-        border-radius: 1px;
+        border-radius: 16px;
         border: 0.5px solid #5b5f6388;
         ::placeholder {
           color: ${CommonStyles.color.Darkbold3};
@@ -69,24 +73,6 @@ const Wrapper = styled.div`
         }
       }
     }
-    .filterButton {
-      background-color: ${CommonStyles.color.Primary};
-      color: ${CommonStyles.color.White};
-      height: 30px;
-      padding: 10px 25px;
-      border: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 12.75px;
-      font-weight: ${CommonStyles.bold.LittleBold};
-      cursor: pointer;
-      text-transform: uppercase;
-      transition: all 0.5s ease-in-out;
-      :hover {
-        background-color: ${CommonStyles.color.PrimaryLight2};
-      }
-    }
   }
   .showContainer {
     width: 100vw;
@@ -95,8 +81,9 @@ const Wrapper = styled.div`
     .mapContainer {
       height: 100%;
       width: 100%;
-      flex: 2;
+      flex: 1.5;
       border-radius: 13px;
+      position: relative;
     }
     .dropContainer {
       height: 100%;
@@ -111,21 +98,23 @@ const Wrapper = styled.div`
         margin: 1rem 2rem;
         .number {
           font-size: 14px;
+          color: ${CommonStyles.color.Darkbold2};
           font-weight: ${CommonStyles.bold.LittleBold};
           text-transform: uppercase;
         }
         .filter {
-          width: 50%;
+          width: 55%;
           display: flex;
           align-items: center;
           justify-content: space-between;
           .draweer {
             padding: 4px;
             background-color: ${CommonStyles.color.White};
-            border: 1px solid ${CommonStyles.color.Darkbold1};
-            width: 105px;
+            border: 1px solid ${CommonStyles.color.Primary};
+            width: 80px;
             height: 30px;
-            color: ${CommonStyles.color.Darkbold3};
+            color: ${CommonStyles.color.Primary};
+            border-radius: 16px;
           }
           .sortContainer {
             display: flex;
@@ -135,16 +124,18 @@ const Wrapper = styled.div`
               justify-content: center;
               font-size: 14px;
               height: 30px;
-              padding: 4px;
+              padding: 1px;
               color: ${CommonStyles.color.Darkbold3};
-              border: 1px solid ${CommonStyles.color.Darkbold1};
+              border: 1px solid ${CommonStyles.color.Primary};
             }
             select {
               font-size: 14px;
               height: 30px;
-              padding: 4px;
-              color: ${CommonStyles.color.Darkbold5};
-              border: 1px solid ${CommonStyles.color.Darkbold1};
+              width: 110px;
+              padding: 4px 10px;
+              color: ${CommonStyles.color.Primary};
+              border: 1px solid ${CommonStyles.color.Primary};
+              border-radius: 16px;
             }
           }
         }
@@ -153,9 +144,58 @@ const Wrapper = styled.div`
   }
   .CardWrapper {
     width: 100%;
-    padding: 0 30px;
+    padding: 0 40px;
     margin: 0 auto;
     overflow: scroll;
+    h4 {
+      font-size: 20px;
+      color: ${CommonStyles.color.Primary};
+    }
+    .linespace {
+      width: 100%;
+      margin: 0 auto;
+      height: 1px;
+      margin: 30px 0px;
+      background-color: ${CommonStyles.color.Darkbold1};
+    }
+  }
+`;
+
+const AutoCompletediv = styled.div`
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  z-index: 20;
+  .container {
+    width: 300px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid ${CommonStyles.color.Primary};
+    background: rgba(255, 255, 255);
+    border-radius: 16px;
+    svg {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: ${CommonStyles.color.Primary};
+      font-size: 30px;
+      padding: 3px;
+    }
+  }
+  input {
+    padding: 3px;
+    width: 230px;
+    border: none;
+    margin-left: 3%;
+    ::placeholder {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 26px;
+      color: ${CommonStyles.color.Primary};
+    }
   }
 `;
 
@@ -172,11 +212,32 @@ const containerStyle = {
   flex: '1',
 };
 
+const Filterbutton = styled.button`
+  background-color: ${CommonStyles.color.Primary};
+  color: ${CommonStyles.color.White};
+  height: 30px;
+  width: 80px;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 13.75px;
+  font-weight: ${CommonStyles.bold.LittleBold};
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.5s ease-in-out;
+  border-radius: 16px;
+  :hover {
+    background-color: ${CommonStyles.color.PrimaryLight2};
+  }
+`;
+
 const Marker = ({ children }) => children;
 
 const Home = (props) => {
   const { rooms, getData, User, getroomData } = props;
- 
+
   const [loading, setLoading] = useState(false);
   const [address, setaddress] = useState([]);
   const [googlemapcenter, setgooglemapcenter] = useState(null);
@@ -201,17 +262,15 @@ const Home = (props) => {
   const [selectInfo, setSelectInfo] = useState(null);
   const [searchLatlng, setsearchLatlng] = useState(null);
 
-  useEffect(()=>{
-    if(locationhistory){
-      setsearchLatlng(locationhistory?.geo)
+  useEffect(() => {
+    if (locationhistory) {
+      setsearchLatlng(locationhistory?.geo);
     }
-  },[locationhistory])
-
+  }, [locationhistory]);
 
   const handleClick = (id) => {
     setSelected(id);
   };
-
 
   useEffect(() => {
     const readdata = async () => {
@@ -268,23 +327,21 @@ const Home = (props) => {
   }
   return (
     <Wrapper>
-      <div className="statebar">
-        <form onSubmit={handlesubmitaddress} className="searchform">
-          <input className="searchinput" placeholder="enter address" />
-          <button type="submit" className="search">
-            Search
-          </button>
-        </form>
-        <button className="filterButton">Filters</button>
-      </div>
-
       <div className="showContainer">
         <div className="mapContainer">
           <>
+            <AutoCompletediv>
+              <div className="container">
+                <BiSearch />
+                <Autocompletesearch />
+              </div>
+            </AutoCompletediv>
             <GoogleMapReact
               bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLEAPI }}
-              defaultCenter={searchLatlng ? searchLatlng : { lat: 43.6532, lng: -79.3832 }}
-              defaultZoom={searchLatlng ? 14 : 10}
+              defaultCenter={
+                searchLatlng ? searchLatlng : { lat: 43.6532, lng: -79.3832 }
+              }
+              defaultZoom={searchLatlng ? 15 : 10}
               yesIWantToUseGoogleMapApiInternals
               onGoogleApiLoaded={({ map }) => {
                 mapref.current = map;
@@ -388,17 +445,17 @@ const Home = (props) => {
         <div className="dropContainer">
           {/* filter container */}
           <div className="textContainer">
-            <span className="number"> 1 - 12 of 1000</span>
+            <span className="number">{rooms.length} 개의 검색결과</span>
             <div className="filter">
               <button className="draweer">+크게보기</button>
               <div className="sortContainer">
-                <div>정렬</div>
                 <select name="" id="">
                   <option value="">가격 높은순</option>
                   <option value="">가격 낮은순</option>
                   <option value="">가까운순</option>
                 </select>
               </div>
+              <Filterbutton>필터</Filterbutton>
             </div>
           </div>
           {/* card container */}
@@ -409,6 +466,7 @@ const Home = (props) => {
                   <>
                     <h4>선택한 집</h4>
                     <Cardcontainer data={data} key={index} />
+                    <div className="linespace"></div>
                   </>
                 );
               })}

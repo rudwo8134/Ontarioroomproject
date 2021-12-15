@@ -101,15 +101,17 @@ const Newherostyle = styled.div`
   }
   .searchcontainer {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: row;
     input {
-      width: 434px;
+      width: 500px;
       height: 62px;
       border-radius: 30px;
       background: rgba(255, 255, 255, 0.6);
       border: 1px solid ${CommonStyles.color.PrimaryLight3};
-      margin-right: 30px;
       padding: 1.5rem;
+      margin-left: 3%;
       ::placeholder {
         font-style: normal;
         font-weight: normal;
