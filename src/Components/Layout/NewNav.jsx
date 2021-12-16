@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Contents } from '../../staticFiles/Contents';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
 import LogoImage from '../../assets/nav/LOGO.png';
@@ -80,7 +80,7 @@ const NavWrapper = styled.nav`
 `;
 
 const NewNav = (props) => {
-  
+  const history = useHistory();
   const { User, signout } = props;
   const [scroll, setscroll] = useState(false);
   const handlescroll = () => {
@@ -97,6 +97,12 @@ const NewNav = (props) => {
       window.removeEventListener('scroll', handlescroll);
     };
   }, []);
+  const handlelogin = () =>{
+    history.push({
+      pathname: '/Mypage',
+      state: { params: User },
+    });
+  }
   return (
     <NavWrapper scroll={scroll}>
       <div className="logoConatiner">
@@ -116,7 +122,7 @@ const NewNav = (props) => {
       <div className="loginContainer">
         {User ? (
           <>
-          <span className="Username">Hi! {User?.displayName}</span>
+          <span onClick={handlelogin} className="Username">Hi! {User?.displayName}</span>
             <button onClick={signout} className="logoutbutton">
             LogOut
             </button>

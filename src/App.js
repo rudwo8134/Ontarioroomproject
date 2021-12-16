@@ -19,6 +19,7 @@ import Mainhomepage from './Pages/Mainhomepage';
 import Contactuspage from './Pages/ContactUs/Contactuspage';
 import Postrentroom from './Pages/findroom/Postrentroom';
 import ScrooltoTop from './staticFiles/ScrooltoTop';
+import Mypage from './Pages/Mypage/Mypage';
 function App(props) {
   const { checkUserSession, current } = props;
   useEffect(() => {
@@ -27,7 +28,7 @@ function App(props) {
   return (
     <>
       <Layout>
-        <ScrooltoTop/>
+        <ScrooltoTop />
         <Switch>
           <Route exact path="/" render={() => <Mainhomepage />} />
           <Route exact path="/oldverson" render={() => <Home />} />
@@ -35,6 +36,13 @@ function App(props) {
           <Route exact path="/intro" render={() => <Intropages />} />
           <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/register" render={() => <Register />} />
+          <Route
+            exact
+            path="/Mypage"
+            render={(props) =>
+              !current ? <Redirect to="/login" /> : <Mypage {...props} />
+            }
+          />
           <Route
             exact
             path="/rentcondo"
@@ -58,7 +66,7 @@ function App(props) {
             exact
             path="/rentcondopost"
             render={() =>
-              !current ? <Redirect to="/login" /> : <Postrentroom/>
+              !current ? <Redirect to="/login" /> : <Postrentroom />
             }
           />
           <Route render={() => <Errorpage />} />

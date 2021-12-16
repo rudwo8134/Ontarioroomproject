@@ -1,7 +1,8 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import 'firebase/compat/storage'
+import 'firebase/compat/storage';
+import {sendPasswordResetEmail} from 'firebase/auth';
 
 const config = {
   apiKey: process.env.REACT_APP_APIKEY,
@@ -64,6 +65,8 @@ export const getCurrentUser = () => {
 };
 
 
+
+
 export const Uploadimage = async(imagefile) =>{
   try{
     var storageRef =await  firebase.storage().ref("img/"+imagefile.name)
@@ -78,6 +81,21 @@ export const Uploadimage = async(imagefile) =>{
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
+
+
+console.log(auth);
+
+export const Sendpasswordreset = async (email) => {
+  try {
+    await auth.sendPasswordResetEmail(email, {
+      url: 'http://onroom.ca/login',
+    });
+    console.log('success send');
+  } catch (err) {
+    return console.log(err);
+  }
+};
+
 
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
