@@ -91,6 +91,10 @@ const Wrapper = styled.div`
       @media screen and (max-width: 425px) {
         display: inline-block;
         width: 100vw;
+        position: absolute;
+        background-color: white;
+        top:0;
+        left: 0;
         z-index: 20;
       }
       .textContainer {
@@ -484,7 +488,7 @@ const Home = (props) => {
               <div className="container">
                 <BiSearch />
                 <Autocompletesearch
-                  Lis={showList}
+                  showList={showList}
                   setShowList={setShowList}
                   isbigMobile={isbigMobile}
                   findroom={true}
