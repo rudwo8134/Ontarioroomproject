@@ -158,7 +158,7 @@ const NewRegisterandLoginpage = (props) => {
     phonenumber: '',
     address: '',
   });
-  console.log(credential);
+
   const { email, password } = user;
    const {
      signemail,

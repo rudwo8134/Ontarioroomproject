@@ -106,7 +106,7 @@ const Rentcondopost = (props) => {
     setimageloading(false)
   }
 
-  console.log(imageresults)
+
 
   const handlecredentialchange = (e) =>{
     const {name,value} = e.target;

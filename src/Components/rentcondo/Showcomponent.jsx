@@ -245,9 +245,9 @@ const Showcomponent = (props) => {
   let data = rooms 
 
   const handlemin = (e) =>{
-    console.log(e)
+
   }
-  console.log(rooms)
+
   if(minPrice){
     data = rooms.filter((data)=>{
       return data.monthlyfee > minPrice

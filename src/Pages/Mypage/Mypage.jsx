@@ -133,7 +133,7 @@ const Mypage = ({ rooms, readStart }) => {
   const [sendPasswordBack, setSendPasswordBack] = useState(null);
   const location = useLocation();
   const history = useHistory();
-  console.log(userPost);
+
   useEffect(() => {
     if (!location.state.params) {
       history.push('/login');
@@ -155,7 +155,6 @@ const Mypage = ({ rooms, readStart }) => {
     setLoad(false);
   }, [readStart]);
 
-  console.log(user);
   const Sendpassword = () => {
     Sendpasswordreset(user?.email).then((res) => {
       if(res === 'success'){

@@ -237,7 +237,7 @@ const RentCondoDetailpage = (props) => {
     setCurrentImg(currentImg === 0 ? length - 1 : currentImg - 1);
   };
 
-  console.log(length);
+
   useEffect(() => {
     if (props.monthlyfee)
       setprice(

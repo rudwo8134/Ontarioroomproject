@@ -147,6 +147,39 @@ const Wrapper = styled.div`
     padding: 0 40px;
     margin: 0 auto;
     overflow: scroll;
+    .TitleContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .searchResult {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 24px;
+        color: #231f20;
+        margin-bottom: 3px;
+      }
+      .howmanyReseult {
+        color: rgba(35, 31, 32, 0.61);
+        font-style: normal;
+        font-weight: normal;
+        font-size: 18px;
+        line-height: 26px;
+      }
+      .dividers {
+        width: 100%;
+        height: 1px;
+        background: ${CommonStyles.color.Darkbold1};
+        margin: 16px 0px;
+        margin-bottom: 32px;
+      }
+    }
+    .divider {
+      width: 100%;
+      margin: 0 auto;
+      height: 30px;
+      margin: 30px 0px;
+      background-color: ${CommonStyles.color.Darkbold1};
+    }
     h4 {
       font-size: 20px;
       color: ${CommonStyles.color.Primary};
@@ -262,6 +295,16 @@ const Home = (props) => {
   const [selectInfo, setSelectInfo] = useState(null);
   const [searchLatlng, setsearchLatlng] = useState(null);
   const [searchInMap, setSearchInMap] = useState(null);
+  const [searchQuery, SetSearchquery] = useState(null);
+
+  useEffect(() => {
+    if (locationhistory || searchInMap) {
+      SetSearchquery(
+        searchInMap ? searchInMap.address : locationhistory.address
+      );
+    }
+  }, [searchInMap, locationhistory]);
+
 
   useEffect(() => {
     if (searchInMap) {
@@ -389,19 +432,20 @@ const Home = (props) => {
                           className="cluster-marker"
                           style={{
                             width: `${
-                              10 +
-                              (pointCount && pointCount / points?.length) * 20
+                              30 +
+                              (pointCount && pointCount / points?.length) * 40
                             }px`,
                             height: `${
-                              10 +
-                              (pointCount && pointCount / points?.length) * 20
+                              30 +
+                              (pointCount && pointCount / points?.length) * 40
                             }px`,
-                            background: 'black',
+                            background: `#00000099`,
                             borderRadius: '50%',
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            color: 'white',
+                            color: `#fff`,
+                            border: `none`,
                             fontSize: '16px',
                             fontWeight: 800,
                           }}
@@ -435,15 +479,18 @@ const Home = (props) => {
                           background:
                             crimeId === selected
                               ? `${CommonStyles.color.Primary}`
-                              : `${CommonStyles.color.Dark}`,
-                          borderRadius: '50%',
+                              : `${CommonStyles.color.PrimaryLight4}`,
+                          border: `none`,
+                          borderRadius: '30px',
                           display: 'flex',
+                          height: `${zoom * 2.5}px`,
+                          width: `${zoom * 4.5}px`,
                           justifyContent: 'center',
                           alignItems: 'center',
-                          color: 'white',
-                          fontSize: '12px',
+                          color: `${CommonStyles.color.White}`,
+                          fontSize: `${zoom * 1.2}px`,
                           fontWeight: 800,
-                          padding: crimeId === selected ? '4px' : '2px',
+                          padding: crimeId === selected ? '6px' : '4px',
                         }}
                       >
                         ${price}
@@ -457,7 +504,7 @@ const Home = (props) => {
         <div className="dropContainer">
           {/* filter container */}
           <div className="textContainer">
-            <span className="number">{rooms.length} 개의 검색결과</span>
+            <span className="number"></span>
             <div className="filter">
               <button className="draweer">+크게보기</button>
               <div className="sortContainer">
@@ -477,12 +524,27 @@ const Home = (props) => {
                 return (
                   <>
                     <h4>선택한 집</h4>
+
                     <Cardcontainer data={data} key={index} />
                     <div className="linespace"></div>
                   </>
                 );
               })}
-            <h4>집 목록</h4>
+            <div className="TitleContainer">
+              <h3 className="searchResult">
+                {
+                  searchQuery ? (searchQuery?.split(',')[
+                    searchQuery?.split(',').length - 1
+                  ]) : '검색해 주세요 :) '
+                }
+              </h3>
+              <span className="howmanyReseult">
+                {' '}
+                {rooms.length} 개의 검색결과
+              </span>
+              <div className="dividers"></div>
+            </div>
+
             {selectInfo
               ? rooms
                   ?.filter((data) => data.id !== selected)

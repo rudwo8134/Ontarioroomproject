@@ -12,7 +12,7 @@ const Secondarybutton = ({ name, data,setting }) => {
       setValue('검색입력');
       return;
     }
-    console.log('woriking.....');
+
     history.push({
       pathname: '/rentcondo',
       state: { params: data },

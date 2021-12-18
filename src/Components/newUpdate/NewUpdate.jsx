@@ -77,7 +77,7 @@ const NewUpdate = ({ rooms, readStart }) => {
     readStart();
     setLoading(false);
   }, [readStart]);
-  console.log(rooms);
+
 
   if (loading) {
     return <h1>loading.....</h1>;
