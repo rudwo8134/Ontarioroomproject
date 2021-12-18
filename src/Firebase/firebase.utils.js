@@ -87,12 +87,10 @@ console.log(auth);
 
 export const Sendpasswordreset = async (email) => {
   try {
-    await auth.sendPasswordResetEmail(email, {
-      url: 'http://onroom.ca/login',
-    });
-    console.log('success send');
+    await auth.sendPasswordResetEmail(email);
+    return 'success'
   } catch (err) {
-    return console.log(err);
+    return err
   }
 };
 

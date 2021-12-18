@@ -261,6 +261,13 @@ const Home = (props) => {
   const [selected, setSelected] = useState(null);
   const [selectInfo, setSelectInfo] = useState(null);
   const [searchLatlng, setsearchLatlng] = useState(null);
+  const [searchInMap, setSearchInMap] = useState(null);
+
+  useEffect(() => {
+    if (searchInMap) {
+      setsearchLatlng(searchInMap.geo);
+    }
+  }, [searchInMap]);
 
   useEffect(() => {
     if (locationhistory) {
@@ -333,7 +340,10 @@ const Home = (props) => {
             <AutoCompletediv>
               <div className="container">
                 <BiSearch />
-                <Autocompletesearch />
+                <Autocompletesearch
+                  findroom={true}
+                  setSearchInMap={setSearchInMap}
+                />
               </div>
             </AutoCompletediv>
             <GoogleMapReact
@@ -342,10 +352,12 @@ const Home = (props) => {
                 searchLatlng ? searchLatlng : { lat: 43.6532, lng: -79.3832 }
               }
               defaultZoom={searchLatlng ? 15 : 10}
+              zoom={15}
               yesIWantToUseGoogleMapApiInternals
               onGoogleApiLoaded={({ map }) => {
                 mapref.current = map;
               }}
+              center={searchLatlng && searchLatlng}
               onChange={({ zoom, bounds }) => {
                 setZoom(zoom);
                 setBounds([
