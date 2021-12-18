@@ -199,7 +199,7 @@ const Mypage = ({ rooms, readStart }) => {
         <div className="divider"></div>
         <div className="mypost">
           <div className="Listcontainer">
-            <span className="numberlist2">순서</span>
+            <span className="numberlist2">글 번호</span>
             <h1 className="title">제목</h1>
             <h2 className="price">가격</h2>
             <h2 className="go">바로가기</h2>
@@ -207,7 +207,7 @@ const Mypage = ({ rooms, readStart }) => {
           {userPost?.map((data, index) => {
             return (
               <div className="Listcontainer">
-                <span className="numberlist">{index}</span>
+                <span className="numberlist">{index+1}</span>
                 <h1 className="title">{data?.posttitle}</h1>
                 <h2 className="price">${data?.monthlyfee}</h2>
                 <button

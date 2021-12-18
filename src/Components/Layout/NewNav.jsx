@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import {connect} from 'react-redux'
+import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { Contents } from '../../staticFiles/Contents';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
@@ -46,10 +46,11 @@ const NavWrapper = styled.nav`
     display: flex;
     justify-content: center;
     align-items: center;
-    .DetailButton{
-      width:100px;
+    
+    .DetailButton {
+      width: 100px;
       height: 10px;
-      backgroundColor:none;
+      backgroundcolor: none;
     }
     .Username {
       text-transform: capitalize;
@@ -57,6 +58,13 @@ const NavWrapper = styled.nav`
       color: ${CommonStyles.color.Dark};
       font-weight: ${CommonStyles.bold.Bold};
       margin-right: 10px;
+      position: relative;
+      .detailspan{
+        position: absolute;
+        top:30px;
+        left:0;
+        width: 300px;
+      }
     }
     .logoutbutton {
       text-transform: uppercase;
@@ -65,7 +73,7 @@ const NavWrapper = styled.nav`
       font-weight: ${CommonStyles.bold.Bold};
       border: none;
       cursor: pointer;
-      background-color: ${CommonStyles.color.White};
+      background-color: transparent;
       :hover {
         transform: scale(1.05) translateY(-3px);
         color: ${CommonStyles.color.PrimaryLight2};
@@ -88,6 +96,7 @@ const NewNav = (props) => {
   const history = useHistory();
   const { User, signout } = props;
   const [scroll, setscroll] = useState(false);
+  const [detail, setDetail] = useState(false);
   const handlescroll = () => {
     const scroll = window.scrollY;
     if (scroll > 10) {
@@ -102,12 +111,12 @@ const NewNav = (props) => {
       window.removeEventListener('scroll', handlescroll);
     };
   }, []);
-  const handlelogin = () =>{
+  const handlelogin = () => {
     history.push({
       pathname: '/Mypage',
       state: { params: User },
     });
-  }
+  };
   return (
     <NavWrapper scroll={scroll}>
       <div className="logoConatiner">
@@ -127,10 +136,12 @@ const NewNav = (props) => {
       <div className="loginContainer">
         {User ? (
           <>
-          <button className='DetailButton'> Detail page</button>
-          <span onClick={handlelogin} className="Username">Hi! {User?.displayName}</span>
+            <span className="Username">Hi! {User?.displayName}</span>
+            <button onClick={handlelogin} className="logoutbutton">
+              My Page
+            </button>
             <button onClick={signout} className="logoutbutton">
-            LogOut
+              LogOut
             </button>
           </>
         ) : (
@@ -150,11 +161,11 @@ const NewNav = (props) => {
 };
 
 const maptoprops = createStructuredSelector({
-  User:selectCurrentUser
-})
+  User: selectCurrentUser,
+});
 
 const dispatchtoprops = (dispatch) => ({
   signout: () => dispatch(signOutStart()),
-})
+});
 
 export default connect(maptoprops, dispatchtoprops)(NewNav);

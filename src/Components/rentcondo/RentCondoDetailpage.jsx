@@ -15,6 +15,7 @@ import { RiTempColdFill } from 'react-icons/ri';
 import { FaDog, FaSmokingBan } from 'react-icons/fa';
 import { GiWaterDrop, GiDoor } from 'react-icons/gi';
 import { IoWifiOutline } from 'react-icons/io5';
+import Loader from 'react-loader-spinner';
 
 const Background = styled.section`
   width: 100vw;
@@ -250,7 +251,15 @@ const RentCondoDetailpage = (props) => {
   }
 
   if (props === 'null') {
-    return <div>loading....</div>;
+    return (
+      <Loader
+        type="TailSpin"
+        color={CommonStyles.color.Primary}
+        height={40}
+        width={40}
+        timeout={3000}
+      />
+    );
   }
   return (
     <Background>

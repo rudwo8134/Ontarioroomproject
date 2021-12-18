@@ -9,6 +9,7 @@ import { connect, useDispatch } from 'react-redux';
 import { addressupdatestart } from '../../Redux/Rentcondo/rentcondo.action';
 import { Redirect, useHistory } from 'react-router-dom';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
+import Loader from 'react-loader-spinner';
 
 const Divcontainer = styled.div`
   width: ${({ findroom }) => (findroom ? '230px' : '400px')};
@@ -32,6 +33,12 @@ const EnterKeyForFind = styled.span`
   font-weight: 700;
   top:25%;
 `;
+const LoaderContainer =styled.div`
+width: 500px;
+display: flex;
+justify-content: center;
+align-items: center;
+`
 
 const Autocompletesearch = ({ findroom = false, setSearchInMap = null }) => {
   const history = useHistory();
@@ -72,7 +79,17 @@ const Autocompletesearch = ({ findroom = false, setSearchInMap = null }) => {
   };
 
   if (loading) {
-    return <h1>...loading</h1>;
+    return (
+      <LoaderContainer>
+        <Loader
+          type="TailSpin"
+          color={CommonStyles.color.Primary}
+          height={40}
+          width={40}
+          timeout={3000}
+        />
+      </LoaderContainer>
+    );
   }
 
   return (
@@ -92,7 +109,15 @@ const Autocompletesearch = ({ findroom = false, setSearchInMap = null }) => {
             placeholder="주소 입력 후 Enter키를 눌러주세요!"
           />
           <Divcontainer findroom={findroom}>
-            {loading && <div>Loading...</div>}
+            {loading && (
+              <Loader
+                type="TailSpin"
+                color={CommonStyles.color.Primary}
+                height={5}
+                width={5}
+                timeout={3000}
+              />
+            )}
             {suggestions.map((suggestion) => {
               const className = suggestion.active
                 ? 'suggestion-item--active'

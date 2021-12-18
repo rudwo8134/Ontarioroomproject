@@ -6,6 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import { selectitems } from '../../Redux/Rentcondo/rentcondo.selector';
 import { connect } from 'react-redux';
 import { rentcondoreadstart } from '../../Redux/Rentcondo/rentcondo.action';
+import Loader from 'react-loader-spinner';
 
 const NewupdateWrapper = styled.div`
   width: 100vw;
@@ -80,7 +81,15 @@ const NewUpdate = ({ rooms, readStart }) => {
 
 
   if (loading) {
-    return <h1>loading.....</h1>;
+    return (
+      <Loader
+        type="Puff"
+        color="#00BFFF"
+        height={100}
+        width={100}
+        timeout={3000}
+      />
+    );
   }
   return (
     <NewupdateWrapper>
