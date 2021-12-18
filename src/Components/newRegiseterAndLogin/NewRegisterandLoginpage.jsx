@@ -17,6 +17,20 @@ const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   margin-top: 80px;
+
+  @media screen and (max-width: 320px) {
+    margin-top: 0px;
+    height: 150vh;
+  }
+  @media screen and (max-width: 375px) {
+    margin-top: 0px;
+    height: 150vh;
+  }
+  @media screen and (max-width: 425px) {
+    margin-top: 0px;
+    height: 170vh;
+  }
+
   .loginheaderimg {
     height: 25%;
     width: 100vw;
@@ -24,6 +38,12 @@ const Wrapper = styled.div`
     background-image: url(${LoginHeader});
     background-position: center center;
     background-repeat: no-repeat;
+    @media screen and (max-width: 375px) {
+      display: none;
+    }
+    @media screen and (max-width: 425px) {
+      display: none;
+    }
   }
   .Container {
     max-width: 1440px;
@@ -31,6 +51,16 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
+    @media screen and (max-width: 375px) {
+      width: 100vw;
+      max-width: 100vw;
+      flex-direction: column;
+    }
+    @media screen and (max-width: 425px) {
+      width: 100vw;
+      max-width: 100vw;
+      flex-direction: column;
+    }
     .left {
       flex: 1;
       display: flex;
@@ -38,27 +68,79 @@ const Wrapper = styled.div`
       flex-direction: column;
       /* background-color: ${CommonStyles.color.PrimaryLight1}; */
       border: 16px;
+      @media screen and (max-width: 375px) {
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+      }
+      @media screen and (max-width: 425px) {
+        width: 100vw;
+        justify-content: center;
+        align-items: center;
+      }
       .Header {
         color: ${CommonStyles.color.Primary};
         font-size: ${CommonStyles.fontSize.MediumLarge};
         font-weight: ${CommonStyles.bold.LittleBold};
         margin-bottom: 14px;
+
+        @media screen and (max-width: 375px) {
+          font-size: 20px;
+        }
+        @media screen and (max-width: 425px) {
+          font-size: 2rem;
+        }
+        @media screen and (max-width: 320px) {
+          font-size: 1.5rem;
+          width: 100vw;
+          text-align: center;
+        }
       }
       .divider {
         margin-bottom: 14px;
         width: 100px;
         height: 2px;
         background-color: ${CommonStyles.color.Darkbold1};
+        @media screen and (max-width: 375px) {
+          font-size: 20px;
+          width: 15vw;
+          margin-top: -0.5rem;
+        }
+        @media screen and (max-width: 425px) {
+          font-size: 20px;
+          width: 15vw;
+          margin-top: -0.5rem;
+        }
       }
       .description {
         font-size: ${CommonStyles.fontSize.Small};
         color: ${CommonStyles.color.Darkbold4};
         margin-bottom: 45px;
+        @media screen and (max-width: 375px) {
+          font-size: 1rem;
+          width: 90vw;
+          text-align: center;
+        }
+        @media screen and (max-width: 425px) {
+          font-size: 1.4rem;
+          width: 90vw;
+          text-align: center;
+        }
       }
       .description2 {
         font-size: ${CommonStyles.fontSize.Small};
         color: ${CommonStyles.color.Darkbold4};
         margin-bottom: 20px;
+        @media screen and (max-width: 375px) {
+          font-size: 1rem;
+          width: 90vw;
+          text-align: center;
+        }
+        @media screen and (max-width: 425px) {
+          font-size: 1.4rem;
+          width: 90vw;
+          text-align: center;
+        }
       }
       .googlelogin {
         padding: 4px;
@@ -72,11 +154,22 @@ const Wrapper = styled.div`
         :hover {
           background-color: ${CommonStyles.color.Darkbold3};
         }
+        @media screen and (max-width: 375px) {
+          font-size: 0.8rem;
+          width: 90vw;
+          text-align: center;
+        }
+        @media screen and (max-width: 425px) {
+          font-size: 1rem;
+          width: 90vw;
+          text-align: center;
+        }
       }
       .buttondivider {
         display: flex;
         align-items: center;
         margin: 20px 0;
+
         .name {
           margin: 0 10px;
           font-size: ${CommonStyles.fontSize.Small};
@@ -86,6 +179,12 @@ const Wrapper = styled.div`
           width: 100%;
           height: 2px;
           background-color: ${CommonStyles.color.Darkbold1};
+          @media screen and (max-width: 375px) {
+            display: none;
+          }
+          @media screen and (max-width: 425px) {
+            display: none;
+          }
         }
       }
       .Signin {
@@ -104,6 +203,22 @@ const Wrapper = styled.div`
         .description {
           font-size: ${CommonStyles.fontSize.ExtraSmall1};
           margin-bottom: 33px;
+          @media screen and (max-width: 320px) {
+            font-size: 0.5rem;
+            width: 90vw;
+            text-align: center;
+            margin-bottom: 1rem;
+          }
+          @media screen and (max-width: 375px) {
+            font-size: 0.7rem;
+            width: 90vw;
+            text-align: center;
+          }
+          @media screen and (max-width: 425px) {
+            font-size: 0.8rem;
+            width: 90vw;
+            text-align: center;
+          }
         }
         .submitbutton {
           width: 100px;
@@ -118,12 +233,34 @@ const Wrapper = styled.div`
           :hover {
             background-color: ${CommonStyles.color.PrimaryLight4};
           }
+
+          @media screen and (max-width: 425px) {
+            width: 10rem;
+            height: 3rem;
+            font-size: 1.2rem;
+          }
+          @media screen and (max-width: 375px) {
+            width: 100px;
+            height: 33px;
+            font-size: 1rem;
+          }
         }
       }
       .forgetthepassword {
         color: ${CommonStyles.color.Darkbold4};
         text-decoration-line: underline;
         font-size: ${CommonStyles.fontSize.Small};
+
+        @media screen and (max-width: 375px) {
+          font-size: 0.8rem;
+          width: 80vw;
+          margin-top: -1.5rem;
+        }
+        @media screen and (max-width: 425px) {
+          font-size: 1rem;
+          width: 80vw;
+          margin-top: -1.8rem;
+        }
       }
     }
     .Linedivider {
@@ -131,6 +268,18 @@ const Wrapper = styled.div`
       width: 2px;
       background-color: ${CommonStyles.color.Darkbold1};
       margin: 0 40px;
+      @media screen and (max-width: 375px) {
+        width: 30vh;
+        height: 2px;
+        margin: 30px auto;
+        margin-top: 50px;
+      }
+      @media screen and (max-width: 425px) {
+        width: 30vh;
+        height: 2px;
+        margin: 30px auto;
+        margin-top: 50px;
+      }
     }
     .right {
       flex: 1;
@@ -154,21 +303,21 @@ const NewRegisterandLoginpage = (props) => {
     signpassword: '',
     confirmpassword: '',
     firstName: '',
-    LastName:'',
+    LastName: '',
     phonenumber: '',
     address: '',
   });
 
   const { email, password } = user;
-   const {
-     signemail,
-     signpassword,
-     confirmpassword,
-     firstName,
-     LastName,
-     phonenumber,
-     address,
-   } = credential;
+  const {
+    signemail,
+    signpassword,
+    confirmpassword,
+    firstName,
+    LastName,
+    phonenumber,
+    address,
+  } = credential;
   const { googlelogin, User, emailSignin, signupstart } = props;
   const history = useHistory();
   const handlesubmit = (e) => {

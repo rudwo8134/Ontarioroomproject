@@ -8,7 +8,7 @@ import WebFont from 'webfontloader';
 
 WebFont.load({
   google: {
-    families: ['Jua', 'sans-serif', 'Do Hyeon'],
+    families: ['Jua', 'sans-serif', 'Do Hyeon', 'dosis', 'raleway'],
   },
 });
 
@@ -168,7 +168,7 @@ const Newherostyle = styled.div`
     font-size: 34px;
 
     /* or 175% */
-    font-family: 'Do Hyeon', sans-serif;
+    font-family: unset;
 
     text-align: center;
     letter-spacing: -1px;
@@ -176,20 +176,22 @@ const Newherostyle = styled.div`
     color: ${CommonStyles.color.Darkbold1};
 
     .onroom {
+      font-family: unset;
       font-weight: ${CommonStyles.bold.LittleBold};
       font-size: 76px;
       line-height: 40px;
       text-align: center;
       color: ${CommonStyles.color.Primary};
-      letter-spacing: 0.1rem;
+      letter-spacing: 0.02rem;
     }
     .onroom-black {
-      font-weight: 1200;
+      font-weight: bolder;
       font-size: 74px;
       line-height: 40px;
       text-align: center;
       color: black;
-      letter-spacing: 0.1rem;
+      letter-spacing: 0.02rem;
+      text-shadow: 1px 1px 1px black;
     }
   }
 
