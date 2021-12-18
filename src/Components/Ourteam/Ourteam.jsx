@@ -78,6 +78,18 @@ const Ourteamstyle = styled.section`
     grid-template-columns: repeat(4, 1fr);
     column-gap: 1px;
     row-gap: 30px;
+    @media screen and (max-width: 425px) {
+      row-gap: 30px;
+      grid-template-columns: repeat(1, 1fr);
+      padding: 0;
+      width: 100vw;
+      column-gap: none;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
     @media screen and (max-width: 375px) {
       row-gap: 30px;
       grid-template-columns: repeat(1, 1fr);
@@ -89,7 +101,6 @@ const Ourteamstyle = styled.section`
       flex-direction: column;
       justify-content: center;
       align-items: center;
-
     }
   }
   .title {
@@ -104,6 +115,9 @@ const Ourteamstyle = styled.section`
       border-radius: 30px;
       margin-top: 3px;
       margin-bottom: 16px;
+      @media screen and (max-width: 425px) {
+        margin-top: -13px;
+      }
       @media screen and (max-width: 375px) {
         margin-top: -13px;
       }
@@ -116,6 +130,9 @@ const Ourteamstyle = styled.section`
       letter-spacing: -0.4px;
       color: ${CommonStyles.color.Primary};
       margin-bottom: 20px;
+      @media screen and (max-width: 425px) {
+        font-size: 2.5rem;
+      }
       @media screen and (max-width: 375px) {
         font-size: 2rem;
       }
@@ -138,6 +155,10 @@ const Ourteamstyle = styled.section`
       color: #231f20;
 
       mix-blend-mode: normal;
+      @media screen and (max-width: 425px) {
+        width: 60vw;
+        margin-bottom: 3rem;
+      }
       @media screen and (max-width: 375px) {
         width: 70vw;
       }

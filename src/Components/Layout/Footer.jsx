@@ -68,6 +68,9 @@ const Footer = () => {
 
 const Footerstyle = styled.footer`
   height: 20vh;
+  @media screen and (max-width: 425px) {
+    height: 50vh;
+  }
   @media screen and (max-width: 375px) {
     height: 50vh;
   }
@@ -80,6 +83,9 @@ const Footerstyle = styled.footer`
       display: flex;
       justify-content: space-between;
       margin-top: 41px;
+      @media screen and (max-width: 425px) {
+        flex-direction: column;
+      }
       @media screen and (max-width: 375px) {
         flex-direction: column;
       }
@@ -95,13 +101,23 @@ const Footerstyle = styled.footer`
         color: rgba(21, 20, 57, 0.4);
 
         mix-blend-mode: normal;
+        @media screen and (max-width: 425px) {
+          font-size: 0.8rem;
+          margin-bottom: 1rem;
+          text-align: center;
+        }
         @media screen and (max-width: 375px) {
           font-size: 0.8rem;
           margin-bottom: 1rem;
+          text-align: center;
         }
       }
       .icon {
         display: flex;
+        @media screen and (max-width: 425px) {
+          align-items: center;
+          justify-content: center;
+        }
         @media screen and (max-width: 375px) {
           align-items: center;
           justify-content: center;
@@ -125,12 +141,18 @@ const Footerstyle = styled.footer`
       display: flex;
       justify-content: space-between;
       align-items: center;
+      @media screen and (max-width: 425px) {
+        flex-direction: column;
+      }
       @media screen and (max-width: 375px) {
         flex-direction: column;
       }
       .right {
         display: flex;
         align-items: center;
+        @media screen and (max-width: 425px) {
+          display: none;
+        }
         @media screen and (max-width: 375px) {
           display: none;
         }
@@ -154,6 +176,10 @@ const Footerstyle = styled.footer`
         display: flex;
         align-items: center;
         justify-content: space-between;
+        @media screen and (max-width: 425px) {
+          flex-direction: column;
+          width: 100%;
+        }
         @media screen and (max-width: 375px) {
           flex-direction: column;
           width: 100%;
@@ -174,6 +200,14 @@ const Footerstyle = styled.footer`
           /* Colors / Heading */
 
           color: #000;
+          @media screen and (max-width: 425px) {
+            width: 150px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+          }
           @media screen and (max-width: 375px) {
             width: 150px;
             margin: 0 auto;
@@ -193,6 +227,10 @@ const Footerstyle = styled.footer`
           /* Colors / Heading */
 
           color: #000;
+          @media screen and (max-width: 425px) {
+            font-size: 0.7rem;
+            margin-bottom: 1rem;
+          }
           @media screen and (max-width: 375px) {
             font-size: 0.7rem;
             margin-bottom: 1rem;
