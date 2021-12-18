@@ -20,7 +20,8 @@ const Wrapper = styled.div`
   width: 1300px;
   margin: 0 auto;
   margin-top: 90px;
-  margin-bottom: 100px;
+  margin-bottom: 70px;
+
   .submitbutton {
     width: 1200px;
     display: flex;
@@ -123,11 +124,10 @@ const Wrapper = styled.div`
     }
   }
   .header {
-    margin-top: 60px;
-    margin-bottom: 60px;
+    margin: 50px 20px 60px 0;
     .name {
       text-transform: uppercase;
-      font-size: ${CommonStyles.fontSize.Large};
+      font-size: 24px;
       color: ${CommonStyles.color.Primary};
     }
   }
@@ -136,30 +136,38 @@ const Wrapper = styled.div`
     flex-direction: row;
     width: 1300px;
     margin: 0 auto;
+    font-weight: 700;
+    color: rgba(35, 31, 32, 0.61);
     justify-content: center;
+
     .left {
       flex: 1;
       margin: 0 auto;
       .mapcontainer {
         margin-top: 30px;
+        margin-left: 20px;
       }
       .location {
         margin-top: ${CommonStyles.margin.Reuglar};
-      }
-      .locationtype {
-        width: 70%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
         .name {
+          margin-left: 20px;
+          margin-bottom: 25px;
           font-weight: 700;
           color: rgba(35, 31, 32, 0.61);
         };
+      }
+      .locationtype {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        
         select,
         input {
-          margin-left: 40px;
-          width: 231px;
-          height: 30px;
+          margin-left: 15px;
+          width: 241px;
+          height: 45px;
           border: 1px solid ${CommonStyles.color.Primary};
           box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
           background-color: rgba(255, 255, 255, 0.6);
@@ -167,35 +175,63 @@ const Wrapper = styled.div`
         }
       }
       .propertytype {
-        width: 60%;
+        width: 97%;
         display: flex;
         justify-self: flex-end;
         flex-direction: row;
-        align-items: center;
+        justify-content: space-between;
+        align-items: space-between;
+        margin-left:20px;
         margin-bottom: 20px;
-        
-        justify-content: center;
         .name {
           font-weight: 700;
           color: rgba(35, 31, 32, 0.61);
         }
         select,
         input {
-          width: 231px;
+          width: 230px;
           height: 30px;
           border: 1px solid ${CommonStyles.color.Primary};
           box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
           background-color: rgba(255, 255, 255, 0.6);
           border-radius: 10px;
         }
+        }
+        .propertytypeimage {
+          width: 51%;
+          display: flex;
+          justify-self: flex-end;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: space-between;
+          margin-left:20px;
+          margin-bottom: 20px;
+
+        .photoupload, #photoupload {
+          display:none;
+        }
+
+        .input-file-button {
+          margin: 40px 145px 0 0;
+          width: 118px;
+          height: 32px;
+          text-align: center;
+          color: #fff;
+          background: #DF1B52;
+          border: 1px solid ${CommonStyles.color.Primary};
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+        }
       }
     }
     .divider {
-      background-color: ${CommonStyles.color.Darkbold2};
+      //background-color: ${CommonStyles.color.Darkbold2};
+      border: 1.4px solid rgba(0, 0, 0, 0.1);
       width: 2px;
-      margin-right: 80px;
-      margin-left: 90px;
+      height: 520px;
+      margin: 50px 80px 30px 60px;
     }
+
     .right {
       flex: 1;
       display: flex;
@@ -208,7 +244,7 @@ const Wrapper = styled.div`
         margin-bottom: ${CommonStyles.margin.Reuglar};
         .name {
           font-weight: 700;
-          color:rgba(35, 31, 32, 0.61);
+          color: rgba(35, 31, 32, 0.61);
         }
         h1 {
           font-size: 16px;
@@ -318,6 +354,12 @@ const Imageuploadcontainer = styled.div`
 `;
 const Searchbutton = styled.button`
   width: 100px;
+  height: 45px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   background-color: ${CommonStyles.color.Primary};
   border:none;
   color:white;
@@ -585,21 +627,21 @@ const Postrentroom = ({ poststart, user }) => {
                 </div>
 
                 <div className="propertytypeimage">
-                <span className="name">사진*</span> 
-                  {imageloading ? (
-                    <h1>...loading</h1>
-                  ) : (
-                    <>
-                      <label htmlFor=""></label>
-                    </>
-                  )}
-                  <input
-                    required
-                    type="file"
-                    onChange={handleimage}
-                    multiple
-                    accept="image/*"
-                  />
+                <span className="name">사진*</span>
+                    {imageloading ? (
+                      <h1>...loading</h1>
+                    ) : (
+                      <>
+                        <label className="input-file-button" htmlFor="photoupload" >파일 선택</label>
+                      </>
+                    )}
+                    <input id="photoupload"
+                      required
+                      type="file"
+                      onChange={handleimage}
+                      multiple
+                      accept="image/*"
+                    />
                 </div>
                 <Imageuploadcontainer>
                   {imageresults ? (
@@ -632,12 +674,12 @@ const Postrentroom = ({ poststart, user }) => {
                         loading,
                       }) => (
                         <div>
-                          <input
+                          <input 
                             required
                             {...getInputProps({
-                              placeholder: 'Enter address...',
+                              placeholder: '주소를 입력해주세요',
                             })}
-                            style={{ width: '250px' }}
+                            style={{ width: '450px' }}
                           />
                           <div
                             style={{
@@ -681,7 +723,7 @@ const Postrentroom = ({ poststart, user }) => {
                   <div className="mapcontainer">
                     <StaticGoogleMap
                       apiKey={process.env.REACT_APP_GOOGLEAPI}
-                      size="600x400"
+                      size="580x400"
                       className="img-fluid"
                       zoom="17"
                     >
