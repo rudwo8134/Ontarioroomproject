@@ -8,7 +8,7 @@ const Newhero = () => {
     <Newherostyle>
       <form action="" className="search">
         <h2 className="englishslogan">
-          캐나다에서 빠르고 편하게 <br /> 집을 찾는 <b>ONROOM</b>
+          캐나다에서 빠르고 편하게 <br className="hidden"/> 집을 찾는 <b>ONROOM</b>
         </h2>
         <h1 className="slogan">
           방을 쉽고 빠르고 정확하게 찾을수 있는 믿음 가는 사이트!
@@ -59,6 +59,12 @@ const Newherostyle = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  @media screen and (max-width: 375px) {
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+  }
   .search {
     position: absolute;
     top: 40%;
@@ -69,6 +75,15 @@ const Newherostyle = styled.div`
     justify-content: center;
     align-items: flex-start;
     transform: translate(-40%, -50%);
+    @media screen and (max-width: 375px) {
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw;
+      align-items: center;
+      background-size: cover;
+      background-position: center;
+    }
   }
   .englishslogan {
     margin-top: 120px;
@@ -87,10 +102,20 @@ const Newherostyle = styled.div`
     letter-spacing: -1px;
     margin-bottom: -20px;
     color: ${CommonStyles.color.Dark};
+    @media screen and (max-width: 375px) {
+      font-size: 1.2rem;
+      margin-bottom: -20px;
+      .hidden {
+        display: none;
+      }
+    }
     b {
       font-weight: bold;
       font-size: 64px;
       color: ${CommonStyles.color.Primary};
+      @media screen and (max-width: 375px) {
+        font-size: 3.4rem;
+      }
     }
   }
   .slogan {
@@ -106,12 +131,27 @@ const Newherostyle = styled.div`
 
     color: #181718;
     width: 80%;
+    @media screen and (max-width: 375px) {
+      font-size: 0.8rem;
+    }
   }
   .searchcontainer {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    @media screen and (max-width: 375px) {
+      width: 100vw;
+      align-self: center;
+    }
+    .responsivediv {
+      @media screen and (max-width: 375px) {
+        width: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
     input {
       width: 500px;
       height: 62px;
@@ -120,12 +160,18 @@ const Newherostyle = styled.div`
       border: 1px solid ${CommonStyles.color.PrimaryLight3};
       padding: 1.5rem;
       margin-left: 3%;
+      @media screen and (max-width: 375px) {
+        width: 15rem;
+      }
       ::placeholder {
         font-style: normal;
         font-weight: normal;
         font-size: 20px;
         line-height: 26px;
         color: ${CommonStyles.color.PrimaryLight4};
+        @media screen and (max-width: 375px) {
+          font-size: 0.8rem;
+        }
       }
     }
   }
@@ -139,6 +185,9 @@ const Newherostyle = styled.div`
     letter-spacing: 2px;
     position: absolute;
     bottom: 40px;
+    @media screen and (max-width: 375px) {
+      font-size: 0.7rem;
+    }
     .mouse {
       position: relative;
       display: block;
@@ -150,6 +199,11 @@ const Newherostyle = styled.div`
       box-sizing: border-box;
       border: 3px solid white;
       border-radius: 23px;
+      @media screen and (max-width: 375px) {
+        width: 25px;
+        height: 25px;
+        margin: 0 auto 10px;
+      }
       ::before {
         content: '';
         position: absolute;
@@ -162,6 +216,7 @@ const Newherostyle = styled.div`
         background: white;
         border-radius: 50%;
         animation: ${animouse} 2.5s linear infinite;
+      
       }
       h3 {
         position: absolute;
@@ -170,6 +225,10 @@ const Newherostyle = styled.div`
         width: 200px;
         text-transform: uppercase;
         font-size: 0.8rem;
+        @media screen and (max-width: 375px) {
+          font-size: 0.7rem;
+          top: 25px;
+        }
       }
     }
   }

@@ -23,6 +23,7 @@ const Wrapper = styled.div`
   height: 100vh;
   margin-top: 100px;
   border-top: 1px solid ${CommonStyles.color.Darkbold1};
+  
 
   .statebar {
     width: 100%;

@@ -13,24 +13,16 @@ import Logo from '../../assets/nav/LOGO.png'
 
 const linkdata = [
   {
-    link: '/',
+    link: '/rentcondo',
     name: '방구하기',
   },
   {
-    link: '/',
+    link: '/rentcondopost',
     name: '방올리기',
   },
   {
-    link: '/',
+    link: '/ContactUs',
     name: '고객센터',
-  },
-  {
-    link: '/',
-    name: '로그인',
-  },
-  {
-    link: '/',
-    name: '회원가입',
   },
 ];
 
@@ -47,13 +39,13 @@ const Footer = () => {
               </span>
             </div>
             <ul className="right">
-              {/* {linkdata.map((data, index) => (
+              {linkdata.map((data, index) => (
                 <li key={index}>
                   <Link to={data.link}>
                     <span className="link">{data.name}</span>
                   </Link>
                 </li>
-              ))} */}
+              ))}
             </ul>
           </div>
           <div className="divider"></div>

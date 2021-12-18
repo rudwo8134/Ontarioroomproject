@@ -99,7 +99,7 @@ const Autocompletesearch = ({ findroom = false, setSearchInMap = null }) => {
       onSelect={handleselect}
     >
       {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-        <div>
+        <div className="responsivediv">
           <input
             {...getInputProps({
               placeholder: 'Search Places ...',
