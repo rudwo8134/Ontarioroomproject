@@ -1,104 +1,109 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 import {
   FaFacebookSquare,
   FaGooglePlusSquare,
   FaTwitterSquare,
-} from 'react-icons/fa';
-import { CommonStyles } from '../../staticFiles/CommonStyles';
+} from "react-icons/fa";
+import { CommonStyles } from "../../staticFiles/CommonStyles";
 
-const PersonCard = ({image,name,job,job2}) => {
+const PersonCard = ({ image, name, job, job2 }) => {
   return (
     <Personcardstyle>
       <img src={image} alt="img" />
       <div className="text">
-        <span className="name">{name}</span>
+        <div className="name">
+          <b>{name}</b>
+          <span className="social">
+            <FaGooglePlusSquare />
+          </span>
+        </div>
+
         <span className="job">
           {job}
-          <br></br> <b className={'text'}>{job2}</b>
+          <br></br> <b className={"text"}>{job2}</b>
         </span>
-      </div>
-      <div className="social">
-        <FaGooglePlusSquare />
-        <FaFacebookSquare />
-        <FaTwitterSquare />
       </div>
     </Personcardstyle>
   );
-}
+};
 
 const Personcardstyle = styled.div`
-  width: 370px;
-  height: 370px;
+  width: 246px;
+  height: 272px;
   border: 1px solid #ebeaed;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 10px 0.6rem 1.2rem rgba(0,0,0,0.6);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+
   img {
-    margin-top: 50px;
+    margin-top: 25px;
     margin-bottom: 22.8px;
-    width: 130px;
-    height: 130px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
   }
   .text {
     display: flex;
     flex-direction: column;
-    text-transform: uppercase;
-    justify-content: center;
+    justify-content: left;
+    width: 170px;
     .name {
-      font-weight: normal;
-      font-size: 22px;
+      font-weight: ${CommonStyles.bold.Medium};
+      font-size: 16px;
       line-height: 32px;
-      letter-spacing: 0.15rem;
       /* identical to box height, or 145% */
-
-      text-align: center;
-
+      text-align: left;
       /* Colors / Heading */
+      color: ${CommonStyles.color.Primary};
+      margin-bottom: 6px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      b{
+        border-bottom: 1px solid ${CommonStyles.color.Primary};
+        line-height: 20px;
+      }
+      
 
-      color: ${CommonStyles.color.Dark};
-      margin-bottom: 16px;
     }
-    .job {
-      text-align: center;
-      font-weight: bold;
-      font-size: 14px;
-      line-height: 26px;
-      /* or 186% */
 
-      text-align: center;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+    .job {
+      text-align: left;
+      font-weight: normal;
+      font-size: 12px;
+
+      /* or 186% */
 
       /* Colors / Text */
 
       color: ${CommonStyles.color.Darkbold3};
-      .text{
-        color:${CommonStyles.color.PrimaryLight3};
+      .text {
+        color: ${CommonStyles.color.PrimaryLight3};
       }
     }
   }
   .social {
-    margin-top: 23.8px;
-    width: 100%;
+    
     display: flex;
-    justify-content: space-between;
-    padding: 0 5rem;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     svg {
-      font-size: 22px;
-      line-height: 38px;
-      /* identical to box height, or 173% */
-
-      text-align: center;
-
-      /* Colors / Text */
-
+      display: flex;
+      justify-self: flex-end;
+      flex-direction: row;
+      align-items: center;
+      font-size: 18px;
       color: rgba(21, 20, 57, 0.4);
+      /* identical to box height, or 173% */
+      /* Colors / Text */
     }
   }
 `;
 
-export default PersonCard
+export default PersonCard;

@@ -12,12 +12,13 @@ const Why = styled.div`
   .title {
     color: ${CommonStyles.color.Primary};
     font-weight: ${CommonStyles.bold.ExtraBold};
+    font-family: DM Sans;
     font-size: 64px;
     text-align: "center";
   }
   .line {
     width: ${({ lineWidth }) => `${lineWidth * 0.4}px`};
-    height: 2px;
+    height: 1px;
     background-color: ${CommonStyles.color.PrimaryLight2};
   }
   .firstCards {
