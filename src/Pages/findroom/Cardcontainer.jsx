@@ -72,6 +72,9 @@ const CardWrapper = styled.div`
       font-weight: ${CommonStyles.bold.LittleBold};
       color: ${CommonStyles.color.Primary};
       text-transform: uppercase;
+      @media screen and (max-width: 425px) {
+        font-size: 1rem;
+      }
     }
     .type {
       margin-left: 16px;
@@ -81,6 +84,9 @@ const CardWrapper = styled.div`
       line-height: 26px;
       color: rgba(35, 31, 32, 0.72);
       text-transform: capitalize;
+      @media screen and (max-width: 425px) {
+        font-size: 0.7rem;
+      }
     }
     .separtator {
       margin: 0px 8px;
@@ -91,6 +97,9 @@ const CardWrapper = styled.div`
       font-size: 16px;
       line-height: 26px;
       color: rgba(35, 31, 32, 0.72);
+      @media screen and (max-width: 425px) {
+        font-size: 0.8rem;
+      }
     }
   }
   .bedtype {

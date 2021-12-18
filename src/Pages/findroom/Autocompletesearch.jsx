@@ -33,9 +33,13 @@ const EnterKeyForFind = styled.span`
   color: ${CommonStyles.color.Primary};
   width: 480px;
   position: absolute;
-  left:105%;
+  left: 105%;
   font-weight: 700;
-  top:25%;
+  top: 25%;
+  @media screen and (max-width: 425px) {
+    top: 105%;
+    left: 30%;
+  }
 `;
 const LoaderContainer =styled.div`
 width: 500px;

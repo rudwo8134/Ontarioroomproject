@@ -17,13 +17,16 @@ import { useHistory, useLocation, useParams } from 'react-router-dom';
 import { readrentcondo } from '../../Redux/Rentcondo/rentcondo.saga';
 import Autocompletesearch from './Autocompletesearch';
 import { BiSearch } from 'react-icons/bi';
+import { useMediaQuery } from 'react-responsive';
 
 const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   margin-top: 100px;
   border-top: 1px solid ${CommonStyles.color.Darkbold1};
-  
+  @media screen and (max-width: 425px) {
+    margin-top: 0;
+  }
 
   .statebar {
     width: 100%;
@@ -79,12 +82,77 @@ const Wrapper = styled.div`
     width: 100vw;
     height: 87vh;
     display: flex;
+    @media screen and (max-width: 425px) {
+      flex-direction: column;
+      position: relative;
+    }
+    .ListViewMobile {
+      display: none;
+      @media screen and (max-width: 425px) {
+        display: inline-block;
+        width: 100vw;
+        z-index: 20;
+        
+      }
+      .textContainer {
+        @media screen and (max-width: 425px) {
+          margin-top: 13vh;
+          width: 100vw;
+          display: flex;
+          justify-content: flex-end;
+        }
+
+        .filter {
+          display: flex;
+          flex-direction: row;
+          .draweer {
+            border: none;
+            background-color: ${CommonStyles.color.Primary};
+            color: #fff;
+            border-radius: 16px;
+            margin-right: 1rem;
+          }
+          .sortContainer {
+            select {
+              border: 1px solid ${CommonStyles.color.Primary};
+              width: 5rem;
+              height: 2rem;
+              border-radius: 16px;
+              margin-right: 1rem;
+              margin-left: 1rem;
+            }
+          }
+        }
+      }
+    }
     .mapContainer {
       height: 100%;
       width: 100%;
       flex: 1.5;
       border-radius: 13px;
       position: relative;
+      @media screen and (max-width: 425px) {
+        height: 100vh;
+        width: 100vw;
+      }
+      .showList {
+        display: none;
+        @media screen and (max-width: 425px) {
+          display: ${({ showList }) => (showList ? 'none' : 'inline-block')};
+          position: absolute;
+          bottom: 5%;
+          left: 5%;
+          z-index: 30;
+          padding: 0.5rem;
+          border: none;
+          background-color: ${CommonStyles.color.Primary};
+          color: ${CommonStyles.color.White};
+          border-radius: 16px;
+          :hover {
+            background-color: ${CommonStyles.color.PrimaryLight2};
+          }
+        }
+      }
     }
     .dropContainer {
       height: 100%;
@@ -92,11 +160,15 @@ const Wrapper = styled.div`
       border-radius: 13px;
       display: flex;
       flex-direction: column;
+      @media screen and (max-width: 425px) {
+        display: none;
+      }
       .textContainer {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin: 1rem 2rem;
+
         .number {
           font-size: 14px;
           color: ${CommonStyles.color.Darkbold2};
@@ -271,7 +343,7 @@ const Marker = ({ children }) => children;
 
 const Home = (props) => {
   const { rooms, getData, User, getroomData } = props;
-
+  const isbigMobile = useMediaQuery({ query: '(max-width: 425px)' });
   const [loading, setLoading] = useState(false);
   const [address, setaddress] = useState([]);
   const [googlemapcenter, setgooglemapcenter] = useState(null);
@@ -299,6 +371,7 @@ const Home = (props) => {
   const [searchQuery, SetSearchquery] = useState(null);
   const [filter, SetFilter] = useState(null);
   const [finalData, setFinalData] = useState(rooms);
+  const [showList, setShowList] = useState(false);
 
   useEffect(() => {
     if (locationhistory || searchInMap) {
@@ -322,6 +395,9 @@ const Home = (props) => {
 
   const handleClick = (id) => {
     setSelected(id);
+    if(isbigMobile){
+      setShowList(true);
+    }
   };
 
   useEffect(() => {
@@ -378,6 +454,10 @@ const Home = (props) => {
     SetFilter(e.target.value);
   };
 
+  const watchtheList = () => {
+    setShowList(true);
+  };
+
   useEffect(() => {
     if (filter === 'low') {
       setFinalData(rooms?.sort((a, b) => b.monthlyfee - a.monthlyfee));
@@ -391,10 +471,13 @@ const Home = (props) => {
     <h1>Loading ....</h1>;
   }
   return (
-    <Wrapper>
+    <Wrapper showList={showList}>
       <div className="showContainer">
         <div className="mapContainer">
           <>
+            <button onClick={watchtheList} className="showList">
+              리스트 보기
+            </button>
             <AutoCompletediv>
               <div className="container">
                 <BiSearch />
@@ -516,6 +599,70 @@ const Home = (props) => {
             </GoogleMapReact>
           </>
         </div>
+        {showList && (
+          <div className="ListViewMobile">
+            <div className="textContainer">
+              <span className="number"></span>
+
+              <div className="filter">
+                <Filterbutton>필터</Filterbutton>
+                <div className="sortContainer">
+                  <select
+                    defaultValue="no"
+                    name="filter"
+                    id="filter"
+                    onChange={SelectFilter}
+                  >
+                    <option value="no">선택</option>
+                    <option value="high">가격 높은순</option>
+                    <option value="low">가격 낮은순</option>
+                  </select>
+                </div>
+                <button onClick={() => setShowList(false)} className="draweer">
+                  지도 보기
+                </button>
+              </div>
+            </div>
+            <div className="CardWrapper">
+              {selectInfo &&
+                selectInfo.map((data, index) => {
+                  return (
+                    <>
+                      <h4>선택한 집</h4>
+
+                      <Cardcontainer data={data} key={index} />
+                      <div className="linespace"></div>
+                    </>
+                  );
+                })}
+              <div className="TitleContainer">
+                <h3 className="searchResult">
+                  {searchQuery
+                    ? searchQuery?.split(',')[
+                        searchQuery?.split(',').length - 1
+                      ]
+                    : '검색어를 입력해주세요. '}
+                </h3>
+                <span className="howmanyReseult">
+                  {' '}
+                  {rooms.length} 개의 검색결과
+                </span>
+                <div className="dividers"></div>
+              </div>
+
+              {selectInfo
+                ? finalData
+                    ?.filter((data) => data.id !== selected)
+                    ?.map((data, index) => {
+                      return <Cardcontainer data={data} key={index} />;
+                    })
+                : finalData?.map((data, index) => {
+                    return <Cardcontainer data={data} key={index} />;
+                  })}
+            </div>
+          </div>
+        )}
+
         <div className="dropContainer">
           {/* filter container */}
           <div className="textContainer">
