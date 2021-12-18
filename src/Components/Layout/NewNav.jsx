@@ -9,9 +9,20 @@ import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../../Redux/Users/user.selector';
 import { signOutStart } from '../../Redux/Users/user.action';
 import { GiHamburgerMenu, GiCancel } from 'react-icons/gi';
+import WebFont from 'webfontloader';
+
+WebFont.load({
+  google: {
+    families: ['Jua', 'sans-serif', 'Do Hyeon', 'Sunflower']
+  }
+});
+
+
 const NavLink = styled(Link)`
   font-size: ${CommonStyles.fontSize.Medium};
-  color: ${CommonStyles.color.Darkbold4};
+  font-weight: ${CommonStyles.bold.bold};
+  font-family: 'Sunflower', sans-serif;
+  color:#241a19;
   margin-right: ${CommonStyles.margin.Reuglar};
   transition: all 0.5s ease-in-out;
   display: inline-block;
@@ -144,6 +155,7 @@ const NavWrapper = styled.nav`
     flex: 1;
     display: flex;
     justify-content: center;
+    align-items: center;
     @media screen and (max-width: 375px) {
       display: none;
     }
@@ -152,6 +164,7 @@ const NavWrapper = styled.nav`
       font-weight: bold;
     }
   }
+
   .loginContainer {
     flex: 1;
     display: flex;
