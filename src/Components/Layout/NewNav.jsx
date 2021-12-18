@@ -40,6 +40,12 @@ const NavWrapper = styled.nav`
   }
   .navLinkContainer {
     flex: 1;
+    display: flex;
+    justify-content: center;
+    a{
+      font-size: 20px;
+      font-weight: bold;
+    }
   }
   .loginContainer {
     flex: 1;

@@ -71,9 +71,14 @@ const Newherostyle = styled.div`
     transform: translate(-40%, -50%);
   }
   .englishslogan {
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-style: normal;
-    font-weight: bold;
-    font-size: 54px;
+    font-weight: normal;
+    font-size: 44px;
     line-height: 80px;
     /* or 175% */
 
@@ -82,6 +87,8 @@ const Newherostyle = styled.div`
     margin-bottom: -20px;
     color: ${CommonStyles.color.Dark};
     b {
+      font-weight: bold;
+      font-size: 64px;
       color: ${CommonStyles.color.Primary};
     }
   }
@@ -97,7 +104,7 @@ const Newherostyle = styled.div`
     text-transform: uppercase;
 
     color: #181718;
-    width: 70%;
+    width: 80%;
   }
   .searchcontainer {
     display: flex;
@@ -143,7 +150,7 @@ const Newherostyle = styled.div`
       border: 3px solid white;
       border-radius: 23px;
       ::before {
-        content: "";
+        content: '';
         position: absolute;
         display: block;
         top: 29%;
