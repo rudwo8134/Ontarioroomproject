@@ -47,13 +47,13 @@ const Footer = () => {
               </span>
             </div>
             <ul className="right">
-              {linkdata.map((data, index) => (
+              {/* {linkdata.map((data, index) => (
                 <li key={index}>
                   <Link to={data.link}>
                     <span className="link">{data.name}</span>
                   </Link>
                 </li>
-              ))}
+              ))} */}
             </ul>
           </div>
           <div className="divider"></div>

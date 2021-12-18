@@ -71,6 +71,7 @@ const Newherostyle = styled.div`
     transform: translate(-40%, -50%);
   }
   .englishslogan {
+    margin-top: 120px;
     display: flex;
     width: 80%;
     flex-direction: column;
