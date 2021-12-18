@@ -24,7 +24,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 ::selection{
-    background-color: red;
+    background-color: white;
 }
 
 a {
