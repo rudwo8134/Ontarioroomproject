@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/static/js/main.a768d78e.chunk.js",
-    "main.js.map": "/static/js/main.a768d78e.chunk.js.map",
+    "main.js": "/static/js/main.c3bbd2cf.chunk.js",
+    "main.js.map": "/static/js/main.c3bbd2cf.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.d71508b5.js",
     "runtime-main.js.map": "/static/js/runtime-main.d71508b5.js.map",
-    "static/js/2.fe41afba.chunk.js": "/static/js/2.fe41afba.chunk.js",
-    "static/js/2.fe41afba.chunk.js.map": "/static/js/2.fe41afba.chunk.js.map",
+    "static/js/2.1eec49a3.chunk.js": "/static/js/2.1eec49a3.chunk.js",
+    "static/js/2.1eec49a3.chunk.js.map": "/static/js/2.1eec49a3.chunk.js.map",
     "index.html": "/index.html",
-    "static/js/2.fe41afba.chunk.js.LICENSE.txt": "/static/js/2.fe41afba.chunk.js.LICENSE.txt",
+    "static/js/2.1eec49a3.chunk.js.LICENSE.txt": "/static/js/2.1eec49a3.chunk.js.LICENSE.txt",
     "static/media/BackgroundImage.b380f4ad.jpg": "/static/media/BackgroundImage.b380f4ad.jpg",
     "static/media/Introbanner.8fc22aef.jpg": "/static/media/Introbanner.8fc22aef.jpg",
     "static/media/Logoremovebg.721fabd9.png": "/static/media/Logoremovebg.721fabd9.png",
@@ -25,20 +25,20 @@
     "static/media/loginheader.0d1cd410.jpg": "/static/media/loginheader.0d1cd410.jpg",
     "static/media/main.8d33cea8.png": "/static/media/main.8d33cea8.png",
     "static/media/mapMarker.1f5e9249.svg": "/static/media/mapMarker.1f5e9249.svg",
-    "static/media/message_blue.c374abb9.svg": "/static/media/message_blue.c374abb9.svg",
-    "static/media/message_pink.f957327e.svg": "/static/media/message_pink.f957327e.svg",
+    "static/media/message_blue.3065b5d0.svg": "/static/media/message_blue.3065b5d0.svg",
+    "static/media/message_pink.3b52b420.svg": "/static/media/message_pink.3b52b420.svg",
     "static/media/person1.1141ce14.jpeg": "/static/media/person1.1141ce14.jpeg",
     "static/media/person1.4ab3cd46.png": "/static/media/person1.4ab3cd46.png",
     "static/media/person2.1f3eb3a9.png": "/static/media/person2.1f3eb3a9.png",
     "static/media/person3.97b0677f.jpg": "/static/media/person3.97b0677f.jpg",
     "static/media/person4.d44c441b.jpeg": "/static/media/person4.d44c441b.jpeg",
     "static/media/register.e20b4376.jpg": "/static/media/register.e20b4376.jpg",
-    "static/media/ring_orange.be9e2386.svg": "/static/media/ring_orange.be9e2386.svg",
+    "static/media/ring_orange.25b28ee1.svg": "/static/media/ring_orange.25b28ee1.svg",
     "static/media/video.a0703970.mp4": "/static/media/video.a0703970.mp4"
   },
   "entrypoints": [
     "static/js/runtime-main.d71508b5.js",
-    "static/js/2.fe41afba.chunk.js",
-    "static/js/main.a768d78e.chunk.js"
+    "static/js/2.1eec49a3.chunk.js",
+    "static/js/main.c3bbd2cf.chunk.js"
   ]
 }
