@@ -340,6 +340,7 @@ const NewNav = (props) => {
       pathname: '/Mypage',
       state: { params: User },
     });
+    setShowPopuo(false);
   };
   return (
     <NavWrapper scroll={scroll}>
@@ -357,7 +358,12 @@ const NewNav = (props) => {
       <div className="navLinkContainer">
         {Contents.nav.Link.map((data, index) => {
           return (
-            <NavLink to={data.linkAddress} key={index} className="Hoverworking">
+            <NavLink
+              onClick={() => setShowPopuo(false)}
+              to={data.linkAddress}
+              key={index}
+              className="Hoverworking"
+            >
               {data.linkName}
             </NavLink>
           );
@@ -370,7 +376,13 @@ const NewNav = (props) => {
             <button onClick={handlelogin} className="logoutbutton">
               My Page
             </button>
-            <button onClick={signout} className="logoutbutton">
+            <button
+              onClick={() => {
+                signout();
+                setShowPopuo(false);
+              }}
+              className="logoutbutton"
+            >
               LogOut
             </button>
           </>
@@ -400,6 +412,7 @@ const NewNav = (props) => {
             {Contents.nav.Link.map((data, index) => {
               return (
                 <Link
+                  onClick={() => setShowPopuo(false)}
                   to={data.linkAddress}
                   key={index}
                   className="Hoverworking"
@@ -422,12 +435,21 @@ const NewNav = (props) => {
           ) : (
             <div className="mypage">
               <Link
+                onClick={() => {
+                  setShowPopuo(false);
+                }}
                 to={Contents.nav.login.linkAddress}
                 style={{ marginRight: `${CommonStyles.margin.Reuglar}` }}
               >
                 {Contents.nav.login.linkName}
               </Link>
-              <Link>{Contents.nav.register.linkName}</Link>
+              <Link
+                onClick={() => {
+                  setShowPopuo(false);
+                }}
+              >
+                {Contents.nav.register.linkName}
+              </Link>
             </div>
           )}
         </div>
