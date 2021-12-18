@@ -17,7 +17,7 @@ const Divcontainer = styled.div`
   transform: translateX(15px);
   @media screen and (max-width: 375px) {
     width: 230px;
-    top:74vh;
+    top: 74vh;
   }
 `;
 
@@ -41,14 +41,20 @@ const EnterKeyForFind = styled.span`
     left: 30%;
   }
 `;
-const LoaderContainer =styled.div`
-width: 500px;
-display: flex;
-justify-content: center;
-align-items: center;
-`
+const LoaderContainer = styled.div`
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
 
-const Autocompletesearch = ({ findroom = false, setSearchInMap = null }) => {
+const Autocompletesearch = ({
+  findroom = false,
+  setSearchInMap = null,
+  showList,
+  setShowList,
+  isbigMobile,
+}) => {
   const history = useHistory();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -72,9 +78,15 @@ const Autocompletesearch = ({ findroom = false, setSearchInMap = null }) => {
       if (setSearchInMap) {
         setSearchInMap(compeletedata);
         setenter(false);
+        if (isbigMobile) {
+          setShowList(false);
+          return;
+        }
+
         return;
       }
       await dispatch(addressupdatestart(compeletedata));
+
       history.push({
         pathname: '/rentcondo',
         state: { params: compeletedata },
@@ -136,7 +148,7 @@ const Autocompletesearch = ({ findroom = false, setSearchInMap = null }) => {
                 : { backgroundColor: '#ffffff', cursor: 'pointer' };
               return (
                 <div
-                  className='suggestion'
+                  className="suggestion"
                   {...getSuggestionItemProps(suggestion, {
                     className,
                     style,

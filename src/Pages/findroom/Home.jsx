@@ -92,7 +92,6 @@ const Wrapper = styled.div`
         display: inline-block;
         width: 100vw;
         z-index: 20;
-        
       }
       .textContainer {
         @media screen and (max-width: 425px) {
@@ -272,6 +271,9 @@ const AutoCompletediv = styled.div`
   top: 30px;
   left: 30px;
   z-index: 20;
+  @media screen and (max-width: 425px) {
+    z-index: 29;
+  }
   .container {
     width: 300px;
     height: 40px;
@@ -395,7 +397,7 @@ const Home = (props) => {
 
   const handleClick = (id) => {
     setSelected(id);
-    if(isbigMobile){
+    if (isbigMobile) {
       setShowList(true);
     }
   };
@@ -482,6 +484,9 @@ const Home = (props) => {
               <div className="container">
                 <BiSearch />
                 <Autocompletesearch
+                  Lis={showList}
+                  setShowList={setShowList}
+                  isbigMobile={isbigMobile}
                   findroom={true}
                   setSearchInMap={setSearchInMap}
                 />
