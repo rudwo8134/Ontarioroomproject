@@ -3,6 +3,7 @@ import Calltoaction from '../Components/calltoaction/Calltoaction';
 import Contact from '../Components/Contactform/Contact';
 import { Feature } from '../Components/Features/Feature';
 import Newhero from '../Components/Hero/Newhero'
+import WhyonRoom from '../Components/Hero/WhyonRoom';
 import Newintro from '../Components/Intro/Newintro'
 import NewUpdate from '../Components/newUpdate/NewUpdate';
 import Ourteam from '../Components/Ourteam/Ourteam';
@@ -13,7 +14,7 @@ const Mainhomepage = () => {
     <>
       <Newhero />
       <NewUpdate />
-      <Newintro />
+      <WhyonRoom />
       <Ourteam />
     </>
   );

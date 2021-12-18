@@ -46,6 +46,11 @@ const NavWrapper = styled.nav`
     display: flex;
     justify-content: center;
     align-items: center;
+    .DetailButton{
+      width:100px;
+      height: 10px;
+      backgroundColor:none;
+    }
     .Username {
       text-transform: capitalize;
       font-size: ${CommonStyles.fontSize.Medium};
@@ -122,6 +127,7 @@ const NewNav = (props) => {
       <div className="loginContainer">
         {User ? (
           <>
+          <button className='DetailButton'> Detail page</button>
           <span onClick={handlelogin} className="Username">Hi! {User?.displayName}</span>
             <button onClick={signout} className="logoutbutton">
             LogOut
