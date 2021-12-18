@@ -65,12 +65,13 @@ const Wrapper = styled.div`
     .namecontainer {
       padding: 20px;
       .listcontainer2 {
-        width: 450px;
+        width: 750px;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
         margin-bottom: 24px;
+        position: relative;
         .list {
           width: 200px;
           font-size: 18px;
@@ -82,7 +83,11 @@ const Wrapper = styled.div`
           text-align: start;
           width: 100px;
         }
-        button {
+        .resetpassword{
+          width: 300px;
+          margin-left: 10px;
+          color: ${CommonStyles.color.PrimaryLight4}
+        } button {
           width: 130px;
           height: 30px;
           border: none;
@@ -125,6 +130,7 @@ const Mypage = ({ rooms, readStart }) => {
   const [load, setLoad] = useState(false);
   const [user, setUser] = useState(null);
   const [userPost, setUserPost] = useState(null);
+  const [sendPasswordBack, setSendPasswordBack] = useState(null);
   const location = useLocation();
   const history = useHistory();
   console.log(userPost);
@@ -151,7 +157,13 @@ const Mypage = ({ rooms, readStart }) => {
 
   console.log(user);
   const Sendpassword = () => {
-    Sendpasswordreset(user?.signemail);
+    Sendpasswordreset(user?.email).then((res) => {
+      if(res === 'success'){
+        setSendPasswordBack('비밀번호 변경 링크가 메일로 전송 되었습니다.')
+      }else{
+        setSendPasswordBack('문제가 발생했습니다. 고객센터에 문의해주세요.');
+      }
+    });
   };
   const handlesend = (id) => {
     history.push(`/rentcondo/${id}`);
@@ -178,6 +190,9 @@ const Mypage = ({ rooms, readStart }) => {
             <span className="list">비밀번호</span>
             <span className="name2">*************</span>
             <button onClick={Sendpassword}>비밀번호 초기화</button>
+            <span className="resetpassword">
+              {sendPasswordBack && sendPasswordBack}
+            </span>
           </div>
         </div>
         <div className="divider"></div>
