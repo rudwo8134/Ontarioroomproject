@@ -6,18 +6,15 @@ import { createStructuredSelector } from 'reselect';
 import { selectitems } from '../../Redux/Rentcondo/rentcondo.selector';
 import { connect } from 'react-redux';
 import { rentcondoreadstart } from '../../Redux/Rentcondo/rentcondo.action';
-<<<<<<< HEAD
 import Loader from 'react-loader-spinner';
-=======
-import {
-  BsFillCaretRightFill,
-} from 'react-icons/bs';
-import {GoPrimitiveDot} from 'react-icons/go'
->>>>>>> jiyoen/12
+import { BsFillCaretRightFill } from 'react-icons/bs';
+import { GoPrimitiveDot } from 'react-icons/go';
+import { useHistory } from 'react-router-dom';
 
 const NewupdateWrapper = styled.div`
   width: 100vw;
   height: 420px;
+  margin-bottom: 200px;
 
   .headerContainer {
     width: 100%;
@@ -54,7 +51,7 @@ const NewupdateWrapper = styled.div`
       margin-right: 30px;
       position: relative;
       cursor: pointer;
-      :last-child{
+      :last-child {
         margin-right: 0px;
       }
     }
@@ -65,7 +62,7 @@ const NewupdateWrapper = styled.div`
       height: 150px;
       background-color: rgba(35, 31, 32, 0.4);
       padding-left: 25px;
-      margin-bottom:1px;
+      margin-bottom: 1px;
 
       .address {
         font-size: 22;
@@ -93,6 +90,7 @@ const NewupdateWrapper = styled.div`
     .imgfile {
       width: 100%;
       height: 100%;
+      object-fit: cover;
     }
   }
 `;
@@ -127,8 +125,6 @@ const Arrowright = styled(BsFillCaretRightFill)`
   }
 `;
 
-
-
 const Dotfolder = styled.div`
   width: 100%;
   height: 10px;
@@ -139,15 +135,15 @@ const Dotfolder = styled.div`
 
 const NewUpdate = ({ rooms, readStart }) => {
   const [loading, setLoading] = useState(false);
-  
+  const history = useHistory();
   useEffect(() => {
     setLoading(true);
     readStart();
     setLoading(false);
   }, [readStart]);
-  
+
   const [currentImg, setCurrentImg] = useState(0);
-  const length = rooms?.image?.length;
+  const length = rooms?.length;
 
   const nextSlide = () => {
     setCurrentImg(currentImg === length - 1 ? 0 : currentImg + 1);
@@ -156,7 +152,6 @@ const NewUpdate = ({ rooms, readStart }) => {
     setCurrentImg(currentImg === 0 ? length - 1 : currentImg - 1);
   };
 
-  
   if (loading) {
     return (
       <Loader
@@ -168,47 +163,50 @@ const NewUpdate = ({ rooms, readStart }) => {
       />
     );
   }
+  const handclick = (id) => {
+    history.push(`/rentcondo/${id}`);
+  };
 
   return (
-
     <NewupdateWrapper>
       <div className="headerContainer">
         <h1 className="updatename">최신 게시물</h1>
         <div className="line"></div>
         <span>최근 7일 이전 집구하기 목록 </span>
       </div>
-      
-      <div className="cardContainer">
 
-          <Arrowleft onClick={previousSlide} />
-          <Arrowright onClick={nextSlide} />
-          {rooms &&
-            rooms?.slice(0, 4)?.map((data) => {
-              return (
-                <div key={data.id} className="rentCard">
-                  <div className="textcontainer">
-                    <h2 className="address">{data?.address?.Formattedaddress?.split(',')[0]}</h2>
-                    <h3 className="price"> ${data.monthlyfee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h3>
-                    <span>Learn more</span>
-                  </div>
-                  <img
-                    className="imgfile"
-                    src={data?.image[0] ? data?.image[0] : data?.image[1]}
-                    alt="img"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = `${Background}`;
-                    }}/>
-         
+      <div className="cardContainer">
+        {rooms &&
+          rooms?.slice(0, 4)?.map((data) => {
+            return (
+              <div key={data.id} className="rentCard">
+                <div className="textcontainer">
+                  <h2 className="address">
+                    {data?.address?.Formattedaddress?.split(',')[0]}
+                  </h2>
+                  <h3 className="price">
+                    {' '}
+                    $
+                    {data.monthlyfee
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                  </h3>
+                  <span onClick={() => handclick(data?.id)}>Learn more</span>
+                </div>
+                <img
+                  className="imgfile"
+                  src={data?.image[0] ? data?.image[0] : data?.image[1]}
+                  alt="img"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = `${Background}`;
+                  }}
+                />
               </div>
             );
-          })} 
-
+          })}
       </div>
     </NewupdateWrapper>
-
-    
-  
   );
 };
 
