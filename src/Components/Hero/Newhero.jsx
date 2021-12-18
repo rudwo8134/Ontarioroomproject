@@ -1,17 +1,27 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import Background from "../../assets/Background1.jpg";
+import Background from "../../assets/bg1.jpg";
 import Autocompletesearch from "../../Pages/findroom/Autocompletesearch";
 import { CommonStyles } from "../../staticFiles/CommonStyles";
+
+import WebFont from 'webfontloader';
+
+WebFont.load({
+  google: {
+    families: ['Jua', 'sans-serif', 'Do Hyeon']
+  }
+});
+
 const Newhero = () => {
   return (
     <Newherostyle>
       <form action="" className="search">
         <h2 className="englishslogan">
-          캐나다에서 빠르고 편하게 <br /> 집을 찾는 <b>ONROOM</b>
+          캐나다에서 방이 필요할 땐?
         </h2>
+        <h1 className="begin"><span className="onroom">ON<span className="onroom-black">ROO</span>M!</span></h1>
         <h1 className="slogan">
-          방을 쉽고 빠르고 정확하게 찾을수 있는 믿음 가는 사이트!
+          ONROOM에서 쉽고 빠르고 정확하게 방을 찾아보세요!
         </h1>
         <div className="searchcontainer">
           <Autocompletesearch />
@@ -53,8 +63,8 @@ const Newherostyle = styled.div`
   background-image: url(${Background});
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 0% 60%;
-  opacity: 100%;
+  background-position: 10% 50%;
+  opacity: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,7 +81,7 @@ const Newherostyle = styled.div`
     transform: translate(-40%, -50%);
   }
   .englishslogan {
-    margin-top: 120px;
+    margin-top: 150px;
     display: flex;
     width: 80%;
     flex-direction: column;
@@ -79,23 +89,60 @@ const Newherostyle = styled.div`
     align-items: center;
     font-style: normal;
     font-weight: normal;
-    font-size: 44px;
-    line-height: 80px;
+    font-size: 40px;
+    line-height: 40px;
+    font-family: 'Jua', sans-serif;
     /* or 175% */
 
     text-align: center;
     letter-spacing: -1px;
     margin-bottom: -20px;
-    color: ${CommonStyles.color.Dark};
+    color: #27201a;
+
     b {
       font-weight: bold;
       font-size: 64px;
       color: ${CommonStyles.color.Primary};
     }
   }
-  .slogan {
+  .begin{ 
+    margin-top: 50px;
+    display: flex;
+    width: 80%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     font-style: normal;
-    font-weight: ${CommonStyles.bold.Medium};
+    //font-weight: normal;
+    font-size: 34px;
+    /* or 175% */
+    font-family: 'Do Hyeon', sans-serif;
+
+    text-align: center;
+    letter-spacing: -1px;
+    margin-bottom: -20px;
+    color: ${CommonStyles.color.Darkbold1};
+
+  .onroom {
+    font-weight: ${CommonStyles.bold.LittleBold};
+    font-size: 76px;
+    line-height: 40px;
+    text-align: center;
+    color: ${CommonStyles.color.Primary};
+    }
+    .onroom-black {
+        font-weight: 1200;
+        font-size: 74px;
+        line-height: 40px;
+        text-align: center;
+        color: black;
+    }
+  }
+
+  .slogan {
+    margin-top: 40px;
+    font-style: normal;
+    font-weight: ${CommonStyles.bold.bold};
     font-size: 18px;
     line-height: 70px;
     /* identical to box height, or 389% */
@@ -116,7 +163,8 @@ const Newherostyle = styled.div`
       width: 500px;
       height: 62px;
       border-radius: 30px;
-      background: rgba(255, 255, 255, 0.6);
+      bawckground: white;
+      //background: rgba(255, 255, 255, 0.6);
       border: 1px solid ${CommonStyles.color.PrimaryLight3};
       padding: 1.5rem;
       margin-left: 3%;
