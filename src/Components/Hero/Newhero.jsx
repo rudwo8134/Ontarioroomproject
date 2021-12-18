@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
-import Background from "../../assets/p2.jpg";
+import Background from "../../assets/bg1.jpg";
 import Autocompletesearch from "../../Pages/findroom/Autocompletesearch";
 import { CommonStyles } from "../../staticFiles/CommonStyles";
 
@@ -63,7 +63,7 @@ const Newherostyle = styled.div`
   background-image: url(${Background});
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 0% 105%;
+  background-position: 0% 25%;
   opacity: 95%;
   display: flex;
   justify-content: center;

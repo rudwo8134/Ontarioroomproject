@@ -25,6 +25,7 @@ const Wrapper = styled.div`
     width: 1200px;
     display: flex;
     justify-content: space-between;
+    
     .backbutton {
       height: 35px;
       background-color: white;
@@ -104,7 +105,7 @@ const Wrapper = styled.div`
       .name {
         width: 100px;
         font-weight: 600;
-        color: ${CommonStyles.color.Darkbold3};
+        color: rgba(35, 31, 32, 0.61);
       }
       .buttoncontainer {
         margin-left: 15px;
@@ -152,34 +153,40 @@ const Wrapper = styled.div`
         justify-content: space-between;
         .name {
           font-weight: 700;
-          color: ${CommonStyles.color.Darkbold3};
-        }
+          color: rgba(35, 31, 32, 0.61);
+        };
         select,
         input {
           margin-left: 40px;
-          width: 250px;
+          width: 231px;
           height: 30px;
           border: 1px solid ${CommonStyles.color.Primary};
-          background-color: white;
-          border-radius: 8px;
+          box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
+          background-color: rgba(255, 255, 255, 0.6);
+          border-radius: 10px;
         }
       }
       .propertytype {
         width: 60%;
         display: flex;
+        justify-self: flex-end;
         flex-direction: row;
-        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        
+        justify-content: center;
         .name {
           font-weight: 700;
-          color: ${CommonStyles.color.Darkbold3};
+          color: rgba(35, 31, 32, 0.61);
         }
         select,
         input {
-          width: 250px;
+          width: 231px;
           height: 30px;
           border: 1px solid ${CommonStyles.color.Primary};
-          background-color: white;
-          border-radius: 8px;
+          box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
+          background-color: rgba(255, 255, 255, 0.6);
+          border-radius: 10px;
         }
       }
     }
@@ -199,6 +206,10 @@ const Wrapper = styled.div`
         flex-direction: row;
         justify-content: space-between;
         margin-bottom: ${CommonStyles.margin.Reuglar};
+        .name {
+          font-weight: 700;
+          color:rgba(35, 31, 32, 0.61);
+        }
         h1 {
           font-size: 16px;
           width: 250px;
@@ -217,11 +228,11 @@ const Wrapper = styled.div`
         width: 500px;
         margin-top: 40px;
         button {
-          width: 200px;
-          height: 35px;
+          width: 239px;
+          height: 42px;
           background-color: ${CommonStyles.color.Primary};
-          border: none;
-          border-radius: 16px;
+          border: 1px solid #DF1B52;
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
           color: ${CommonStyles.color.White};
           font-size: 13px;
           font-weight: 700;
@@ -242,14 +253,18 @@ const Wrapper = styled.div`
         .name {
           width: 200px;
           font-weight: 700;
-          color: ${CommonStyles.color.Darkbold3};
+          color: rgba(35, 31, 32, 0.61);
         }
         textarea {
-          width: 500px;
-          height: 300px;
-          border: 1px solid ${CommonStyles.color.Primary};
+          margin-top: 20px;
+          width: 496px;
+          height: 355px;
+          background: rgba(255, 255, 255, 0.6);
+          box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
+          border-radius: 10px;
         }
       }
+
       .propertytype {
         width: 60%;
         display: flex;
@@ -259,16 +274,27 @@ const Wrapper = styled.div`
         .name {
           width: 200px;
           font-weight: 700;
-          color: ${CommonStyles.color.Darkbold3};
+          color: rgba(35, 31, 32, 0.61);
         }
         select,
         input {
           width: 250px;
           height: 30px;
           border: 1px solid ${CommonStyles.color.Primary};
-          background-color: white;
-          border-radius: 8px;
+          background-color: rgba(255, 255, 255, 0.6);
+          box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
+          border-radius: 10px;
         }
+
+        .titleInput{
+          width: 250px;
+          height: 30px;
+          border: 1px solid ${CommonStyles.color.Primary};
+          background-color: rgba(255, 255, 255, 0.6);
+          box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
+          border-radius: 10px;
+      }
+        
       }
     }
   }
@@ -527,27 +553,73 @@ const Postrentroom = ({ poststart, user }) => {
         <Wrapper>
           <form onSubmit={submithandler}>
             <div className="header">
-              <h1 className="name">List your place</h1>
+              <h1 className="name">장소를 설명해 주세요!</h1>
             </div>
             <div className="body">
               <div className="left">
                 <div className="propertytype">
-                  <span className="name">Property type*</span>
+                  <span className="name">집 유형*</span>
                   <select
                     required
                     onChange={handlecredentialchange}
                     name="properytype"
                     value={postcredential?.properytype}
                   >
-                    <option value="apart">apart</option>
-                    <option value="condo">condo</option>
-                    <option value="house">house</option>
-                    <option value="townhouse">townhouse</option>
+                    <option value="apart">아파트</option>
+                    <option value="condo">콘도</option>
+                    <option value="house">하우스</option>
+                    <option value="townhouse">타운하우스</option>
                   </select>
                 </div>
+                <div className="propertytype">
+                  <span className="name">렌트 유형*</span>
+                  <select
+                    required
+                    name="roomtype"
+                    value={postcredential?.roomtype}
+                    onChange={handlecredentialchange}
+                  >
+                    <option value="whole">전체렌트</option>
+                    <option value="room">룸렌트</option>
+                  </select>
+                </div>
+
+                <div className="propertytypeimage">
+                <span className="name">사진*</span> 
+                  {imageloading ? (
+                    <h1>...loading</h1>
+                  ) : (
+                    <>
+                      <label htmlFor=""></label>
+                    </>
+                  )}
+                  <input
+                    required
+                    type="file"
+                    onChange={handleimage}
+                    multiple
+                    accept="image/*"
+                  />
+                </div>
+                <Imageuploadcontainer>
+                  {imageresults ? (
+                    imageresults.map((imgurl, index) => {
+                      return (
+                        <img
+                          src={imgurl}
+                          alt={`uploaded{index}`}
+                          key={index}
+                        />
+                      );
+                    })
+                  ) : (
+                    <img src={Noimage} alt="noimage" />
+                  )}
+                </Imageuploadcontainer>
+
                 <div className="location">
-                  <div className="locationtype">
-                    <span className="name">Location*</span>
+                    <span className="name">주소*</span>
+                    <div className="locationtype">
                     <PlacesAutocomplete
                       value={address}
                       onChange={handlechange}
@@ -629,7 +701,18 @@ const Postrentroom = ({ poststart, user }) => {
               <div className="divider"></div>
               <div className="right">
                 <div className="propertytype">
-                  <span className="name">Title*</span>
+                  <span className="name">렌트비(월)*</span>
+                  <input
+                    required
+                    onChange={handlecredentialchange}
+                    value={postcredential?.monthlyfee}
+                    name="monthlyfee"
+                    type="number"
+                    placeholder="CAD"
+                  />
+                </div>
+                <div className="propertytype">
+                  <span className="name">추가연락처</span>
                   <input
                     required
                     onChange={handlecredentialchange}
@@ -637,63 +720,21 @@ const Postrentroom = ({ poststart, user }) => {
                     name="posttitle"
                     type="text"
                   />
-                </div>
+                </div>         
+
                 <div className="propertytype">
-                  <span className="name">Type of Rental*</span>
-                  <select
-                    required
-                    name="roomtype"
-                    value={postcredential?.roomtype}
-                    onChange={handlecredentialchange}
-                  >
-                    <option value="whole">전체렌트</option>
-                    <option value="room">룸렌트</option>
-                  </select>
-                </div>
-                <div className="propertytype">
-                  <span className="name">Rent fee*</span>
-                  $
-                  <input
+                  <span className="name">글제목*</span>
+                  <input className="titleInput"
                     required
                     onChange={handlecredentialchange}
-                    value={postcredential?.monthlyfee}
-                    name="monthlyfee"
-                    type="number"
+                    value={postcredential?.posttitle}
+                    name="posttitle"
+                    type="text"
                   />
                 </div>
-                <div className="propertytypeimage">
-                  {imageloading ? (
-                    <h1>...loading</h1>
-                  ) : (
-                    <>
-                      <label htmlFor="">attach the picture</label>
-                    </>
-                  )}
-                  <input
-                    required
-                    type="file"
-                    onChange={handleimage}
-                    multiple
-                    accept="image/*"
-                  />
-                </div>
-                <Imageuploadcontainer>
-                  {imageresults ? (
-                    imageresults.map((imgurl, index) => {
-                      return (
-                        <img
-                          src={imgurl}
-                          alt={`uploaded${index}`}
-                          key={index}
-                        />
-                      );
-                    })
-                  ) : (
-                    <img src={Noimage} alt="noimage" />
-                  )}
-                </Imageuploadcontainer>
+
                 <div className="description">
-                  <span className="name">Description</span>
+                  <span className="name">설명</span>
                   <textarea
                     required
                     onChange={handlecredentialchange}
@@ -702,10 +743,12 @@ const Postrentroom = ({ poststart, user }) => {
                     id="description"
                     cols="30"
                     rows="10"
+                    placeholder=' 
+                        입력..'
                   ></textarea>
                 </div>
                 <div className="buttoncontainer">
-                  <button type="submit">continue</button>
+                  <button type="submit">계속</button>
                 </div>
               </div>
             </div>
