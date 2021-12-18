@@ -15,8 +15,11 @@ const NewupdateWrapper = styled.div`
   width: 100vw;
   height: 420px;
   margin-bottom: 200px;
+  @media screen and (max-width: 425px) {
+    height: 170vh;
+  }
   @media screen and (max-width: 375px) {
-    height: 230vh
+    height: 170vh;
   }
 
   .headerContainer {
@@ -32,6 +35,9 @@ const NewupdateWrapper = styled.div`
       font-size: ${CommonStyles.fontSize.ExtraLarge1};
       font-weight: ${CommonStyles.bold.LittleBold};
       text-align: 'center';
+      @media screen and (max-width: 425px) {
+        font-size: 2.3rem;
+      }
       @media screen and (max-width: 375px) {
         font-size: 2rem;
       }
@@ -50,9 +56,13 @@ const NewupdateWrapper = styled.div`
     display: flex;
     justify-content: center;
     margin: 0 30px;
+    @media screen and (max-width: 425px) {
+      flex-direction: column;
+    }
     @media screen and (max-width: 375px) {
       flex-direction: column;
     }
+
     .rentCard {
       width: 300px;
       height: 290px;
@@ -62,10 +72,28 @@ const NewupdateWrapper = styled.div`
       :last-child {
         margin-right: 0px;
       }
-      @media screen and (max-width: 375px) {
-        width: 250px;
+      @media screen and (max-width: 425px) {
+        width: 300px;
+        margin-right: 0;
         margin: 0 auto;
         margin-bottom: 1.5rem;
+        justify-content: center;
+        align-items: center;
+        :last-child {
+          margin: 0 auto;
+        }
+      }
+      @media screen and (max-width: 375px) {
+        width: 250px;
+        margin-right: 0;
+        display: flex;
+        justify-content: center;
+        margin: 0 auto;
+        margin-bottom: 1.5rem;
+        align-items: center;
+        :last-child {
+          margin: 0 auto;
+        }
       }
     }
     .textcontainer {
@@ -76,6 +104,9 @@ const NewupdateWrapper = styled.div`
       background-color: rgba(35, 31, 32, 0.4);
       padding-left: 25px;
       margin-bottom: 1px;
+      @media screen and (max-width: 375px) {
+        width: 260px;
+      }
 
       .address {
         font-size: 22;
@@ -104,6 +135,9 @@ const NewupdateWrapper = styled.div`
       width: 100%;
       height: 100%;
       object-fit: cover;
+      @media screen and (max-width: 375px) {
+        width: 260px;
+      }
     }
   }
 `;

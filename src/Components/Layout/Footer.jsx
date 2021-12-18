@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
 import style from '../../static/staticcss';
 import { Link } from 'react-router-dom';
-import { Footerdata,Navdata } from '../../static/staticdata';
+import { Footerdata, Navdata } from '../../static/staticdata';
 import { Innerlayout } from '../../styles/layout';
 import {
   FaFacebookSquare,
   FaGooglePlusSquare,
   FaTwitterSquare,
 } from 'react-icons/fa';
-import Logo from '../../assets/nav/LOGO.png'
+import Logo from '../../assets/nav/LOGO.png';
 
 const linkdata = [
   {
@@ -64,7 +64,7 @@ const Footer = () => {
       </Footerstyle>
     </Innerlayout>
   );
-}
+};
 
 const Footerstyle = styled.footer`
   height: 20vh;
@@ -103,8 +103,8 @@ const Footerstyle = styled.footer`
       .icon {
         display: flex;
         @media screen and (max-width: 375px) {
-         align-items: center;
-         justify-content: center;
+          align-items: center;
+          justify-content: center;
         }
 
         svg {
@@ -203,4 +203,4 @@ const Footerstyle = styled.footer`
   }
 `;
 
-export default Footer
+export default Footer;

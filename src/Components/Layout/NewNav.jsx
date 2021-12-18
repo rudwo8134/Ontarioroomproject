@@ -13,16 +13,15 @@ import WebFont from 'webfontloader';
 
 WebFont.load({
   google: {
-    families: ['Jua', 'sans-serif', 'Do Hyeon', 'Sunflower']
-  }
+    families: ['Jua', 'sans-serif', 'Do Hyeon', 'Sunflower'],
+  },
 });
-
 
 const NavLink = styled(Link)`
   font-size: ${CommonStyles.fontSize.Medium};
   font-weight: ${CommonStyles.bold.bold};
   font-family: 'Sunflower', sans-serif;
-  color:#241a19;
+  color: #241a19;
   margin-right: ${CommonStyles.margin.Reuglar};
   transition: all 0.5s ease-in-out;
   display: inline-block;
@@ -55,6 +54,15 @@ const NavWrapper = styled.nav`
     justify-content: space-between;
     align-self: space-between;
   }
+  @media screen and (max-width: 425px) {
+    position: sticky;
+    width: 100vw;
+    height: 40px;
+    padding: 30px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-self: space-between;
+  }
   .logoConatiner {
     display: flex;
     justify-content: center;
@@ -64,12 +72,21 @@ const NavWrapper = styled.nav`
       flex: none;
       display: inline-block;
     }
+    @media screen and (max-width: 425px) {
+      flex: none;
+      display: inline-block;
+    }
 
     img {
       @media screen and (max-width: 375px) {
         display: inline-block;
         width: 110px;
         height: 25px;
+      }
+      @media screen and (max-width: 425px) {
+        display: inline-block;
+        width: 149px;
+        height: 30px;
       }
     }
   }
@@ -85,9 +102,83 @@ const NavWrapper = styled.nav`
         font-size: 2.5rem;
       }
     }
+    @media screen and (max-width: 425px) {
+      display: inline-block;
+      button {
+        background-color: transparent;
+        border: none;
+      }
+      svg {
+        font-size: 2.5rem;
+        color: ${CommonStyles.color.Darkbold4};
+      }
+    }
   }
   .HamburgerLinkcontainer {
     display: none;
+    @media screen and (max-width: 425px) {
+      display: inline-block;
+      position: absolute;
+      top: -10px;
+      left: 0;
+      width: 100vw;
+      height: 102vh;
+      background-color: ${CommonStyles.color.White};
+      .mypage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        button {
+          background-color: transparent;
+          border: none;
+          font-size: 1.5rem;
+          margin-top: 30px;
+          color: ${CommonStyles.color.Dark};
+        }
+        a {
+          background-color: transparent;
+          border: none;
+          font-size: 1.5rem;
+          margin-top: 30px;
+          color: ${CommonStyles.color.Dark};
+        }
+        .Username {
+          position: absolute;
+          bottom: 20px;
+          color: ${CommonStyles.color.Primary};
+        }
+      }
+      .linkcontainer {
+        margin-top: 100px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        a {
+          font-size: 1.5rem;
+          margin-top: 30px;
+          color: ${CommonStyles.color.Dark};
+        }
+      }
+      .logoConatiner {
+        position: absolute;
+        top: 25px;
+        left: 10px;
+      }
+      .xButton {
+        position: absolute;
+        top: 20px;
+        right: 10px;
+        background-color: transparent;
+        border: none;
+
+        svg {
+          font-size: 2.5rem;
+          color: ${CommonStyles.color.Darkbold4};
+        }
+      }
+    }
     @media screen and (max-width: 375px) {
       display: inline-block;
       position: absolute;
@@ -163,6 +254,9 @@ const NavWrapper = styled.nav`
       font-size: 20px;
       font-weight: bold;
     }
+    @media screen and (max-width: 425px) {
+      display: none;
+    }
   }
 
   .loginContainer {
@@ -171,6 +265,9 @@ const NavWrapper = styled.nav`
     justify-content: center;
     align-items: center;
     @media screen and (max-width: 375px) {
+      display: none;
+    }
+    @media screen and (max-width: 425px) {
       display: none;
     }
     .DetailButton {

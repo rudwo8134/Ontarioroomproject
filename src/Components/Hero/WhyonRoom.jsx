@@ -1,7 +1,7 @@
-import React from "react";
-import { useRef } from "react";
-import styled from "styled-components";
-import { CommonStyles } from "../../staticFiles/CommonStyles";
+import React from 'react';
+import { useRef } from 'react';
+import styled from 'styled-components';
+import { CommonStyles } from '../../staticFiles/CommonStyles';
 
 const Why = styled.div`
   max-width: 1300px;
@@ -18,6 +18,9 @@ const Why = styled.div`
     @media screen and (max-width: 375px) {
       font-size: 2rem;
     }
+    @media screen and (max-width: 425px) {
+      font-size: 2.5rem;
+    }
   }
   .line {
     width: ${({ lineWidth }) => `${lineWidth * 0.4}px`};
@@ -33,6 +36,13 @@ const Why = styled.div`
     align-items: space-between;
     @media screen and (max-width: 375px) {
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    @media screen and (max-width: 425px) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
   }
   .card {
@@ -57,6 +67,9 @@ const Why = styled.div`
       @media screen and (max-width: 375px) {
         width: 240px;
       }
+      @media screen and (max-width: 425px) {
+        width: 290px;
+      }
     }
   }
 `;
@@ -75,7 +88,7 @@ const WhyonRoom = () => {
           <h4>
             01.<br></br>간편
           </h4>
-          
+
           <p>
             원하는 것들만 한눈에 효율적이고 짧은 시간에 볼 수 있는 시스템을
             만들도록 노력하였습니다.

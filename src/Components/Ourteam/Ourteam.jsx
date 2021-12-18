@@ -79,7 +79,17 @@ const Ourteamstyle = styled.section`
     column-gap: 1px;
     row-gap: 30px;
     @media screen and (max-width: 375px) {
+      row-gap: 30px;
       grid-template-columns: repeat(1, 1fr);
+      padding: 0;
+      width: 100vw;
+      column-gap: none;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
     }
   }
   .title {
@@ -129,7 +139,7 @@ const Ourteamstyle = styled.section`
 
       mix-blend-mode: normal;
       @media screen and (max-width: 375px) {
-        width: 80vw;
+        width: 70vw;
       }
     }
   }
