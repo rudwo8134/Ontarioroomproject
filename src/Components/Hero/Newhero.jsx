@@ -19,7 +19,7 @@ const Newhero = () => {
         <h2 className="englishslogan">
           캐나다에서 방이 필요할 땐?
         </h2>
-        <h1 className="begin"><span className="onroom">ON<span className="onroom-black">ROO</span>M!</span></h1>
+        <h1 className="begin"><span className="onroom">ON<span className="onroom-black">ROO</span>M</span></h1>
         <h1 className="slogan">
           ONROOM에서 쉽고 빠르고 정확하게 방을 찾아보세요!
         </h1>
@@ -63,8 +63,8 @@ const Newherostyle = styled.div`
   background-image: url(${Background});
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 10% 50%;
-  opacity: 90%;
+  background-position: 0% 25%;
+  opacity: 95%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,7 +77,7 @@ const Newherostyle = styled.div`
   }
   .search {
     position: absolute;
-    top: 40%;
+    top: 36%;
     left: 50%;
     width: 700px;
     display: flex;
@@ -112,7 +112,7 @@ const Newherostyle = styled.div`
     text-align: center;
     letter-spacing: -1px;
     margin-bottom: -20px;
-    color: ${CommonStyles.color.Dark};
+    color: #802a3b;
     @media screen and (max-width: 375px) {
       font-size: 1.2rem;
       margin-bottom: -20px;
@@ -139,6 +139,7 @@ const Newherostyle = styled.div`
     font-style: normal;
     //font-weight: normal;
     font-size: 34px;
+   
     /* or 175% */
     font-family: 'Do Hyeon', sans-serif;
 
@@ -153,6 +154,7 @@ const Newherostyle = styled.div`
     line-height: 40px;
     text-align: center;
     color: ${CommonStyles.color.Primary};
+    letter-spacing: 0.1rem;
     }
     .onroom-black {
         font-weight: 1200;
@@ -160,22 +162,24 @@ const Newherostyle = styled.div`
         line-height: 40px;
         text-align: center;
         color: black;
+        letter-spacing: 0.1rem;
     }
   }
 
   .slogan {
     margin-top: 40px;
+    margin-bottom: -5px;
     font-style: normal;
+    font-family: 'Do Hyun', sans-serif;
     font-weight: ${CommonStyles.bold.bold};
-    font-size: 18px;
+    font-size: 17px;
     line-height: 70px;
     /* identical to box height, or 389% */
-
     text-align: center;
     letter-spacing: -1px;
     text-transform: uppercase;
 
-    color: #181718;
+    color: black;
     width: 80%;
     @media screen and (max-width: 375px) {
       font-size: 0.8rem;
@@ -199,14 +203,15 @@ const Newherostyle = styled.div`
       }
     }
     input {
-      width: 500px;
-      height: 62px;
+      width: 375px;
+      height: 48px;
       border-radius: 30px;
       background: white;
       //background: rgba(255, 255, 255, 0.6);
-      border: 1px solid ${CommonStyles.color.PrimaryLight3};
+      //border: 1px solid ${CommonStyles.color.PrimaryLight3};
+      border: 1px solid #616060;
       padding: 1.5rem;
-      margin-left: 3%;
+      margin-left: 26%;
       @media screen and (max-width: 375px) {
         width: 15rem;
         position: relative;
@@ -214,9 +219,10 @@ const Newherostyle = styled.div`
       ::placeholder {
         font-style: normal;
         font-weight: normal;
-        font-size: 20px;
-        line-height: 26px;
-        color: ${CommonStyles.color.PrimaryLight4};
+        font-size: 17px;
+        line-height: 24px;
+        color: #acaaaa;
+        //color: ${CommonStyles.color.PrimaryLight4};
         @media screen and (max-width: 375px) {
           font-size: 0.8rem;
         }

@@ -13,7 +13,7 @@ export const Contents = {
       },
       {
         id: 3,
-        linkName: '고객 센터',
+        linkName: '고객센터',
         linkAddress: '/ContactUs',
       },
     ],
