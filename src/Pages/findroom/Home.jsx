@@ -535,7 +535,7 @@ const Home = (props) => {
                 {
                   searchQuery ? (searchQuery?.split(',')[
                     searchQuery?.split(',').length - 1
-                  ]) : '검색해 주세요 :) '
+                  ]) : '검색어를 입력해주세요. '
                 }
               </h3>
               <span className="howmanyReseult">

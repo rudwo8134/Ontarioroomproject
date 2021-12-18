@@ -30,6 +30,11 @@ export const createrentcondopost = async(data) =>{
   return rentconforef
 }
 
+export const UpdateLikeFunction = async(userid,data) =>{
+  var db = firebase.firestore();
+  db.collection('users').doc(userid).update({ like: data });
+}
+
 export const createUserProfileDocument = async (userauth, additionaldata) =>{
   if(!userauth) return;
 
