@@ -1,37 +1,37 @@
-import React from "react";
-import styled from "styled-components";
-import { Innerlayout } from "../../styles/layout";
-import PersonCard from "../util/PersonCard";
-import Primarybutton from "../util/Primarybutton";
-import { CommonStyles } from "../../staticFiles/CommonStyles";
-import p1 from "../../assets/profile/person1.jpeg";
-import p2 from "../../assets/profile/person2.png";
-import p3 from "../../assets/profile/person3.jpg";
-import p4 from "../../assets/profile/person4.jpeg";
+import React from 'react';
+import styled from 'styled-components';
+import { Innerlayout } from '../../styles/layout';
+import PersonCard from '../util/PersonCard';
+import Primarybutton from '../util/Primarybutton';
+import { CommonStyles } from '../../staticFiles/CommonStyles';
+import p1 from '../../assets/profile/person1.jpeg';
+import p2 from '../../assets/profile/person2.png';
+import p3 from '../../assets/profile/person3.jpg';
+import p4 from '../../assets/profile/person4.jpeg';
 
 const Ourtemadata = [
   {
-    name: "이준서",
-    job: "Creative Director",
-    job2: "CDO(Chief Design Officer)",
+    name: '이준서',
+    job: 'Creative Director',
+    job2: 'CDO(Chief Design Officer)',
     image: p1,
   },
   {
-    name: "홍기혁",
-    job: "Marketing Director",
-    job2: "CMO(Chief Marketing Officer)",
+    name: '홍기혁',
+    job: 'Marketing Director',
+    job2: 'CMO(Chief Marketing Officer)',
     image: p4,
   },
   {
-    name: "신경재",
-    job: "Development Director",
-    job2: "CTO(Chief Technology Officer)",
+    name: '신경재',
+    job: 'Development Director',
+    job2: 'CTO(Chief Technology Officer)',
     image: p2,
   },
   {
-    name: "전지연",
-    job: "Development Manager",
-    job2: "CFO(Chief Financial Officer)",
+    name: '전지연',
+    job: 'Development Manager',
+    job2: 'CFO(Chief Financial Officer)',
     image: p3,
   },
 ];
@@ -78,6 +78,9 @@ const Ourteamstyle = styled.section`
     grid-template-columns: repeat(4, 1fr);
     column-gap: 1px;
     row-gap: 30px;
+    @media screen and (max-width: 375px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
   .title {
     display: flex;
@@ -91,6 +94,9 @@ const Ourteamstyle = styled.section`
       border-radius: 30px;
       margin-top: 3px;
       margin-bottom: 16px;
+      @media screen and (max-width: 375px) {
+        margin-top: -13px;
+      }
     }
     .main {
       font-weight: bold;
@@ -100,6 +106,9 @@ const Ourteamstyle = styled.section`
       letter-spacing: -0.4px;
       color: ${CommonStyles.color.Primary};
       margin-bottom: 20px;
+      @media screen and (max-width: 375px) {
+        font-size: 2rem;
+      }
     }
     .paragraph {
       .onroom {
@@ -116,11 +125,14 @@ const Ourteamstyle = styled.section`
 
       /* Colors / Text */
       width: 915px;
-      color: #231F20;
+      color: #231f20;
 
       mix-blend-mode: normal;
+      @media screen and (max-width: 375px) {
+        width: 80vw;
       }
     }
+  }
 `;
 
 export default Ourteam;

@@ -36,10 +36,10 @@ const NavWrapper = styled.nav`
   background: ${({ scroll }) => (scroll ? 'white' : 'transparent')};
   transition: all 0.5s ease-in-out;
   @media screen and (max-width: 375px) {
+    position: sticky;
     width: 100vw;
     height: 40px;
-    margin: 20px 0px;
-    padding: 0 10px;
+    padding: 30px 10px;
     display: flex;
     justify-content: space-between;
     align-self: space-between;
@@ -57,8 +57,8 @@ const NavWrapper = styled.nav`
     img {
       @media screen and (max-width: 375px) {
         display: inline-block;
-        width: 150px;
-        height: 40px;
+        width: 110px;
+        height: 25px;
       }
     }
   }
@@ -80,10 +80,10 @@ const NavWrapper = styled.nav`
     @media screen and (max-width: 375px) {
       display: inline-block;
       position: absolute;
-      top: -20px;
+      top: -10px;
       left: 0;
       width: 100vw;
-      height: 100vh;
+      height: 102vh;
       background-color: ${CommonStyles.color.White};
       .mypage {
         display: flex;
@@ -124,7 +124,7 @@ const NavWrapper = styled.nav`
       }
       .logoConatiner {
         position: absolute;
-        top: 20px;
+        top: 25px;
         left: 10px;
       }
       .xButton {

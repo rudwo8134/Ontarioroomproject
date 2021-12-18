@@ -15,6 +15,9 @@ const NewupdateWrapper = styled.div`
   width: 100vw;
   height: 420px;
   margin-bottom: 200px;
+  @media screen and (max-width: 375px) {
+    height: 230vh
+  }
 
   .headerContainer {
     width: 100%;
@@ -29,6 +32,9 @@ const NewupdateWrapper = styled.div`
       font-size: ${CommonStyles.fontSize.ExtraLarge1};
       font-weight: ${CommonStyles.bold.LittleBold};
       text-align: 'center';
+      @media screen and (max-width: 375px) {
+        font-size: 2rem;
+      }
     }
     .line {
       background-color: ${CommonStyles.color.Primary};
@@ -44,7 +50,9 @@ const NewupdateWrapper = styled.div`
     display: flex;
     justify-content: center;
     margin: 0 30px;
-
+    @media screen and (max-width: 375px) {
+      flex-direction: column;
+    }
     .rentCard {
       width: 300px;
       height: 290px;
@@ -53,6 +61,11 @@ const NewupdateWrapper = styled.div`
       cursor: pointer;
       :last-child {
         margin-right: 0px;
+      }
+      @media screen and (max-width: 375px) {
+        width: 250px;
+        margin: 0 auto;
+        margin-bottom: 1.5rem;
       }
     }
     .textcontainer {

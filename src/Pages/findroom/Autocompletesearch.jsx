@@ -15,6 +15,10 @@ const Divcontainer = styled.div`
   width: ${({ findroom }) => (findroom ? '230px' : '400px')};
   position: absolute;
   transform: translateX(15px);
+  @media screen and (max-width: 375px) {
+    width: 230px;
+    top:74vh;
+  }
 `;
 
 const EnterKey = styled.span`
@@ -128,6 +132,7 @@ const Autocompletesearch = ({ findroom = false, setSearchInMap = null }) => {
                 : { backgroundColor: '#ffffff', cursor: 'pointer' };
               return (
                 <div
+                  className='suggestion'
                   {...getSuggestionItemProps(suggestion, {
                     className,
                     style,

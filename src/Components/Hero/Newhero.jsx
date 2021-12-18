@@ -202,13 +202,14 @@ const Newherostyle = styled.div`
       width: 500px;
       height: 62px;
       border-radius: 30px;
-      bawckground: white;
+      background: white;
       //background: rgba(255, 255, 255, 0.6);
       border: 1px solid ${CommonStyles.color.PrimaryLight3};
       padding: 1.5rem;
       margin-left: 3%;
       @media screen and (max-width: 375px) {
         width: 15rem;
+        position: relative;
       }
       ::placeholder {
         font-style: normal;

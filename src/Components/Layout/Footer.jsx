@@ -68,14 +68,21 @@ const Footer = () => {
 
 const Footerstyle = styled.footer`
   height: 20vh;
+  @media screen and (max-width: 375px) {
+    height: 50vh;
+  }
   .container {
     display: flex;
     flex-direction: column;
     margin: 2rem;
+
     .bottom {
       display: flex;
       justify-content: space-between;
       margin-top: 41px;
+      @media screen and (max-width: 375px) {
+        flex-direction: column;
+      }
       .text {
         font-style: normal;
         font-weight: normal;
@@ -88,9 +95,17 @@ const Footerstyle = styled.footer`
         color: rgba(21, 20, 57, 0.4);
 
         mix-blend-mode: normal;
+        @media screen and (max-width: 375px) {
+          font-size: 0.8rem;
+          margin-bottom: 1rem;
+        }
       }
       .icon {
         display: flex;
+        @media screen and (max-width: 375px) {
+         align-items: center;
+         justify-content: center;
+        }
 
         svg {
           font-size: 18px;
@@ -110,9 +125,15 @@ const Footerstyle = styled.footer`
       display: flex;
       justify-content: space-between;
       align-items: center;
+      @media screen and (max-width: 375px) {
+        flex-direction: column;
+      }
       .right {
         display: flex;
         align-items: center;
+        @media screen and (max-width: 375px) {
+          display: none;
+        }
         li {
           margin-right: 40px;
           list-style: none;
@@ -133,8 +154,12 @@ const Footerstyle = styled.footer`
         display: flex;
         align-items: center;
         justify-content: space-between;
-        img{
-          width:180px;
+        @media screen and (max-width: 375px) {
+          flex-direction: column;
+          width: 100%;
+        }
+        img {
+          width: 180px;
           height: 40px;
           font-style: normal;
           font-weight: bold;
@@ -149,6 +174,14 @@ const Footerstyle = styled.footer`
           /* Colors / Heading */
 
           color: #000;
+          @media screen and (max-width: 375px) {
+            width: 150px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1rem;
+          }
         }
         .copyright {
           font-style: normal;
@@ -160,6 +193,10 @@ const Footerstyle = styled.footer`
           /* Colors / Heading */
 
           color: #000;
+          @media screen and (max-width: 375px) {
+            font-size: 0.7rem;
+            margin-bottom: 1rem;
+          }
         }
       }
     }

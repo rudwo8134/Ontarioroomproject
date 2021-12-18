@@ -14,7 +14,10 @@ const Why = styled.div`
     font-weight: ${CommonStyles.bold.ExtraBold};
     font-family: DM Sans;
     font-size: 64px;
-    text-align: "center";
+    text-align: 'center';
+    @media screen and (max-width: 375px) {
+      font-size: 2rem;
+    }
   }
   .line {
     width: ${({ lineWidth }) => `${lineWidth * 0.4}px`};
@@ -28,27 +31,33 @@ const Why = styled.div`
     width: 70%;
     justify-content: space-between;
     align-items: space-between;
-  }
-  .card{
-      width: 200px;
-      display: flex;
+    @media screen and (max-width: 375px) {
       flex-direction: column;
+    }
+  }
+  .card {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h4 {
+      text-align: center;
+      display: flex;
       justify-content: center;
       align-items: center;
-      h4{
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 70px;
-        color:${CommonStyles.color.Primary};
-        font-weight: ${CommonStyles.bold.ExtraBold};
+      width: 70px;
+      color: ${CommonStyles.color.Primary};
+      font-weight: ${CommonStyles.bold.ExtraBold};
+    }
+    p {
+      width: 400px;
+      text-align: center;
+      font-weight: ${CommonStyles.bold.Medium};
+      @media screen and (max-width: 375px) {
+        width: 240px;
       }
-      p{
-          width: 400px;
-          text-align: center;
-          font-weight: ${CommonStyles.bold.Medium};
-      }
+    }
   }
 `;
 
