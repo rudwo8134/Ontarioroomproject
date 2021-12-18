@@ -296,6 +296,8 @@ const Home = (props) => {
   const [searchLatlng, setsearchLatlng] = useState(null);
   const [searchInMap, setSearchInMap] = useState(null);
   const [searchQuery, SetSearchquery] = useState(null);
+  const [filter, SetFilter] = useState(null);
+  const [finalData, setFinalData] = useState(rooms);
 
   useEffect(() => {
     if (locationhistory || searchInMap) {
@@ -304,7 +306,6 @@ const Home = (props) => {
       );
     }
   }, [searchInMap, locationhistory]);
-
 
   useEffect(() => {
     if (searchInMap) {
@@ -371,6 +372,19 @@ const Home = (props) => {
     getData();
     setLoading(false);
   }, [getData, googlemapcenter]);
+
+  const SelectFilter = (e) => {
+    SetFilter(e.target.value);
+  };
+
+  useEffect(() => {
+    if (filter === 'low') {
+      setFinalData(rooms?.sort((a, b) => b.monthlyfee - a.monthlyfee));
+    }
+    if (filter === 'high') {
+      setFinalData(rooms?.sort((a, b) => a.monthlyfee - b.monthlyfee));
+    }
+  }, [filter, rooms]);
 
   if (loading) {
     <h1>Loading ....</h1>;
@@ -508,10 +522,15 @@ const Home = (props) => {
             <div className="filter">
               <button className="draweer">+크게보기</button>
               <div className="sortContainer">
-                <select name="" id="">
-                  <option value="">가격 높은순</option>
-                  <option value="">가격 낮은순</option>
-                  <option value="">가까운순</option>
+                <select
+                  defaultValue="no"
+                  name="filter"
+                  id="filter"
+                  onChange={SelectFilter}
+                >
+                  <option value="no">선택</option>
+                  <option value="high">가격 높은순</option>
+                  <option value="low">가격 낮은순</option>
                 </select>
               </div>
               <Filterbutton>필터</Filterbutton>
@@ -532,11 +551,9 @@ const Home = (props) => {
               })}
             <div className="TitleContainer">
               <h3 className="searchResult">
-                {
-                  searchQuery ? (searchQuery?.split(',')[
-                    searchQuery?.split(',').length - 1
-                  ]) : '검색어를 입력해주세요. '
-                }
+                {searchQuery
+                  ? searchQuery?.split(',')[searchQuery?.split(',').length - 1]
+                  : '검색어를 입력해주세요. '}
               </h3>
               <span className="howmanyReseult">
                 {' '}
@@ -546,12 +563,12 @@ const Home = (props) => {
             </div>
 
             {selectInfo
-              ? rooms
+              ? finalData
                   ?.filter((data) => data.id !== selected)
                   ?.map((data, index) => {
                     return <Cardcontainer data={data} key={index} />;
                   })
-              : rooms?.map((data, index) => {
+              : finalData?.map((data, index) => {
                   return <Cardcontainer data={data} key={index} />;
                 })}
           </div>
