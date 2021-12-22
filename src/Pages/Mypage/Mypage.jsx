@@ -14,41 +14,66 @@ const Wrapper = styled.div`
   margin-top: 90px;
   .mypost {
     padding: 20px;
-    .Listcontainer {
+    .renderlist {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
+      background: red;
+      width: 1228px;
+      height: 90px;
+      margin-bottom:10px;
+      padding-left: 65px;
+      background: rgba(196, 196, 196, 0.5);
+      border-radius: 4px;
+      color: rgba(0, 0, 0, 0.5);
+
+      .buttoncontainer {
+        margin-right: 20px;
+      }
+
+      .gobutton, .deletebutton {
+        margin-right: 12px;
+        width: 73px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.8);
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        align-items: center;
+        color: rgba(97, 97, 97, 0.8);
+        cursor: pointer;
+        :hover {
+          background-color: ${CommonStyles.color.PrimaryLight2};
+        }
+      }
+      .deletebutton {
+        color: rgba(223, 27, 82, 0.6);
+      }
+
+      .title {
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 26px;
+      }
+
       .numberlist {
         flex: 1;
         font-size: 16px;
         font-weight: 600;
         color: ${CommonStyles.color.Black};
       }
-      .numberlist2 {
-        flex: 1;
-        font-size: 16px;
-        font-weight: 600;
-      }
-      .title {
-        flex: 4;
-        font-size: 16px;
-        font-weight: 600;
-      }
-      .price {
-        flex: 2;
-        font-size: 16px;
-        font-weight: 600;
-      }
+     
       .go {
         flex: 1;
         font-size: 16px;
-        font-weight: 600;
-      }
-      .gobutton {
-        flex: 1;
+        font-weight: 500;
       }
     }
+  
+     
+      
+    
   }
   .cover {
     padding: 30px;
@@ -56,6 +81,12 @@ const Wrapper = styled.div`
       font-size: 25px;
       font-weight: ${CommonStyles.bold.Bold};
       color: ${CommonStyles.color.Primary};
+    }
+    .description {
+      font-size: 14px;
+      font-weight: ${CommonStyles.bold.Bold};
+      line-height: 6px;
+      color: rgba(35, 31, 32, 0.61);
     }
     .divider {
       width: 1300px;
@@ -87,7 +118,8 @@ const Wrapper = styled.div`
           width: 300px;
           margin-left: 10px;
           color: ${CommonStyles.color.PrimaryLight4}
-        } button {
+        } 
+        button {
           width: 130px;
           height: 30px;
           border: none;
@@ -167,6 +199,14 @@ const Mypage = ({ rooms, readStart }) => {
   const handlesend = (id) => {
     history.push(`/rentcondo/${id}`);
   };
+
+  const handledelete = () => {
+     if (!window.confirm("정말 삭제하시겠습니까?")) 
+     return false; 
+  };
+
+
+
   return (
     <Wrapper>
       <div className="cover">
@@ -196,26 +236,32 @@ const Mypage = ({ rooms, readStart }) => {
         </div>
         <div className="divider"></div>
         <h3 className="name">나의 게시물</h3>
+        <p className="description">내가 올린 글을 이곳에서 한눈에 확인해 보세요!</p>
         <div className="divider"></div>
         <div className="mypost">
           <div className="Listcontainer">
-            <span className="numberlist2">글 번호</span>
-            <h1 className="title">제목</h1>
-            <h2 className="price">가격</h2>
-            <h2 className="go">바로가기</h2>
+
+
+
           </div>
           {userPost?.map((data, index) => {
             return (
-              <div className="Listcontainer">
-                <span className="numberlist">{index+1}</span>
-                <h1 className="title">{data?.posttitle}</h1>
-                <h2 className="price">${data?.monthlyfee}</h2>
-                <button
-                  onClick={() => handlesend(data?.id)}
-                  className="gobutton"
-                >
-                  바로가기
-                </button>
+              <div className="renderlist">
+                <p className="title">
+                      {data?.posttitle}
+                      &nbsp;(${data?.monthlyfee})
+                </p>
+                <div className="buttoncontainer">
+                    <button className="gobutton"
+                      onClick={() => handlesend(data?.id)}>수정
+                    </button>
+                    <button
+                      type="danger" onClick={() => handledelete() }
+                      className="deletebutton"
+                    >
+                      삭제
+                    </button>
+                </div>
               </div>
             );
           })}
