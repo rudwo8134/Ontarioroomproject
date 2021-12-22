@@ -13,8 +13,6 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 import { withRouter } from 'react-router-dom';
 
-
-
 const Wrapper = styled.div`
   border-top: 1px solid ${CommonStyles.color.Darkbold1};
   width: 1300px;
@@ -26,7 +24,7 @@ const Wrapper = styled.div`
     width: 1200px;
     display: flex;
     justify-content: space-between;
-    
+
     .backbutton {
       height: 35px;
       background-color: white;
@@ -90,7 +88,7 @@ const Wrapper = styled.div`
         cursor: pointer;
         :hover {
           background-color: ${CommonStyles.color.Primary};
-          color:white;
+          color: white;
         }
       }
     }
@@ -154,7 +152,7 @@ const Wrapper = styled.div`
           margin-bottom: 25px;
           font-weight: 700;
           color: rgba(35, 31, 32, 0.61);
-        };
+        }
       }
       .locationtype {
         width: 100%;
@@ -162,7 +160,7 @@ const Wrapper = styled.div`
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        
+
         select,
         input {
           margin-left: 15px;
@@ -181,7 +179,7 @@ const Wrapper = styled.div`
         flex-direction: row;
         justify-content: space-between;
         align-items: space-between;
-        margin-left:20px;
+        margin-left: 20px;
         margin-bottom: 20px;
         .name {
           font-weight: 700;
@@ -196,19 +194,20 @@ const Wrapper = styled.div`
           background-color: rgba(255, 255, 255, 0.6);
           border-radius: 10px;
         }
-        }
-        .propertytypeimage {
-          width: 51%;
-          display: flex;
-          justify-self: flex-end;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: space-between;
-          margin-left:20px;
-          margin-bottom: 20px;
+      }
+      .propertytypeimage {
+        width: 51%;
+        display: flex;
+        justify-self: flex-end;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: space-between;
+        margin-left: 20px;
+        margin-bottom: 20px;
 
-        .photoupload, #photoupload {
-          display:none;
+        .photoupload,
+        #photoupload {
+          display: none;
         }
 
         .input-file-button {
@@ -217,120 +216,118 @@ const Wrapper = styled.div`
           height: 32px;
           text-align: center;
           color: #fff;
-          background: #DF1B52;
+          background: #df1b52;
           border: 1px solid ${CommonStyles.color.Primary};
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
+      }
+    }
+  }
+  .divider {
+    //background-color: ${CommonStyles.color.Darkbold2};
+    border: 1.4px solid rgba(0, 0, 0, 0.1);
+    width: 2px;
+    height: 520px;
+    margin: 50px 80px 30px 60px;
+  }
+
+  .right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    .propertytypeimage {
+      width: 60%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: ${CommonStyles.margin.Reuglar};
+      .name {
+        font-weight: 700;
+        color: rgba(35, 31, 32, 0.61);
+      }
+      h1 {
+        font-size: 16px;
+        width: 250px;
+        font-weight: 700;
+        color: ${CommonStyles.color.Primary};
+      }
+      label {
+        width: 250px;
+        font-weight: 700;
+        color: ${CommonStyles.color.Darkbold3};
+      }
+    }
+    .buttoncontainer {
+      display: flex;
+      justify-content: flex-end;
+      width: 500px;
+      margin-top: 40px;
+      button {
+        width: 239px;
+        height: 42px;
+        background-color: ${CommonStyles.color.Primary};
+        border: 1px solid #df1b52;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        color: ${CommonStyles.color.White};
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: capitalize;
+        cursor: pointer;
+        transition: 0.3s ease-in-out all;
+        :hover {
+          transform: scale(1.05) translateY(-3px);
+          color: ${CommonStyles.color.Dark};
         }
       }
     }
-    .divider {
-      //background-color: ${CommonStyles.color.Darkbold2};
-      border: 1.4px solid rgba(0, 0, 0, 0.1);
-      width: 2px;
-      height: 520px;
-      margin: 50px 80px 30px 60px;
-    }
-
-    .right {
-      flex: 1;
+    .description {
       display: flex;
       flex-direction: column;
-      .propertytypeimage {
-        width: 60%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        margin-bottom: ${CommonStyles.margin.Reuglar};
-        .name {
-          font-weight: 700;
-          color: rgba(35, 31, 32, 0.61);
-        }
-        h1 {
-          font-size: 16px;
-          width: 250px;
-          font-weight: 700;
-          color: ${CommonStyles.color.Primary};
-        }
-        label {
-          width: 250px;
-          font-weight: 700;
-          color: ${CommonStyles.color.Darkbold3};
-        }
+      justify-content: space-between;
+      margin-bottom: ${CommonStyles.margin.Reuglar};
+      .name {
+        width: 200px;
+        font-weight: 700;
+        color: rgba(35, 31, 32, 0.61);
       }
-      .buttoncontainer {
-        display: flex;
-        justify-content: flex-end;
-        width: 500px;
-        margin-top: 40px;
-        button {
-          width: 239px;
-          height: 42px;
-          background-color: ${CommonStyles.color.Primary};
-          border: 1px solid #DF1B52;
-          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-          color: ${CommonStyles.color.White};
-          font-size: 13px;
-          font-weight: 700;
-          text-transform: capitalize;
-          cursor: pointer;
-          transition: 0.3s ease-in-out all;
-          :hover {
-            transform: scale(1.05) translateY(-3px);
-            color: ${CommonStyles.color.Dark};
-          }
-        }
+      textarea {
+        margin-top: 20px;
+        width: 496px;
+        height: 355px;
+        background: rgba(255, 255, 255, 0.6);
+        box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
+        border-radius: 10px;
       }
-      .description {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        margin-bottom: ${CommonStyles.margin.Reuglar};
-        .name {
-          width: 200px;
-          font-weight: 700;
-          color: rgba(35, 31, 32, 0.61);
-        }
-        textarea {
-          margin-top: 20px;
-          width: 496px;
-          height: 355px;
-          background: rgba(255, 255, 255, 0.6);
-          box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
-          border-radius: 10px;
-        }
+    }
+
+    .propertytype {
+      width: 60%;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: ${CommonStyles.margin.Reuglar};
+      .name {
+        width: 200px;
+        font-weight: 700;
+        color: rgba(35, 31, 32, 0.61);
+      }
+      select,
+      input {
+        width: 250px;
+        height: 30px;
+        border: 1px solid ${CommonStyles.color.Primary};
+        background-color: rgba(255, 255, 255, 0.6);
+        box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
+        border-radius: 10px;
       }
 
-      .propertytype {
-        width: 60%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        margin-bottom: ${CommonStyles.margin.Reuglar};
-        .name {
-          width: 200px;
-          font-weight: 700;
-          color: rgba(35, 31, 32, 0.61);
-        }
-        select,
-        input {
-          width: 250px;
-          height: 30px;
-          border: 1px solid ${CommonStyles.color.Primary};
-          background-color: rgba(255, 255, 255, 0.6);
-          box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
-          border-radius: 10px;
-        }
-
-        .titleInput{
-          width: 250px;
-          height: 30px;
-          border: 1px solid ${CommonStyles.color.Primary};
-          background-color: rgba(255, 255, 255, 0.6);
-          box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
-          border-radius: 10px;
-      }
-        
+      .titleInput {
+        width: 250px;
+        height: 30px;
+        border: 1px solid ${CommonStyles.color.Primary};
+        background-color: rgba(255, 255, 255, 0.6);
+        box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
+        border-radius: 10px;
       }
     }
   }
@@ -361,11 +358,11 @@ const Searchbutton = styled.button`
   align-items: center;
   justify-content: center;
   background-color: ${CommonStyles.color.Primary};
-  border:none;
-  color:white;
+  border: none;
+  color: white;
   border-radius: 16px;
   margin-left: 10px;
-`
+`;
 const Postrentroom = ({ poststart, user }) => {
   const history = useHistory();
   const [next, setNext] = useState(false);
@@ -462,10 +459,10 @@ const Postrentroom = ({ poststart, user }) => {
     setimageresults([...results]);
     setimageloading(false);
   };
-  const submithandler = (e)=>{
+  const submithandler = (e) => {
     e.preventDefault();
     setNext(true);
-  }
+  };
   const filter = [
     {
       name: '선호 성별',
@@ -627,31 +624,33 @@ const Postrentroom = ({ poststart, user }) => {
                 </div>
 
                 <div className="propertytypeimage">
-                <span className="name">사진*</span>
-                    {imageloading ? (
-                      <h1>...loading</h1>
-                    ) : (
-                      <>
-                        <label className="input-file-button" htmlFor="photoupload" >파일 선택</label>
-                      </>
-                    )}
-                    <input id="photoupload"
-                      required
-                      type="file"
-                      onChange={handleimage}
-                      multiple
-                      accept="image/*"
-                    />
+                  <span className="name">사진*</span>
+                  {imageloading ? (
+                    <h1>...loading</h1>
+                  ) : (
+                    <>
+                      <label
+                        className="input-file-button"
+                        htmlFor="photoupload"
+                      >
+                        파일 선택
+                      </label>
+                    </>
+                  )}
+                  <input
+                    id="photoupload"
+                    required
+                    type="file"
+                    onChange={handleimage}
+                    multiple
+                    accept="image/*"
+                  />
                 </div>
                 <Imageuploadcontainer>
                   {imageresults ? (
                     imageresults.map((imgurl, index) => {
                       return (
-                        <img
-                          src={imgurl}
-                          alt={`uploaded{index}`}
-                          key={index}
-                        />
+                        <img src={imgurl} alt={`uploaded{index}`} key={index} />
                       );
                     })
                   ) : (
@@ -660,8 +659,8 @@ const Postrentroom = ({ poststart, user }) => {
                 </Imageuploadcontainer>
 
                 <div className="location">
-                    <span className="name">주소*</span>
-                    <div className="locationtype">
+                  <span className="name">주소*</span>
+                  <div className="locationtype">
                     <PlacesAutocomplete
                       value={address}
                       onChange={handlechange}
@@ -674,7 +673,7 @@ const Postrentroom = ({ poststart, user }) => {
                         loading,
                       }) => (
                         <div>
-                          <input 
+                          <input
                             required
                             {...getInputProps({
                               placeholder: '주소를 입력해주세요',
@@ -762,11 +761,12 @@ const Postrentroom = ({ poststart, user }) => {
                     name="posttitle"
                     type="text"
                   />
-                </div>         
+                </div>
 
                 <div className="propertytype">
                   <span className="name">글제목*</span>
-                  <input className="titleInput"
+                  <input
+                    className="titleInput"
                     required
                     onChange={handlecredentialchange}
                     value={postcredential?.posttitle}
@@ -785,8 +785,8 @@ const Postrentroom = ({ poststart, user }) => {
                     id="description"
                     cols="30"
                     rows="10"
-                    placeholder=' 
-                        입력..'
+                    placeholder=" 
+                        입력.."
                   ></textarea>
                 </div>
                 <div className="buttoncontainer">
