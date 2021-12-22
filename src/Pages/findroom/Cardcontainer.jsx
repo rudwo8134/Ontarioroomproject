@@ -13,6 +13,9 @@ const CardWrapper = styled.div`
   box-shadow: ${CommonStyles.shadow.BoxShadow};
   border-radius: 8px;
   border: ${CommonStyles.border.regular};
+  @media screen and (max-width: 320px) {
+    height: 250px;
+  }
   .heartbutton {
     position: absolute;
     top: 10px;
@@ -34,6 +37,9 @@ const CardWrapper = styled.div`
     display: flex;
     justify-content: center;
     margin: 0 auto;
+    @media screen and (max-width: 320px) {
+      top: 100px;
+    }
     svg {
       color: ${CommonStyles.color.Primary};
     }
@@ -45,6 +51,9 @@ const CardWrapper = styled.div`
     object-fit: cover;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    @media screen and (max-width: 320px) {
+      height: 130px;
+    }
   }
   .detailcontainer {
     padding: 6px ${CommonStyles.padding.Reuglar};
@@ -87,9 +96,16 @@ const CardWrapper = styled.div`
       @media screen and (max-width: 425px) {
         font-size: 0.7rem;
       }
+      @media screen and (max-width: 320px) {
+        font-size: 0.5rem;
+      }
     }
     .separtator {
       margin: 0px 8px;
+      @media screen and (max-width: 320px) {
+        font-size: 0.5rem;
+        margin: 0px 4px;
+      }
     }
     .address {
       font-style: normal;
@@ -99,6 +115,9 @@ const CardWrapper = styled.div`
       color: rgba(35, 31, 32, 0.72);
       @media screen and (max-width: 425px) {
         font-size: 0.8rem;
+      }
+      @media screen and (max-width: 320px) {
+        font-size: 0.5rem;
       }
     }
   }
