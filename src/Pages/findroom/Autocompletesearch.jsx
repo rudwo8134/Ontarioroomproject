@@ -17,7 +17,7 @@ const Divcontainer = styled.div`
   transform: translateX(15px);
   @media screen and (max-width: 375px) {
     width: 230px;
-    top: 74vh;
+    top: ${({ ismediumMobile }) => (ismediumMobile ? '' : '50vh;')};
   }
 `;
 
@@ -54,6 +54,7 @@ const Autocompletesearch = ({
   showList,
   setShowList,
   isbigMobile,
+  ismediumMobile,
 }) => {
   const history = useHistory();
   const [loading, setLoading] = useState(true);
@@ -128,7 +129,7 @@ const Autocompletesearch = ({
             className="searchinput"
             placeholder="주소 입력 후 Enter키를 눌러주세요!"
           />
-          <Divcontainer findroom={findroom}>
+          <Divcontainer ismediumMobile={ismediumMobile} findroom={findroom}>
             {loading && (
               <Loader
                 type="TailSpin"

@@ -93,7 +93,7 @@ const Wrapper = styled.div`
         width: 100vw;
         position: absolute;
         background-color: white;
-        top:0;
+        top: 0;
         left: 0;
         z-index: 20;
       }
@@ -108,6 +108,9 @@ const Wrapper = styled.div`
         .filter {
           display: flex;
           flex-direction: row;
+          @media screen and (max-width: 375px) {
+            margin-top: -30px;
+          }
           .draweer {
             border: none;
             background-color: ${CommonStyles.color.Primary};
@@ -278,6 +281,14 @@ const AutoCompletediv = styled.div`
   @media screen and (max-width: 425px) {
     z-index: 29;
   }
+  @media screen and (max-width: 375px) {
+    top: 12px;
+    left: 12px;
+  }
+  @media screen and (max-width: 320px) {
+    top: 10px;
+    left: 5px;
+  }
   .container {
     width: 300px;
     height: 40px;
@@ -287,6 +298,13 @@ const AutoCompletediv = styled.div`
     border: 1px solid ${CommonStyles.color.Primary};
     background: rgba(255, 255, 255);
     border-radius: 16px;
+    z-index: 20;
+    @media screen and (max-width: 375px) {
+      width: 260px;
+    }
+    @media screen and (max-width: 325px) {
+      width: 220px;
+    }
     svg {
       display: flex;
       justify-content: center;
@@ -301,12 +319,21 @@ const AutoCompletediv = styled.div`
     width: 230px;
     border: none;
     margin-left: 3%;
+    @media screen and (max-width: 375px) {
+      width: 200px;
+    }
+    @media screen and (max-width: 325px) {
+      width: 170px;
+    }
     ::placeholder {
       font-style: normal;
       font-weight: normal;
       font-size: 14px;
       line-height: 26px;
       color: ${CommonStyles.color.Primary};
+      @media screen and (max-width: 325px) {
+       font-size: 11px;
+      }
     }
   }
 `;
@@ -345,11 +372,13 @@ const Filterbutton = styled.button`
   }
 `;
 
+
 const Marker = ({ children }) => children;
 
 const Home = (props) => {
   const { rooms, getData, User, getroomData } = props;
   const isbigMobile = useMediaQuery({ query: '(max-width: 425px)' });
+  const ismediumMobile = useMediaQuery({ query: '(max-width: 375px)' });
   const [loading, setLoading] = useState(false);
   const [address, setaddress] = useState([]);
   const [googlemapcenter, setgooglemapcenter] = useState(null);
@@ -488,6 +517,7 @@ const Home = (props) => {
               <div className="container">
                 <BiSearch />
                 <Autocompletesearch
+                  ismediumMobile={ismediumMobile}
                   showList={showList}
                   setShowList={setShowList}
                   isbigMobile={isbigMobile}
@@ -497,6 +527,7 @@ const Home = (props) => {
               </div>
             </AutoCompletediv>
             <GoogleMapReact
+              style={{ height: isbigMobile && '92vh' }}
               bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLEAPI }}
               defaultCenter={
                 searchLatlng ? searchLatlng : { lat: 43.6532, lng: -79.3832 }
