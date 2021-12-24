@@ -128,7 +128,7 @@ const Wrapper = styled.div`
       text-transform: uppercase;
       font-size: 24px;
       color: ${CommonStyles.color.Primary};
-      bold: ${CommonStyles.bold.Bold};
+      font-weight: ${CommonStyles.bold.Bold};
       margin-bottom: -20px;
     }
   }
@@ -186,7 +186,7 @@ const Wrapper = styled.div`
         margin-left: 20px;
         margin-bottom: 20px;
         .name {
-          font-weight: ${CommonStyles.bold.bold}
+          font-weight: ${CommonStyles.bold.bold};
           font-size: 17px;
           color: rgba(35, 31, 32, 0.61);
         }
@@ -211,7 +211,7 @@ const Wrapper = styled.div`
         margin-bottom: 20px;
 
         .name {
-          font-weight: ${CommonStyles.bold.bold}
+          font-weight: ${CommonStyles.bold.bold};
           font-size: 17px;
           color: rgba(35, 31, 32, 0.61);
         }
@@ -235,7 +235,6 @@ const Wrapper = styled.div`
         }
       }
     }
-  }
   .divider {
     //background-color: ${CommonStyles.color.Darkbold2};
     border: 1.4px solid rgba(0, 0, 0, 0.1);
@@ -359,8 +358,8 @@ const Wrapper = styled.div`
         border-radius: 10px;
       }
     }
-  }
-`;
+  }}
+`
 
 const Imageuploadcontainer = styled.div`
   margin-top: 1rem;

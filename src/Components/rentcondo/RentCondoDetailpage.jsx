@@ -10,16 +10,21 @@ import {
   BsHouseDoor,
   BsFillCaretRightFill,
 } from 'react-icons/bs';
-import {GoPrimitiveDot} from 'react-icons/go'
+import { GoPrimitiveDot } from 'react-icons/go';
 import { RiTempColdFill } from 'react-icons/ri';
 import { FaDog, FaSmokingBan } from 'react-icons/fa';
 import { GiWaterDrop, GiDoor } from 'react-icons/gi';
 import { IoWifiOutline } from 'react-icons/io5';
 import Loader from 'react-loader-spinner';
+import { useMediaQuery } from 'react-responsive';
 
 const Background = styled.section`
   width: 100vw;
   margin-top: 80px;
+
+  @media screen and (max-width: 425px) {
+    margin-top: 0;
+  }
 `;
 const Dotfolder = styled.div`
   width: 100%;
@@ -33,6 +38,10 @@ const Wrapper = styled.div`
   height: 100%;
   margin: 0 auto;
   padding: 2rem;
+  @media screen and (max-width: 425px) {
+    max-width: 90vw;
+    padding: 0;
+  }
 `;
 const PostNav = styled.div`
   h1 {
@@ -61,6 +70,10 @@ const ImageWrapper = styled.div`
   align-items: center;
   margin-top: 30px;
   margin-bottom: 30px;
+  @media screen and (max-width: 425px) {
+    margin: 0 auto;
+    height: 300px;
+  }
   .slide {
     opacity: 0;
     transition: 0.8s all ease-in-out;
@@ -75,6 +88,10 @@ const Customimagetag = styled.img`
   max-width: 1000px;
   max-height: 400px;
   border-radius: 3px;
+  @media screen and (max-width: 425px) {
+    max-width: 90vw;
+    height: 30vh;
+  }
 `;
 const Roominformation = styled.div`
   .roominfo {
@@ -85,22 +102,37 @@ const Roominformation = styled.div`
     align-items: center;
     margin: 0 auto;
     margin-top: 20px;
+    @media screen and (max-width: 425px) {
+      margin-top: 0;
+      width: 90vw;
+    }
     .left {
       display: flex;
       flex-direction: column;
+      @media screen and (max-width: 425px) {
+        margin-top: -3vh;
+        margin-bottom: -3vh;/
+      }
       .roomtype {
         display: flex;
         flex-direction: row;
         align-items: center;
+
         .roomtypename {
           color: ${CommonStyles.color.Dark};
           font-size: ${CommonStyles.fontSize.Large};
           margin-right: 42px;
+          @media screen and (max-width: 425px) {
+            margin-right: 0px;
+          }
         }
         .price {
           font-size: 18px;
           font-weight: 700;
           letter-spacing: 0.1rem;
+          @media screen and (max-width: 425px) {
+            font-size: 1rem;
+          }
           b {
             color: ${CommonStyles.color.Primary};
           }
@@ -111,6 +143,9 @@ const Roominformation = styled.div`
         font-weight: 400;
         color: ${CommonStyles.color.Darkbold3};
         margin-top: 0;
+        @media screen and (max-width: 425px) {
+          font-size: 1rem;
+        }
       }
     }
     .right {
@@ -124,6 +159,10 @@ const Roominformation = styled.div`
         border-radius: 16px;
         color: ${CommonStyles.color.Primary};
         background-color: none;
+        @media screen and (max-width: 425px) {
+          padding: 0.5rem;
+          font-size: 1rem;
+        }
       }
     }
   }
@@ -132,9 +171,17 @@ const Roominformation = styled.div`
     margin: 20px auto;
     height: 2px;
     background-color: ${CommonStyles.color.Darkbold1};
+    @media screen and (max-width: 425px) {
+      margin: 15px auto;
+      width: 90vw;
+    }
   }
   .description {
     width: 1230px;
+      @media screen and (max-width: 425px) {
+      margin: 15px auto;
+      width: 90vw;
+    }
     .header {
       font-size: 24px;
       color: ${CommonStyles.color.Darkbold3};
@@ -149,6 +196,11 @@ const Roominformation = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    @media screen and (max-width: 425px) {
+    width: 90vw;
+    justify-content: center;
+    align-items: center;
+    }
   }
   .details {
     display: flex;
@@ -162,15 +214,25 @@ const Roominformation = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+       @media screen and (max-width: 425px) {
+        flex-direction : column;
+      }
       .dividerline {
         width: 2px;
         height: 300px;
         background-color: ${CommonStyles.color.Darkbold2};
         margin: 0 80px;
+        @media screen and (max-width: 425px) {
+       display: none;
+      }
       }
       .container {
         display: flex;
         justify-content: space-between;
+          @media screen and (max-width: 425px) {
+          align-items: center;
+          width: 80vw;
+      }
         .name {
           display: flex;
           align-items: center;
@@ -230,6 +292,7 @@ const RentCondoDetailpage = (props) => {
   const [price, setprice] = useState(null);
   const [currentImg, setCurrentImg] = useState(0);
   const length = props?.image?.length;
+  const isbigMobile = useMediaQuery({ query: '(max-width: 425px)' });
 
   const nextSlide = () => {
     setCurrentImg(currentImg === length - 1 ? 0 : currentImg + 1);
@@ -237,7 +300,6 @@ const RentCondoDetailpage = (props) => {
   const previousSlide = () => {
     setCurrentImg(currentImg === 0 ? length - 1 : currentImg - 1);
   };
-
 
   useEffect(() => {
     if (props.monthlyfee)
@@ -291,8 +353,12 @@ const RentCondoDetailpage = (props) => {
           })}
         </ImageWrapper>
         <Dotfolder>
-          {props?.image?.map((data, index)=>{
-            return <GoPrimitiveDot color={index === currentImg && `${CommonStyles.color.Primary}`}/>
+          {props?.image?.map((data, index) => {
+            return (
+              <GoPrimitiveDot
+                color={index === currentImg && `${CommonStyles.color.Primary}`}
+              />
+            );
           })}
         </Dotfolder>
         <Roominformation>
@@ -404,7 +470,7 @@ const RentCondoDetailpage = (props) => {
           <div className="location">
             <StaticGoogleMap
               apiKey={process.env.REACT_APP_GOOGLEAPI}
-              size="800x400"
+              size={isbigMobile ? "400x400" :"800x400"}
               className="img-fluid"
               zoom="15"
             >
