@@ -330,6 +330,14 @@ const Wrapper = styled.div`
         box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
         border-radius: 10px;
       }
+      .titleInputpro {
+        width: 415px;
+        height: 30px;
+        border: 1px solid ${CommonStyles.color.Primary};
+        background-color: rgba(255, 255, 255, 0.6);
+        box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
+        border-radius: 10px;
+      }
     }
   }
 `;
@@ -377,6 +385,16 @@ const Xbutton = styled(MdCancel)`
     font-size: 1.3rem;
   }
 `;
+
+const AdditionalContactSelect = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  input {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+`;
 const Postrentroom = ({ poststart, user }) => {
   const history = useHistory();
   const [next, setNext] = useState(false);
@@ -384,6 +402,7 @@ const Postrentroom = ({ poststart, user }) => {
   const [lat, SetLat] = useState(null);
   const [imageresults, setimageresults] = useState([]);
   const [imageloading, setimageloading] = useState(false);
+  const [additionalContact, setAdditionalContact] = useState(false);
 
   const handlesubmit2 = async (e) => {
     e.preventDefault();
@@ -485,6 +504,12 @@ const Postrentroom = ({ poststart, user }) => {
     e.preventDefault();
     setNext(true);
   };
+
+  const handleadditinal = (e) => {
+    e.preventDefault();
+    setAdditionalContact(e.target.value);
+  };
+
   const filter = [
     {
       name: '선호 성별',
@@ -673,7 +698,7 @@ const Postrentroom = ({ poststart, user }) => {
                     imageresults.map((imgurl, index) => {
                       return (
                         <div style={{ position: 'relative' }}>
-                          <Xbutton onClick={()=>handleImageDelete(imgurl)} />
+                          <Xbutton onClick={() => handleImageDelete(imgurl)} />
                           <img
                             src={imgurl}
                             alt={`uploaded{index}`}
@@ -783,19 +808,35 @@ const Postrentroom = ({ poststart, user }) => {
                 </div>
                 <div className="propertytype">
                   <span className="name">추가연락처</span>
-                  <input
-                    required
-                    onChange={handlecredentialchange}
-                    value={postcredential?.posttitle}
-                    name="posttitle"
-                    type="text"
-                  />
+                  <AdditionalContactSelect onChange={handleadditinal}>
+                    <select name="additional" id="additional" defaultValue="">
+                      <option value="">없음</option>
+                      <option value="1">전화번호</option>
+                      <option value="2">카카오톡ID</option>
+                    </select>
+                    {additionalContact && (
+                      <input
+                        required
+                        onChange={handlecredentialchange}
+                        value={postcredential?.posttitle}
+                        name="posttitle"
+                        type="text"
+                        placeholder={
+                          additionalContact === '1'
+                            ? '-은 생략하고 전화번를 입력해주세요'
+                            : additionalContact === '2'
+                            ? '카카오톡 아이디를 입력해주세요.'
+                            : null
+                        }
+                      />
+                    )}
+                  </AdditionalContactSelect>
                 </div>
 
                 <div className="propertytype">
                   <span className="name">글제목*</span>
                   <input
-                    className="titleInput"
+                    className="titleInputpro"
                     required
                     onChange={handlecredentialchange}
                     value={postcredential?.posttitle}
