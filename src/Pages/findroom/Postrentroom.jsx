@@ -12,6 +12,7 @@ import { rentcondopoststart } from '../../Redux/Rentcondo/rentcondo.action';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 import { withRouter } from 'react-router-dom';
+import { MdCancel } from 'react-icons/md';
 
 const Wrapper = styled.div`
   border-top: 1px solid ${CommonStyles.color.Darkbold1};
@@ -363,6 +364,19 @@ const Searchbutton = styled.button`
   border-radius: 16px;
   margin-left: 10px;
 `;
+
+const Xbutton = styled(MdCancel)`
+  position: absolute;
+  top: 5px;
+  z-index: 30;
+  right: 5px;
+  font-size: 1rem;
+  color: ${CommonStyles.color.Dark};
+  cursor: pointer;
+  :hover {
+    font-size: 1.3rem;
+  }
+`;
 const Postrentroom = ({ poststart, user }) => {
   const history = useHistory();
   const [next, setNext] = useState(false);
@@ -458,6 +472,14 @@ const Postrentroom = ({ poststart, user }) => {
     }
     setimageresults([...results]);
     setimageloading(false);
+  };
+  console.log(imageresults);
+  const handleImageDelete = (id) => {
+    setimageresults(
+      imageresults.filter((data) => {
+        return data !== id;
+      })
+    );
   };
   const submithandler = (e) => {
     e.preventDefault();
@@ -650,7 +672,14 @@ const Postrentroom = ({ poststart, user }) => {
                   {imageresults ? (
                     imageresults.map((imgurl, index) => {
                       return (
-                        <img src={imgurl} alt={`uploaded{index}`} key={index} />
+                        <div style={{ position: 'relative' }}>
+                          <Xbutton onClick={()=>handleImageDelete(imgurl)} />
+                          <img
+                            src={imgurl}
+                            alt={`uploaded{index}`}
+                            key={index}
+                          />
+                        </div>
                       );
                     })
                   ) : (
