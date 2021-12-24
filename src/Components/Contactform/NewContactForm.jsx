@@ -91,23 +91,23 @@ const NewContactForm = () => {
         <h3 className="header">Contact Us</h3>
         <div className="divder" />
         <div className="description">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Labore
-          distinctio, perferendis sapiente maiores, quaerat id laboru
+          불편을 겪으시거나, Feedback이 있으시면 바로 알려주세요!<br/>
+          항상 열려있는 마음으로 소통하겠습니다.
         </div>
 
         <form action="">
           <div className="formcontainer">
-            <label htmlFor="">Name*</label>
+            <label htmlFor="">이름</label>
             <input type="text" />
           </div>
           <div className="formcontainer">
             {' '}
-            <label htmlFor="">Email*</label>
+            <label htmlFor="">이메일</label>
             <input type="text" />
           </div>
           <div className="formcontainer">
             {' '}
-            <label htmlFor="">Inquiry Type*</label>
+            <label htmlFor="">문의사항</label>
             <select>
               <option value="">1</option>
               <option value="">2</option>
@@ -117,7 +117,7 @@ const NewContactForm = () => {
           </div>
           <div className="formcontainer">
             {' '}
-            <label htmlFor="">Comments</label>
+            <label htmlFor="">내용</label>
             <textarea
               name=""
               id=""
@@ -127,7 +127,7 @@ const NewContactForm = () => {
             ></textarea>
           </div>
 
-          <button className="Submitbutton">Submit</button>
+          <button className="Submitbutton">제출</button>
         </form>
       </Wrapper>
     </>

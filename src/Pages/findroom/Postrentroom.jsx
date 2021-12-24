@@ -127,6 +127,8 @@ const Wrapper = styled.div`
       text-transform: uppercase;
       font-size: 24px;
       color: ${CommonStyles.color.Primary};
+      bold: ${CommonStyles.bold.Bold};
+      margin-bottom: -20px;
     }
   }
   .body {
@@ -155,7 +157,7 @@ const Wrapper = styled.div`
         }
       }
       .locationtype {
-        width: 100%;
+        width: 97%;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -163,17 +165,18 @@ const Wrapper = styled.div`
 
         select,
         input {
-          margin-left: 15px;
+          margin-top: 10px;
+          margin-left: 20px;
           width: 241px;
           height: 45px;
-          border: 1px solid ${CommonStyles.color.Primary};
           box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
           background-color: rgba(255, 255, 255, 0.6);
           border-radius: 10px;
+          border: 0px solid #df1b52;
         }
       }
       .propertytype {
-        width: 97%;
+        width: 98%;
         display: flex;
         justify-self: flex-end;
         flex-direction: row;
@@ -182,7 +185,8 @@ const Wrapper = styled.div`
         margin-left: 20px;
         margin-bottom: 20px;
         .name {
-          font-weight: 700;
+          font-weight: ${CommonStyles.bold.bold}
+          font-size: 17px;
           color: rgba(35, 31, 32, 0.61);
         }
         select,
@@ -205,19 +209,27 @@ const Wrapper = styled.div`
         margin-left: 20px;
         margin-bottom: 20px;
 
+        .name {
+          font-weight: ${CommonStyles.bold.bold}
+          font-size: 17px;
+          color: rgba(35, 31, 32, 0.61);
+        }
+
         .photoupload,
         #photoupload {
           display: none;
         }
 
         .input-file-button {
-          margin: 40px 145px 0 0;
-          width: 118px;
-          height: 32px;
+          margin: 3px 145px 0 0;
+          width: 66px;
+          height: 24px;
+          font-size: 11px;
           text-align: center;
           color: #fff;
           background: #df1b52;
           border: 1px solid ${CommonStyles.color.Primary};
+          border-radius: 10px;
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
         }
       }
@@ -235,6 +247,8 @@ const Wrapper = styled.div`
     flex: 1;
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
+
     .propertytypeimage {
       width: 60%;
       display: flex;
@@ -261,10 +275,10 @@ const Wrapper = styled.div`
       display: flex;
       justify-content: flex-end;
       width: 500px;
-      margin-top: 40px;
+      margin-top: 20px;
       button {
-        width: 239px;
-        height: 42px;
+        width: 123px;
+        height: 37px;
         background-color: ${CommonStyles.color.Primary};
         border: 1px solid #df1b52;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -285,26 +299,32 @@ const Wrapper = styled.div`
       flex-direction: column;
       justify-content: space-between;
       margin-bottom: ${CommonStyles.margin.Reuglar};
+      color: rgba(35, 31, 32, 0.61);
       .name {
         width: 200px;
         font-weight: 700;
-        color: rgba(35, 31, 32, 0.61);
       }
       textarea {
         margin-top: 20px;
         width: 496px;
-        height: 355px;
+        height: 269px;
+        left: 2.29%;
+        right: 2.87%;
+        top: 13.7%;
+        bottom: 12.6%;
         background: rgba(255, 255, 255, 0.6);
         box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
         border-radius: 10px;
+        border: 0px solid #df1b52;
       }
     }
 
     .propertytype {
-      width: 60%;
+      width: 85%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+
       margin-bottom: ${CommonStyles.margin.Reuglar};
       .name {
         width: 200px;
@@ -313,18 +333,18 @@ const Wrapper = styled.div`
       }
       select,
       input {
-        width: 250px;
+        width: 200px;
         height: 30px;
-        border: 1px solid ${CommonStyles.color.Primary};
+        border: 0px solid ${CommonStyles.color.Primary};
         background-color: rgba(255, 255, 255, 0.6);
         box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
         border-radius: 10px;
       }
 
       .titleInput {
-        width: 250px;
+        width: 350px;
         height: 30px;
-        border: 1px solid ${CommonStyles.color.Primary};
+        border: 0px solid ${CommonStyles.color.Primary};
         background-color: rgba(255, 255, 255, 0.6);
         box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
         border-radius: 10px;
@@ -344,8 +364,8 @@ const Imageuploadcontainer = styled.div`
   align-items: center;
 
   img {
-    max-height: 150px;
-    max-width: 150px;
+    max-height: 100px;
+    max-width: 100px;
     border-radius: 6px;
   }
 `;
@@ -435,6 +455,7 @@ const Postrentroom = ({ poststart, user }) => {
     howmanypeople: '',
     properytype: '',
   });
+
   const handlecredentialchange = (e) => {
     const { name, value } = e.target;
     setpostcredential({ ...postcredential, [name]: value });
@@ -678,7 +699,7 @@ const Postrentroom = ({ poststart, user }) => {
                             {...getInputProps({
                               placeholder: '주소를 입력해주세요',
                             })}
-                            style={{ width: '450px' }}
+                            style={{ width: '446px' }}
                           />
                           <div
                             style={{
@@ -722,7 +743,7 @@ const Postrentroom = ({ poststart, user }) => {
                   <div className="mapcontainer">
                     <StaticGoogleMap
                       apiKey={process.env.REACT_APP_GOOGLEAPI}
-                      size="580x400"
+                      size="525x300"
                       className="img-fluid"
                       zoom="17"
                     >
@@ -748,7 +769,7 @@ const Postrentroom = ({ poststart, user }) => {
                     onChange={handlecredentialchange}
                     value={postcredential?.monthlyfee}
                     name="monthlyfee"
-                    type="number"
+                    type="text"
                     placeholder="CAD"
                   />
                 </div>
@@ -764,7 +785,7 @@ const Postrentroom = ({ poststart, user }) => {
                 </div>
 
                 <div className="propertytype">
-                  <span className="name">글제목*</span>
+                  <span className="name">제목*</span>
                   <input
                     className="titleInput"
                     required
