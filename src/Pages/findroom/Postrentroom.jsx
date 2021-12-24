@@ -382,7 +382,7 @@ const Postrentroom = ({ poststart, user }) => {
   const [next, setNext] = useState(false);
   const [address, setaddress] = useState([]);
   const [lat, SetLat] = useState(null);
-  const [imageresults, setimageresults] = useState(null);
+  const [imageresults, setimageresults] = useState([]);
   const [imageloading, setimageloading] = useState(false);
 
   const handlesubmit2 = async (e) => {
@@ -470,7 +470,7 @@ const Postrentroom = ({ poststart, user }) => {
       var result = await Uploadimage(imagefile);
       results.push(result);
     }
-    setimageresults([...results]);
+    setimageresults([...imageresults, ...results]);
     setimageloading(false);
   };
   console.log(imageresults);
