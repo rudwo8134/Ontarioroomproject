@@ -6,7 +6,10 @@ import { selectitems } from '../../Redux/Rentcondo/rentcondo.selector';
 import { rentcondoreadstart } from '../../Redux/Rentcondo/rentcondo.action';
 import styled from 'styled-components';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
-import { Sendpasswordreset } from '../../Firebase/firebase.utils';
+import {
+  removeretcondoppost,
+  Sendpasswordreset,
+} from '../../Firebase/firebase.utils';
 
 const Wrapper = styled.div`
   max-width: 1300px;
@@ -257,18 +260,17 @@ const Wrapper = styled.div`
           @media screen and (max-width: 320px) {
             width: 200px;
             font-size: 0.8rem;
-            
           }
         }
         .name2 {
           text-align: start;
           width: 100px;
           @media screen and (max-width: 320px) {
-              font-size: 0.8rem;
-              width: 400px;
-              display: flex;
-              margin-left: 10px;
-              justify-content: center;
+            font-size: 0.8rem;
+            width: 400px;
+            display: flex;
+            margin-left: 10px;
+            justify-content: center;
           }
         }
       }
@@ -307,23 +309,30 @@ const Mypage = ({ rooms, readStart }) => {
 
   const Sendpassword = () => {
     Sendpasswordreset(user?.email).then((res) => {
-      if(res === 'success'){
-        setSendPasswordBack('비밀번호 변경 링크가 메일로 전송 되었습니다.')
-      }else{
+      if (res === 'success') {
+        setSendPasswordBack('비밀번호 변경 링크가 메일로 전송 되었습니다.');
+      } else {
         setSendPasswordBack('문제가 발생했습니다. 고객센터에 문의해주세요.');
       }
     });
   };
-  const handlesend = (id) => {
-    history.push(`/rentcondo/${id}`);
+  const handlesend = (id, data) => {
+    history.push({
+      pathname: `/postedit/`,
+      state: { data: data, id :id },
+    });
   };
 
-  const handledelete = () => {
-     if (!window.confirm("정말 삭제하시겠습니까?")) 
-     return false; 
+  const handledelete = async (id) => {
+    if (window.confirm('정말 삭제하시겠습니까?')) {
+      removeretcondoppost(id);
+      alert('삭제가 완료되었습니다.');
+      history.push('/rentcondo');
+    } else {
+      alert('삭제가 취소되었습니다.');
+    }
+    return false;
   };
-
-
 
   return (
     <Wrapper>
@@ -354,26 +363,32 @@ const Mypage = ({ rooms, readStart }) => {
         </div>
         <div className="divider"></div>
         <h3 className="name">나의 게시물</h3>
-        <p className="description">내가 올린 글을 이곳에서 한눈에 확인해 보세요!</p>
+        <p className="description">
+          내가 올린 글을 이곳에서 한눈에 확인해 보세요!
+        </p>
         <div className="divider"></div>
         <div className="mypost">
           {userPost?.map((data, index) => {
             return (
               <div className="renderlist">
                 <p className="title">
-                      {data?.posttitle}
-                      &nbsp;(${data?.monthlyfee})
+                  {data?.posttitle}
+                  &nbsp;(${data?.monthlyfee})
                 </p>
                 <div className="buttoncontainer">
-                    <button className="gobutton"
-                      onClick={() => handlesend(data?.id)}>수정
-                    </button>
-                    <button
-                      type="danger" onClick={() => handledelete() }
-                      className="deletebutton"
-                    >
-                      삭제
-                    </button>
+                  <button
+                    className="gobutton"
+                    onClick={() => handlesend(data?.id, data)}
+                  >
+                    수정
+                  </button>
+                  <button
+                    type="danger"
+                    onClick={() => handledelete(data?.id)}
+                    className="deletebutton"
+                  >
+                    삭제
+                  </button>
                 </div>
               </div>
             );

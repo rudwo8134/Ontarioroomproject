@@ -20,6 +20,7 @@ import Contactuspage from './Pages/ContactUs/Contactuspage';
 import Postrentroom from './Pages/findroom/Postrentroom';
 import ScrooltoTop from './staticFiles/ScrooltoTop';
 import Mypage from './Pages/Mypage/Mypage';
+import Postedit from './Pages/Mypage/Postupdate'
 function App(props) {
   const { checkUserSession, current } = props;
   useEffect(() => {
@@ -67,6 +68,13 @@ function App(props) {
             path="/rentcondopost"
             render={() =>
               !current ? <Redirect to="/login" /> : <Postrentroom />
+            }
+          />
+          <Route
+            exact
+            path="/postedit/"
+            render={(props) =>
+              !current ? <Redirect to="/login" /> : <Postedit {...props} />
             }
           />
           <Route render={() => <Errorpage />} />

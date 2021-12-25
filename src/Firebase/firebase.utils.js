@@ -3,6 +3,7 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
 import {sendPasswordResetEmail} from 'firebase/auth';
+import { rentcondoreadFail } from '../Redux/Rentcondo/rentcondo.action';
 
 const config = {
   apiKey: process.env.REACT_APP_APIKEY,
@@ -28,6 +29,29 @@ export const createrentcondopost = async(data) =>{
   }
 
   return rentconforef
+}
+
+export const updaterentcondopost = async (data) => {
+  const rentconforef = await firestore.doc(`/rentcondo/${data.id}`);
+  try {
+    await rentconforef.update({
+      ...data,
+    });
+  } catch (err) {
+    console.log('error creating rentcondo', err.message);
+  }
+
+  return rentconforef;
+};
+
+export const removeretcondoppost = async(data) =>{
+   const rentconforef = await firestore.doc(`/rentcondo/${data}`);
+   try{
+     await rentconforef.delete()
+     console.log('success to remove', data)
+   }catch(err){
+     console.log('failed to remove', err)
+   }
 }
 
 export const UpdateLikeFunction = async(userid,data) =>{
