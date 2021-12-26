@@ -18,7 +18,7 @@ const Why = styled.div`
     @media screen and (max-width: 375px) {
       font-size: 2rem;
     }
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       font-size: 2.5rem;
     }
   }
@@ -39,7 +39,7 @@ const Why = styled.div`
       align-items: center;
       justify-content: center;
     }
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -67,7 +67,7 @@ const Why = styled.div`
       @media screen and (max-width: 375px) {
         width: 240px;
       }
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         width: 290px;
       }
     }

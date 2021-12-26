@@ -26,7 +26,7 @@ const Wrapper = styled.div`
     margin-top: 0px;
     height: 150vh;
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 476px) {
     margin-top: 0px;
     height: 170vh;
   }
@@ -41,7 +41,7 @@ const Wrapper = styled.div`
     @media screen and (max-width: 375px) {
       display: none;
     }
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       display: none;
     }
   }
@@ -56,7 +56,7 @@ const Wrapper = styled.div`
       max-width: 100vw;
       flex-direction: column;
     }
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       width: 100vw;
       max-width: 100vw;
       flex-direction: column;
@@ -73,7 +73,7 @@ const Wrapper = styled.div`
         justify-content: center;
         align-items: center;
       }
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         width: 100vw;
         justify-content: center;
         align-items: center;
@@ -87,7 +87,7 @@ const Wrapper = styled.div`
         @media screen and (max-width: 375px) {
           font-size: 20px;
         }
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           font-size: 2rem;
         }
         @media screen and (max-width: 320px) {
@@ -106,7 +106,7 @@ const Wrapper = styled.div`
           width: 15vw;
           margin-top: -0.5rem;
         }
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           font-size: 20px;
           width: 15vw;
           margin-top: -0.5rem;
@@ -121,7 +121,7 @@ const Wrapper = styled.div`
           width: 90vw;
           text-align: center;
         }
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           font-size: 1.4rem;
           width: 90vw;
           text-align: center;
@@ -136,7 +136,7 @@ const Wrapper = styled.div`
           width: 90vw;
           text-align: center;
         }
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           font-size: 1.4rem;
           width: 90vw;
           text-align: center;
@@ -159,7 +159,7 @@ const Wrapper = styled.div`
           width: 90vw;
           text-align: center;
         }
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           font-size: 1rem;
           width: 90vw;
           text-align: center;
@@ -182,7 +182,7 @@ const Wrapper = styled.div`
           @media screen and (max-width: 375px) {
             display: none;
           }
-          @media screen and (max-width: 425px) {
+          @media screen and (max-width: 476px) {
             display: none;
           }
         }
@@ -214,7 +214,7 @@ const Wrapper = styled.div`
             width: 90vw;
             text-align: center;
           }
-          @media screen and (max-width: 425px) {
+          @media screen and (max-width: 476px) {
             font-size: 0.8rem;
             width: 90vw;
             text-align: center;
@@ -234,7 +234,7 @@ const Wrapper = styled.div`
             background-color: ${CommonStyles.color.PrimaryLight4};
           }
 
-          @media screen and (max-width: 425px) {
+          @media screen and (max-width: 476px) {
             width: 10rem;
             height: 3rem;
             font-size: 1.2rem;
@@ -256,7 +256,7 @@ const Wrapper = styled.div`
           width: 80vw;
           margin-top: -1.5rem;
         }
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           font-size: 1rem;
           width: 80vw;
           margin-top: -1.8rem;
@@ -274,7 +274,7 @@ const Wrapper = styled.div`
         margin: 30px auto;
         margin-top: 50px;
       }
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         width: 30vh;
         height: 2px;
         margin: 30px auto;

@@ -24,7 +24,7 @@ const Wrapper = styled.div`
   height: 100vh;
   margin-top: 100px;
   border-top: 1px solid ${CommonStyles.color.Darkbold1};
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 476px) {
     margin-top: 0;
   }
 
@@ -82,13 +82,13 @@ const Wrapper = styled.div`
     width: 100vw;
     height: 87vh;
     display: flex;
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       flex-direction: column;
       position: relative;
     }
     .ListViewMobile {
       display: none;
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         display: inline-block;
         width: 100vw;
         position: absolute;
@@ -98,7 +98,7 @@ const Wrapper = styled.div`
         z-index: 20;
       }
       .textContainer {
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           margin-top: 13vh;
           width: 100vw;
           display: flex;
@@ -137,13 +137,13 @@ const Wrapper = styled.div`
       flex: 1.5;
       border-radius: 13px;
       position: relative;
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         height: 100vh;
         width: 100vw;
       }
       .showList {
         display: none;
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           display: ${({ showList }) => (showList ? 'none' : 'inline-block')};
           position: absolute;
           bottom: 5%;
@@ -166,7 +166,7 @@ const Wrapper = styled.div`
       border-radius: 13px;
       display: flex;
       flex-direction: column;
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         display: none;
       }
       .textContainer {
@@ -278,7 +278,7 @@ const AutoCompletediv = styled.div`
   top: 30px;
   left: 30px;
   z-index: 20;
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 476px) {
     z-index: 29;
   }
   @media screen and (max-width: 375px) {
@@ -332,7 +332,7 @@ const AutoCompletediv = styled.div`
       line-height: 26px;
       color: ${CommonStyles.color.Primary};
       @media screen and (max-width: 325px) {
-       font-size: 11px;
+        font-size: 11px;
       }
     }
   }
@@ -372,12 +372,11 @@ const Filterbutton = styled.button`
   }
 `;
 
-
 const Marker = ({ children }) => children;
 
 const Home = (props) => {
   const { rooms, getData, User, getroomData } = props;
-  const isbigMobile = useMediaQuery({ query: '(max-width: 425px)' });
+  const isbigMobile = useMediaQuery({ query: '(max-width: 476px)' });
   const ismediumMobile = useMediaQuery({ query: '(max-width: 375px)' });
   const [loading, setLoading] = useState(false);
   const [address, setaddress] = useState([]);

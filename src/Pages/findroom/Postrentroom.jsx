@@ -21,7 +21,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
   margin-top: 90px;
   margin-bottom: 70px;
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 476px) {
     width: 90vw;
   }
 
@@ -29,7 +29,7 @@ const Wrapper = styled.div`
     width: 1200px;
     display: flex;
     justify-content: space-between;
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       margin-top: 1rem;
       width: 90vw;
     }
@@ -104,7 +104,7 @@ const Wrapper = styled.div`
   .nextbody {
     width: 1300px;
     margin: 0 auto;
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       width: 90vw;
       display: flex;
       flex-direction: column;
@@ -115,7 +115,7 @@ const Wrapper = styled.div`
       flex-direction: row;
       align-items: center;
       margin-bottom: 2rem;
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         width: 90vw;
       }
       .name {
@@ -126,7 +126,7 @@ const Wrapper = styled.div`
       .buttoncontainer {
         margin-left: 15px;
         width: 500px;
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           width: 70vw;
           display: flex;
           align-items: center;
@@ -139,7 +139,7 @@ const Wrapper = styled.div`
           border-radius: 16px;
           color: ${CommonStyles.color.Primary};
           margin: 10px;
-          @media screen and (max-width: 425px) {
+          @media screen and (max-width: 476px) {
             width: 30vw;
           }
         }
@@ -148,7 +148,7 @@ const Wrapper = styled.div`
   }
   .header {
     margin: 50px 20px 60px 0;
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       margin: 1rem 1rem 1rem 1rem;
     }
     .name {
@@ -157,7 +157,7 @@ const Wrapper = styled.div`
       color: ${CommonStyles.color.Primary};
       font-weight: ${CommonStyles.bold.Bold};
       margin-bottom: -20px;
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         font-size: 1.4rem;
         margin-bottom: 2rem;
       }
@@ -171,7 +171,7 @@ const Wrapper = styled.div`
     font-weight: 700;
     color: rgba(35, 31, 32, 0.61);
     justify-content: center;
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       width: 90vw;
       flex-direction: column;
     }
@@ -198,12 +198,12 @@ const Wrapper = styled.div`
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           width: 90vw;
         }
         .locationinput {
           width: 446px;
-          @media screen and (max-width: 425px) {
+          @media screen and (max-width: 476px) {
             width: 70vw;
           }
         }
@@ -229,7 +229,7 @@ const Wrapper = styled.div`
       align-items: space-between;
       margin-left: 20px;
       margin-bottom: 20px;
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         width: 85vw;
       }
       .name {
@@ -256,7 +256,7 @@ const Wrapper = styled.div`
       align-items: space-between;
       margin-left: 20px;
       margin-bottom: 20px;
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         width: 85vw;
         justify-content: space-between;
         flex-direction: row;
@@ -284,7 +284,7 @@ const Wrapper = styled.div`
         border: 1px solid ${CommonStyles.color.Primary};
         border-radius: 10px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           margin: 0;
         }
       }
@@ -296,7 +296,7 @@ const Wrapper = styled.div`
     width: 2px;
     height: 520px;
     margin: 50px 80px 30px 60px;
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       display: none;
     }
   }
@@ -306,7 +306,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       margin-top: 1rem;
       width: 80vw;
       justify-content: space-between;
@@ -341,7 +341,7 @@ const Wrapper = styled.div`
     justify-content: flex-end;
     width: 500px;
     margin-top: 20px;
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       width: 90vw;
     }
     button {
@@ -384,7 +384,7 @@ const Wrapper = styled.div`
       box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
       border-radius: 10px;
       border: 0px solid #df1b52;
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         width: 80vw;
       }
     }
@@ -459,7 +459,7 @@ const Searchbutton = styled.button`
   color: white;
   border-radius: 16px;
   margin-left: 10px;
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 476px) {
     width: 10vw;
   }
 `;
@@ -600,7 +600,7 @@ const Postrentroom = ({ poststart, user }) => {
     e.preventDefault();
     setAdditionalContact(e.target.value);
   };
-  const isbigMobile = useMediaQuery({ query: '(max-width: 425px)' });
+  const isbigMobile = useMediaQuery({ query: '(max-width: 476px)' });
 
   const filter = [
     {

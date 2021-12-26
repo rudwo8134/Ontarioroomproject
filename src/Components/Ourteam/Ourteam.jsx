@@ -78,7 +78,7 @@ const Ourteamstyle = styled.section`
     grid-template-columns: repeat(4, 1fr);
     column-gap: 1px;
     row-gap: 30px;
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       row-gap: 30px;
       grid-template-columns: repeat(1, 1fr);
       padding: 0;
@@ -115,7 +115,7 @@ const Ourteamstyle = styled.section`
       border-radius: 30px;
       margin-top: 3px;
       margin-bottom: 16px;
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         margin-top: -13px;
       }
       @media screen and (max-width: 375px) {
@@ -130,7 +130,7 @@ const Ourteamstyle = styled.section`
       letter-spacing: -0.4px;
       color: ${CommonStyles.color.Primary};
       margin-bottom: 20px;
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         font-size: 2.5rem;
       }
       @media screen and (max-width: 375px) {
@@ -155,7 +155,7 @@ const Ourteamstyle = styled.section`
       color: #231f20;
 
       mix-blend-mode: normal;
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         width: 60vw;
         margin-bottom: 3rem;
       }

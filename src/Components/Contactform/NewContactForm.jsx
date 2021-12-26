@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
 import LoginHeader from '../../assets/contactusheader.jpg';
 const HeaderWrap = styled.div`
@@ -12,8 +12,8 @@ const HeaderWrap = styled.div`
   background-position-y: 53%;
   background-position-x: 0%;
   background-size: 1600px;
-  @media screen and (max-width: 425px) {
-   display: none;
+  @media screen and (max-width: 476px) {
+    display: none;
   }
 `;
 const Wrapper = styled.div`
@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 476px) {
     width: 100vw;
     padding: 1rem;
   }
@@ -45,7 +45,7 @@ const Wrapper = styled.div`
     width: 600px;
     font-size: 14px;
     color: ${CommonStyles.color.Darkbold3};
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       width: 80vw;
     }
   }
@@ -53,7 +53,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin-top: 78px;
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       margin-top: 3rem;
     }
     .Submitbutton {
@@ -75,21 +75,21 @@ const Wrapper = styled.div`
         width: 430px;
         height: 30px;
         padding: 3px 15px;
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           width: 50vw;
         }
       }
       .textarea {
         width: 430px;
         height: 240px;
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           width: 65vw;
         }
       }
       select {
         width: 430px;
         height: 30px;
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           width: 65vw;
         }
       }
@@ -98,7 +98,7 @@ const Wrapper = styled.div`
         width: 100px;
         margin-right: 141px;
         color: ${CommonStyles.color.Darkbold4};
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           width: 20vw;
           margin-right: 1rem;
         }
@@ -117,7 +117,8 @@ const NewContactForm = () => {
         <h3 className="header">Contact Us</h3>
         <div className="divder" />
         <div className="description">
-          불편을 겪으시거나, Feedback이 있으시면 바로 알려주세요!<br/>
+          불편을 겪으시거나, Feedback이 있으시면 바로 알려주세요!
+          <br />
           항상 열려있는 마음으로 소통하겠습니다.
         </div>
 
@@ -158,6 +159,6 @@ const NewContactForm = () => {
       </Wrapper>
     </>
   );
-}
+};
 
-export default NewContactForm
+export default NewContactForm;

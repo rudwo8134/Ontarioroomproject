@@ -15,19 +15,19 @@ const Wrapper = styled.div`
   max-width: 1300px;
   margin: 0 auto;
   margin-top: 90px;
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 476px) {
     margin-top: 0;
     width: 100vw;
   }
   .mypost {
     padding: 20px;
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       padding: 10px;
     }
     .nopost {
       font-size: 1rem;
       color: ${CommonStyles.color.Darkbold3};
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         font-size: 1rem;
       }
     }
@@ -44,7 +44,7 @@ const Wrapper = styled.div`
       background: rgba(196, 196, 196, 0.5);
       border-radius: 4px;
       color: rgba(0, 0, 0, 0.5);
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         width: 90vw;
         height: 40px;
         justify-content: space-between;
@@ -52,7 +52,7 @@ const Wrapper = styled.div`
       }
       .buttoncontainer {
         margin-right: 20px;
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           width: 30vw;
           display: flex;
           flex-direction: row;
@@ -77,7 +77,7 @@ const Wrapper = styled.div`
         :hover {
           background-color: ${CommonStyles.color.PrimaryLight2};
         }
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           width: 3rem;
           height: 80%;
         }
@@ -90,7 +90,7 @@ const Wrapper = styled.div`
         font-size: 16px;
         font-weight: bold;
         line-height: 26px;
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           width: 70%;
           font-size: 0.7rem;
           line-height: 16px;
@@ -114,14 +114,14 @@ const Wrapper = styled.div`
   }
   .cover {
     padding: 30px;
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       padding: 1rem;
     }
     .name {
       font-size: 25px;
       font-weight: ${CommonStyles.bold.Bold};
       color: ${CommonStyles.color.Primary};
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         font-size: 1rem;
       }
     }
@@ -130,7 +130,7 @@ const Wrapper = styled.div`
       font-weight: ${CommonStyles.bold.Bold};
       line-height: 6px;
       color: rgba(35, 31, 32, 0.61);
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         font-size: 0.7rem;
       }
     }
@@ -138,13 +138,13 @@ const Wrapper = styled.div`
       width: 1300px;
       height: 1px;
       background-color: ${CommonStyles.color.Darkbold1};
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         width: 90vw;
       }
     }
     .namecontainer {
       padding: 20px;
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         padding: 0.7rem;
       }
       .listcontainer2 {
@@ -155,7 +155,7 @@ const Wrapper = styled.div`
         align-items: center;
         margin-bottom: 24px;
         position: relative;
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           width: 90vw;
         }
         .list {
@@ -164,7 +164,7 @@ const Wrapper = styled.div`
           text-transform: capitalize;
           color: ${CommonStyles.color.Darkbold4};
           font-weight: ${CommonStyles.bold.Bold};
-          @media screen and (max-width: 425px) {
+          @media screen and (max-width: 476px) {
             width: 14vw;
             font-size: 1rem;
           }
@@ -179,7 +179,7 @@ const Wrapper = styled.div`
         .name2 {
           text-align: start;
           width: 100px;
-          @media screen and (max-width: 425px) {
+          @media screen and (max-width: 476px) {
             font-size: 1rem;
             margin-left: 3rem;
           }
@@ -195,7 +195,7 @@ const Wrapper = styled.div`
           width: 300px;
           margin-left: 10px;
           color: ${CommonStyles.color.PrimaryLight4};
-          @media screen and (max-width: 425px) {
+          @media screen and (max-width: 476px) {
             width: 50vw;
             font-size: 0.7rem;
             position: absolute;
@@ -242,7 +242,7 @@ const Wrapper = styled.div`
         justify-content: space-between;
         align-items: center;
         margin-bottom: 24px;
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           width: 60vw;
           font-size: 1rem;
           text-align: start;
@@ -253,7 +253,7 @@ const Wrapper = styled.div`
           text-transform: capitalize;
           color: ${CommonStyles.color.Darkbold4};
           font-weight: ${CommonStyles.bold.Bold};
-          @media screen and (max-width: 425px) {
+          @media screen and (max-width: 476px) {
             font-size: 1rem;
             width: 100px;
           }
@@ -319,7 +319,7 @@ const Mypage = ({ rooms, readStart }) => {
   const handlesend = (id, data) => {
     history.push({
       pathname: `/postedit/`,
-      state: { data: data, id :id },
+      state: { data: data, id: id },
     });
   };
 

@@ -15,7 +15,7 @@ const NewupdateWrapper = styled.div`
   width: 100vw;
   height: 420px;
   margin-bottom: 200px;
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 476px) {
     height: 170vh;
   }
   @media screen and (max-width: 375px) {
@@ -35,7 +35,7 @@ const NewupdateWrapper = styled.div`
       font-size: ${CommonStyles.fontSize.ExtraLarge1};
       font-weight: ${CommonStyles.bold.LittleBold};
       text-align: 'center';
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         font-size: 2.3rem;
       }
       @media screen and (max-width: 375px) {
@@ -56,7 +56,7 @@ const NewupdateWrapper = styled.div`
     display: flex;
     justify-content: center;
     margin: 0 30px;
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       flex-direction: column;
     }
     @media screen and (max-width: 375px) {
@@ -72,7 +72,7 @@ const NewupdateWrapper = styled.div`
       :last-child {
         margin-right: 0px;
       }
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         width: 300px;
         margin-right: 0;
         margin: 0 auto;

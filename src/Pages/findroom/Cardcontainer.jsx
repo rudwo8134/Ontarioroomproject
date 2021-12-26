@@ -81,7 +81,7 @@ const CardWrapper = styled.div`
       font-weight: ${CommonStyles.bold.LittleBold};
       color: ${CommonStyles.color.Primary};
       text-transform: uppercase;
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         font-size: 1rem;
       }
     }
@@ -93,7 +93,7 @@ const CardWrapper = styled.div`
       line-height: 26px;
       color: rgba(35, 31, 32, 0.72);
       text-transform: capitalize;
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         font-size: 0.7rem;
       }
       @media screen and (max-width: 320px) {
@@ -113,7 +113,7 @@ const CardWrapper = styled.div`
       font-size: 16px;
       line-height: 26px;
       color: rgba(35, 31, 32, 0.72);
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         font-size: 0.8rem;
       }
       @media screen and (max-width: 320px) {
@@ -140,7 +140,7 @@ const Cardcontainer = ({ data }) => {
   const postalcode = data?.address?.Formattedaddress.split(',')[2];
 
   // const updateLike = () =>{
-    
+
   // }
 
   return (

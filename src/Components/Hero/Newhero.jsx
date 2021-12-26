@@ -72,7 +72,7 @@ const Newherostyle = styled.div`
   align-items: center;
   position: relative;
 
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 476px) {
     width: 100vw;
     height: 100vh;
     background-size: cover;
@@ -95,7 +95,7 @@ const Newherostyle = styled.div`
     justify-content: center;
     align-items: flex-start;
     transform: translate(-40%, -50%);
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       top: 30%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -132,7 +132,7 @@ const Newherostyle = styled.div`
     letter-spacing: -1px;
     margin-bottom: -20px;
     color: rgb(24, 47, 67);
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       font-size: 2rem;
       margin-bottom: -20px;
       .hidden {
@@ -210,7 +210,7 @@ const Newherostyle = styled.div`
 
     color: black;
     width: 80%;
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       font-size: 1rem;
     }
     @media screen and (max-width: 375px) {
@@ -226,7 +226,7 @@ const Newherostyle = styled.div`
       width: 100vw;
       align-self: center;
     }
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       width: 100vw;
       align-self: center;
     }
@@ -237,7 +237,7 @@ const Newherostyle = styled.div`
         align-items: center;
         justify-content: center;
       }
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         width: 100vw;
         display: flex;
         align-items: center;
@@ -258,7 +258,7 @@ const Newherostyle = styled.div`
         width: 15rem;
         position: relative;
       }
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         margin-left: 0;
         width: 20rem;
         position: relative;
@@ -273,7 +273,7 @@ const Newherostyle = styled.div`
         @media screen and (max-width: 375px) {
           font-size: 0.8rem;
         }
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           font-size: 1rem;
         }
       }
@@ -292,7 +292,7 @@ const Newherostyle = styled.div`
     @media screen and (max-width: 375px) {
       font-size: 0.7rem;
     }
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       font-size: 0.7rem;
     }
     .mouse {
@@ -311,7 +311,7 @@ const Newherostyle = styled.div`
         height: 25px;
         margin: 0 auto 10px;
       }
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         width: 35px;
         height: 35px;
         margin: 0 auto 80px;
@@ -340,7 +340,7 @@ const Newherostyle = styled.div`
           font-size: 0.7rem;
           top: 25px;
         }
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 476px) {
           font-size: 0.7rem;
           top: 25px;
         }

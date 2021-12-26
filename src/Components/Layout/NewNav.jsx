@@ -54,7 +54,7 @@ const NavWrapper = styled.nav`
     justify-content: space-between;
     align-self: space-between;
   }
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 476px) {
     position: sticky;
     width: 100vw;
     height: 40px;
@@ -72,7 +72,7 @@ const NavWrapper = styled.nav`
       flex: none;
       display: inline-block;
     }
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       flex: none;
       display: inline-block;
     }
@@ -83,7 +83,7 @@ const NavWrapper = styled.nav`
         width: 110px;
         height: 25px;
       }
-      @media screen and (max-width: 425px) {
+      @media screen and (max-width: 476px) {
         display: inline-block;
         width: 149px;
         height: 30px;
@@ -102,7 +102,7 @@ const NavWrapper = styled.nav`
         font-size: 2.5rem;
       }
     }
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       display: inline-block;
       button {
         background-color: transparent;
@@ -116,7 +116,7 @@ const NavWrapper = styled.nav`
   }
   .HamburgerLinkcontainer {
     display: none;
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       display: inline-block;
       position: absolute;
       top: -10px;
@@ -254,7 +254,7 @@ const NavWrapper = styled.nav`
       font-size: 20px;
       font-weight: bold;
     }
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       display: none;
     }
   }
@@ -267,7 +267,7 @@ const NavWrapper = styled.nav`
     @media screen and (max-width: 375px) {
       display: none;
     }
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 476px) {
       display: none;
     }
     .DetailButton {

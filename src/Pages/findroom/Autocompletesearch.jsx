@@ -36,7 +36,7 @@ const EnterKeyForFind = styled.span`
   left: 105%;
   font-weight: 700;
   top: 25%;
-  @media screen and (max-width: 425px) {
+  @media screen and (max-width: 476px) {
     top: 105%;
     left: 30%;
   }
