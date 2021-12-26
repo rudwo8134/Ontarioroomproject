@@ -4,7 +4,6 @@ import { CommonStyles } from '../../staticFiles/CommonStyles';
 import Background from '../../assets/BackgroundImage.jpg';
 import { Link } from 'react-router-dom';
 import { GoPrimitiveDot } from 'react-icons/go';
-import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 const CardWrapper = styled.div`
   background-color: #ffffffaa;
   width: 100%;
@@ -137,7 +136,6 @@ const CardWrapper = styled.div`
 const Cardcontainer = ({ data }) => {
   const address = data?.address?.Formattedaddress.split(',')[0];
   const city = data?.address?.Formattedaddress.split(',')[1];
-  const postalcode = data?.address?.Formattedaddress.split(',')[2];
 
   // const updateLike = () =>{
 

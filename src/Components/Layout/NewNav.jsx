@@ -319,7 +319,6 @@ const NewNav = (props) => {
   const history = useHistory();
   const { User, signout } = props;
   const [scroll, setscroll] = useState(false);
-  const [detail, setDetail] = useState(false);
   const [showPopup, setShowPopuo] = useState(false);
   const handlescroll = () => {
     const scroll = window.scrollY;

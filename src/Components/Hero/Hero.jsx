@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import style from '../../static/staticcss'
 import styled from 'styled-components'
-import main from '../../assets/main.png'
 import video from '../../assets/video.mp4'
 
 const ImageContainer = styled.div`
@@ -80,7 +79,6 @@ const Pallarlax = styled.div`
 
 
 const Hero = () => {
-  const [loading,setloading] = useState(true)
   
  
   return (

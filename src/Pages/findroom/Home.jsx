@@ -1,19 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
-import maystylesdata from '../../Components/rentcondo/mapstyle';
 import Cardcontainer from './Cardcontainer';
 import { createStructuredSelector } from 'reselect';
 import { selectitems } from '../../Redux/Rentcondo/rentcondo.selector';
 import { connect } from 'react-redux';
 import { rentcondoreadstart } from '../../Redux/Rentcondo/rentcondo.action';
-import Markericons from '../../assets/mapMarker.svg';
-import useSupercluster, { supercluster } from 'use-supercluster';
+
+import useSupercluster from 'use-supercluster';
 import GoogleMapReact from 'google-map-react';
 
-import { handleaddressdata } from './Functionhandler';
+
 import { selectCurrentUser } from '../../Redux/Users/user.selector';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import {  useLocation } from 'react-router-dom';
 import { readrentcondo } from '../../Redux/Rentcondo/rentcondo.saga';
 import Autocompletesearch from './Autocompletesearch';
 import { BiSearch } from 'react-icons/bi';
@@ -338,18 +337,8 @@ const AutoCompletediv = styled.div`
   }
 `;
 
-const libraries = [];
-const options = {
-  style: maystylesdata,
-  disableDefaultUI: false,
-  zoomControl: true,
-};
 
-const containerStyle = {
-  width: '100%',
-  height: '100%',
-  flex: '1',
-};
+
 
 const Filterbutton = styled.button`
   background-color: ${CommonStyles.color.Primary};
@@ -375,23 +364,12 @@ const Filterbutton = styled.button`
 const Marker = ({ children }) => children;
 
 const Home = (props) => {
-  const { rooms, getData, User, getroomData } = props;
+  const { rooms, getData} = props;
   const isbigMobile = useMediaQuery({ query: '(max-width: 476px)' });
   const ismediumMobile = useMediaQuery({ query: '(max-width: 375px)' });
   const [loading, setLoading] = useState(false);
-  const [address, setaddress] = useState([]);
-  const [googlemapcenter, setgooglemapcenter] = useState(null);
-  const history = useHistory();
   const location = useLocation();
   const locationhistory = location?.state?.params;
-  const handlesubmitaddress = async (e) => {
-    e.preventDefault();
-    const data = await handleaddressdata(address);
-    await setgooglemapcenter({
-      lat: data.lat,
-      lng: data.lng,
-    });
-  };
 
   // map ref
   const mapref = useRef();
@@ -482,7 +460,7 @@ const Home = (props) => {
     setLoading(true);
     getData();
     setLoading(false);
-  }, [getData, googlemapcenter]);
+  }, [getData]);
 
   const SelectFilter = (e) => {
     SetFilter(e.target.value);

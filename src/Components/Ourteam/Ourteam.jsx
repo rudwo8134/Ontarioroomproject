@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Innerlayout } from '../../styles/layout';
 import PersonCard from '../util/PersonCard';
-import Primarybutton from '../util/Primarybutton';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
 import p1 from '../../assets/profile/person1.jpeg';
 import p2 from '../../assets/profile/person2.png';

@@ -1,28 +1,14 @@
-import React,{useState, useRef,useEffect,Suspense, useMemo, useCallback} from 'react'
+import React,{ useRef,Suspense, useMemo, useCallback} from 'react'
 import styled,{keyframes} from 'styled-components'
-import {Canvas,useFrame,useThree,extend, useLoader} from '@react-three/fiber'
-import { useSpring, animated } from '@react-spring/three';
+import {Canvas,useFrame,extend, useLoader} from '@react-three/fiber'
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls'
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import * as THREE from 'three'
-import style from '../../static/staticcss';
 import circleimg from '../../assets/circle.png'
-import { BufferAttribute } from 'three';
+
 
 extend({OrbitControls})
 
 
-
-const Specialship = () =>{
-  const [model,setmodel] = useState()
-  useEffect(()=>{
-    new GLTFLoader().load('/scene.gltf',setmodel)
-  },[])
-
-  return (
-   model ? (<animated.primitive object={model.scene} position={[-5,5,0]}/>) : null 
-  )
-}
 
 const animationd = keyframes`
     0% {
@@ -68,28 +54,6 @@ const Textfile = styled.h1`
   transform: translate(-50%, -50%);
   animation: ${animationd} 5s infinite ease forwards;
 `;
-
-const Controls = () =>{
-  const orbitref = useRef()
-  const {camera, gl} = useThree()
-
-  useFrame(() => {
-    orbitref.current.update()
-  });
-
-  return (
-    <orbitControls
-      enableDamping={true}
-      enableZoom={false}
-      zoomSpeed={0.2}
-      ref={orbitref}
-      args={[camera, gl.domElement]}
-      autoRotate
-      maxPolarAngle={Math.PI / 2}
-      minPolarAngle={Math.PI / 2}
-    />
-  );
-}
 
 const Points = () =>{
   const imgtex = useLoader(THREE.TextureLoader,circleimg)
@@ -158,40 +122,6 @@ const Points = () =>{
   );
 }
 
-const Boxcontents = () =>{
-  // const mashref = useRef();
-  const [hover,sethover] = useState(false)
-  const [active,setactive] = useState(false)
-  const props = useSpring({
-    scale: active ? [1.5, 1.5, 1.5] : [1, 1, 1],
-    color: hover ? "hotpink" : "grey"
-  });
- 
- 
-  return (
-    <animated.mesh
-      // ref={mashref}
-      onPointerOver={() => sethover(true)}
-      onPointerOut={() => sethover(false)}
-      onClick={() => setactive(!active)}
-      scale={props.scale}
-      castShadow
-    >
-    
-      <boxBufferGeometry attach="geometry" args={[1, 1, 1]} />
-      <animated.meshPhysicalMaterial attach="material" color={props.color} />
-    </animated.mesh>
-  );
-}
-
-const Plane = () =>{
-  return (
-    <mesh rotation={[-Math.PI/ 2, 0, 0]} position={[0,-0.5,0]} receiveShadow>
-      <planeBufferGeometry attach="geometry" args={[100, 100]} />
-      <meshPhysicalMaterial attach="material" color="white" />
-    </mesh>
-  );
-}
 
 const Newhomecomponent = () => {
   return (

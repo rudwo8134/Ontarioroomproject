@@ -1,11 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import {
-  FaFacebookSquare,
-  FaGooglePlusSquare,
-  FaTwitterSquare,
-} from "react-icons/fa";
-import { CommonStyles } from "../../staticFiles/CommonStyles";
+import React from 'react';
+import styled from 'styled-components';
+import { FaGooglePlusSquare } from 'react-icons/fa';
+import { CommonStyles } from '../../staticFiles/CommonStyles';
 
 const PersonCard = ({ image, name, job, job2 }) => {
   return (
@@ -21,7 +17,7 @@ const PersonCard = ({ image, name, job, job2 }) => {
 
         <span className="job">
           {job}
-          <br></br> <b className={"text"}>{job2}</b>
+          <br></br> <b className={'text'}>{job2}</b>
         </span>
       </div>
     </Personcardstyle>
@@ -63,12 +59,10 @@ const Personcardstyle = styled.div`
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      b{
+      b {
         border-bottom: 1px solid ${CommonStyles.color.Primary};
         line-height: 20px;
       }
-      
-
     }
 
     .job {
@@ -87,7 +81,6 @@ const Personcardstyle = styled.div`
     }
   }
   .social {
-    
     display: flex;
 
     flex-direction: row;

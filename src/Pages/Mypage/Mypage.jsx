@@ -278,8 +278,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Mypage = ({ rooms, readStart }) => {
-  const [load, setLoad] = useState(false);
+const Mypage = ({ rooms }) => {
   const [user, setUser] = useState(null);
   const [userPost, setUserPost] = useState(null);
   const [sendPasswordBack, setSendPasswordBack] = useState(null);
@@ -301,11 +300,6 @@ const Mypage = ({ rooms, readStart }) => {
       })
     );
   }, [rooms, user]);
-  useEffect(() => {
-    setLoad(true);
-    readStart();
-    setLoad(false);
-  }, [readStart]);
 
   const Sendpassword = () => {
     Sendpasswordreset(user?.email).then((res) => {

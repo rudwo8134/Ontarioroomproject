@@ -1,4 +1,4 @@
-import Useractiontypes from "../Users/users.type";
+
 import rentcondotype from "./rentcondo.type";
 
 const INITIAL_VALUE = {

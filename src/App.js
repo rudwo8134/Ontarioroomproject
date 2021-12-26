@@ -5,7 +5,6 @@ import Layout from './Components/Layout/Layout';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Errorpage from './Pages/Errorpage';
-import Rentcondopost from './Pages/Rentcondo/Rentcondopost';
 import RentcondoHome from './Pages/findroom/Home';
 
 import { connect } from 'react-redux';

@@ -7,8 +7,6 @@ import { selectitems } from '../../Redux/Rentcondo/rentcondo.selector';
 import { connect } from 'react-redux';
 import { rentcondoreadstart } from '../../Redux/Rentcondo/rentcondo.action';
 import Loader from 'react-loader-spinner';
-import { BsFillCaretRightFill } from 'react-icons/bs';
-import { GoPrimitiveDot } from 'react-icons/go';
 import { useHistory } from 'react-router-dom';
 
 const NewupdateWrapper = styled.div`
@@ -142,44 +140,6 @@ const NewupdateWrapper = styled.div`
   }
 `;
 
-const Arrowleft = styled(BsFillCaretRightFill)`
-  transform: rotate(-180deg);
-  position: absolute;
-  top: 50%;
-  left: 32px;
-  font-size: 3rem;
-  color: ${CommonStyles.color.Dark};
-  cursor: pointer;
-  user-select: none;
-  z-index: 10;
-  transition: 0.5s all ease-in-out;
-  :hover {
-    color: ${CommonStyles.color.Primary};
-  }
-`;
-const Arrowright = styled(BsFillCaretRightFill)`
-  position: absolute;
-  top: 50%;
-  right: 32px;
-  font-size: 3rem;
-  color: ${CommonStyles.color.Dark};
-  cursor: pointer;
-  user-select: none;
-  z-index: 10;
-  transition: 0.5s all ease-in-out;
-  :hover {
-    color: ${CommonStyles.color.Primary};
-  }
-`;
-
-const Dotfolder = styled.div`
-  width: 100%;
-  height: 10px;
-  display: flex;
-  justify-content: center;
-  margin: 20px auto;
-`;
-
 const NewUpdate = ({ rooms, readStart }) => {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
@@ -189,15 +149,7 @@ const NewUpdate = ({ rooms, readStart }) => {
     setLoading(false);
   }, [readStart]);
 
-  const [currentImg, setCurrentImg] = useState(0);
-  const length = rooms?.length;
 
-  const nextSlide = () => {
-    setCurrentImg(currentImg === length - 1 ? 0 : currentImg + 1);
-  };
-  const previousSlide = () => {
-    setCurrentImg(currentImg === 0 ? length - 1 : currentImg - 1);
-  };
 
   if (loading) {
     return (

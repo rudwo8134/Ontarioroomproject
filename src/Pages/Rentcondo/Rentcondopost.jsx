@@ -9,7 +9,6 @@ import PlacesAutocomplete from 'react-places-autocomplete';
 import scriptLoader from 'react-async-script-loader'
 import { useHistory } from 'react-router';
 import { Uploadimage } from '../../Firebase/firebase.utils';
-import image from '../../assets/main.png'
 
 const Wrapper = styled.div`
   margin-top:10vh;

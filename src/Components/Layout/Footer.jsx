@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import style from '../../static/staticcss';
 import { Link } from 'react-router-dom';
-import { Footerdata, Navdata } from '../../static/staticdata';
 import { Innerlayout } from '../../styles/layout';
 import {
   FaFacebookSquare,

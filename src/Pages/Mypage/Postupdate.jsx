@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
 import { StaticGoogleMap, Marker } from 'react-static-google-map';
@@ -8,7 +8,6 @@ import {
 } from '../../Firebase/firebase.utils';
 import Noimage from '../../assets/noimage.png';
 import PlacesAutocomplete from 'react-places-autocomplete';
-import { v4 as uuid } from 'uuid';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../../Redux/Users/user.selector';
 import { rentcondopoststart } from '../../Redux/Rentcondo/rentcondo.action';
@@ -490,7 +489,7 @@ const AdditionalContactSelect = styled.div`
   }
 `;
 const Editrentroom = (props) => {
-  const { poststart, user } = props;
+  const { user } = props;
   const { id: editid, data: postdata } = props?.location?.state;
   console.log(editid);
   console.log(postdata);

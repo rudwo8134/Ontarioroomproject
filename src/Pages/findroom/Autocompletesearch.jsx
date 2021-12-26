@@ -5,9 +5,9 @@ import PlacesAutocomplete, {
 } from 'react-places-autocomplete';
 import scriptLoader from 'react-async-script-loader';
 import styled from 'styled-components';
-import { connect, useDispatch } from 'react-redux';
+import {  useDispatch } from 'react-redux';
 import { addressupdatestart } from '../../Redux/Rentcondo/rentcondo.action';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
 import Loader from 'react-loader-spinner';
 

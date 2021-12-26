@@ -2,8 +2,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import 'firebase/compat/storage';
-import {sendPasswordResetEmail} from 'firebase/auth';
-import { rentcondoreadFail } from '../Redux/Rentcondo/rentcondo.action';
+
 
 const config = {
   apiKey: process.env.REACT_APP_APIKEY,
