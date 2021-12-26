@@ -12,6 +12,9 @@ const HeaderWrap = styled.div`
   background-position-y: 53%;
   background-position-x: 0%;
   background-size: 1600px;
+  @media screen and (max-width: 425px) {
+   display: none;
+  }
 `;
 const Wrapper = styled.div`
   width: 40vw;
@@ -20,6 +23,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  @media screen and (max-width: 425px) {
+    width: 100vw;
+    padding: 1rem;
+  }
 
   .header {
     font-size: ${CommonStyles.fontSize.Large};
@@ -38,11 +45,17 @@ const Wrapper = styled.div`
     width: 600px;
     font-size: 14px;
     color: ${CommonStyles.color.Darkbold3};
+    @media screen and (max-width: 425px) {
+      width: 80vw;
+    }
   }
   form {
     display: flex;
     flex-direction: column;
     margin-top: 78px;
+    @media screen and (max-width: 425px) {
+      margin-top: 3rem;
+    }
     .Submitbutton {
       width: 100px;
       height: 40px;
@@ -62,20 +75,33 @@ const Wrapper = styled.div`
         width: 430px;
         height: 30px;
         padding: 3px 15px;
+        @media screen and (max-width: 425px) {
+          width: 50vw;
+        }
       }
       .textarea {
         width: 430px;
         height: 240px;
+        @media screen and (max-width: 425px) {
+          width: 65vw;
+        }
       }
       select {
         width: 430px;
         height: 30px;
+        @media screen and (max-width: 425px) {
+          width: 65vw;
+        }
       }
       label {
         font-size: 16px;
         width: 100px;
         margin-right: 141px;
         color: ${CommonStyles.color.Darkbold4};
+        @media screen and (max-width: 425px) {
+          width: 20vw;
+          margin-right: 1rem;
+        }
       }
     }
   }

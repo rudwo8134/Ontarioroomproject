@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router';
 import { withRouter } from 'react-router-dom';
 import { MdCancel } from 'react-icons/md';
+import { useMediaQuery } from 'react-responsive';
 
 const Wrapper = styled.div`
   border-top: 1px solid ${CommonStyles.color.Darkbold1};
@@ -20,12 +21,18 @@ const Wrapper = styled.div`
   margin: 0 auto;
   margin-top: 90px;
   margin-bottom: 70px;
+  @media screen and (max-width: 425px) {
+    width: 90vw;
+  }
 
   .submitbutton {
     width: 1200px;
     display: flex;
     justify-content: space-between;
-
+    @media screen and (max-width: 425px) {
+      margin-top: 1rem;
+      width: 90vw;
+    }
     .backbutton {
       height: 35px;
       background-color: white;
@@ -97,11 +104,20 @@ const Wrapper = styled.div`
   .nextbody {
     width: 1300px;
     margin: 0 auto;
+    @media screen and (max-width: 425px) {
+      width: 90vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .container {
       display: flex;
       flex-direction: row;
       align-items: center;
       margin-bottom: 2rem;
+      @media screen and (max-width: 425px) {
+        width: 90vw;
+      }
       .name {
         width: 100px;
         font-weight: 600;
@@ -110,6 +126,11 @@ const Wrapper = styled.div`
       .buttoncontainer {
         margin-left: 15px;
         width: 500px;
+        @media screen and (max-width: 425px) {
+          width: 70vw;
+          display: flex;
+          align-items: center;
+        }
         button {
           width: 131px;
           height: 30px;
@@ -118,18 +139,28 @@ const Wrapper = styled.div`
           border-radius: 16px;
           color: ${CommonStyles.color.Primary};
           margin: 10px;
+          @media screen and (max-width: 425px) {
+            width: 30vw;
+          }
         }
       }
     }
   }
   .header {
     margin: 50px 20px 60px 0;
+    @media screen and (max-width: 425px) {
+      margin: 1rem 1rem 1rem 1rem;
+    }
     .name {
       text-transform: uppercase;
       font-size: 24px;
       color: ${CommonStyles.color.Primary};
       font-weight: ${CommonStyles.bold.Bold};
       margin-bottom: -20px;
+      @media screen and (max-width: 425px) {
+        font-size: 1.4rem;
+        margin-bottom: 2rem;
+      }
     }
   }
   .body {
@@ -140,6 +171,10 @@ const Wrapper = styled.div`
     font-weight: 700;
     color: rgba(35, 31, 32, 0.61);
     justify-content: center;
+    @media screen and (max-width: 425px) {
+      width: 90vw;
+      flex-direction: column;
+    }
 
     .left {
       flex: 1;
@@ -163,7 +198,15 @@ const Wrapper = styled.div`
         flex-direction: row;
         align-items: center;
         justify-content: center;
-
+        @media screen and (max-width: 425px) {
+          width: 90vw;
+        }
+        .locationinput {
+          width: 446px;
+          @media screen and (max-width: 425px) {
+            width: 70vw;
+          }
+        }
         select,
         input {
           margin-top: 10px;
@@ -176,71 +219,86 @@ const Wrapper = styled.div`
           border: 0px solid #df1b52;
         }
       }
-      .propertytype {
-        width: 98%;
-        display: flex;
-        justify-self: flex-end;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: space-between;
-        margin-left: 20px;
-        margin-bottom: 20px;
-        .name {
-          font-weight: ${CommonStyles.bold.bold};
-          font-size: 17px;
-          color: rgba(35, 31, 32, 0.61);
-        }
-        select,
-        input {
-          width: 230px;
-          height: 30px;
-          border: 1px solid ${CommonStyles.color.Primary};
-          box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
-          background-color: rgba(255, 255, 255, 0.6);
-          border-radius: 10px;
-        }
+    }
+    .propertytype {
+      width: 98%;
+      display: flex;
+      justify-self: flex-end;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: space-between;
+      margin-left: 20px;
+      margin-bottom: 20px;
+      @media screen and (max-width: 425px) {
+        width: 85vw;
       }
-      .propertytypeimage {
-        width: 51%;
-        display: flex;
-        justify-self: flex-end;
-        flex-direction: row;
+      .name {
+        font-weight: ${CommonStyles.bold.bold};
+        font-size: 17px;
+        color: rgba(35, 31, 32, 0.61);
+      }
+      select,
+      input {
+        width: 230px;
+        height: 30px;
+        border: 1px solid ${CommonStyles.color.Primary};
+        box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
+        background-color: rgba(255, 255, 255, 0.6);
+        border-radius: 10px;
+      }
+    }
+    .propertytypeimage {
+      width: 51%;
+      display: flex;
+      justify-self: flex-end;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: space-between;
+      margin-left: 20px;
+      margin-bottom: 20px;
+      @media screen and (max-width: 425px) {
+        width: 85vw;
         justify-content: space-between;
-        align-items: space-between;
-        margin-left: 20px;
-        margin-bottom: 20px;
+        flex-direction: row;
+      }
 
-        .name {
-          font-weight: ${CommonStyles.bold.bold};
-          font-size: 17px;
-          color: rgba(35, 31, 32, 0.61);
-        }
+      .name {
+        font-weight: ${CommonStyles.bold.bold};
+        font-size: 17px;
+        color: rgba(35, 31, 32, 0.61);
+      }
 
-        .photoupload,
-        #photoupload {
-          display: none;
-        }
+      .photoupload,
+      #photoupload {
+        display: none;
+      }
 
-        .input-file-button {
-          margin: 3px 145px 0 0;
-          width: 66px;
-          height: 24px;
-          font-size: 11px;
-          text-align: center;
-          color: #fff;
-          background: #df1b52;
-          border: 1px solid ${CommonStyles.color.Primary};
-          border-radius: 10px;
-          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      .input-file-button {
+        margin: 3px 145px 0 0;
+        width: 66px;
+        height: 24px;
+        font-size: 11px;
+        text-align: center;
+        color: #fff;
+        background: #df1b52;
+        border: 1px solid ${CommonStyles.color.Primary};
+        border-radius: 10px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        @media screen and (max-width: 425px) {
+          margin: 0;
         }
       }
     }
+  }
   .divider {
     //background-color: ${CommonStyles.color.Darkbold2};
     border: 1.4px solid rgba(0, 0, 0, 0.1);
     width: 2px;
     height: 520px;
     margin: 50px 80px 30px 60px;
+    @media screen and (max-width: 425px) {
+      display: none;
+    }
   }
 
   .right {
@@ -248,118 +306,130 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+    @media screen and (max-width: 425px) {
+      margin-top: 1rem;
+      width: 80vw;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
 
-    .propertytypeimage {
-      width: 60%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin-bottom: ${CommonStyles.margin.Reuglar};
-      .name {
-        font-weight: 700;
-        color: rgba(35, 31, 32, 0.61);
-      }
-      h1 {
-        font-size: 16px;
-        width: 250px;
-        font-weight: 700;
-        color: ${CommonStyles.color.Primary};
-      }
-      label {
-        width: 250px;
-        font-weight: 700;
-        color: ${CommonStyles.color.Darkbold3};
-      }
-    }
-    .buttoncontainer {
-      display: flex;
-      justify-content: flex-end;
-      width: 500px;
-      margin-top: 20px;
-      button {
-        width: 123px;
-        height: 37px;
-        background-color: ${CommonStyles.color.Primary};
-        border: 1px solid #df1b52;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        color: ${CommonStyles.color.White};
-        font-size: 13px;
-        font-weight: 700;
-        text-transform: capitalize;
-        cursor: pointer;
-        transition: 0.3s ease-in-out all;
-        :hover {
-          transform: scale(1.05) translateY(-3px);
-          color: ${CommonStyles.color.Dark};
-        }
-      }
-    }
-    .description {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      margin-bottom: ${CommonStyles.margin.Reuglar};
+  .propertytypeimage {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: ${CommonStyles.margin.Reuglar};
+    .name {
+      font-weight: 700;
       color: rgba(35, 31, 32, 0.61);
-      .name {
-        width: 200px;
-        font-weight: 700;
-      }
-      textarea {
-        margin-top: 20px;
-        width: 496px;
-        height: 269px;
-        left: 2.29%;
-        right: 2.87%;
-        top: 13.7%;
-        bottom: 12.6%;
-        background: rgba(255, 255, 255, 0.6);
-        box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
-        border-radius: 10px;
-        border: 0px solid #df1b52;
+    }
+    h1 {
+      font-size: 16px;
+      width: 250px;
+      font-weight: 700;
+      color: ${CommonStyles.color.Primary};
+    }
+    label {
+      width: 250px;
+      font-weight: 700;
+      color: ${CommonStyles.color.Darkbold3};
+    }
+  }
+  .buttoncontainer {
+    display: flex;
+    justify-content: flex-end;
+    width: 500px;
+    margin-top: 20px;
+    @media screen and (max-width: 425px) {
+      width: 90vw;
+    }
+    button {
+      width: 123px;
+      height: 37px;
+      background-color: ${CommonStyles.color.Primary};
+      border: 1px solid #df1b52;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      color: ${CommonStyles.color.White};
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: capitalize;
+      cursor: pointer;
+      transition: 0.3s ease-in-out all;
+      :hover {
+        transform: scale(1.05) translateY(-3px);
+        color: ${CommonStyles.color.Dark};
       }
     }
-
-    .propertytype {
-      width: 85%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-
-      margin-bottom: ${CommonStyles.margin.Reuglar};
-      .name {
-        width: 200px;
-        font-weight: 700;
-        color: rgba(35, 31, 32, 0.61);
-      }
-      select,
-      input {
-        width: 200px;
-        height: 30px;
-        border: 0px solid ${CommonStyles.color.Primary};
-        background-color: rgba(255, 255, 255, 0.6);
-        box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
-        border-radius: 10px;
-      }
-
-      .titleInput {
-        width: 350px;
-        height: 30px;
-        border: 0px solid ${CommonStyles.color.Primary};
-        background-color: rgba(255, 255, 255, 0.6);
-        box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
-        border-radius: 10px;
-      }
-      .titleInputpro {
-        width: 415px;
-        height: 30px;
-        border: 1px solid ${CommonStyles.color.Primary};
-        background-color: rgba(255, 255, 255, 0.6);
-        box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
-        border-radius: 10px;
+  }
+  .description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: ${CommonStyles.margin.Reuglar};
+    color: rgba(35, 31, 32, 0.61);
+    .name {
+      width: 200px;
+      font-weight: 700;
+    }
+    textarea {
+      margin-top: 20px;
+      width: 496px;
+      height: 269px;
+      left: 2.29%;
+      right: 2.87%;
+      top: 13.7%;
+      bottom: 12.6%;
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
+      border-radius: 10px;
+      border: 0px solid #df1b52;
+      @media screen and (max-width: 425px) {
+        width: 80vw;
       }
     }
-  }}
-`
+  }
+
+  .propertytype {
+    width: 85%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin-bottom: ${CommonStyles.margin.Reuglar};
+    .name {
+      width: 200px;
+      font-weight: 700;
+      color: rgba(35, 31, 32, 0.61);
+    }
+    select,
+    input {
+      width: 200px;
+      height: 30px;
+      border: 0px solid ${CommonStyles.color.Primary};
+      background-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
+      border-radius: 10px;
+    }
+
+    .titleInput {
+      width: 350px;
+      height: 30px;
+      border: 0px solid ${CommonStyles.color.Primary};
+      background-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
+      border-radius: 10px;
+    }
+    .titleInputpro {
+      width: 415px;
+      height: 30px;
+      border: 1px solid ${CommonStyles.color.Primary};
+      background-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
+      border-radius: 10px;
+    }
+  }
+`;
 
 const Imageuploadcontainer = styled.div`
   margin-top: 1rem;
@@ -380,7 +450,6 @@ const Imageuploadcontainer = styled.div`
 const Searchbutton = styled.button`
   width: 100px;
   height: 45px;
-  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -390,6 +459,9 @@ const Searchbutton = styled.button`
   color: white;
   border-radius: 16px;
   margin-left: 10px;
+  @media screen and (max-width: 425px) {
+    width: 10vw;
+  }
 `;
 
 const Xbutton = styled(MdCancel)`
@@ -512,7 +584,6 @@ const Postrentroom = ({ poststart, user }) => {
     setimageresults([...imageresults, ...results]);
     setimageloading(false);
   };
-  console.log(imageresults);
   const handleImageDelete = (id) => {
     setimageresults(
       imageresults.filter((data) => {
@@ -529,6 +600,7 @@ const Postrentroom = ({ poststart, user }) => {
     e.preventDefault();
     setAdditionalContact(e.target.value);
   };
+  const isbigMobile = useMediaQuery({ query: '(max-width: 425px)' });
 
   const filter = [
     {
@@ -752,7 +824,7 @@ const Postrentroom = ({ poststart, user }) => {
                             {...getInputProps({
                               placeholder: '주소를 입력해주세요',
                             })}
-                            style={{ width: '446px' }}
+                            className="locationinput"
                           />
                           <div
                             style={{
@@ -796,7 +868,7 @@ const Postrentroom = ({ poststart, user }) => {
                   <div className="mapcontainer">
                     <StaticGoogleMap
                       apiKey={process.env.REACT_APP_GOOGLEAPI}
-                      size="525x300"
+                      size={isbigMobile ? '350x200' : '525x300'}
                       className="img-fluid"
                       zoom="17"
                     >
