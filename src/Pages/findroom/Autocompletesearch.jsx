@@ -56,6 +56,7 @@ const Autocompletesearch = ({
   isbigMobile,
   ismediumMobile,
   home = false,
+  hold = null,
 }) => {
   const history = useHistory();
   const [loading, setLoading] = useState(true);
@@ -128,7 +129,7 @@ const Autocompletesearch = ({
               className: 'location-search-input',
             })}
             className="searchinput"
-            placeholder="주소 입력 후 Enter키를 눌러주세요!"
+            placeholder={hold ? hold : "주소 입력 후 Enter키를 눌러주세요!"}
           />
           <Divcontainer ismediumMobile={ismediumMobile} findroom={findroom}>
             {loading && (

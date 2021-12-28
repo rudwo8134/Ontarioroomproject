@@ -371,6 +371,7 @@ const Home = (props) => {
   const location = useLocation();
   const locationhistory = location?.state?.params;
 
+
   // map ref
   const mapref = useRef();
   const [zoom, setZoom] = useState(10);
@@ -500,6 +501,7 @@ const Home = (props) => {
                   isbigMobile={isbigMobile}
                   findroom={true}
                   setSearchInMap={setSearchInMap}
+                  hold ={locationhistory?.address}
                 />
               </div>
             </AutoCompletediv>

@@ -6,6 +6,7 @@ import { CommonStyles } from '../../staticFiles/CommonStyles';
 import Mainlogo from '../../assets/nav/LOGO.png'
 import WebFont from 'webfontloader';
 import { useMediaQuery } from 'react-responsive';
+import Autoinput from '../Autocomplete/Autoinput';
 
 WebFont.load({
   google: {
@@ -33,8 +34,8 @@ const Newhero = () => {
             ? '쉽고 빠르고 정확하게 방을 찾아보세요!'
             : '  ONROOM에서 쉽고 빠르고 정확하게 방을 찾아보세요!'}
         </h1>
-        <div className="searchcontainer">
-          <Autocompletesearch home={true} />
+        <div className="inputcontainer">
+          <Autoinput/>
         </div>
       </form>
 
@@ -101,8 +102,8 @@ const Newherostyle = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start;
-    transform: translate(-40%, -50%);
+    align-items: center;
+    transform: translate(-50%, -50%);
     @media screen and (max-width: 476px) {
       top: 30%;
       left: 50%;
@@ -231,68 +232,6 @@ const Newherostyle = styled.div`
       font-size: 0.8rem;
     }
   }
-  .searchcontainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    @media screen and (max-width: 375px) {
-      width: 100vw;
-      align-self: center;
-    }
-    @media screen and (max-width: 476px) {
-      width: 100vw;
-      align-self: center;
-    }
-    .responsivediv {
-      @media screen and (max-width: 375px) {
-        width: 100vw;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      @media screen and (max-width: 476px) {
-        width: 100vw;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-    }
-    input {
-      width: 375px;
-      height: 48px;
-      border-radius: 30px;
-      background: white;
-      //background: rgba(255, 255, 255, 0.6);
-      //border: 1px solid ${CommonStyles.color.PrimaryLight3};
-      border: 1px solid #616060;
-      padding: 1.5rem;
-      margin-left: 26%;
-      @media screen and (max-width: 375px) {
-        width: 15rem;
-        position: relative;
-      }
-      @media screen and (max-width: 476px) {
-        margin-left: 0;
-        width: 20rem;
-        position: relative;
-      }
-      ::placeholder {
-        font-style: normal;
-        font-weight: normal;
-        font-size: 17px;
-        line-height: 24px;
-        color: #acaaaa;
-        //color: ${CommonStyles.color.PrimaryLight4};
-        @media screen and (max-width: 375px) {
-          font-size: 0.8rem;
-        }
-        @media screen and (max-width: 476px) {
-          font-size: 1rem;
-        }
-      }
-    }
-  }
   .scrollBtn {
     display: inline-block;
     line-height: 18px;
@@ -302,6 +241,7 @@ const Newherostyle = styled.div`
     color: #ffffff;
     letter-spacing: 2px;
     position: absolute;
+    z-index: 5;
     bottom: 40px;
     @media screen and (max-width: 375px) {
       font-size: 0.7rem;
@@ -334,6 +274,7 @@ const Newherostyle = styled.div`
         content: '';
         position: absolute;
         display: block;
+        z-index: 5;
         top: 29%;
         left: 50%;
         width: 8px;
