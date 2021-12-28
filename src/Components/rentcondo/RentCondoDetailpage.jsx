@@ -21,7 +21,6 @@ import { useMediaQuery } from 'react-responsive';
 const Background = styled.section`
   width: 100vw;
   margin-top: 80px;
-
   @media screen and (max-width: 476px) {
     margin-top: 0;
   }
@@ -152,15 +151,40 @@ const Roominformation = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
+      .container{
+           @media screen and (max-width: 476px) {
+            position: absolute;
+            top:80%;
+            left: 50%;
+            background-color: white;
+            border: 1px solid ${CommonStyles.color.Primary};
+            border-radius: 16px;
+            width: 90vw;
+            height: 25vh;
+            z-index: 20;
+            padding: 2rem;
+            transform: translate(-50%,-50%);
+            color:black;
+          
+        }
+      }
       button {
-        border: 1px solid ${CommonStyles.color.Primary};
+        border: 2px solid ${CommonStyles.color.Primary};
         font-size: 24px;
         padding: 20px;
-        border-radius: 16px;
-        color: ${CommonStyles.color.Primary};
-        background-color: none;
+        border-radius: 10px;
+        background-color: ${CommonStyles.color.Primary};
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        :hover{
+          transform: translateY(-8px) scale(1.05);
+          color: ${CommonStyles.color.Primary};
+          background-color: white;
+        }
         @media screen and (max-width: 476px) {
-          padding: 0.5rem;
+          width: 5rem;
+          padding: 0.4rem;
           font-size: 1rem;
         }
       }
@@ -290,6 +314,7 @@ const Arrowright = styled(BsFillCaretRightFill)`
 
 const RentCondoDetailpage = (props) => {
   const [price, setprice] = useState(null);
+  const [showContact, setShowContact] = useState(false);
   const [currentImg, setCurrentImg] = useState(0);
   const length = props?.image?.length;
   const isbigMobile = useMediaQuery({ query: '(max-width: 476px)' });
@@ -324,7 +349,7 @@ const RentCondoDetailpage = (props) => {
     );
   }
   return (
-    <Background>
+    <Background showContact={showContact}>
       <Wrapper>
         <PostNav>
           <h1>{props.posttitle}</h1>
@@ -377,7 +402,30 @@ const RentCondoDetailpage = (props) => {
               </h4>
             </div>
             <div className="right">
-              <button>Contact</button>
+              {!showContact ? (
+                <button
+                  onClick={() => {
+                    setShowContact(true);
+                  }}
+                >
+                  연락하기
+                </button>
+              ) : (
+                <div className="container" id="unblured">
+                  <h4 className="contactcontainer">
+                    Email: {props.userinfo.email}
+                  </h4>
+                  <h4 className="contactcontainer">
+                    Phone: {props.userinfo.phonenumber}
+                  </h4>
+                  <h4 className="contactcontainer">
+                    Kakaotalk:
+                    {props.userinfo.Kakaotalk
+                      ? props.userinfo.Kakaotalk
+                      : ' 비공개'}
+                  </h4>
+                </div>
+              )}
             </div>
           </div>
           <div className="divider" />
