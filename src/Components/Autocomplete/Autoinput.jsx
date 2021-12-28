@@ -41,6 +41,9 @@ const Responsivediv = styled.div`
       border: 1px solid grey;
       padding: 1rem;
       border-right: none;
+      @media screen and (max-width: 476px) {
+        width: 60vw;
+      }
     }
     button {
       width: 5vw;
@@ -52,6 +55,13 @@ const Responsivediv = styled.div`
       color: white;
       font-size: 1.1rem;
       border: none;
+      @media screen and (max-width: 476px) {
+        width: 20vw;
+        font-size: 1rem;
+      }
+      @media screen and (max-width: 320px) {
+        font-size: 0.7rem;
+      }
     }
   }
   .suggetioncontainer {
@@ -61,6 +71,9 @@ const Responsivediv = styled.div`
     left: 0;
     background-color: white;
     width: 80%;
+    @media screen and (max-width: 476px) {
+      width: 60vw;
+    }
     .suggetionin {
       display: flex;
       flex-direction: row;
