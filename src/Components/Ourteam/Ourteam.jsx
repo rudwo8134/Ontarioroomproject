@@ -6,7 +6,7 @@ import { CommonStyles } from '../../staticFiles/CommonStyles';
 import p1 from '../../assets/profile/person1.jpeg';
 import p2 from '../../assets/profile/person2.png';
 import p3 from '../../assets/profile/person3.jpg';
-import p4 from '../../assets/profile/person4.jpeg';
+import p4 from '../../assets/profile/person4.png';
 
 const Ourtemadata = [
   {
@@ -14,28 +14,35 @@ const Ourtemadata = [
     job: 'Creative Director',
     job2: 'CDO(Chief Design Officer)',
     image: p1,
+    url: 'https://www.linkedin.com/in/junseolee133/',
   },
   {
     name: '홍기혁',
     job: 'Marketing Director',
     job2: 'CMO(Chief Marketing Officer)',
     image: p4,
+    url: '',
   },
   {
     name: '신경재',
     job: 'Development Director',
     job2: 'CTO(Chief Technology Officer)',
     image: p2,
+    url: 'https://www.linkedin.com/in/eric-shin-9a33b3186/',
   },
   {
     name: '전지연',
     job: 'Development Manager',
     job2: 'CFO(Chief Financial Officer)',
     image: p3,
+    url: '',
   },
 ];
 
 const Ourteam = () => {
+  const handleClicklink = (url) =>{
+    window.open(url)
+  }
   return (
     <Innerlayout>
       <Ourteamstyle>
@@ -59,6 +66,7 @@ const Ourteam = () => {
                 name={data.name}
                 job={data.job}
                 image={data.image}
+                url={data.url}
               />
             );
           })}
@@ -108,7 +116,7 @@ const Ourteamstyle = styled.section`
     justify-content: center;
     align-items: center;
     .line {
-      background-color: ${CommonStyles.color.PrimaryLight2};
+      background-color: ${CommonStyles.color.Primary};
       width: 130px;
       height: 1px;
       border-radius: 30px;

@@ -3,8 +3,9 @@ import styled, { keyframes } from 'styled-components';
 import Background from '../../assets/bg1.jpg';
 import Autocompletesearch from '../../Pages/findroom/Autocompletesearch';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
-
+import Mainlogo from '../../assets/nav/LOGO.png'
 import WebFont from 'webfontloader';
+import { useMediaQuery } from 'react-responsive';
 
 WebFont.load({
   google: {
@@ -13,20 +14,27 @@ WebFont.load({
 });
 
 const Newhero = () => {
+  const isbigMobile = useMediaQuery({ query: '(max-width: 476px)' });
   return (
     <Newherostyle>
       <form action="" className="search">
         <h2 className="englishslogan">캐나다에서 방이 필요할 땐?</h2>
         <h1 className="begin">
-          <span className="onroom">
-            ON<span className="onroom-black">ROO</span>M
-          </span>
+          {isbigMobile ? (
+            <img className="logoimage" src={Mainlogo} alt="logo" />
+          ) : (
+            <span className="onroom">
+              ON<span className="onroom-black">ROO</span>M
+            </span>
+          )}
         </h1>
         <h1 className="slogan">
-          ONROOM에서 쉽고 빠르고 정확하게 방을 찾아보세요!
+          {isbigMobile
+            ? '쉽고 빠르고 정확하게 방을 찾아보세요!'
+            : '  ONROOM에서 쉽고 빠르고 정확하게 방을 찾아보세요!'}
         </h1>
         <div className="searchcontainer">
-          <Autocompletesearch home={true}/>
+          <Autocompletesearch home={true} />
         </div>
       </form>
 
@@ -174,6 +182,12 @@ const Newherostyle = styled.div`
     letter-spacing: -1px;
     margin-bottom: -20px;
     color: ${CommonStyles.color.Darkbold1};
+    @media screen and (max-width: 476px) {
+     .logoimage{
+       margin-top: -1.0rem;
+       margin-bottom: -1.0rem;
+     }
+    }
 
     .onroom {
       font-family: unset;

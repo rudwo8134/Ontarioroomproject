@@ -26,7 +26,7 @@ const NewupdateWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 50px auto;
+    margin: 50px auto 70px auto;
 
     .updatename {
       color: ${CommonStyles.color.Primary};
@@ -104,10 +104,10 @@ const NewupdateWrapper = styled.div`
       position: absolute;
       bottom: 0;
       width: 100%;
-      height: 140px;
+      height: 160px;
       background-color: rgba(35, 31, 32, 0.6);
       padding-left: 25px;
-      margin-bottom: 1px;
+      
       @media screen and (max-width: 375px) {
         width: 260px;
       }

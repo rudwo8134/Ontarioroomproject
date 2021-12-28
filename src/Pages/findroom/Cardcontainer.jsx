@@ -29,13 +29,29 @@ const CardWrapper = styled.div`
   }
   .length {
     position: absolute;
-    top: 270px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
+    top: 260px;
+    right: 1rem;
+    transform: translateX(0%);
+    padding: 0.2rem 1.5rem;
     display: flex;
     justify-content: center;
     margin: 0 auto;
+    font-size: 1rem;
+    color: #fff;
+    border-radius: 30px;
+    background-color: #000000cc;
+    transition: all 0.3s ease-in-out;
+    :hover {
+      background-color: ${CommonStyles.color.Primary};
+    }
+    .slef {
+      font-size: 0.8rem;
+      width: 260px;
+      position: absolute;
+      top: -100%;
+      left: 0;
+      color: ${CommonStyles.color.Primary};
+    }
     @media screen and (max-width: 320px) {
       top: 100px;
     }
@@ -157,14 +173,8 @@ const Cardcontainer = ({ data }) => {
           alt="background"
         />
         <div className="length">
-          {data &&
-            data?.image?.map((data, index) => {
-              return (
-                <>
-                  <GoPrimitiveDot key={index} />
-                </>
-              );
-            })}
+          자세히 보기
+          
         </div>
         <div className="detailcontainer">
           <div className="priceline">

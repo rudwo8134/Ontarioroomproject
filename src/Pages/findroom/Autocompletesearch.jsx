@@ -149,13 +149,13 @@ const Autocompletesearch = ({
                 ? {
                     backgroundColor: `#fff`,
                     cursor: 'pointer',
-                    color: '#000',
+                    color: `${CommonStyles.color.Primary}`,
                     fontSize: '0.9rem',
                     marginLeft: home && '7rem',
                   }
                 : {
-                    backgroundColor: `${CommonStyles.color.Primary}`,
-                    color: '#fff',
+                    backgroundColor: `${CommonStyles.color.White}`,
+                    color: '#254261',
                     cursor: 'pointer',
                     borderBottom: `1px solid #fff`,
                     fontSize: '0.9rem',

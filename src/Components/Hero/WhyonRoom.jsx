@@ -25,10 +25,10 @@ const Why = styled.div`
   .line {
     width: ${({ lineWidth }) => `${lineWidth * 0.4}px`};
     height: 1px;
-    background-color: ${CommonStyles.color.PrimaryLight2};
+    background-color: ${CommonStyles.color.Primary};
   }
   .firstCards {
-    margin-top: 24px;
+    margin-top: 4rem;
     display: flex;
     flex-direction: row;
     width: 70%;
@@ -57,6 +57,7 @@ const Why = styled.div`
       justify-content: center;
       align-items: center;
       width: 70px;
+      font-size: 1.3rem;
       color: ${CommonStyles.color.Primary};
       font-weight: ${CommonStyles.bold.ExtraBold};
     }
@@ -64,6 +65,7 @@ const Why = styled.div`
       width: 400px;
       text-align: center;
       font-weight: ${CommonStyles.bold.Medium};
+      line-height: 1.7rem;
       @media screen and (max-width: 375px) {
         width: 240px;
       }
@@ -90,17 +92,17 @@ const WhyonRoom = () => {
           </h4>
 
           <p>
-            원하는 것들만 한눈에 효율적이고 짧은 시간에 볼 수 있는 시스템을
-            만들도록 노력하였습니다.
+            세입자와 임대인 모두가 이용하기
+            <br /> 쉬운 한눈에 효율적이고 플랫폼
           </p>
         </div>
         <div className="card">
           <h4>
-            02.<br></br>마인드 셋
+            02.<br></br>자세
           </h4>
           <p>
-            우리는 이익보다는 이용자들의 편의를 중심적으로 생각하며 나아갈
-            것입니다.
+            회원분들의 편의와 행복을
+            <br /> 최우선으로 생각하는 플랫폼
           </p>
         </div>
       </section>
@@ -108,11 +110,11 @@ const WhyonRoom = () => {
       <section className="firstCards">
         <div className="card">
           <h4>
-            03.<br></br>신용
+            03.<br></br>공감
           </h4>
           <p>
-            우리 개발자 모두가 유학으로부터 이민까지 겪은 경험자로서 캐나다
-            생활의 효율을 극대화할 수 있는 방향으로 연구했습니다.
+            캐나다 이민자인 개발자들의 <br />
+            렌트 경험과 노하우를 담은 플랫폼
           </p>
         </div>
         <div className="card">
@@ -120,8 +122,8 @@ const WhyonRoom = () => {
             04.<br></br>소통
           </h4>
           <p>
-            이용자의 소리를 최우선적으로 생각하며 융통적으로 니즈에 맞게
-            시스템을 구축해 나갈 것입니다.
+            회원분들의 의견를 세심하게
+            <br /> 듣고 신속히 반영하는 플랫폼
           </p>
         </div>
       </section>

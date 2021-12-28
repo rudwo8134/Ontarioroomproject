@@ -10,6 +10,7 @@ import { selectCurrentUser } from '../../Redux/Users/user.selector';
 import { signOutStart } from '../../Redux/Users/user.action';
 import { GiHamburgerMenu, GiCancel } from 'react-icons/gi';
 import WebFont from 'webfontloader';
+import Backnav from '../../assets/nav/background.png';
 
 WebFont.load({
   google: {
@@ -124,6 +125,19 @@ const NavWrapper = styled.nav`
       width: 100vw;
       height: 102vh;
       background-color: ${CommonStyles.color.White};
+      background-image: url(${Backnav});
+      background-clip: content-box;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: 0% 120%;
+      .welcome {
+        font-size: 1.2rem;
+        font-weight: 400;
+        justify-self: flex-start;
+        color: #6a6a6a;
+        width: 70vw;
+        margin-top: 3rem;
+      }
       .mypage {
         display: flex;
         flex-direction: column;
@@ -149,14 +163,14 @@ const NavWrapper = styled.nav`
         }
       }
       .linkcontainer {
-        margin-top: 100px;
+        margin-top: 4rem;
         width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
         a {
-          font-size: 1.5rem;
+          font-size: 1.4rem;
           margin-top: 30px;
           color: ${CommonStyles.color.Dark};
         }
@@ -292,14 +306,14 @@ const NavWrapper = styled.nav`
     .logoutbutton {
       text-transform: uppercase;
       font-size: ${CommonStyles.fontSize.Small};
-      color: ${CommonStyles.color.Primary};
+      color: #000;
       font-weight: ${CommonStyles.bold.Bold};
       border: none;
       cursor: pointer;
       background-color: transparent;
       :hover {
         transform: scale(1.05) translateY(-3px);
-        color: ${CommonStyles.color.PrimaryLight2};
+        color: ${CommonStyles.color.PrimaryLight4};
         font-weight: ${CommonStyles.bold.Bold};
       }
     }
@@ -411,8 +425,12 @@ const NewNav = (props) => {
             <GiCancel />
           </button>
           <div className="linkcontainer">
+            <h3 className="welcome">
+              {User?.displayName ? `Hello, ${User?.displayName}` : 'Welecome!'}
+            </h3>
             {Contents.nav.Link.map((data, index) => {
               return (
+                <>
                 <Link
                   onClick={() => setShowPopuo(false)}
                   to={data.linkAddress}
@@ -421,6 +439,7 @@ const NewNav = (props) => {
                 >
                   {data.linkName}
                 </Link>
+                </>
               );
             })}
           </div>
@@ -432,7 +451,6 @@ const NewNav = (props) => {
               <button onClick={signout} className="logoutbutton">
                 LogOut
               </button>
-              <span className="Username">Hi! {User?.displayName}</span>
             </div>
           ) : (
             <div className="mypage">
