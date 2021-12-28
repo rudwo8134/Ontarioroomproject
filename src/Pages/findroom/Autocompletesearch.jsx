@@ -55,6 +55,7 @@ const Autocompletesearch = ({
   setShowList,
   isbigMobile,
   ismediumMobile,
+  home = false,
 }) => {
   const history = useHistory();
   const [loading, setLoading] = useState(true);
@@ -145,8 +146,21 @@ const Autocompletesearch = ({
                 : 'suggestion-item';
               // inline style for demonstration purpose
               const style = suggestion.active
-                ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                ? {
+                    backgroundColor: `#fff`,
+                    cursor: 'pointer',
+                    color: '#000',
+                    fontSize: '0.9rem',
+                    marginLeft: home && '7rem',
+                  }
+                : {
+                    backgroundColor: `${CommonStyles.color.Primary}`,
+                    color: '#fff',
+                    cursor: 'pointer',
+                    borderBottom: `1px solid #fff`,
+                    fontSize: '0.9rem',
+                    marginLeft: home && '7rem',
+                  };
               return (
                 <div
                   className="suggestion"

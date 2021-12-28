@@ -67,8 +67,14 @@ const NewupdateWrapper = styled.div`
       margin-right: 30px;
       position: relative;
       cursor: pointer;
+      box-shadow: 1px 3px 4px #333333;
+      border-radius: 8px;
+      transition: 0.5s ease-in-out all;
       :last-child {
         margin-right: 0px;
+      }
+      :hover{
+        transform: translateY(-10px) scale(1.05);
       }
       @media screen and (max-width: 476px) {
         width: 300px;
@@ -98,8 +104,8 @@ const NewupdateWrapper = styled.div`
       position: absolute;
       bottom: 0;
       width: 100%;
-      height: 150px;
-      background-color: rgba(35, 31, 32, 0.4);
+      height: 140px;
+      background-color: rgba(35, 31, 32, 0.6);
       padding-left: 25px;
       margin-bottom: 1px;
       @media screen and (max-width: 375px) {
@@ -107,32 +113,34 @@ const NewupdateWrapper = styled.div`
       }
 
       .address {
-        font-size: 22;
+        margin-top: -1rem;
+        font-size: 1.2rem;
         font-weight: ${CommonStyles.bold.Medium};
         color: ${CommonStyles.color.White};
       }
       .price {
-        font-size: 22;
-        font-weight: ${CommonStyles.bold.Medium};
-        color: ${CommonStyles.color.Primary};
+        font-size: 27px;
+        font-weight: 900;
+        color: ${CommonStyles.color.White};
         padding: 0px auto;
       }
       span {
         font-weight: 200;
-        font-size: 14px;
+        font-size: 0.7rem;
         color: ${CommonStyles.color.White};
-        text-decoration-line: underline;
-        text-underline-position: under;
-        text-decoration-thickness: 1.5px;
+        background-color: ${CommonStyles.color.PrimaryLight4};
+        border-radius: 10px;
+        padding: 0.3rem 0.5rem;
         position: absolute;
-        right: 35px;
-        bottom: 20px;
+        right: 15px;
+        bottom: 15px;
       }
     }
     .imgfile {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      border-radius: 8px;
       @media screen and (max-width: 375px) {
         width: 260px;
       }
@@ -148,8 +156,6 @@ const NewUpdate = ({ rooms, readStart }) => {
     readStart();
     setLoading(false);
   }, [readStart]);
-
-
 
   if (loading) {
     return (
@@ -178,11 +184,12 @@ const NewUpdate = ({ rooms, readStart }) => {
         {rooms &&
           rooms?.slice(0, 4)?.map((data) => {
             return (
-              <div key={data.id} className="rentCard">
+              <div
+                key={data.id}
+                onClick={() => handclick(data?.id)}
+                className="rentCard"
+              >
                 <div className="textcontainer">
-                  <h2 className="address">
-                    {data?.address?.Formattedaddress?.split(',')[0]}
-                  </h2>
                   <h3 className="price">
                     {' '}
                     $
@@ -190,7 +197,10 @@ const NewUpdate = ({ rooms, readStart }) => {
                       .toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                   </h3>
-                  <span onClick={() => handclick(data?.id)}>Learn more</span>
+                  <h2 className="address">
+                    {data?.address?.Formattedaddress?.split(',')[0]}
+                  </h2>
+                  <span onClick={() => handclick(data?.id)}>자세히 보기</span>
                 </div>
                 <img
                   className="imgfile"

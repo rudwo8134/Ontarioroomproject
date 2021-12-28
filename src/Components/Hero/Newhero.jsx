@@ -26,7 +26,7 @@ const Newhero = () => {
           ONROOM에서 쉽고 빠르고 정확하게 방을 찾아보세요!
         </h1>
         <div className="searchcontainer">
-          <Autocompletesearch />
+          <Autocompletesearch home={true}/>
         </div>
       </form>
 

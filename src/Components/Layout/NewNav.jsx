@@ -22,7 +22,7 @@ const NavLink = styled(Link)`
   font-weight: ${CommonStyles.bold.bold};
   font-family: 'Sunflower', sans-serif;
   color: #241a19;
-  margin-right: ${CommonStyles.margin.Reuglar};
+  margin-right: 1.6rem;
   transition: all 0.5s ease-in-out;
   display: inline-block;
   :hover {
@@ -306,6 +306,9 @@ const NavWrapper = styled.nav`
     a {
       display: inline-block;
       transition: all 0.4s ease-in-out;
+      font-weight: 900;
+      color: #000;
+      text-shadow: 0.5px 0.5px 0.5px #999;
       :hover {
         transform: scale(1.05) translateY(-5px);
         color: ${CommonStyles.color.Primary};
