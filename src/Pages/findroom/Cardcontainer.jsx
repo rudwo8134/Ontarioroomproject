@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
 import Background from '../../assets/BackgroundImage.jpg';
 import { Link } from 'react-router-dom';
-import { GoPrimitiveDot } from 'react-icons/go';
 const CardWrapper = styled.div`
   background-color: #ffffffaa;
   width: 100%;

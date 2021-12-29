@@ -40,9 +40,6 @@ const Ourtemadata = [
 ];
 
 const Ourteam = () => {
-  const handleClicklink = (url) =>{
-    window.open(url)
-  }
   return (
     <Innerlayout>
       <Ourteamstyle>

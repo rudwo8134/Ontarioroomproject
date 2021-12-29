@@ -1,7 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import Background from '../../assets/bg1.jpg';
-import Autocompletesearch from '../../Pages/findroom/Autocompletesearch';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
 import Mainlogo from '../../assets/nav/LOGO.png'
 import WebFont from 'webfontloader';

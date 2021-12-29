@@ -12,8 +12,9 @@ const PersonCard = ({ image, name, job, job2, url }) => {
           <b>{name}</b>
           <a
             href={`${url}`}
-            target="_blank"
+            target="blank"
             className="social"
+          
           >
             <AiFillLinkedin />
           </a>

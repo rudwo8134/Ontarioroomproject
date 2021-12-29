@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
-import LoginHeader from '../../assets/contactusheader.jpg';
+import LoginHeader from '../../assets/contactusheader.png';
 const HeaderWrap = styled.div`
   margin-top: 80px;
   height: 30vh;
@@ -11,7 +11,7 @@ const HeaderWrap = styled.div`
   background-clip: border-box;
   background-position-y: 53%;
   background-position-x: 0%;
-  background-size: 1600px;
+  background-size: 100vw;
   @media screen and (max-width: 476px) {
     display: none;
   }

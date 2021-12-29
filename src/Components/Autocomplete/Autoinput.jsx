@@ -5,7 +5,6 @@ import PlacesAutocomplete, {
 } from 'react-places-autocomplete';
 import scriptLoader from 'react-async-script-loader';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
 import { CommonStyles } from '../../staticFiles/CommonStyles';

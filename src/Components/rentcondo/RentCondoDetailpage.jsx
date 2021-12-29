@@ -11,9 +11,10 @@ import {
   BsFillCaretRightFill,
 } from 'react-icons/bs';
 import { GoPrimitiveDot } from 'react-icons/go';
-import { RiTempColdFill } from 'react-icons/ri';
+import { RiTempColdFill, RiKakaoTalkFill } from 'react-icons/ri';
+import { AiTwotoneMail, AiFillPhone } from 'react-icons/ai';
 import { FaDog, FaSmokingBan } from 'react-icons/fa';
-import { GiWaterDrop, GiDoor } from 'react-icons/gi';
+import { GiWaterDrop, GiDoor, GiCancel } from 'react-icons/gi';
 import { IoWifiOutline } from 'react-icons/io5';
 import Loader from 'react-loader-spinner';
 import { useMediaQuery } from 'react-responsive';
@@ -21,6 +22,56 @@ import { useMediaQuery } from 'react-responsive';
 const Background = styled.section`
   width: 100vw;
   margin-top: 80px;
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70vw;
+    height: 50vh;
+    background-color: white;
+    border-radius: 16px;
+    border: 2px solid ${CommonStyles.color.Primary};
+    z-index: 50;
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .contactcontainerWrapper {
+        .contactcontainerka {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 300px;
+          svg {
+            margin-top: 10px;
+            font-size: 2rem;
+            width: 3rem;
+            height: 3rem;
+            background-color: #ffe812;
+          }
+        }
+        .contactcontainer {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 300px;
+          svg {
+            margin-top: 10px;
+            font-size: 2rem;
+            width: 3rem;
+            height: 3rem;
+            color: ${CommonStyles.color.Primary};
+          }
+        }
+      }
+    }
+  }
   @media screen and (max-width: 476px) {
     margin-top: 0;
   }
@@ -92,6 +143,17 @@ const Customimagetag = styled.img`
     height: 30vh;
   }
 `;
+const Xbutton = styled(GiCancel)`
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 2rem;
+  z-index: 30;
+  color: ${CommonStyles.color.Primary};
+  @media screen and (max-width: 476px) {
+  }
+`;
 const Roominformation = styled.div`
   .roominfo {
     max-width: 1230px;
@@ -153,8 +215,9 @@ const Roominformation = styled.div`
       align-items: center;
       .container{
            @media screen and (max-width: 476px) {
-            position: absolute;
-            top:80%;
+            display: none;
+            position: fixed;
+            top:50%;
             left: 50%;
             background-color: white;
             border: 1px solid ${CommonStyles.color.Primary};
@@ -350,7 +413,32 @@ const RentCondoDetailpage = (props) => {
   }
   return (
     <Background showContact={showContact}>
-      <Wrapper>
+      {showContact && (
+        <div className="popup">
+          <div className="container">
+            <Xbutton onClick={() => setShowContact(false)} />
+            <div className="contactcontainerWrapper" id="unblured">
+              <h4 className="contactcontainer">
+                <AiTwotoneMail />
+                <br /> {props.userinfo.email}
+              </h4>
+              <h4 className="contactcontainer">
+                <AiFillPhone />
+                <br />
+                {props.userinfo.phonenumber}
+              </h4>
+              <h4 className="contactcontainerka">
+                <RiKakaoTalkFill />
+                <br />
+                {props.userinfo.Kakaotalk
+                  ? props.userinfo.Kakaotalk
+                  : ' 비공개'}
+              </h4>
+            </div>
+          </div>
+        </div>
+      )}
+      <Wrapper style={{ filter: showContact && 'blur(20px)' }}>
         <PostNav>
           <h1>{props.posttitle}</h1>
           <div className="userinfo">
@@ -411,20 +499,27 @@ const RentCondoDetailpage = (props) => {
                   연락하기
                 </button>
               ) : (
-                <div className="container" id="unblured">
-                  <h4 className="contactcontainer">
-                    Email: {props.userinfo.email}
-                  </h4>
-                  <h4 className="contactcontainer">
-                    Phone: {props.userinfo.phonenumber}
-                  </h4>
-                  <h4 className="contactcontainer">
-                    Kakaotalk:
-                    {props.userinfo.Kakaotalk
-                      ? props.userinfo.Kakaotalk
-                      : ' 비공개'}
-                  </h4>
-                </div>
+                <>
+                  <Xbutton
+                    onClick={() => {
+                      setShowContact(false);
+                    }}
+                  />
+                  <div className="container" id="unblured">
+                    <h4 className="contactcontainer">
+                      Email: {props.userinfo.email}
+                    </h4>
+                    <h4 className="contactcontainer">
+                      Phone: {props.userinfo.phonenumber}
+                    </h4>
+                    <h4 className="contactcontainer">
+                      Kakaotalk:
+                      {props.userinfo.Kakaotalk
+                        ? props.userinfo.Kakaotalk
+                        : ' 비공개'}
+                    </h4>
+                  </div>
+                </>
               )}
             </div>
           </div>
