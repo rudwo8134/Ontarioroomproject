@@ -11,15 +11,12 @@ import Popuppage from './Popuppage';
 import useSupercluster from 'use-supercluster';
 import GoogleMapReact from 'google-map-react';
 
-
 import { selectCurrentUser } from '../../Redux/Users/user.selector';
-import {  useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { readrentcondo } from '../../Redux/Rentcondo/rentcondo.saga';
 import Autocompletesearch from './Autocompletesearch';
 import { BiSearch } from 'react-icons/bi';
 import { useMediaQuery } from 'react-responsive';
-
-
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -340,9 +337,6 @@ const AutoCompletediv = styled.div`
   }
 `;
 
-
-
-
 const Filterbutton = styled.button`
   background-color: ${CommonStyles.color.Primary};
   color: ${CommonStyles.color.White};
@@ -367,8 +361,8 @@ const Filterbutton = styled.button`
 const Popupscreen = styled.div`
   .optional, .gendertype {
     display:flex;
-    flex:3
-    justify-content: space-between;
+    flex:3;
+    align-items: center;
     padding: 40px 0;
     box-sizing: border-box;
     font-size: 18px;
@@ -376,6 +370,8 @@ const Popupscreen = styled.div`
   }
   .housetype, .roomtype {
     padding: 10px;
+    display: flex;
+    align-items: center;
   }
   .gendertype{
     padding:0px;
@@ -426,7 +422,7 @@ const Popupscreen = styled.div`
     background-color: ${CommonStyles.color.Primary};
     color: ${CommonStyles.color.White};
     height: 40px;
-    width: 80px;
+    padding: 1rem;
     border: none;
     align-items: center;
     font-size: 13.75px;
@@ -434,24 +430,24 @@ const Popupscreen = styled.div`
     cursor: pointer;
     transition: all 0.5s ease-in-out;
     border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     :hover {
       background-color: ${CommonStyles.color.PrimaryLight2};
   }
-
+  }
 `;
-
-
 
 const Marker = ({ children }) => children;
 
 const Home = (props) => {
-  const { rooms, getData} = props;
+  const { rooms, getData } = props;
   const isbigMobile = useMediaQuery({ query: '(max-width: 476px)' });
   const ismediumMobile = useMediaQuery({ query: '(max-width: 375px)' });
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const locationhistory = location?.state?.params;
-
 
   // map ref
   const mapref = useRef();
@@ -467,9 +463,8 @@ const Home = (props) => {
   const [finalData, setFinalData] = useState(rooms);
   const [showList, setShowList] = useState(false);
 
- // popuppage
- const [isOpen, setIsOpen] = useState(false)
-
+  // popuppage
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (locationhistory || searchInMap) {
@@ -586,7 +581,7 @@ const Home = (props) => {
                   isbigMobile={isbigMobile}
                   findroom={true}
                   setSearchInMap={setSearchInMap}
-                  hold ={locationhistory?.address}
+                  hold={locationhistory?.address}
                 />
               </div>
             </AutoCompletediv>
@@ -788,76 +783,111 @@ const Home = (props) => {
               <Filterbutton onClick={() => setIsOpen(true)}>필터</Filterbutton>
               <Popupscreen>
                 <Popuppage open={isOpen} onClose={() => setIsOpen(false)}>
-                    <div className="optional">
-                      <div className="housetype">
-                        집유형
-                          <select
-                            className="options"
-                            defaultValue="no"
-                            name="filter"
-                            id="filter"
-                            onChange={SelectFilter}>
-                            <option value="apartment">아파트</option>
-                            <option value="condo">콘도</option>
-                            <option value="house">하우스</option>
-                            <option value="townhouse">타운하우스</option>
-                          </select>
-                      </div>
-                      <div className="roomtype">
-                        렌트유형
-                          <select
-                            className="options"
-                            defaultValue="no"
-                            name="filter"
-                            id="filter"
-                            onChange={SelectFilter}>
-                            <option value="rent">전체렌트</option>
-                            <option value="roomrent">룸렌트</option>
-                          </select>
-                      </div>
-                    </div> 
-                      <div className="gendertype">
-                        선호성별
-                          <select
-                            className="options"
-                            defaultValue="no"
-                            name="filter"
-                            id="filter"
-                            onChange={SelectFilter}>
-                            <option value="male">남</option>
-                            <option value="female">여</option>
-                            <option value="all">남녀무관</option>
-                          </select>
-                      </div>
-                    <div className="contents">
-                      <div className="popupcontents_left">
-                        <ul>
-                          <li><input type="checkbox" />유틸리티</li>
-                          <li><input type="checkbox" />개인출입문</li>
-                          <li><input type="checkbox" />주차장</li>
-                          <li><input type="checkbox" />인터넷</li>
-                          <li><input type="checkbox" />개인화장실</li>
-                        </ul>
-                      </div>
-                    
-                      <div className="popupcontents_right">
-                        <ul>
-                          <li><input type="checkbox" />주방</li>
-                          <li><input type="checkbox" />가구</li>
-                          <li><input type="checkbox" />개인냉장고</li>
-                          <li><input type="checkbox" />세탁기</li>
-                          <li><input type="checkbox" />펫</li>
-                          <li><input type="checkbox" />흡연</li>
-                        </ul>
-                      </div>
-                    </div>  
-                    <div>
-                      <button className="searchbtn"> ..개의 검색결과</button>
+                  <div className="optional">
+                    <div className="housetype">
+                      집유형
+                      <select
+                        className="options"
+                        defaultValue="no"
+                        name="filter"
+                        id="filter"
+                        onChange={SelectFilter}
+                      >
+                        <option value="apartment">아파트</option>
+                        <option value="condo">콘도</option>
+                        <option value="house">하우스</option>
+                        <option value="townhouse">타운하우스</option>
+                      </select>
                     </div>
-                  </Popuppage>
-                </Popupscreen>
-                </div>
-              </div>
+                    <div className="roomtype">
+                      렌트유형
+                      <select
+                        className="options"
+                        defaultValue="no"
+                        name="filter"
+                        id="filter"
+                        onChange={SelectFilter}
+                      >
+                        <option value="rent">전체렌트</option>
+                        <option value="roomrent">룸렌트</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="gendertype">
+                    선호성별
+                    <select
+                      className="options"
+                      defaultValue="no"
+                      name="filter"
+                      id="filter"
+                      onChange={SelectFilter}
+                    >
+                      <option value="male">남</option>
+                      <option value="female">여</option>
+                      <option value="all">남녀무관</option>
+                    </select>
+                  </div>
+                  <div className="contents">
+                    <div className="popupcontents_left">
+                      <ul>
+                        <li>
+                          <input type="checkbox" />
+                          유틸리티
+                        </li>
+                        <li>
+                          <input type="checkbox" />
+                          개인출입문
+                        </li>
+                        <li>
+                          <input type="checkbox" />
+                          주차장
+                        </li>
+                        <li>
+                          <input type="checkbox" />
+                          인터넷
+                        </li>
+                        <li>
+                          <input type="checkbox" />
+                          개인화장실
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="popupcontents_right">
+                      <ul>
+                        <li>
+                          <input type="checkbox" />
+                          주방
+                        </li>
+                        <li>
+                          <input type="checkbox" />
+                          가구
+                        </li>
+                        <li>
+                          <input type="checkbox" />
+                          개인냉장고
+                        </li>
+                        <li>
+                          <input type="checkbox" />
+                          세탁기
+                        </li>
+                        <li>
+                          <input type="checkbox" />펫
+                        </li>
+                        <li>
+                          <input type="checkbox" />
+                          흡연
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div>
+                    <button className="searchbtn"> ..개의 검색결과</button>
+                  </div>
+                </Popuppage>
+              </Popupscreen>
+            </div>
+          </div>
 
           {/* card container */}
           <div className="CardWrapper">
