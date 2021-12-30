@@ -411,7 +411,7 @@ const NewRegisterandLoginpage = (props) => {
               className="password"
             />
             <span className="passwordwrong">
-              {Errorhandle === 'auth/wrong-password' && '비밀번호가 틀립니다.다시 시도해주세요'}
+              {Errorhandle === 'auth/wrong-password' && '비밀번호가 일치하지 않습니다.'}
               {Errorhandle === 'auth/user-not-found' && '회원 정보가 없는 계정입니다.'}
             </span>
             <span className="description">

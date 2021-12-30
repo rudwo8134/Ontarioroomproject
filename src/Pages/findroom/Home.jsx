@@ -10,9 +10,8 @@ import { rentcondoreadstart } from '../../Redux/Rentcondo/rentcondo.action';
 import useSupercluster from 'use-supercluster';
 import GoogleMapReact from 'google-map-react';
 
-
 import { selectCurrentUser } from '../../Redux/Users/user.selector';
-import {  useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { readrentcondo } from '../../Redux/Rentcondo/rentcondo.saga';
 import Autocompletesearch from './Autocompletesearch';
 import { BiSearch } from 'react-icons/bi';
@@ -338,9 +337,6 @@ const AutoCompletediv = styled.div`
   }
 `;
 
-
-
-
 const Filterbutton = styled.button`
   background-color: ${CommonStyles.color.Primary};
   color: ${CommonStyles.color.White};
@@ -365,13 +361,12 @@ const Filterbutton = styled.button`
 const Marker = ({ children }) => children;
 
 const Home = (props) => {
-  const { rooms, getData} = props;
+  const { rooms, getData } = props;
   const isbigMobile = useMediaQuery({ query: '(max-width: 476px)' });
   const ismediumMobile = useMediaQuery({ query: '(max-width: 375px)' });
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const locationhistory = location?.state?.params;
-
 
   // map ref
   const mapref = useRef();
@@ -388,10 +383,12 @@ const Home = (props) => {
   const [showList, setShowList] = useState(false);
 
   useEffect(() => {
-    if (locationhistory || searchInMap) {
+    if (locationhistory?.address || searchInMap?.address) {
       SetSearchquery(
-        searchInMap ? searchInMap.address : locationhistory.address
+        searchInMap ? searchInMap?.address : locationhistory?.address
       );
+    } else {
+      SetSearchquery(null);
     }
   }, [searchInMap, locationhistory]);
 
@@ -502,7 +499,7 @@ const Home = (props) => {
                   isbigMobile={isbigMobile}
                   findroom={true}
                   setSearchInMap={setSearchInMap}
-                  hold ={locationhistory?.address}
+                  hold={locationhistory?.address}
                 />
               </div>
             </AutoCompletediv>
@@ -720,7 +717,7 @@ const Home = (props) => {
             <div className="TitleContainer">
               <h3 className="searchResult">
                 {searchQuery
-                  ? searchQuery?.split(',')[searchQuery?.split(',').length - 1]
+                  ? searchQuery?.split(',')[searchQuery?.split(',')?.length - 1]
                   : '검색어를 입력해주세요. '}
               </h3>
               <span className="howmanyReseult">

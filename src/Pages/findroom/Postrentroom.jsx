@@ -285,6 +285,9 @@ const Wrapper = styled.div`
         border: 1px solid ${CommonStyles.color.Primary};
         border-radius: 10px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        display: flex ;
+        justify-content: center;
+        align-items: center;
         @media screen and (max-width: 476px) {
           margin: 0;
         }
@@ -367,7 +370,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 1rem;
+    padding: 0rem 0rem 0rem 1rem;
     margin-bottom: ${CommonStyles.margin.Reuglar};
     color: rgba(35, 31, 32, 0.61);
     .name {
@@ -375,9 +378,9 @@ const Wrapper = styled.div`
       font-weight: 700;
     }
     textarea {
-      margin-top: 20px;
+
       width: 100%;
-      height: 269px;
+      height: 340px;
       left: 2.29%;
       right: 2.87%;
       top: 13.7%;
@@ -386,6 +389,7 @@ const Wrapper = styled.div`
       box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
       border-radius: 10px;
       border: 1px solid ${CommonStyles.color.Primary};
+      padding: 1rem;
       @media screen and (max-width: 476px) {
         width: 80vw;
       }
@@ -909,7 +913,7 @@ const Postrentroom = ({ poststart, user }) => {
                   <span className="name">추가연락처</span>
                   <AdditionalContactSelect onChange={handleadditinal}>
                     <select name="additional" id="additional" defaultValue="">
-                      <option value="">없음</option>
+                      <option value="">없음 (가입 시 기재한 이메일 제공)</option>
                       <option value="1">전화번호</option>
                       <option value="2">카카오톡ID</option>
                     </select>
@@ -945,7 +949,6 @@ const Postrentroom = ({ poststart, user }) => {
                 </div>
 
                 <div className="description">
-                  <span className="name">설명</span>
                   <textarea
                     required
                     onChange={handlecredentialchange}
@@ -953,9 +956,9 @@ const Postrentroom = ({ poststart, user }) => {
                     name="postDescription"
                     id="postDescription"
                     cols="30"
-                    rows="10"
+                    rows="20"
                     placeholder=" 
-                        입력.."
+                      자세한 내용을 입력해주세요"
                   ></textarea>
                 </div>
                 <div className="buttoncontainer">
