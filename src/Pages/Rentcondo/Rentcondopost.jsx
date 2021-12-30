@@ -59,7 +59,6 @@ const Rentcondopost = (props) => {
     availabledate: '',
     posttitle: '',
     description: '',
-
     petavailable: 'yes',
     smoking: 'yes',
     internet: 'yes',

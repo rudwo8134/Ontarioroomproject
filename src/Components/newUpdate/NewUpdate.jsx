@@ -193,7 +193,7 @@ const NewUpdate = ({ rooms, readStart }) => {
                   <h3 className="price">
                     {' '}
                     $
-                    {data.monthlyfee
+                    {data?.rentFee
                       .toString()
                       .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                   </h3>

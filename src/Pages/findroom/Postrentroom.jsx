@@ -14,6 +14,7 @@ import { useHistory } from 'react-router';
 import { withRouter } from 'react-router-dom';
 import { MdCancel } from 'react-icons/md';
 import { useMediaQuery } from 'react-responsive';
+import Loader from 'react-loader-spinner';
 
 const Wrapper = styled.div`
   border-top: 1px solid ${CommonStyles.color.Darkbold1};
@@ -339,7 +340,7 @@ const Wrapper = styled.div`
   .buttoncontainer {
     display: flex;
     justify-content: flex-end;
-    width: 500px;
+    width: 100%;
     margin-top: 20px;
     @media screen and (max-width: 476px) {
       width: 90vw;
@@ -365,7 +366,8 @@ const Wrapper = styled.div`
   .description {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    padding: 1rem;
     margin-bottom: ${CommonStyles.margin.Reuglar};
     color: rgba(35, 31, 32, 0.61);
     .name {
@@ -374,7 +376,7 @@ const Wrapper = styled.div`
     }
     textarea {
       margin-top: 20px;
-      width: 496px;
+      width: 100%;
       height: 269px;
       left: 2.29%;
       right: 2.87%;
@@ -383,7 +385,7 @@ const Wrapper = styled.div`
       background: rgba(255, 255, 255, 0.6);
       box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
       border-radius: 10px;
-      border: 0px solid #df1b52;
+      border: 1px solid ${CommonStyles.color.Primary};
       @media screen and (max-width: 476px) {
         width: 80vw;
       }
@@ -531,34 +533,26 @@ const Postrentroom = ({ poststart, user }) => {
   };
 
   const [postcredential, setpostcredential] = useState({
-    unit: '',
-    deposit: '',
-    sex: '',
-    utility: '',
-    funished: '',
-    monthlyfee: '',
-    roomtype: '',
-    sqf: '',
-    parking: 'yes',
-    availabledate: '',
-    posttitle: '',
-    description: '',
-    petavailable: 'yes',
-    smoking: 'yes',
-    internet: 'yes',
-    privateBathroom: '',
-    kitchen: 'yes',
-    Laundry: 'yes',
-    Dryer: 'yes',
-    Fridge: 'yes',
-    Freezer: 'yes',
-    hairDryer: 'yes',
-    aircondition: 'yes',
-    tv: 'yes',
-    privateenterance: 'yes',
-    howmanypeople: '',
-    properytype: '',
+    houseType: '',
+    rentType: '',
+    rentFee: '',
+    additionalContact: null,
+    postTitle: '',
+    postDescription: '',
+    sex: null,
+    utility: null,
+    funished: null,
+    parking: null,
+    internet: null,
+    Laundry: null,
+    privateenterance: null,
+    smoking: null,
+    petavailable: null,
+    privateBathroom: null,
+    Fridge: null,
+    kitchen: null,
   });
+  console.log(postcredential);
 
   const handlecredentialchange = (e) => {
     const { name, value } = e.target;
@@ -594,6 +588,10 @@ const Postrentroom = ({ poststart, user }) => {
   const submithandler = (e) => {
     e.preventDefault();
     setNext(true);
+  };
+
+  const searchOptions = {
+    componentRestrictions: { country: ['ca'] },
   };
 
   const handleadditinal = (e) => {
@@ -740,8 +738,8 @@ const Postrentroom = ({ poststart, user }) => {
                   <select
                     required
                     onChange={handlecredentialchange}
-                    name="properytype"
-                    value={postcredential?.properytype}
+                    name="houseType"
+                    value={postcredential?.houseType}
                   >
                     <option value="apart">아파트</option>
                     <option value="condo">콘도</option>
@@ -753,8 +751,8 @@ const Postrentroom = ({ poststart, user }) => {
                   <span className="name">렌트 유형*</span>
                   <select
                     required
-                    name="roomtype"
-                    value={postcredential?.roomtype}
+                    name="rentType"
+                    value={postcredential?.rentType}
                     onChange={handlecredentialchange}
                   >
                     <option value="whole">전체렌트</option>
@@ -765,7 +763,15 @@ const Postrentroom = ({ poststart, user }) => {
                 <div className="propertytypeimage">
                   <span className="name">사진*</span>
                   {imageloading ? (
-                    <h1>...loading</h1>
+                    <>
+                    <Loader
+                      type="TailSpin"
+                      color={CommonStyles.color.Primary}
+                      height={30}
+                      width={30}
+                      timeout={50000}
+                    />
+                    </>
                   ) : (
                     <>
                       <label
@@ -811,6 +817,7 @@ const Postrentroom = ({ poststart, user }) => {
                       value={address}
                       onChange={handlechange}
                       onSelect={handleselect}
+                      searchOptions={searchOptions}
                     >
                       {({
                         getInputProps,
@@ -892,8 +899,8 @@ const Postrentroom = ({ poststart, user }) => {
                   <input
                     required
                     onChange={handlecredentialchange}
-                    value={postcredential?.monthlyfee}
-                    name="monthlyfee"
+                    value={postcredential?.rentFee}
+                    name="rentFee"
                     type="text"
                     placeholder="CAD"
                   />
@@ -910,8 +917,8 @@ const Postrentroom = ({ poststart, user }) => {
                       <input
                         required
                         onChange={handlecredentialchange}
-                        value={postcredential?.posttitle}
-                        name="posttitle"
+                        value={postcredential?.additionalContact}
+                        name="additionalContact"
                         type="text"
                         placeholder={
                           additionalContact === '1'
@@ -931,8 +938,8 @@ const Postrentroom = ({ poststart, user }) => {
                     className="titleInputpro"
                     required
                     onChange={handlecredentialchange}
-                    value={postcredential?.posttitle}
-                    name="posttitle"
+                    value={postcredential?.postTitle}
+                    name="postTitle"
                     type="text"
                   />
                 </div>
@@ -942,9 +949,9 @@ const Postrentroom = ({ poststart, user }) => {
                   <textarea
                     required
                     onChange={handlecredentialchange}
-                    value={postcredential?.description}
-                    name="description"
-                    id="description"
+                    value={postcredential?.postDescription}
+                    name="postDescription"
+                    id="postDescription"
                     cols="30"
                     rows="10"
                     placeholder=" 

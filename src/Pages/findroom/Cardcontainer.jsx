@@ -171,17 +171,12 @@ const Cardcontainer = ({ data }) => {
           className="cardimage"
           alt="background"
         />
-        <div className="length">
-          자세히 보기
-          
-        </div>
+        <div className="length">자세히 보기</div>
         <div className="detailcontainer">
           <div className="priceline">
-            <span className="price">$ {data?.monthlyfee}</span>
-            <span className="type">
-              {`${data.properytype && data.properytype}`}
-            </span>
-            {data.properytype && <span className="separtator"> | </span>}
+            <span className="price">$ {data?.rentFee}</span>
+            <span className="type">{`${data.rentType && data.rentType}`}</span>
+            {data.rentType && <span className="separtator"> | </span>}
 
             <span className="address">{`${address && address}, ${
               city && city
@@ -189,7 +184,7 @@ const Cardcontainer = ({ data }) => {
           </div>
         </div>
         <div className="bedtype">
-          <span>{data?.description}</span>
+          <span>{data?.postDescription}</span>
         </div>
       </Link>
     </CardWrapper>

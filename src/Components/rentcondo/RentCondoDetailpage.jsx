@@ -4,16 +4,16 @@ import style from '../../static/staticcss';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
 import { FaLocationArrow } from 'react-icons/fa';
 import { StaticGoogleMap, Marker } from 'react-static-google-map';
-import { AiFillCar, AiOutlineCalendar } from 'react-icons/ai';
-import {
-  BsPeopleFill,
-  BsHouseDoor,
-  BsFillCaretRightFill,
-} from 'react-icons/bs';
+import { AiFillCar} from 'react-icons/ai';
+import { BsHouseDoor, BsFillCaretRightFill, BsHouseFill } from 'react-icons/bs';
+import {BiBed} from 'react-icons/bi'
 import { GoPrimitiveDot } from 'react-icons/go';
-import { RiTempColdFill, RiKakaoTalkFill } from 'react-icons/ri';
+import { RiKakaoTalkFill, RiFridgeLine } from 'react-icons/ri';
 import { AiTwotoneMail, AiFillPhone } from 'react-icons/ai';
-import { FaDog, FaSmokingBan } from 'react-icons/fa';
+import { MdLocalLaundryService } from 'react-icons/md';
+import { FaDog, FaSmokingBan, FaToilet } from 'react-icons/fa';
+import {ImManWoman} from 'react-icons/im'
+import {CgSmartHomeCooker} from 'react-icons/cg'
 import { GiWaterDrop, GiDoor, GiCancel } from 'react-icons/gi';
 import { IoWifiOutline } from 'react-icons/io5';
 import Loader from 'react-loader-spinner';
@@ -179,22 +179,23 @@ const Roominformation = styled.div`
         flex-direction: row;
         align-items: center;
 
+
         .roomtypename {
           color: ${CommonStyles.color.Dark};
           font-size: ${CommonStyles.fontSize.Large};
-          margin-right: 42px;
           @media screen and (max-width: 476px) {
             margin-right: 0px;
           }
         }
         .price {
-          font-size: 18px;
+          font-size: 1rem;
           font-weight: 700;
           letter-spacing: 0.1rem;
           @media screen and (max-width: 476px) {
             font-size: 1rem;
           }
           b {
+            font-size: 1.8rem;
             color: ${CommonStyles.color.Primary};
           }
         }
@@ -306,7 +307,7 @@ const Roominformation = styled.div`
       }
       .dividerline {
         width: 2px;
-        height: 300px;
+        height: 400px;
         background-color: ${CommonStyles.color.Darkbold2};
         margin: 0 80px;
         @media screen and (max-width: 476px) {
@@ -390,9 +391,9 @@ const RentCondoDetailpage = (props) => {
   };
 
   useEffect(() => {
-    if (props.monthlyfee)
+    if (props.rentFee)
       setprice(
-        props?.monthlyfee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+        props?.rentFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       );
   }, [props]);
 
@@ -440,7 +441,7 @@ const RentCondoDetailpage = (props) => {
       )}
       <Wrapper style={{ filter: showContact && 'blur(20px)' }}>
         <PostNav>
-          <h1>{props.posttitle}</h1>
+          <h1>{props?.postTitle}</h1>
           <div className="userinfo">
             <h3>
               <FaLocationArrow />
@@ -526,7 +527,7 @@ const RentCondoDetailpage = (props) => {
           <div className="divider" />
           <div className="description">
             <h3 className="header">Description</h3>
-            <span className="textcontainer">{props?.description}</span>
+            <span className="textcontainer">{props?.postDescription}</span>
           </div>
           <div className="divider" />
           <div className="details">
@@ -535,76 +536,101 @@ const RentCondoDetailpage = (props) => {
               <div className="left">
                 <div className="container">
                   <h3 className="name">
-                    <BsHouseDoor />
-                    Property Type
+                    <BsHouseDoor /> 집 유형
                   </h3>
-                  <h3 className="value">{props?.roomtype}</h3>
+                  <h3 className="value">{props?.houseType}</h3>
                 </div>
                 <div className="container">
                   <h3 className="name">
-                    <AiOutlineCalendar />
-                    Available Date
+                    <BsHouseFill /> 렌트 유형
                   </h3>
-                  <h3 className="value">{props?.availabledate}</h3>
+                  <h3 className="value">{props?.rentType}</h3>
                 </div>
                 <div className="container">
                   <h3 className="name">
-                    <FaDog />
-                    Pet
+                    <ImManWoman />
+                    선호 성별
                   </h3>
-                  <h3 className="value">{props?.petavailable}</h3>
-                </div>
-                <div className="container">
-                  <h3 className="name">
-                    <FaSmokingBan />
-                    Smoking
-                  </h3>
-                  <h3 className="value">{props?.smoking}</h3>
+                  <h3 className="value">{props?.sex ? props?.sex : "비공개" }</h3>
                 </div>
                 <div className="container">
                   <h3 className="name">
                     <GiWaterDrop />
-                    utility
+                    유틸리티 비용
                   </h3>
-                  <h3 className="value">{props?.parking}</h3>
+                  <h3 className="value">{props?.utility ? props?.utility : '비공개'}</h3>
+                </div>
+                <div className="container">
+                  <h3 className="name">
+                    <BiBed />
+                    가구
+                  </h3>
+                  <h3 className="value">{props?.funished ? props?.funished : '비공개'}</h3>
+                </div>
+                <div className="container">
+                  <h3 className="name">
+                    <AiFillCar />
+                    주차
+                  </h3>
+                  <h3 className="value">{props?.parking ? props?.parking : '비공개'}</h3>
+                </div>
+                <div className="container">
+                  <h3 className="name">
+                    <IoWifiOutline />
+                    인터넷
+                  </h3>
+                  <h3 className="value">{props?.internet ? props?.internet : '비공개'}</h3>
                 </div>
               </div>
               <div className="dividerline"></div>
               <div className="right">
                 <div className="container">
                   <h3 className="name">
-                    <AiFillCar />
-                    Parking
+                    <MdLocalLaundryService />
+                    세탁기
                   </h3>
-                  <h3 className="value">{props?.parking}</h3>
+                  <h3 className="value">{props?.Laundry ? props?.Laundry : '비공개'}</h3>
                 </div>
                 <div className="container">
                   <h3 className="name">
                     <GiDoor />
-                    Private Enterance
+                    개인 출입문
                   </h3>
-                  <h3 className="value">{props?.privateenterance}</h3>
+                  <h3 className="value">{props?.privateenterance ? props?.privateenterance : '비공개'}</h3>
                 </div>
                 <div className="container">
                   <h3 className="name">
-                    <RiTempColdFill />
-                    Aircondition
+                    <FaSmokingBan />
+                    흡연
                   </h3>
-                  <h3 className="value">{props?.aircondition}</h3>
+                  <h3 className="value">{props?.smoking ? props?.smoking : '비공개'}</h3>
                 </div>
                 <div className="container">
                   <h3 className="name">
-                    <BsPeopleFill />
-                    howmanypeople
+                    <FaDog />펫
                   </h3>
-                  <h3 className="value">{props?.howmanypeople}</h3>
+                  <h3 className="value">{props?.petavailable ? props?.petavailable : '비공개'}</h3>
                 </div>
                 <div className="container">
                   <h3 className="name">
-                    <IoWifiOutline />
-                    Internet
+                    <FaToilet />
+                    개인 화징실
                   </h3>
-                  <h3 className="value">{props?.internet}</h3>
+                  <h3 className="value">{props?.privateBathroom ? props?.privateBathroom : '비공개'}</h3>
+                </div>
+                <div className="container">
+                  <h3 className="name">
+                    <RiFridgeLine />
+                    개인 냉장고
+                  </h3>
+                  <h3 className="value">{props?.Fridge ? props?.Fridge : '비공개'}</h3>
+                </div>
+                <div className="container">
+                  <h3 className="name">
+                    <CgSmartHomeCooker />
+                    주방
+                  </h3>
+                  <h3 className="value">{props?.kitchen ? props?.kitchen : '비공개'}</h3>
                 </div>
               </div>
             </div>

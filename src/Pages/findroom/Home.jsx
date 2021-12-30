@@ -433,7 +433,7 @@ const Home = (props) => {
             cluster: false,
             crimeId: data.id,
             category: data.roomtype,
-            price: data.monthlyfee,
+            price: data.rentFee,
           },
           geometry: {
             type: 'Point',

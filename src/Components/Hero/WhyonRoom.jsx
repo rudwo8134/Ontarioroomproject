@@ -93,7 +93,7 @@ const WhyonRoom = () => {
 
           <p>
             세입자와 임대인 모두가 이용하기
-            <br /> 쉬운 한눈에 효율적이고 플랫폼
+            <br /> 쉬운 효율적이고 간편한 플랫폼
           </p>
         </div>
         <div className="card">
