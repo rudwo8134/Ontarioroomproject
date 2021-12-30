@@ -35,7 +35,7 @@ const Ourtemadata = [
     job: 'Development Manager',
     job2: 'CFO(Chief Financial Officer)',
     image: p3,
-    url: '',
+    url: 'https://www.linkedin.com/in/jiyeon-jeon',
   },
 ];
 
@@ -51,7 +51,7 @@ const Ourteam = () => {
             현저히 높은 캐나다에서 사는 '이민자' 입장으로 불편한 점을 개선하고자
             하는 목적이며, 유학, 이민생활의 가치를 극대화할 수 있는 가장 중요한
             거주공간을 위해 ONROOM으로 시작하게 되었습니다. <br />
-            이뿐만 아니라 직접 겪은 유학생, 이민자로써 캐나다로 처음 오시는
+            이뿐만 아니라 직접 겪은 유학생, 이민자로서 캐나다로 처음 오시는
             분들을 위해 다양한 시스템을 구축할 예정입니다
           </p>
         </div>

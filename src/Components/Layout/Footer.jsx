@@ -191,6 +191,7 @@ const Footerstyle = styled.footer`
           line-height: 31px;
           margin-right: 92px;
           /* identical to box height */
+          object-fit: contain;
 
           text-align: center;
           letter-spacing: -0.292683px;

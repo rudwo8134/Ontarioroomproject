@@ -82,6 +82,7 @@ const Wrapper = styled.div`
       .textarea {
         width: 430px;
         height: 240px;
+        resize: none;
         @media screen and (max-width: 476px) {
           width: 65vw;
         }
@@ -136,8 +137,8 @@ const NewContactForm = () => {
             {' '}
             <label htmlFor="">문의사항</label>
             <select>
-              <option value="1">허위매물신고</option>
               <option value="2">일반 문의</option>
+              <option value="1">허위매물신고</option>
               <option value="3">기술적 문제</option>
               <option value="4">기타</option>
             </select>
@@ -154,7 +155,7 @@ const NewContactForm = () => {
             ></textarea>
           </div>
 
-          <button className="Submitbutton">제출</button>
+          <button className="Submitbutton">보내기</button>
         </form>
       </Wrapper>
     </>

@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import Background from '../../assets/bg1.jpg';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
-import Mainlogo from '../../assets/nav/LOGO.png'
+import Mainlogo from '../../assets/nav/LOGO.png';
 import WebFont from 'webfontloader';
 import { useMediaQuery } from 'react-responsive';
 import Autoinput from '../Autocomplete/Autoinput';
@@ -15,6 +15,9 @@ WebFont.load({
 
 const Newhero = () => {
   const isbigMobile = useMediaQuery({ query: '(max-width: 476px)' });
+  const onmouseClick = () => {
+    window.scrollTo(0, 700);
+  };
   return (
     <Newherostyle>
       <form action="" className="search">
@@ -34,16 +37,14 @@ const Newhero = () => {
             : '  ONROOM에서 쉽고 빠르고 정확하게 방을 찾아보세요!'}
         </h1>
         <div className="inputcontainer">
-          <Autoinput/>
+          <Autoinput />
         </div>
       </form>
 
-      <span className="scrollBtn">
-        <a href="/">
-          <span className="mouse">
-            <h3>scroll down</h3>
-          </span>
-        </a>
+      <span className="scrollBtn" onClick={onmouseClick}>
+        <span className="mouse">
+          <h3>scroll down</h3>
+        </span>
       </span>
     </Newherostyle>
   );
@@ -183,10 +184,10 @@ const Newherostyle = styled.div`
     margin-bottom: -20px;
     color: ${CommonStyles.color.Darkbold1};
     @media screen and (max-width: 476px) {
-     .logoimage{
-       margin-top: -1.0rem;
-       margin-bottom: -1.0rem;
-     }
+      .logoimage {
+        margin-top: -1rem;
+        margin-bottom: -1rem;
+      }
     }
 
     .onroom {
@@ -232,6 +233,7 @@ const Newherostyle = styled.div`
     }
   }
   .scrollBtn {
+    cursor: pointer;
     display: inline-block;
     line-height: 18px;
     font-size: 13px;

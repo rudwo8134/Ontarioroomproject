@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
 import { StaticGoogleMap, Marker } from 'react-static-google-map';
@@ -29,25 +29,34 @@ const Wrapper = styled.div`
   .submitbutton {
     width: 1200px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+
     @media screen and (max-width: 476px) {
       margin-top: 1rem;
       width: 90vw;
+      align-items: center;
     }
     .backbutton {
       height: 35px;
-      background-color: white;
+      width: 200px;
+      background-color: #b5b5b5;
       border: none;
-      border-radius: 16px;
-      color: ${CommonStyles.color.Primary};
-      font-size: 16px;
+      color: ${CommonStyles.color.White};
+      font-size: 13px;
       font-weight: 700;
       text-transform: uppercase;
       cursor: pointer;
       transition: 0.3s ease-in-out all;
+      margin-right: 1rem;
+      @media screen and (max-width: 476px) {
+        width: 140px;
+      }
       :hover {
         transform: scale(1.05) translateY(-3px);
-        color: ${CommonStyles.color.Dark};
+        color: ${CommonStyles.color.White};
+        background-color: ${CommonStyles.color.PrimaryLight3};
       }
     }
     .post {
@@ -55,7 +64,7 @@ const Wrapper = styled.div`
       height: 35px;
       background-color: ${CommonStyles.color.Primary};
       border: none;
-      border-radius: 16px;
+
       color: ${CommonStyles.color.White};
       font-size: 13px;
       font-weight: 700;
@@ -115,7 +124,8 @@ const Wrapper = styled.div`
       display: flex;
       flex-direction: row;
       align-items: center;
-      margin-bottom: 2rem;
+      margin: 0;
+
       @media screen and (max-width: 476px) {
         width: 90vw;
       }
@@ -125,8 +135,12 @@ const Wrapper = styled.div`
         color: rgba(35, 31, 32, 0.61);
       }
       .buttoncontainer {
-        margin-left: 15px;
         width: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 0;
+        margin-left: 15px;
         @media screen and (max-width: 476px) {
           width: 70vw;
           display: flex;
@@ -137,7 +151,7 @@ const Wrapper = styled.div`
           height: 30px;
           border: 1px solid ${CommonStyles.color.Primary};
           background-color: white;
-          border-radius: 16px;
+          border-radius: 8px;
           color: ${CommonStyles.color.Primary};
           margin: 10px;
           @media screen and (max-width: 476px) {
@@ -204,6 +218,7 @@ const Wrapper = styled.div`
         }
         .locationinput {
           width: 446px;
+          padding: 0rem 1rem;
           @media screen and (max-width: 476px) {
             width: 70vw;
           }
@@ -211,14 +226,69 @@ const Wrapper = styled.div`
         select,
         input {
           margin-top: 10px;
+          margin-bottom: 10px;
           margin-left: 20px;
           width: 241px;
           height: 45px;
-          box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
+          box-shadow: 0px 3px 3px rgba(223, 27, 82, 0.25);
           background-color: rgba(255, 255, 255, 0.6);
           border-radius: 10px;
-          border: 0px solid #df1b52;
+          border: 1px solid #df1b52;
         }
+      }
+    }
+    .propertytype3 {
+      width: 98%;
+      display: flex;
+      justify-self: flex-end;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: space-between;
+      margin-left: 20px;
+      margin-bottom: 20px;
+      @media screen and (max-width: 476px) {
+        width: 85vw;
+      }
+      .name {
+        font-weight: ${CommonStyles.bold.bold};
+        font-size: 17px;
+        color: rgba(35, 31, 32, 0.61);
+      }
+      select,
+      input {
+        width: 500px;
+        height: 30px;
+        border: 1px solid ${CommonStyles.color.Primary};
+        box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
+        background-color: rgba(255, 255, 255, 0.6);
+        border-radius: 10px;
+      }
+    }
+    .propertytype2 {
+      width: 98%;
+      display: flex;
+      justify-self: flex-end;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: space-between;
+      margin-left: 20px;
+      margin-bottom: 20px;
+      @media screen and (max-width: 476px) {
+        width: 85vw;
+      }
+      .name {
+        font-weight: ${CommonStyles.bold.bold};
+        font-size: 17px;
+        color: rgba(35, 31, 32, 0.61);
+      }
+      select,
+      input {
+        width: 230px;
+        height: 30px;
+        border: 1px solid ${CommonStyles.color.Primary};
+        box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
+        background-color: rgba(255, 255, 255, 0.6);
+        border-radius: 10px;
       }
     }
     .propertytype {
@@ -246,6 +316,7 @@ const Wrapper = styled.div`
         box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
         background-color: rgba(255, 255, 255, 0.6);
         border-radius: 10px;
+        margin-right: 1.5rem;
       }
     }
     .propertytypeimage {
@@ -283,9 +354,9 @@ const Wrapper = styled.div`
         color: #fff;
         background: #df1b52;
         border: 1px solid ${CommonStyles.color.Primary};
-        border-radius: 10px;
+        border-radius: 8px;
         box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-        display: flex ;
+        display: flex;
         justify-content: center;
         align-items: center;
         @media screen and (max-width: 476px) {
@@ -299,7 +370,7 @@ const Wrapper = styled.div`
     border: 1.4px solid rgba(0, 0, 0, 0.1);
     width: 2px;
     height: 520px;
-    margin: 50px 80px 30px 60px;
+    margin: 50px 50px 30px 60px;
     @media screen and (max-width: 476px) {
       display: none;
     }
@@ -343,10 +414,16 @@ const Wrapper = styled.div`
   .buttoncontainer {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
     width: 100%;
     margin-top: 20px;
+    margin-left: 0.5rem;
     @media screen and (max-width: 476px) {
       width: 90vw;
+    }
+    span {
+      color: ${CommonStyles.color.Primary};
+      margin-right: 1rem;
     }
     button {
       width: 123px;
@@ -359,6 +436,7 @@ const Wrapper = styled.div`
       font-weight: 700;
       text-transform: capitalize;
       cursor: pointer;
+      border-radius: 8px;
       transition: 0.3s ease-in-out all;
       :hover {
         transform: scale(1.05) translateY(-3px);
@@ -378,7 +456,6 @@ const Wrapper = styled.div`
       font-weight: 700;
     }
     textarea {
-
       width: 100%;
       height: 340px;
       left: 2.29%;
@@ -389,7 +466,8 @@ const Wrapper = styled.div`
       box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
       border-radius: 10px;
       border: 1px solid ${CommonStyles.color.Primary};
-      padding: 1rem;
+      margin-left: 0.5rem;
+      padding: 1rem 0rem;
       @media screen and (max-width: 476px) {
         width: 80vw;
       }
@@ -465,6 +543,8 @@ const Searchbutton = styled.button`
   color: white;
   border-radius: 16px;
   margin-left: 10px;
+  font-weight: 800;
+  font-size: 0.8rem;
   @media screen and (max-width: 476px) {
     width: 10vw;
   }
@@ -500,7 +580,8 @@ const Postrentroom = ({ poststart, user }) => {
   const [imageresults, setimageresults] = useState([]);
   const [imageloading, setimageloading] = useState(false);
   const [additionalContact, setAdditionalContact] = useState(false);
-
+  const [noImage, setNoImage] = useState(false);
+  const [backbuttonactive, setActive] = useState(false);
   const handlesubmit2 = async (e) => {
     e.preventDefault();
     const reultaddress = await handleaddressdata(address);
@@ -518,6 +599,12 @@ const Postrentroom = ({ poststart, user }) => {
     });
     history.push('/');
   };
+
+  useEffect(()=>{
+    if(imageresults.length > 0){
+      setNoImage(false);
+    }
+  },[imageresults])
   const handleaddressdata = async (address) => {
     try {
       const response = await fetch(
@@ -556,7 +643,6 @@ const Postrentroom = ({ poststart, user }) => {
     Fridge: null,
     kitchen: null,
   });
-  console.log(postcredential);
 
   const handlecredentialchange = (e) => {
     const { name, value } = e.target;
@@ -582,6 +668,15 @@ const Postrentroom = ({ poststart, user }) => {
     setimageresults([...imageresults, ...results]);
     setimageloading(false);
   };
+  const handleimageclick = () =>{
+    if(imageresults.length === 0){
+      setNoImage(true);
+      return
+    }
+    if(backbuttonactive){
+      setNext(true);
+    }
+  }
   const handleImageDelete = (id) => {
     setimageresults(
       imageresults.filter((data) => {
@@ -593,6 +688,10 @@ const Postrentroom = ({ poststart, user }) => {
     e.preventDefault();
     setNext(true);
   };
+  const handlebackboutton = () =>{
+    setNext(false);
+    setActive(true);
+  }
 
   const searchOptions = {
     componentRestrictions: { country: ['ca'] },
@@ -616,54 +715,55 @@ const Postrentroom = ({ poststart, user }) => {
       title: 'utility',
     },
     {
-      name: 'funished',
+      name: '가구 포함',
       button: ['네', '아니오'],
       title: 'funished',
     },
     {
-      name: '주차장',
+      name: '주차장 포함',
       button: ['네', '아니오'],
       title: 'parking',
     },
     {
-      name: '인터넷',
+      name: '인터넷 포함',
       button: ['네', '아니오'],
       title: 'internet',
     },
     {
-      name: '세탁기',
+      name: '세탁기 포함',
       button: ['네', '아니오'],
       title: 'Laundry',
     },
     {
-      name: '개인 출입문',
+      name: '개인 출입문 포함',
       button: ['네', '아니오'],
       title: 'privateenterance',
     },
+
     {
-      name: '흡연',
-      button: ['네', '아니오'],
-      title: 'smoking',
-    },
-    {
-      name: '펫',
-      button: ['네', '아니오'],
-      title: 'petavailable',
-    },
-    {
-      name: '개인 화장실',
+      name: '개인 화장실 포함',
       button: ['네', '아니오'],
       title: 'privateBathroom',
     },
     {
-      name: '개인 냉장고',
+      name: '개인 냉장고 포함',
       button: ['네', '아니오'],
       title: 'Fridge',
     },
     {
-      name: '주방',
+      name: '개인 주방 포함',
       button: ['네', '아니오'],
       title: 'kitchen',
+    },
+    {
+      name: '흡연 허용',
+      button: ['네', '아니오'],
+      title: 'smoking',
+    },
+    {
+      name: '펫 허용',
+      button: ['네', '아니오'],
+      title: 'petavailable',
     },
   ];
 
@@ -717,8 +817,8 @@ const Postrentroom = ({ poststart, user }) => {
               );
             })}
             <div className="submitbutton">
-              <button onClick={() => setNext(false)} className="backbutton">
-                {'<'}back
+              <button onClick={handlebackboutton} className="backbutton">
+                뒤로 가기
               </button>
               <form onSubmit={handlesubmit2}>
                 <button type="submit" className="post">
@@ -741,6 +841,7 @@ const Postrentroom = ({ poststart, user }) => {
                   <span className="name">집 유형*</span>
                   <select
                     required
+                    style={{ padding: '0rem 0.5rem' }}
                     onChange={handlecredentialchange}
                     name="houseType"
                     value={postcredential?.houseType}
@@ -755,6 +856,7 @@ const Postrentroom = ({ poststart, user }) => {
                   <span className="name">렌트 유형*</span>
                   <select
                     required
+                    style={{ padding: '0rem 0.5rem' }}
                     name="rentType"
                     value={postcredential?.rentType}
                     onChange={handlecredentialchange}
@@ -768,13 +870,13 @@ const Postrentroom = ({ poststart, user }) => {
                   <span className="name">사진*</span>
                   {imageloading ? (
                     <>
-                    <Loader
-                      type="TailSpin"
-                      color={CommonStyles.color.Primary}
-                      height={30}
-                      width={30}
-                      timeout={50000}
-                    />
+                      <Loader
+                        type="TailSpin"
+                        color={CommonStyles.color.Primary}
+                        height={30}
+                        width={30}
+                        timeout={50000}
+                      />
                     </>
                   ) : (
                     <>
@@ -898,10 +1000,11 @@ const Postrentroom = ({ poststart, user }) => {
               </div>
               <div className="divider"></div>
               <div className="right">
-                <div className="propertytype">
+                <div className="propertytype2">
                   <span className="name">렌트비(월)*</span>
                   <input
                     required
+                    style={{ padding: '0rem 0.5rem' }}
                     onChange={handlecredentialchange}
                     value={postcredential?.rentFee}
                     name="rentFee"
@@ -909,11 +1012,18 @@ const Postrentroom = ({ poststart, user }) => {
                     placeholder="CAD"
                   />
                 </div>
-                <div className="propertytype">
+                <div className="propertytype2">
                   <span className="name">추가연락처</span>
                   <AdditionalContactSelect onChange={handleadditinal}>
-                    <select name="additional" id="additional" defaultValue="">
-                      <option value="">없음 (가입 시 기재한 이메일 제공)</option>
+                    <select
+                      style={{ padding: '0rem 0.5rem' }}
+                      name="additional"
+                      id="additional"
+                      defaultValue=""
+                    >
+                      <option value="">
+                        없음 (가입 시 기재한 이메일 제공)
+                      </option>
                       <option value="1">전화번호</option>
                       <option value="2">카카오톡ID</option>
                     </select>
@@ -936,7 +1046,7 @@ const Postrentroom = ({ poststart, user }) => {
                   </AdditionalContactSelect>
                 </div>
 
-                <div className="propertytype">
+                <div className="propertytype3">
                   <span className="name">제목*</span>
                   <input
                     className="titleInputpro"
@@ -962,7 +1072,14 @@ const Postrentroom = ({ poststart, user }) => {
                   ></textarea>
                 </div>
                 <div className="buttoncontainer">
-                  <button type="submit">계속</button>
+                  {noImage ? <span>사진을 업로드 해주세요</span> : null}
+                  <button
+                    onClick={handleimageclick}
+                    className="buttoncontinue"
+                    type="submit"
+                  >
+                    계속
+                  </button>
                 </div>
               </div>
             </div>

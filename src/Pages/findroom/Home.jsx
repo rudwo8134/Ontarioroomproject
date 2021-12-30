@@ -214,7 +214,7 @@ const Wrapper = styled.div`
               padding: 4px 10px;
               color: ${CommonStyles.color.Primary};
               border: 1px solid ${CommonStyles.color.Primary};
-              border-radius: 16px;
+              border-radius: 8px;
             }
           }
         }
@@ -353,7 +353,7 @@ const Filterbutton = styled.button`
   cursor: pointer;
   text-transform: uppercase;
   transition: all 0.5s ease-in-out;
-  border-radius: 16px;
+  border-radius: 8px;
   :hover {
     background-color: ${CommonStyles.color.PrimaryLight2};
   }
@@ -796,6 +796,7 @@ const Home = (props) => {
                         id="filter"
                         onChange={SelectFilter}
                       >
+                        <option value="apartment">상관없음</option>
                         <option value="apartment">아파트</option>
                         <option value="condo">콘도</option>
                         <option value="house">하우스</option>
@@ -811,6 +812,7 @@ const Home = (props) => {
                         id="filter"
                         onChange={SelectFilter}
                       >
+                        <option value="apartment">상관없음</option>
                         <option value="rent">전체렌트</option>
                         <option value="roomrent">룸렌트</option>
                       </select>
@@ -825,9 +827,9 @@ const Home = (props) => {
                       id="filter"
                       onChange={SelectFilter}
                     >
+                      <option value="all">남녀무관</option>
                       <option value="male">남</option>
                       <option value="female">여</option>
-                      <option value="all">남녀무관</option>
                     </select>
                   </div>
                   <div className="contents">

@@ -297,6 +297,7 @@ const Roominformation = styled.div`
       font-size: 24px;
       color: ${CommonStyles.color.Darkbold3};
       font-weight: 700;
+      margin: 1.2rem 0;
     }
     .contentsbox {
       display: flex;
@@ -529,12 +530,12 @@ const RentCondoDetailpage = (props) => {
           </div>
           <div className="divider" />
           <div className="description">
-            <h3 className="header">Description</h3>
+            <h3 className="header">상세 설명</h3>
             <span className="textcontainer">{props?.postDescription}</span>
           </div>
           <div className="divider" />
           <div className="details">
-            <div className="header">Details</div>
+            <div className="header">세부 사항</div>
             <div className="contentsbox">
               <div className="left">
                 <div className="container">
@@ -564,7 +565,11 @@ const RentCondoDetailpage = (props) => {
                     유틸리티 비용
                   </h3>
                   <h3 className="value">
-                    {props?.utility ? props?.utility === "네" ? '포함' : '불포함' : '비공개'}
+                    {props?.utility
+                      ? props?.utility === '네'
+                        ? '포함'
+                        : '불포함'
+                      : '비공개'}
                   </h3>
                 </div>
                 <div className="container">
@@ -573,7 +578,11 @@ const RentCondoDetailpage = (props) => {
                     가구
                   </h3>
                   <h3 className="value">
-                    {props?.funished ? props?.funished : '비공개'}
+                    {props?.funished
+                      ? props?.funished === '네'
+                        ? '유'
+                        : '무'
+                      : '비공개'}
                   </h3>
                 </div>
                 <div className="container">
@@ -582,7 +591,11 @@ const RentCondoDetailpage = (props) => {
                     주차
                   </h3>
                   <h3 className="value">
-                    {props?.parking ? props?.parking : '비공개'}
+                    {props?.parking
+                      ? props?.parking === '네'
+                        ? '유'
+                        : '무'
+                      : '비공개'}
                   </h3>
                 </div>
                 <div className="container">
@@ -591,7 +604,11 @@ const RentCondoDetailpage = (props) => {
                     인터넷
                   </h3>
                   <h3 className="value">
-                    {props?.internet ? props?.internet : '비공개'}
+                    {props?.internet
+                      ? props?.internet === '네'
+                        ? '유'
+                        : '무'
+                      : '비공개'}
                   </h3>
                 </div>
               </div>
@@ -603,7 +620,11 @@ const RentCondoDetailpage = (props) => {
                     세탁기
                   </h3>
                   <h3 className="value">
-                    {props?.Laundry ? props?.Laundry === "네" ? "개인" : "공용" : '비공개'}
+                    {props?.Laundry
+                      ? props?.Laundry === '네'
+                        ? '유'
+                        : '무'
+                      : '비공개'}
                   </h3>
                 </div>
                 <div className="container">
@@ -613,7 +634,48 @@ const RentCondoDetailpage = (props) => {
                   </h3>
                   <h3 className="value">
                     {props?.privateenterance
-                      ? props?.privateenterance
+                      ? props?.privateenterance === '네'
+                        ? '유'
+                        : '무'
+                      : '비공개'}
+                  </h3>
+                </div>
+                <div className="container">
+                  <h3 className="name">
+                    <FaToilet />
+                    개인 화징실
+                  </h3>
+                  <h3 className="value">
+                    {props?.privateBathroom
+                      ? props?.privateBathroom === '네'
+                        ? '유'
+                        : '무'
+                      : '비공개'}
+                  </h3>
+                </div>
+                <div className="container">
+                  <h3 className="name">
+                    <RiFridgeLine />
+                    개인 냉장고
+                  </h3>
+                  <h3 className="value">
+                    {props?.Fridge
+                      ? props?.Fridge === '네'
+                        ? '유'
+                        : '무'
+                      : '비공개'}
+                  </h3>
+                </div>
+                <div className="container">
+                  <h3 className="name">
+                    <CgSmartHomeCooker />
+                    개인 주방
+                  </h3>
+                  <h3 className="value">
+                    {props?.kitchen
+                      ? props?.kitchen === '네'
+                        ? '유'
+                        : '무'
                       : '비공개'}
                   </h3>
                 </div>
@@ -623,7 +685,11 @@ const RentCondoDetailpage = (props) => {
                     흡연
                   </h3>
                   <h3 className="value">
-                    {props?.smoking ? props?.smoking : '비공개'}
+                    {props?.smoking
+                      ? props?.smoking === '네'
+                        ? '허용'
+                        : '비허용'
+                      : '비공개'}
                   </h3>
                 </div>
                 <div className="container">
@@ -631,34 +697,11 @@ const RentCondoDetailpage = (props) => {
                     <FaDog />펫
                   </h3>
                   <h3 className="value">
-                    {props?.petavailable ? props?.petavailable : '비공개'}
-                  </h3>
-                </div>
-                <div className="container">
-                  <h3 className="name">
-                    <FaToilet />
-                    개인 화징실
-                  </h3>
-                  <h3 className="value">
-                    {props?.privateBathroom ? props?.privateBathroom : '비공개'}
-                  </h3>
-                </div>
-                <div className="container">
-                  <h3 className="name">
-                    <RiFridgeLine />
-                    개인 냉장고
-                  </h3>
-                  <h3 className="value">
-                    {props?.Fridge ? props?.Fridge : '비공개'}
-                  </h3>
-                </div>
-                <div className="container">
-                  <h3 className="name">
-                    <CgSmartHomeCooker />
-                    주방
-                  </h3>
-                  <h3 className="value">
-                    {props?.kitchen ? props?.kitchen === "네" ? "개인" : "공용" : '비공개'}
+                    {props?.petavailable
+                      ? props?.petavailable === '네'
+                        ? '허용'
+                        : '비허용'
+                      : '비공개'}
                   </h3>
                 </div>
               </div>

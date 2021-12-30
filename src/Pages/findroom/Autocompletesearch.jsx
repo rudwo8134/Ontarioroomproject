@@ -23,6 +23,9 @@ const Divcontainer = styled.div`
 
 const EnterKey = styled.span`
   color: ${CommonStyles.color.Primary};
+  text-shadow: -1.5px -1.5px 0 #fff, 1.5px -1.5px 0 #fff, -1.5px 1.5px 0 #fff,
+    1.5px 1.5px 0 #fff;
+  font-weight: 900;
   width: 480px;
   display: flex;
   justify-content: flex-end;
@@ -31,6 +34,8 @@ const EnterKey = styled.span`
 
 const EnterKeyForFind = styled.span`
   color: ${CommonStyles.color.Primary};
+  text-shadow: -1.5px -1.5px 0 #fff, 1.5px -1.5px 0 #fff, -1.5px 1.5px 0 #fff,
+    1.5px 1.5px 0 #fff;
   width: 480px;
   position: absolute;
   left: 105%;
@@ -67,6 +72,9 @@ const Autocompletesearch = ({
   const [address, setAddress] = useState('');
   const [enter, setenter] = useState(false);
   const dispatch = useDispatch();
+    const searchOptions = {
+      componentRestrictions: { country: ['ca'] },
+    };
   const handleselect = async (value) => {
     const data = await geocodeByAddress(value);
     const geo = await getLatLng(data[0]);
@@ -120,6 +128,7 @@ const Autocompletesearch = ({
       value={address}
       onChange={setAddress}
       onSelect={handleselect}
+      searchOptions={searchOptions}
     >
       {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
         <div className="responsivediv">
@@ -129,7 +138,7 @@ const Autocompletesearch = ({
               className: 'location-search-input',
             })}
             className="searchinput"
-            placeholder={hold ? hold : "주소 입력 후 Enter키를 눌러주세요!"}
+            placeholder={hold ? hold : '주소 입력 후 Enter키를 눌러주세요!'}
           />
           <Divcontainer ismediumMobile={ismediumMobile} findroom={findroom}>
             {loading && (
