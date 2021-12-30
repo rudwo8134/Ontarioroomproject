@@ -6,7 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectCurrentUser } from '../../Redux/Users/user.selector';
+import { selectCurrentUser, Selecterror } from '../../Redux/Users/user.selector';
 import {
   emailSigninStart,
   googleSigninStart,
@@ -117,12 +117,12 @@ const Wrapper = styled.div`
         color: ${CommonStyles.color.Darkbold4};
         margin-bottom: 45px;
         @media screen and (max-width: 375px) {
-          font-size: 1rem;
+          font-size: 0.6rem;
           width: 90vw;
           text-align: center;
         }
         @media screen and (max-width: 476px) {
-          font-size: 1.4rem;
+          font-size: 0.8rem;
           width: 90vw;
           text-align: center;
         }
@@ -132,12 +132,12 @@ const Wrapper = styled.div`
         color: ${CommonStyles.color.Darkbold4};
         margin-bottom: 20px;
         @media screen and (max-width: 375px) {
-          font-size: 1rem;
+          font-size: 0.6rem;
           width: 90vw;
           text-align: center;
         }
         @media screen and (max-width: 476px) {
-          font-size: 1.4rem;
+          font-size: 0.8rem;
           width: 90vw;
           text-align: center;
         }
@@ -200,6 +200,11 @@ const Wrapper = styled.div`
         .password {
           margin-bottom: 23px;
         }
+        .passwordwrong{
+          margin-bottom: 1rem;
+          font-size: 1rem;
+          color:${CommonStyles.color.Primary}
+        } 
         .description {
           font-size: ${CommonStyles.fontSize.ExtraSmall1};
           margin-bottom: 33px;
@@ -318,7 +323,8 @@ const NewRegisterandLoginpage = (props) => {
     phonenumber,
     address,
   } = credential;
-  const { googlelogin, User, emailSignin, signupstart } = props;
+  const { googlelogin, User, emailSignin, signupstart, error } = props;
+  const [Errorhandle, setError] = useState(null);
   const history = useHistory();
   const handlesubmit = (e) => {
     e.preventDefault();
@@ -327,6 +333,15 @@ const NewRegisterandLoginpage = (props) => {
       password,
     });
   };
+
+  useEffect(() => {
+    if(error?.code){
+      setError(error?.code)
+    }else{
+      return;
+    }
+  }, [error]);
+
   const handlechange = (e) => {
     const { name, value } = e.target;
     Setuser({ ...user, [name]: value });
@@ -365,7 +380,8 @@ const NewRegisterandLoginpage = (props) => {
           <h4 className="Header">SIGN IN</h4>
           <div className="divider" />
           <span className="description">
-            Lorem ipsum dolor sit amet consectetur, adipisicing eli
+            온룸을 찾아주셔서 감사합니다. 오늘도 쉽게 방을 찾자! Onroom!
+
           </span>
           <button onClick={googlelogin} className="googlelogin">
             <GoogleLogo />
@@ -394,6 +410,10 @@ const NewRegisterandLoginpage = (props) => {
               onChange={handlechange}
               className="password"
             />
+            <span className="passwordwrong">
+              {Errorhandle === 'auth/wrong-password' && '비밀번호가 틀립니다.다시 시도해주세요'}
+              {Errorhandle === 'auth/user-not-found' && '회원 정보가 없는 계정입니다.'}
+            </span>
             <span className="description">
               This site is protected by reCAPTCHA and the Google Privacy Policy
               and Terms of Service apply.
@@ -409,7 +429,8 @@ const NewRegisterandLoginpage = (props) => {
           <h4 className="Header">REGISTER</h4>
           <div className="divider" />
           <span className="description2">
-            Lorem ipsum dolor sit amet consectetur, adipisicing eli
+            OnRoom에 가입해주셔서 감사합니다. 최대 서비스를 드리기위해 항상 노력하겠습니다.
+           오늘도 좋은방을 구하세요 :)
           </span>
           <form onSubmit={handleSubmit2} className="Signin">
             <input
@@ -474,7 +495,7 @@ const NewRegisterandLoginpage = (props) => {
               className="password"
             />
             <span className="description">
-              Lorem ipsum dolor sit amet consectetur, adipisicing eli
+              자세한 정보를 입력해주세요. 잘못된 정보를 표기할 경우 회원님의 권한이 제한 될수 있습니다.
             </span>
             <button className="submitbutton" type="submit">
               Register
@@ -488,6 +509,7 @@ const NewRegisterandLoginpage = (props) => {
 
 const maptoprops = createStructuredSelector({
   User: selectCurrentUser,
+  error: Selecterror,
 });
 const maptodispatch = (dispatch) => ({
   googlelogin: () => dispatch(googleSigninStart()),

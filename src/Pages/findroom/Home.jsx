@@ -181,7 +181,7 @@ const Wrapper = styled.div`
           text-transform: uppercase;
         }
         .filter {
-          width: 55%;
+          width: 35%;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -193,6 +193,7 @@ const Wrapper = styled.div`
             height: 30px;
             color: ${CommonStyles.color.Primary};
             border-radius: 16px;
+            display: none;
           }
           .sortContainer {
             display: flex;
@@ -473,10 +474,10 @@ const Home = (props) => {
 
   useEffect(() => {
     if (filter === 'low') {
-      setFinalData(rooms?.sort((a, b) => b.monthlyfee - a.monthlyfee));
+      setFinalData(rooms?.sort((a, b) => b.rentFee - a.rentFee));
     }
     if (filter === 'high') {
-      setFinalData(rooms?.sort((a, b) => a.monthlyfee - b.monthlyfee));
+      setFinalData(rooms?.sort((a, b) => a.rentFee - b.rentFee));
     }
   }, [filter, rooms]);
 
