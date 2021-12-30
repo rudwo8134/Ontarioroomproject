@@ -181,7 +181,7 @@ const Wrapper = styled.div`
           text-transform: uppercase;
         }
         .filter {
-          width: 55%;
+          width: 35%;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -193,6 +193,7 @@ const Wrapper = styled.div`
             height: 30px;
             color: ${CommonStyles.color.Primary};
             border-radius: 16px;
+            display: none;
           }
           .sortContainer {
             display: flex;
@@ -467,10 +468,12 @@ const Home = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    if (locationhistory || searchInMap) {
+    if (locationhistory?.address || searchInMap?.address) {
       SetSearchquery(
-        searchInMap ? searchInMap.address : locationhistory.address
+        searchInMap ? searchInMap?.address : locationhistory?.address
       );
+    } else {
+      SetSearchquery(null);
     }
   }, [searchInMap, locationhistory]);
 
@@ -553,10 +556,10 @@ const Home = (props) => {
 
   useEffect(() => {
     if (filter === 'low') {
-      setFinalData(rooms?.sort((a, b) => b.monthlyfee - a.monthlyfee));
+      setFinalData(rooms?.sort((a, b) => b.rentFee - a.rentFee));
     }
     if (filter === 'high') {
-      setFinalData(rooms?.sort((a, b) => a.monthlyfee - b.monthlyfee));
+      setFinalData(rooms?.sort((a, b) => a.rentFee - b.rentFee));
     }
   }, [filter, rooms]);
 
@@ -905,7 +908,7 @@ const Home = (props) => {
             <div className="TitleContainer">
               <h3 className="searchResult">
                 {searchQuery
-                  ? searchQuery?.split(',')[searchQuery?.split(',').length - 1]
+                  ? searchQuery?.split(',')[searchQuery?.split(',')?.length - 1]
                   : '검색어를 입력해주세요. '}
               </h3>
               <span className="howmanyReseult">

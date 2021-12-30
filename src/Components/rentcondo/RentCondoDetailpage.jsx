@@ -4,16 +4,16 @@ import style from '../../static/staticcss';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
 import { FaLocationArrow } from 'react-icons/fa';
 import { StaticGoogleMap, Marker } from 'react-static-google-map';
-import { AiFillCar} from 'react-icons/ai';
+import { AiFillCar } from 'react-icons/ai';
 import { BsHouseDoor, BsFillCaretRightFill, BsHouseFill } from 'react-icons/bs';
-import {BiBed} from 'react-icons/bi'
+import { BiBed } from 'react-icons/bi';
 import { GoPrimitiveDot } from 'react-icons/go';
 import { RiKakaoTalkFill, RiFridgeLine } from 'react-icons/ri';
 import { AiTwotoneMail, AiFillPhone } from 'react-icons/ai';
 import { MdLocalLaundryService } from 'react-icons/md';
 import { FaDog, FaSmokingBan, FaToilet } from 'react-icons/fa';
-import {ImManWoman} from 'react-icons/im'
-import {CgSmartHomeCooker} from 'react-icons/cg'
+import { ImManWoman } from 'react-icons/im';
+import { CgSmartHomeCooker } from 'react-icons/cg';
 import { GiWaterDrop, GiDoor, GiCancel } from 'react-icons/gi';
 import { IoWifiOutline } from 'react-icons/io5';
 import Loader from 'react-loader-spinner';
@@ -321,6 +321,10 @@ const Roominformation = styled.div`
           align-items: center;
           width: 80vw;
       }
+        svg{
+          font-size: 1.5rem;
+          margin-right: 1rem;
+          }
         .name {
           display: flex;
           align-items: center;
@@ -328,6 +332,7 @@ const Roominformation = styled.div`
           font-size: 20px;
           font-weight: 400;
           text-transform: capitalize;
+          
         }
         .value {
           color: ${CommonStyles.color.Dark};
@@ -392,9 +397,7 @@ const RentCondoDetailpage = (props) => {
 
   useEffect(() => {
     if (props.rentFee)
-      setprice(
-        props?.rentFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-      );
+      setprice(props?.rentFee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
   }, [props]);
 
   if (!Array.isArray(props?.image || props?.image?.length <= 0)) {
@@ -551,35 +554,45 @@ const RentCondoDetailpage = (props) => {
                     <ImManWoman />
                     선호 성별
                   </h3>
-                  <h3 className="value">{props?.sex ? props?.sex : "비공개" }</h3>
+                  <h3 className="value">
+                    {props?.sex ? props?.sex : '비공개'}
+                  </h3>
                 </div>
                 <div className="container">
                   <h3 className="name">
                     <GiWaterDrop />
                     유틸리티 비용
                   </h3>
-                  <h3 className="value">{props?.utility ? props?.utility : '비공개'}</h3>
+                  <h3 className="value">
+                    {props?.utility ? props?.utility === "네" ? '포함' : '불포함' : '비공개'}
+                  </h3>
                 </div>
                 <div className="container">
                   <h3 className="name">
                     <BiBed />
                     가구
                   </h3>
-                  <h3 className="value">{props?.funished ? props?.funished : '비공개'}</h3>
+                  <h3 className="value">
+                    {props?.funished ? props?.funished : '비공개'}
+                  </h3>
                 </div>
                 <div className="container">
                   <h3 className="name">
                     <AiFillCar />
                     주차
                   </h3>
-                  <h3 className="value">{props?.parking ? props?.parking : '비공개'}</h3>
+                  <h3 className="value">
+                    {props?.parking ? props?.parking : '비공개'}
+                  </h3>
                 </div>
                 <div className="container">
                   <h3 className="name">
                     <IoWifiOutline />
                     인터넷
                   </h3>
-                  <h3 className="value">{props?.internet ? props?.internet : '비공개'}</h3>
+                  <h3 className="value">
+                    {props?.internet ? props?.internet : '비공개'}
+                  </h3>
                 </div>
               </div>
               <div className="dividerline"></div>
@@ -589,48 +602,64 @@ const RentCondoDetailpage = (props) => {
                     <MdLocalLaundryService />
                     세탁기
                   </h3>
-                  <h3 className="value">{props?.Laundry ? props?.Laundry : '비공개'}</h3>
+                  <h3 className="value">
+                    {props?.Laundry ? props?.Laundry === "네" ? "개인" : "공용" : '비공개'}
+                  </h3>
                 </div>
                 <div className="container">
                   <h3 className="name">
                     <GiDoor />
                     개인 출입문
                   </h3>
-                  <h3 className="value">{props?.privateenterance ? props?.privateenterance : '비공개'}</h3>
+                  <h3 className="value">
+                    {props?.privateenterance
+                      ? props?.privateenterance
+                      : '비공개'}
+                  </h3>
                 </div>
                 <div className="container">
                   <h3 className="name">
                     <FaSmokingBan />
                     흡연
                   </h3>
-                  <h3 className="value">{props?.smoking ? props?.smoking : '비공개'}</h3>
+                  <h3 className="value">
+                    {props?.smoking ? props?.smoking : '비공개'}
+                  </h3>
                 </div>
                 <div className="container">
                   <h3 className="name">
                     <FaDog />펫
                   </h3>
-                  <h3 className="value">{props?.petavailable ? props?.petavailable : '비공개'}</h3>
+                  <h3 className="value">
+                    {props?.petavailable ? props?.petavailable : '비공개'}
+                  </h3>
                 </div>
                 <div className="container">
                   <h3 className="name">
                     <FaToilet />
                     개인 화징실
                   </h3>
-                  <h3 className="value">{props?.privateBathroom ? props?.privateBathroom : '비공개'}</h3>
+                  <h3 className="value">
+                    {props?.privateBathroom ? props?.privateBathroom : '비공개'}
+                  </h3>
                 </div>
                 <div className="container">
                   <h3 className="name">
                     <RiFridgeLine />
                     개인 냉장고
                   </h3>
-                  <h3 className="value">{props?.Fridge ? props?.Fridge : '비공개'}</h3>
+                  <h3 className="value">
+                    {props?.Fridge ? props?.Fridge : '비공개'}
+                  </h3>
                 </div>
                 <div className="container">
                   <h3 className="name">
                     <CgSmartHomeCooker />
                     주방
                   </h3>
-                  <h3 className="value">{props?.kitchen ? props?.kitchen : '비공개'}</h3>
+                  <h3 className="value">
+                    {props?.kitchen ? props?.kitchen === "네" ? "개인" : "공용" : '비공개'}
+                  </h3>
                 </div>
               </div>
             </div>
