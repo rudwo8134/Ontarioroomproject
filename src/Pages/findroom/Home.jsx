@@ -6,6 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import { selectitems } from '../../Redux/Rentcondo/rentcondo.selector';
 import { connect } from 'react-redux';
 import { rentcondoreadstart } from '../../Redux/Rentcondo/rentcondo.action';
+import Popuppage from './Popuppage';
 
 import useSupercluster from 'use-supercluster';
 import GoogleMapReact from 'google-map-react';
@@ -17,6 +18,8 @@ import { readrentcondo } from '../../Redux/Rentcondo/rentcondo.saga';
 import Autocompletesearch from './Autocompletesearch';
 import { BiSearch } from 'react-icons/bi';
 import { useMediaQuery } from 'react-responsive';
+
+
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -361,6 +364,84 @@ const Filterbutton = styled.button`
   }
 `;
 
+const Popupscreen = styled.div`
+  .optional, .gendertype {
+    display:flex;
+    flex:3
+    justify-content: space-between;
+    padding: 40px 0;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-weight: ${CommonStyles.bold.LittleBold} 
+  }
+  .housetype, .roomtype {
+    padding: 10px;
+  }
+  .gendertype{
+    padding:0px;
+  }
+  .roomtype {
+    display:flex;
+  }
+
+  .popupcontents {
+    padding: 20px;
+  }
+  .options {
+    padding-left: 9px;
+    margin-left: 50px;
+    border: 1px solid ${CommonStyles.color.Primary};
+    width: 7rem;
+    height: 2rem;
+    border-radius: 16px;
+    margin-right: 1rem;
+  }
+  .contents{
+    
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+    li{
+      list-style: none;
+      margin-bottom: 20px;
+    }
+    display: flex;
+    flex:2;
+    justify-content: space-around;
+    font-size: 18px;
+    margin-top:30px;
+    .popupcontents_left, .popupcontents_right {
+      width:200px;
+      font-size: 17px;
+    }
+    input{
+      margin-right: 15px;
+    }
+    
+  }
+  .searchbtn {
+    float:right;
+    margin-top:25px;
+    background-color: ${CommonStyles.color.Primary};
+    color: ${CommonStyles.color.White};
+    height: 40px;
+    width: 80px;
+    border: none;
+    align-items: center;
+    font-size: 13.75px;
+    font-weight: ${CommonStyles.bold.LittleBold};
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+    border-radius: 16px;
+    :hover {
+      background-color: ${CommonStyles.color.PrimaryLight2};
+  }
+
+`;
+
+
+
 const Marker = ({ children }) => children;
 
 const Home = (props) => {
@@ -385,6 +466,10 @@ const Home = (props) => {
   const [filter, SetFilter] = useState(null);
   const [finalData, setFinalData] = useState(rooms);
   const [showList, setShowList] = useState(false);
+
+ // popuppage
+ const [isOpen, setIsOpen] = useState(false)
+
 
   useEffect(() => {
     if (locationhistory || searchInMap) {
@@ -700,9 +785,80 @@ const Home = (props) => {
                   <option value="low">가격 낮은순</option>
                 </select>
               </div>
-              <Filterbutton>필터</Filterbutton>
-            </div>
-          </div>
+              <Filterbutton onClick={() => setIsOpen(true)}>필터</Filterbutton>
+              <Popupscreen>
+                <Popuppage open={isOpen} onClose={() => setIsOpen(false)}>
+                    <div className="optional">
+                      <div className="housetype">
+                        집유형
+                          <select
+                            className="options"
+                            defaultValue="no"
+                            name="filter"
+                            id="filter"
+                            onChange={SelectFilter}>
+                            <option value="apartment">아파트</option>
+                            <option value="condo">콘도</option>
+                            <option value="house">하우스</option>
+                            <option value="townhouse">타운하우스</option>
+                          </select>
+                      </div>
+                      <div className="roomtype">
+                        렌트유형
+                          <select
+                            className="options"
+                            defaultValue="no"
+                            name="filter"
+                            id="filter"
+                            onChange={SelectFilter}>
+                            <option value="rent">전체렌트</option>
+                            <option value="roomrent">룸렌트</option>
+                          </select>
+                      </div>
+                    </div> 
+                      <div className="gendertype">
+                        선호성별
+                          <select
+                            className="options"
+                            defaultValue="no"
+                            name="filter"
+                            id="filter"
+                            onChange={SelectFilter}>
+                            <option value="male">남</option>
+                            <option value="female">여</option>
+                            <option value="all">남녀무관</option>
+                          </select>
+                      </div>
+                    <div className="contents">
+                      <div className="popupcontents_left">
+                        <ul>
+                          <li><input type="checkbox" />유틸리티</li>
+                          <li><input type="checkbox" />개인출입문</li>
+                          <li><input type="checkbox" />주차장</li>
+                          <li><input type="checkbox" />인터넷</li>
+                          <li><input type="checkbox" />개인화장실</li>
+                        </ul>
+                      </div>
+                    
+                      <div className="popupcontents_right">
+                        <ul>
+                          <li><input type="checkbox" />주방</li>
+                          <li><input type="checkbox" />가구</li>
+                          <li><input type="checkbox" />개인냉장고</li>
+                          <li><input type="checkbox" />세탁기</li>
+                          <li><input type="checkbox" />펫</li>
+                          <li><input type="checkbox" />흡연</li>
+                        </ul>
+                      </div>
+                    </div>  
+                    <div>
+                      <button className="searchbtn"> ..개의 검색결과</button>
+                    </div>
+                  </Popuppage>
+                </Popupscreen>
+                </div>
+              </div>
+
           {/* card container */}
           <div className="CardWrapper">
             {selectInfo &&
