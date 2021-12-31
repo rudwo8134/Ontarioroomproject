@@ -584,7 +584,6 @@ const Home = (props) => {
                   isbigMobile={isbigMobile}
                   findroom={true}
                   setSearchInMap={setSearchInMap}
-                  hold={locationhistory?.address}
                 />
               </div>
             </AutoCompletediv>

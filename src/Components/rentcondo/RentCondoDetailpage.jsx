@@ -191,12 +191,16 @@ const Roominformation = styled.div`
           font-size: 1rem;
           font-weight: 700;
           letter-spacing: 0.1rem;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
           @media screen and (max-width: 476px) {
             font-size: 1rem;
           }
           b {
             font-size: 1.8rem;
             color: ${CommonStyles.color.Primary};
+            margin-right: 0.5rem;
           }
         }
       }
@@ -486,7 +490,7 @@ const RentCondoDetailpage = (props) => {
               <div className="roomtype">
                 <h4 className="roomtypename">{props?.roomtype}</h4>
                 <h4 className="price">
-                  <b>${price && price}</b>/ MONTH
+                  <b>${price && price}</b>/ 월
                 </h4>
               </div>
               <h4 className="address">
