@@ -17,6 +17,8 @@ import { readrentcondo } from '../../Redux/Rentcondo/rentcondo.saga';
 import Autocompletesearch from './Autocompletesearch';
 import { BiSearch } from 'react-icons/bi';
 import { useMediaQuery } from 'react-responsive';
+import Slider, {Range} from 'rc-slider'
+import 'rc-slider/assets/index.css';
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -360,25 +362,43 @@ const Filterbutton = styled.button`
 `;
 
 const Popupscreen = styled.div`
-  .optional, .gendertype {
-    display:flex;
-    flex:3;
+  .optional,
+  .gendertype {
+    display: flex;
+    flex: 1;
     align-items: center;
-    padding: 40px 0;
+    padding: 10px 0;
     box-sizing: border-box;
     font-size: 18px;
-    font-weight: ${CommonStyles.bold.LittleBold} 
+    margin: 0 auto;
+    font-weight: ${CommonStyles.bold.LittleBold};
   }
-  .housetype, .roomtype {
+  .pricetype {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: flex-start;
+    padding: 10px 0;
+    box-sizing: border-box;
+    font-size: 18px;
+    margin: 0 auto;
+    font-weight: ${CommonStyles.bold.LittleBold};
+    width: 75%;
+  }
+  .housetype,
+  .roomtype {
     padding: 10px;
     display: flex;
     align-items: center;
   }
-  .gendertype{
-    padding:0px;
+  .gendertype {
+    padding: 0px;
+    text-align: start;
+    width: 100%;
+    margin-left: 70px;
   }
   .roomtype {
-    display:flex;
+    display: flex;
   }
 
   .popupcontents {
@@ -393,33 +413,42 @@ const Popupscreen = styled.div`
     border-radius: 16px;
     margin-right: 1rem;
   }
-  .contents{
-    
+  .contents {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 18px;
+
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-left: 105px;
     ul {
-      margin: 0;
+      width: 100%;
+      margin: 0 auto;
       padding: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
-    li{
+    li {
       list-style: none;
       margin-bottom: 20px;
     }
-    display: flex;
-    flex:2;
-    justify-content: space-around;
-    font-size: 18px;
-    margin-top:30px;
-    .popupcontents_left, .popupcontents_right {
-      width:200px;
+
+    .popupcontents_left,
+    .popupcontents_right {
+      width: 300px;
       font-size: 17px;
     }
-    input{
+    input {
+      width: 30px;
       margin-right: 15px;
     }
-    
   }
   .searchbtn {
-    float:right;
-    margin-top:25px;
+    float: right;
+    margin-top: 25px;
     background-color: ${CommonStyles.color.Primary};
     color: ${CommonStyles.color.White};
     height: 40px;
@@ -434,9 +463,12 @@ const Popupscreen = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
     :hover {
       background-color: ${CommonStyles.color.PrimaryLight2};
-  }
+    }
   }
 `;
 
@@ -553,6 +585,15 @@ const Home = (props) => {
   const watchtheList = () => {
     setShowList(true);
   };
+
+  const marks = {
+    '300$' : '500$',
+    0: '300',
+    100: {style:{
+      color:'red',
+    },
+  label: '100'},
+  }
 
   useEffect(() => {
     if (filter === 'low') {
@@ -830,6 +871,23 @@ const Home = (props) => {
                       <option value="male">남</option>
                       <option value="female">여</option>
                     </select>
+                  </div>
+                  <div className="pricetype">
+                    가격
+                    <Range
+                      count={1}
+                      step={20}
+                      trackStyle={{
+                        backgroundColor: `${CommonStyles.color.Primary}`,
+                      }}
+                      railStyle={{
+                        backgroundColor: `${CommonStyles.color.Primary}`,
+                      }}
+                      allowCross={false}
+                      min={500}
+                      max={1000}
+                      marks={marks}
+                    />
                   </div>
                   <div className="contents">
                     <div className="popupcontents_left">

@@ -11,11 +11,17 @@ const MODAL_STYLES = styled.div `
   left: 50%;
   transform: translate(-50%, -50%);
   background: #FFF;
-  padding: 50px;
   z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 50px;
 
   .closebtn{
-    margin-left:40%;
+    position: absolute;
+    right: 15px;
+    top:15px;
     color: ${CommonStyles.color.Primary};
     background-color: transparent;
     border: none;
@@ -41,9 +47,10 @@ const OVERLAY_STYLES = styled.div`
 
 
 const TITLE = styled.span`
-    font-size: 25px;
-    margin-left: 190px;
-    font-weight: ${CommonStyles.bold.ExtraBold};
+  width: 100%;
+  text-align:center;
+  font-size: 25px;
+  font-weight: ${CommonStyles.bold.ExtraBold};
 `;
 
 
