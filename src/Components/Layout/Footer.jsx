@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Innerlayout } from '../../styles/layout';
 import {
   FaFacebookSquare,
-  FaGooglePlusSquare,
+  FaInstagramSquare,
   FaTwitterSquare,
 } from 'react-icons/fa';
 import Logo from '../../assets/nav/LOGO.png';
@@ -53,9 +53,21 @@ const Footer = () => {
               easily be integrated into almost any design.
             </span>
             <div className="icon">
-              <FaTwitterSquare />
-              <FaFacebookSquare />
-              <FaGooglePlusSquare />
+              <a href="https://twitter.com/Onroom2" target="blank">
+                <FaTwitterSquare />
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=100076598774528"
+                target="blank"
+              >
+                <FaFacebookSquare />
+              </a>
+              <a
+                href="https://www.instagram.com/onroom2022/?hl=en"
+                target="blank"
+              >
+                <FaInstagramSquare />
+              </a>
             </div>
           </div>
         </div>
