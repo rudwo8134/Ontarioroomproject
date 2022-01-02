@@ -587,13 +587,74 @@ const Home = (props) => {
   };
 
   const marks = {
-    '300$' : '500$',
-    0: '300',
-    100: {style:{
-      color:'red',
+    0: {
+      style: {
+        color: `${CommonStyles.color.Darkbold}`,
+      },
+      label: <strong>0$</strong>,
     },
-  label: '100'},
-  }
+    10: {
+      style: {
+        color: `${CommonStyles.color.Darkbold2}`,
+      },
+      label: <strong>300$</strong>,
+    },
+    20: {
+      style: {
+        color: `${CommonStyles.color.Darkbold2}`,
+      },
+      label: <strong>600$</strong>,
+    },
+    30: {
+      style: {
+        color: `${CommonStyles.color.Darkbold2}`,
+      },
+      label: <strong>900$</strong>,
+    },
+    40: {
+      style: {
+        color: `${CommonStyles.color.Darkbold2}`,
+      },
+      label: <strong>1200$</strong>,
+    },
+    50: {
+      style: {
+        color: `${CommonStyles.color.Darkbold2}`,
+      },
+      label: <strong>1500$</strong>,
+    },
+    60: {
+      style: {
+        color: `${CommonStyles.color.Darkbold2}`,
+      },
+      label: <strong>1800$</strong>,
+    },
+    70: {
+      style: {
+        color: `${CommonStyles.color.Darkbold2}`,
+      },
+      label: <strong>2100$</strong>,
+    },
+    80: {
+      style: {
+        color: `${CommonStyles.color.Darkbold2}`,
+      },
+      label: <strong>2400$</strong>,
+    },
+    90: {
+      style: {
+        color: `${CommonStyles.color.Darkbold2}`,
+      },
+      label: <strong>2700$</strong>,
+    },
+
+    100: {
+      style: {
+        color: `${CommonStyles.color.Darkbold2}`,
+      },
+      label: <strong>3000$</strong>,
+    },
+  };
 
   useEffect(() => {
     if (filter === 'low') {
@@ -874,19 +935,11 @@ const Home = (props) => {
                   </div>
                   <div className="pricetype">
                     가격
-                    <Range
-                      count={1}
-                      step={20}
-                      trackStyle={{
-                        backgroundColor: `${CommonStyles.color.Primary}`,
-                      }}
-                      railStyle={{
-                        backgroundColor: `${CommonStyles.color.Primary}`,
-                      }}
-                      allowCross={false}
-                      min={500}
-                      max={1000}
+                    <Slider.Range
+                      min={0}
                       marks={marks}
+                      step={10}
+                      defaultValue={[20, 40]}
                     />
                   </div>
                   <div className="contents">
