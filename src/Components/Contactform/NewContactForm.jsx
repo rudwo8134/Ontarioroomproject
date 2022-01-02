@@ -123,20 +123,20 @@ const NewContactForm = () => {
           항상 열려있는 마음으로 소통하겠습니다.
         </div>
 
-        <form action="">
+        <form action="https://formspree.io/f/xwkypqzq" method="POST">
           <div className="formcontainer">
-            <label htmlFor="">이름</label>
-            <input type="text" />
+            <label htmlFor="name">이름</label>
+            <input required id="name" name="name" type="text" />
           </div>
           <div className="formcontainer">
             {' '}
-            <label htmlFor="">이메일</label>
-            <input type="text" />
+            <label htmlFor="email">이메일</label>
+            <input required id="email" type="email" name="email" />
           </div>
           <div className="formcontainer">
             {' '}
-            <label htmlFor="">문의사항</label>
-            <select>
+            <label htmlFor="문의사항">문의사항</label>
+            <select required name="문의사항">
               <option value="2">일반 문의</option>
               <option value="1">허위매물신고</option>
               <option value="3">기술적 문제</option>
@@ -145,17 +145,19 @@ const NewContactForm = () => {
           </div>
           <div className="formcontainer">
             {' '}
-            <label htmlFor="">내용</label>
+            <label htmlFor="내용">내용</label>
             <textarea
-              name=""
-              id=""
+              required
+              name="내용"
+              id="내용"
               className="textarea"
               cols="60"
               rows="20"
             ></textarea>
           </div>
-
-          <button className="Submitbutton">보내기</button>
+          <button type="submit" className="Submitbutton">
+            보내기
+          </button>
         </form>
       </Wrapper>
     </>
