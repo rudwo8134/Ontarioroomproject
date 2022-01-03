@@ -543,7 +543,7 @@ const Home = (props) => {
   const [Filtering, setFiltering] = useState({
     houseType: null,
     rentType: null,
-    sexType: '남녀무관',
+    sexType: null,
     PriceRange: null,
     utility: null,
     funished: null,
@@ -557,10 +557,16 @@ const Home = (props) => {
     smoking: null,
     petavailable: null,
   });
+  const data = Object.keys(Filtering);
+  const value = data.filter((indata) => {
+    return Filtering[indata] !== null;
+  });
+  const data2 = value.filter((data) => Object.values(Filtering).find(d2 => d2 === data));
+  console.log(Filtering)
+  console.log(data2);
   const [FilteredData, setFilteredData] = useState([]);
-  useEffect(() => {
-    
-  }, [Filtering]);
+  // Save keep to continue
+  useEffect(() => {}, [Filtering]);
   // popuppage
   const [isOpen, setIsOpen] = useState(false);
 
@@ -1012,9 +1018,7 @@ const Home = (props) => {
                   </div>
 
                   <div className="pricetype">
-                    <span className="title">
-                      가격
-                    </span>
+                    <span className="title">가격</span>
                     <Slider.Range
                       onChange={(e) =>
                         setFiltering({ ...Filtering, PriceRange: e })
