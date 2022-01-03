@@ -17,7 +17,7 @@ import { readrentcondo } from '../../Redux/Rentcondo/rentcondo.saga';
 import Autocompletesearch from './Autocompletesearch';
 import { BiSearch } from 'react-icons/bi';
 import { useMediaQuery } from 'react-responsive';
-import Slider, {Range} from 'rc-slider'
+import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 
 const Wrapper = styled.div`
@@ -367,11 +367,12 @@ const Popupscreen = styled.div`
     display: flex;
     flex: 1;
     align-items: center;
-    padding: 10px 0;
+    padding: 5px 0;
     box-sizing: border-box;
-    font-size: 18px;
+    font-size: 16px;
     margin: 0 auto;
     font-weight: ${CommonStyles.bold.LittleBold};
+    color: ${CommonStyles.color.Darkbold4};
   }
   .pricetype {
     display: flex;
@@ -384,10 +385,54 @@ const Popupscreen = styled.div`
     margin: 0 auto;
     font-weight: ${CommonStyles.bold.LittleBold};
     width: 75%;
+    justify-content: center;
+    align-items: center;
+    margin-top: -40px;
+    .title {
+      font-size: 18px;
+      margin: 0 auto;
+      margin-bottom: 10px;
+      margin-top: -80px;
+      font-weight: ${CommonStyles.bold.LittleBold};
+      color: ${CommonStyles.color.Darkbold4};
+    }
+    .rc-slider {
+      &-rail {
+        background-color: ${CommonStyles.color.PrimaryLight2};
+      }
+      &-track {
+        transition: all 0.3s ease-in-out;
+        background-color: ${CommonStyles.color.Primary};
+        visibility: visible !important;
+      }
+
+      &-dot {
+        width: 9px;
+        height: 9px;
+
+        background-color: ${CommonStyles.color.PrimaryLight2};
+        border: none;
+      }
+
+      &-dot-active ~ .rc-slider-dot {
+        background-color: ${CommonStyles.color.Primary};
+      }
+
+      &-mark {
+        font-size: 0.8rem;
+        color: ${CommonStyles.color.PrimaryLight3};
+        font-weight: 700;
+
+        &-text-active {
+          color: ${CommonStyles.color.PrimaryLight3};
+          font-weight: 800;
+        }
+      }
+    }
   }
   .housetype,
   .roomtype {
-    padding: 10px;
+    padding: 5px;
     display: flex;
     align-items: center;
   }
@@ -395,7 +440,7 @@ const Popupscreen = styled.div`
     padding: 0px;
     text-align: start;
     width: 100%;
-    margin-left: 70px;
+    margin-left: 5px;
   }
   .roomtype {
     display: flex;
@@ -406,7 +451,7 @@ const Popupscreen = styled.div`
   }
   .options {
     padding-left: 9px;
-    margin-left: 50px;
+    margin-left: 20px;
     border: 1px solid ${CommonStyles.color.Primary};
     width: 7rem;
     height: 2rem;
@@ -421,7 +466,7 @@ const Popupscreen = styled.div`
 
     width: 600px;
     margin: 0 auto;
-    margin-top: 30px;
+    margin-top: -20px;
     margin-left: 105px;
     ul {
       width: 100%;
@@ -495,7 +540,27 @@ const Home = (props) => {
   const [filter, SetFilter] = useState(null);
   const [finalData, setFinalData] = useState(rooms);
   const [showList, setShowList] = useState(false);
-
+  const [Filtering, setFiltering] = useState({
+    houseType: null,
+    rentType: null,
+    sexType: '남녀무관',
+    PriceRange: null,
+    utility: null,
+    funished: null,
+    parking: null,
+    internet: null,
+    Laundry: null,
+    privateenterance: null,
+    privateBathroom: null,
+    Fridge: null,
+    kitchen: null,
+    smoking: null,
+    petavailable: null,
+  });
+  const [FilteredData, setFilteredData] = useState([]);
+  useEffect(() => {
+    
+  }, [Filtering]);
   // popuppage
   const [isOpen, setIsOpen] = useState(false);
 
@@ -595,65 +660,77 @@ const Home = (props) => {
     },
     10: {
       style: {
-        color: `${CommonStyles.color.Darkbold2}`,
+        color: `${CommonStyles.color.Darkbold}`,
       },
       label: <strong>300$</strong>,
     },
     20: {
       style: {
-        color: `${CommonStyles.color.Darkbold2}`,
+        color: `${CommonStyles.color.Darkbold}`,
       },
       label: <strong>600$</strong>,
     },
     30: {
       style: {
-        color: `${CommonStyles.color.Darkbold2}`,
+        color: `${CommonStyles.color.Darkbold}`,
       },
       label: <strong>900$</strong>,
     },
     40: {
       style: {
-        color: `${CommonStyles.color.Darkbold2}`,
+        color: `${CommonStyles.color.Darkbold}`,
       },
       label: <strong>1200$</strong>,
     },
     50: {
       style: {
-        color: `${CommonStyles.color.Darkbold2}`,
+        color: `${CommonStyles.color.Darkbold}`,
       },
       label: <strong>1500$</strong>,
     },
     60: {
       style: {
-        color: `${CommonStyles.color.Darkbold2}`,
+        color: `${CommonStyles.color.Darkbold}`,
       },
       label: <strong>1800$</strong>,
     },
     70: {
       style: {
-        color: `${CommonStyles.color.Darkbold2}`,
+        color: `${CommonStyles.color.Darkbold}`,
       },
       label: <strong>2100$</strong>,
     },
     80: {
       style: {
-        color: `${CommonStyles.color.Darkbold2}`,
+        color: `${CommonStyles.color.Darkbold}`,
       },
       label: <strong>2400$</strong>,
     },
     90: {
       style: {
-        color: `${CommonStyles.color.Darkbold2}`,
+        color: `${CommonStyles.color.Darkbold}`,
       },
       label: <strong>2700$</strong>,
     },
 
     100: {
       style: {
-        color: `${CommonStyles.color.Darkbold2}`,
+        color: `${CommonStyles.color.Darkbold}`,
       },
       label: <strong>3000$</strong>,
     },
+  };
+  const HandleFiterChange = (e) => {
+    const { name, value } = e.target;
+    setFiltering({ ...Filtering, [name]: value });
+  };
+  const HandleFiterChange2 = (e) => {
+    const { name, checked } = e.target;
+    if (checked) {
+      setFiltering({ ...Filtering, [name]: '네' });
+    } else {
+      setFiltering({ ...Filtering, [name]: '아니오' });
+    }
   };
 
   useEffect(() => {
@@ -892,13 +969,13 @@ const Home = (props) => {
                       집유형
                       <select
                         className="options"
-                        defaultValue="no"
-                        name="filter"
-                        id="filter"
-                        onChange={SelectFilter}
+                        defaultValue={Filtering.houseType}
+                        name="houseType"
+                        id="houseType"
+                        onChange={HandleFiterChange}
                       >
-                        <option value="apartment">상관없음</option>
-                        <option value="apartment">아파트</option>
+                        <option value={null}>상관없음</option>
+                        <option value="apart">아파트</option>
                         <option value="condo">콘도</option>
                         <option value="house">하우스</option>
                         <option value="townhouse">타운하우스</option>
@@ -908,34 +985,40 @@ const Home = (props) => {
                       렌트유형
                       <select
                         className="options"
-                        defaultValue="no"
-                        name="filter"
-                        id="filter"
-                        onChange={SelectFilter}
+                        defaultValue={Filtering.rentType}
+                        name="rentType"
+                        id="rentType"
+                        onChange={HandleFiterChange}
                       >
-                        <option value="apartment">상관없음</option>
-                        <option value="rent">전체렌트</option>
-                        <option value="roomrent">룸렌트</option>
+                        <option value={null}>상관없음</option>
+                        <option value="whole">전체렌트</option>
+                        <option value="room">룸렌트</option>
+                      </select>
+                    </div>
+                    <div className="gendertype">
+                      선호성별
+                      <select
+                        className="options"
+                        defaultValue={Filtering.sexType}
+                        name="sexType"
+                        id="sexType"
+                        onChange={HandleFiterChange}
+                      >
+                        <option value="남녀무관">남녀무관</option>
+                        <option value="남">남</option>
+                        <option value="여">여</option>
                       </select>
                     </div>
                   </div>
-                  <div className="gendertype">
-                    선호성별
-                    <select
-                      className="options"
-                      defaultValue="no"
-                      name="filter"
-                      id="filter"
-                      onChange={SelectFilter}
-                    >
-                      <option value="all">남녀무관</option>
-                      <option value="male">남</option>
-                      <option value="female">여</option>
-                    </select>
-                  </div>
+
                   <div className="pricetype">
-                    가격
+                    <span className="title">
+                      가격
+                    </span>
                     <Slider.Range
+                      onChange={(e) =>
+                        setFiltering({ ...Filtering, PriceRange: e })
+                      }
                       min={0}
                       marks={marks}
                       step={10}
@@ -946,23 +1029,43 @@ const Home = (props) => {
                     <div className="popupcontents_left">
                       <ul>
                         <li>
-                          <input type="checkbox" />
+                          <input
+                            name="utility"
+                            onChange={HandleFiterChange2}
+                            type="checkbox"
+                          />
                           유틸리티
                         </li>
                         <li>
-                          <input type="checkbox" />
+                          <input
+                            name="privateenterance"
+                            onChange={HandleFiterChange2}
+                            type="checkbox"
+                          />
                           개인출입문
                         </li>
                         <li>
-                          <input type="checkbox" />
+                          <input
+                            name="parking"
+                            onChange={HandleFiterChange2}
+                            type="checkbox"
+                          />
                           주차장
                         </li>
                         <li>
-                          <input type="checkbox" />
+                          <input
+                            name="internet"
+                            onChange={HandleFiterChange2}
+                            type="checkbox"
+                          />
                           인터넷
                         </li>
                         <li>
-                          <input type="checkbox" />
+                          <input
+                            name="privateBathroom"
+                            onChange={HandleFiterChange2}
+                            type="checkbox"
+                          />
                           개인화장실
                         </li>
                       </ul>
@@ -971,26 +1074,51 @@ const Home = (props) => {
                     <div className="popupcontents_right">
                       <ul>
                         <li>
-                          <input type="checkbox" />
+                          <input
+                            name="kitchen"
+                            onChange={HandleFiterChange2}
+                            type="checkbox"
+                          />
                           주방
                         </li>
                         <li>
-                          <input type="checkbox" />
+                          <input
+                            name="funished"
+                            onChange={HandleFiterChange2}
+                            type="checkbox"
+                          />
                           가구
                         </li>
                         <li>
-                          <input type="checkbox" />
+                          <input
+                            name="Fridge"
+                            onChange={HandleFiterChange2}
+                            type="checkbox"
+                          />
                           개인냉장고
                         </li>
                         <li>
-                          <input type="checkbox" />
+                          <input
+                            name="Laundry"
+                            onChange={HandleFiterChange2}
+                            type="checkbox"
+                          />
                           세탁기
                         </li>
                         <li>
-                          <input type="checkbox" />펫
+                          <input
+                            name="petavailable"
+                            onChange={HandleFiterChange2}
+                            type="checkbox"
+                          />
+                          펫
                         </li>
                         <li>
-                          <input type="checkbox" />
+                          <input
+                            name="smoking"
+                            onChange={HandleFiterChange2}
+                            type="checkbox"
+                          />
                           흡연
                         </li>
                       </ul>

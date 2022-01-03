@@ -47,6 +47,7 @@ const OVERLAY_STYLES = styled.div`
 
 
 const TITLE = styled.span`
+color: ${CommonStyles.color.Primary};
   width: 100%;
   text-align:center;
   font-size: 25px;
@@ -62,7 +63,7 @@ export default function Popuppage({ open, children, onClose }) {
     <>
       <OVERLAY_STYLES />
       <MODAL_STYLES>
-        <TITLE>필터 추가하기</TITLE>
+        <TITLE>필터</TITLE>
         <button className="closebtn" onClick={onClose}>
           <ImCancelCircle/>
         </button>
