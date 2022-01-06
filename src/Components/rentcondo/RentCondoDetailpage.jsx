@@ -392,13 +392,22 @@ const RentCondoDetailpage = (props) => {
   const [currentImg, setCurrentImg] = useState(0);
   const length = props?.image?.length;
   const isbigMobile = useMediaQuery({ query: '(max-width: 476px)' });
-
+  const [contactinfo,setContactinfo] = useState(null);
   const nextSlide = () => {
     setCurrentImg(currentImg === length - 1 ? 0 : currentImg + 1);
   };
   const previousSlide = () => {
     setCurrentImg(currentImg === 0 ? length - 1 : currentImg - 1);
   };
+  useEffect(() => {
+    if(props.additionalContact){
+      if(props.additionalContact.match(/^[0-9]+$/)){
+        setContactinfo('phone')
+      }else{
+        setContactinfo('kakaotalk');
+      }
+    }
+  }, [props.additionalContact]);
 
   useEffect(() => {
     if (props.rentFee)
@@ -434,14 +443,16 @@ const RentCondoDetailpage = (props) => {
               <h4 className="contactcontainer">
                 <AiFillPhone />
                 <br />
-                {props.userinfo.phonenumber}
+                {contactinfo && contactinfo === 'phone'
+                  ? props.additionalContact
+                  : '비공개'}
               </h4>
               <h4 className="contactcontainerka">
                 <RiKakaoTalkFill />
                 <br />
-                {props.userinfo.Kakaotalk
-                  ? props.userinfo.Kakaotalk
-                  : ' 비공개'}
+                {contactinfo && contactinfo === 'kakaotalk'
+                  ? props.additionalContact
+                  : '비공개'}
               </h4>
             </div>
           </div>
