@@ -19,6 +19,7 @@ import { BiSearch } from 'react-icons/bi';
 import { useMediaQuery } from 'react-responsive';
 import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import micromatch from 'micromatch';
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -557,16 +558,118 @@ const Home = (props) => {
     smoking: null,
     petavailable: null,
   });
-  const data = Object.keys(Filtering);
-  const value = data.filter((indata) => {
-    return Filtering[indata] !== null;
-  });
-  const data2 = value.filter((data) => Object.values(Filtering).find(d2 => d2 === data));
-  console.log(Filtering)
-  console.log(data2);
-  const [FilteredData, setFilteredData] = useState([]);
-  // Save keep to continue
-  useEffect(() => {}, [Filtering]);
+  const Closebuttonhandler = () => {
+    setFilteredData(null);
+    setIsOpen(false);
+  };
+  const [FilteredData, setFilteredData] = useState(null);
+
+  useEffect(() => {
+    const data = Object.keys(Filtering);
+    const value = data.filter((indata) => {
+      return Filtering[indata] !== null;
+    });
+
+    const data2 = value?.map((data3) => {
+      return { [data3]: Filtering[data3] };
+    });
+
+    const filterhousetype = (data) => {
+      if (Filtering.houseType === '상관없음' || !Filtering.houseType)
+        return data;
+      return data.houseType === Filtering.houseType;
+    };
+    const filterrentType = (data) => {
+      if (Filtering.rentType === '상관없음' || !Filtering.rentType) return data;
+      return data.rentType === Filtering.rentType;
+    };
+    const filterSex = (data) => {
+      if (Filtering.sexType === '남녀무관' || !Filtering.sexType) return data;
+      return data.sex === Filtering.sexType;
+    };
+    const filterUtil = (data) => {
+      if (Filtering.utility === '아니오' || !Filtering.utility) return data;
+      return data.utility === Filtering.utility;
+    };
+    const filterfunished = (data) => {
+      if (Filtering.funished === '아니오' || !Filtering.funished) return data;
+      return data.funished === Filtering.funished;
+    };
+    const filterinternet = (data) => {
+      if (Filtering.internet === '아니오' || !Filtering.internet) return data;
+      return data.internet === Filtering.internet;
+    };
+    const filterparking = (data) => {
+      if (Filtering.parking === '아니오' || !Filtering.parking) return data;
+      return data.parking === Filtering.parking;
+    };
+    const filterLaundry = (data) => {
+      if (Filtering.Laundry === '아니오' || !Filtering.Laundry) return data;
+      return data.Laundry === Filtering.Laundry;
+    };
+    const filterprivateBathroom = (data) => {
+      if (
+        Filtering.privateenterance === '아니오' ||
+        !Filtering.privateenterance
+      )
+        return data;
+      return data.privateenterance === Filtering.privateenterance;
+    };
+    const filterprivateenterance = (data) => {
+      if (
+        Filtering.privateenterance === '아니오' ||
+        !Filtering.privateenterance
+      )
+        return data;
+      return data.privateenterance === Filtering.privateenterance;
+    };
+    const filterFridge = (data) => {
+      if (Filtering.Fridge === '아니오' || !Filtering.Fridge) return data;
+      return data.Fridge === Filtering.Fridge;
+    };
+    const filterkitchen = (data) => {
+      if (Filtering.kitchen === '아니오' || !Filtering.kitchen) return data;
+      return data.kitchen === Filtering.kitchen;
+    };
+    const filtersmoking = (data) => {
+      if (Filtering.smoking === '아니오' || !Filtering.smoking) return data;
+      return data.smoking === Filtering.smoking;
+    };
+    const filterpetavailable = (data) => {
+      if (Filtering.petavailable === '아니오' || !Filtering.petavailable)
+        return data;
+      return data.petavailable === Filtering.petavailable;
+    };
+    const filterPrice = (data) => {
+      console.log(Filtering?.PriceRange);
+      if (Filtering.PriceRange[1]) {
+        return (
+          Number(Filtering?.PriceRange[0]) * 30 < Number(data?.rentFee) &&
+          Number(data?.rentFee) < Number(Filtering?.PriceRange[1]) * 30
+        );
+      } else return data;
+    };
+    if (data2.length > 0) {
+      let data33 = rooms
+        .filter(filterhousetype)
+        .filter(filterSex)
+        .filter(filterrentType)
+        .filter(filterUtil)
+        .filter(filterfunished)
+        .filter(filterparking)
+        .filter(filterinternet)
+        .filter(filterLaundry)
+        .filter(filterprivateenterance)
+        .filter(filterprivateBathroom)
+        .filter(filterFridge)
+        .filter(filterkitchen)
+        .filter(filtersmoking)
+        .filter(filterpetavailable)
+        .filter(filterPrice);
+
+      setFilteredData(data33);
+    }
+  }, [Filtering, rooms]);
   // popuppage
   const [isOpen, setIsOpen] = useState(false);
 
@@ -610,29 +713,47 @@ const Home = (props) => {
   }, [selected, rooms]);
 
   useEffect(() => {
-    const data =
-      rooms &&
-      rooms?.map((data) => {
-        return {
-          type: 'Feature',
-          properties: {
-            cluster: false,
-            crimeId: data.id,
-            category: data.roomtype,
-            price: data.rentFee,
-          },
-          geometry: {
-            type: 'Point',
-            coordinates: [
-              parseFloat(data.address.lng),
-              parseFloat(data.address.lat),
-            ],
-          },
-        };
-      });
+    const data = FilteredData
+      ? FilteredData?.map((data) => {
+          return {
+            type: 'Feature',
+            properties: {
+              cluster: false,
+              crimeId: data.id,
+              category: data.roomtype,
+              price: data.rentFee,
+            },
+            geometry: {
+              type: 'Point',
+              coordinates: [
+                parseFloat(data.address.lng),
+                parseFloat(data.address.lat),
+              ],
+            },
+          };
+        })
+      : rooms &&
+        rooms?.map((data) => {
+          return {
+            type: 'Feature',
+            properties: {
+              cluster: false,
+              crimeId: data.id,
+              category: data.roomtype,
+              price: data.rentFee,
+            },
+            geometry: {
+              type: 'Point',
+              coordinates: [
+                parseFloat(data.address.lng),
+                parseFloat(data.address.lat),
+              ],
+            },
+          };
+        });
 
     setPoints(data);
-  }, [rooms]);
+  }, [rooms, FilteredData]);
 
   // load and format data
   // get cluster
@@ -891,7 +1012,12 @@ const Home = (props) => {
               <span className="number"></span>
 
               <div className="filter">
-                <Filterbutton>필터</Filterbutton>
+                {FilteredData ? (
+                  <Filterbutton>필터 지우기</Filterbutton>
+                ) : (
+                  <Filterbutton>필터</Filterbutton>
+                )}
+
                 <div className="sortContainer">
                   <select
                     defaultValue="no"
@@ -931,7 +1057,8 @@ const Home = (props) => {
                 </h3>
                 <span className="howmanyReseult">
                   {' '}
-                  {rooms.length} 개의 검색결과
+                  {FilteredData ? FilteredData?.length : rooms?.length} 개의
+                  검색결과
                 </span>
                 <div className="dividers"></div>
               </div>
@@ -967,9 +1094,17 @@ const Home = (props) => {
                   <option value="low">가격 낮은순</option>
                 </select>
               </div>
-              <Filterbutton onClick={() => setIsOpen(true)}>필터</Filterbutton>
+              {FilteredData ? (
+                <Filterbutton onClick={() => setFilteredData(null)}>
+                  필터 지우기
+                </Filterbutton>
+              ) : (
+                <Filterbutton onClick={() => setIsOpen(true)}>
+                  필터
+                </Filterbutton>
+              )}
               <Popupscreen>
-                <Popuppage open={isOpen} onClose={() => setIsOpen(false)}>
+                <Popuppage open={isOpen} onClose={() => Closebuttonhandler()}>
                   <div className="optional">
                     <div className="housetype">
                       집유형
@@ -1129,7 +1264,12 @@ const Home = (props) => {
                     </div>
                   </div>
                   <div>
-                    <button className="searchbtn"> ..개의 검색결과</button>
+                    <button
+                      onClick={() => setIsOpen(false)}
+                      className="searchbtn"
+                    >
+                      {FilteredData?.length}개의 검색결과
+                    </button>
                   </div>
                 </Popuppage>
               </Popupscreen>
@@ -1157,17 +1297,28 @@ const Home = (props) => {
               </h3>
               <span className="howmanyReseult">
                 {' '}
-                {rooms.length} 개의 검색결과
+                {FilteredData ? FilteredData.length : rooms.length} 개의
+                검색결과
               </span>
               <div className="dividers"></div>
             </div>
 
             {selectInfo
-              ? finalData
-                  ?.filter((data) => data.id !== selected)
-                  ?.map((data, index) => {
-                    return <Cardcontainer data={data} key={index} />;
-                  })
+              ? FilteredData
+                ? FilteredData?.filter((data) => data.id !== selected)?.map(
+                    (data, index) => {
+                      return <Cardcontainer data={data} key={index} />;
+                    }
+                  )
+                : finalData
+                    ?.filter((data) => data.id !== selected)
+                    ?.map((data, index) => {
+                      return <Cardcontainer data={data} key={index} />;
+                    })
+              : FilteredData
+              ? FilteredData?.map((data, index) => {
+                  return <Cardcontainer data={data} key={index} />;
+                })
               : finalData?.map((data, index) => {
                   return <Cardcontainer data={data} key={index} />;
                 })}
