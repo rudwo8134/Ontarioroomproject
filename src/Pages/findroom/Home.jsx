@@ -562,6 +562,10 @@ const Home = (props) => {
     setFilteredData(null);
     setIsOpen(false);
   };
+  const searchbuttonhandler = () => {
+    setSelectInfo(null);
+    setIsOpen(false);
+  };
   const [FilteredData, setFilteredData] = useState(null);
 
   useEffect(() => {
@@ -1264,11 +1268,10 @@ const Home = (props) => {
                     </div>
                   </div>
                   <div>
-                    <button
-                      onClick={() => setIsOpen(false)}
-                      className="searchbtn"
-                    >
-                      {FilteredData?.length}개의 검색결과
+                    <button onClick={searchbuttonhandler} className="searchbtn">
+                      {FilteredData
+                        ? `${FilteredData?.length}개의 검색결과`
+                        : '필터를 설정해주세요 '}
                     </button>
                   </div>
                 </Popuppage>
