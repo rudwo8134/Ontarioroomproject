@@ -364,10 +364,10 @@ const Mypage = ({ rooms }) => {
         <div className="mypost">
           {userPost?.map((data, index) => {
             return (
-              <div className="renderlist">
+              <div className="renderlist" key={index}>
                 <p className="title">
-                  {data?.posttitle}
-                  &nbsp;(${data?.monthlyfee})
+                  {data?.postTitle}
+                  &nbsp;(${data?.rentFee})
                 </p>
                 <div className="buttoncontainer">
                   <button

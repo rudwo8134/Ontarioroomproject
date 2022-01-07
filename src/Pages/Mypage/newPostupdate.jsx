@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { CommonStyles } from '../../staticFiles/CommonStyles';
 import { StaticGoogleMap, Marker } from 'react-static-google-map';
@@ -8,7 +8,6 @@ import {
 } from '../../Firebase/firebase.utils';
 import Noimage from '../../assets/noimage.png';
 import PlacesAutocomplete from 'react-places-autocomplete';
-import { v4 as uuid } from 'uuid';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../../Redux/Users/user.selector';
 import { rentcondopoststart } from '../../Redux/Rentcondo/rentcondo.action';
@@ -17,7 +16,6 @@ import { useHistory } from 'react-router';
 import { withRouter } from 'react-router-dom';
 import { MdCancel } from 'react-icons/md';
 import { useMediaQuery } from 'react-responsive';
-import Loader from 'react-loader-spinner';
 
 const Wrapper = styled.div`
   border-top: 1px solid ${CommonStyles.color.Darkbold1};
@@ -575,9 +573,9 @@ const AdditionalContactSelect = styled.div`
     margin-top: 1rem;
   }
 `;
-const Postrentroom = (props) => {
+const Editrentroom = (props) => {
   const { user } = props;
-  const { data: postdata } = props?.location?.state;
+  const { id: editid, data: postdata } = props?.location?.state;
   const history = useHistory();
   const [next, setNext] = useState(false);
   const [address, setaddress] = useState(
@@ -587,8 +585,7 @@ const Postrentroom = (props) => {
   const [imageresults, setimageresults] = useState([...postdata?.image]);
   const [imageloading, setimageloading] = useState(false);
   const [additionalContact, setAdditionalContact] = useState(false);
-  const [noImage, setNoImage] = useState(false);
-  const [backbuttonactive, setActive] = useState(false);
+
   const handlesubmit2 = async (e) => {
     e.preventDefault();
     const reultaddress = await handleaddressdata(address);
@@ -606,12 +603,6 @@ const Postrentroom = (props) => {
     });
     history.push('/');
   };
-
-  useEffect(() => {
-    if (imageresults.length > 0) {
-      setNoImage(false);
-    }
-  }, [imageresults]);
   const handleaddressdata = async (address) => {
     try {
       const response = await fetch(
@@ -631,28 +622,39 @@ const Postrentroom = (props) => {
   };
 
   const [postcredential, setpostcredential] = useState({
-    houseType: postdata?.houseType ? postdata?.houseType : '',
     rentType: postdata?.rentType ? postdata?.rentType : '',
+    houseType: postdata?.houseType ? postdata?.houseType : '',
     rentFee: postdata?.rentFee ? postdata?.rentFee : '',
     additionalContact: postdata ? additionalContact : null,
-    postTitle: postdata?.postTitle ? postdata?.postTitle : '',
-    postDescription: postdata?.postDescription ? postdata?.postDescription : '',
     sex: postdata?.sex ? postdata?.sex : '',
     utility: postdata?.utility ? postdata?.utility : '',
     funished: postdata?.funished ? postdata?.funished : '',
-    parking: postdata?.parking ? postdata?.parking : '',
-    internet: postdata?.internet ? postdata?.internet : '',
-    Laundry: postdata?.Laundry ? postdata?.Laundry : '',
+
+    sqf: postdata?.sqf ? postdata?.sqf : '',
+    parking: postdata?.parking ? postdata?.parking : 'yes',
+    availabledate: postdata?.availabledate ? postdata?.availabledate : '',
+    postTitle: postdata?.postTitle ? postdata?.postTitle : '',
+    description: postdata?.description ? postdata?.description : '',
+    petavailable: postdata?.petavailable ? postdata?.petavailable : 'yes',
+    smoking: postdata?.smoking ? postdata?.smoking : 'yes',
+    internet: postdata?.internet ? postdata?.internet : 'yes',
+    privateBathroom: postdata?.privateBathroom ? postdata?.privateBathroom : '',
+    kitchen: postdata?.kitchen ? postdata?.kitchen : 'yes',
+    Laundry: postdata?.Laundry ? postdata?.Laundry : 'yes',
+    Dryer: postdata?.Dryer ? postdata?.Dryer : 'yes',
+    Fridge: postdata?.Fridge ? postdata?.Fridge : 'yes',
+    Freezer: postdata?.Freezer ? postdata?.Freezer : 'yes',
+    hairDryer: postdata?.hairDryer ? postdata?.hairDryer : 'yes',
+    aircondition: postdata?.aircondition ? postdata?.aircondition : 'yes',
+    tv: postdata?.tv ? postdata.tv : 'yes',
     privateenterance: postdata?.privateenterance
       ? postdata?.privateenterance
-      : '',
-    smoking: postdata?.smoking ? postdata?.smoking : '',
-    petavailable: postdata?.petavailable ? postdata?.petavailable : '',
-    privateBathroom: postdata?.privateBathroom ? postdata?.privateBathroom : '',
-    Fridge: postdata?.Fridge ? postdata?.Fridge : '',
-    kitchen: postdata?.kitchen ? postdata?.kitchen : '',
+      : 'yes',
+    howmanypeople: postdata?.howmanypeople ? postdata?.howmanypeople : '',
+    properytype: postdata?.properytype ? postdata?.properytype : '',
   });
-  
+
+  const isbigMobile = useMediaQuery({ query: '(max-width: 476px)' });
 
   const handlecredentialchange = (e) => {
     const { name, value } = e.target;
@@ -678,15 +680,7 @@ const Postrentroom = (props) => {
     setimageresults([...imageresults, ...results]);
     setimageloading(false);
   };
-  const handleimageclick = () => {
-    if (imageresults.length === 0) {
-      setNoImage(true);
-      return;
-    }
-    if (backbuttonactive) {
-      setNext(true);
-    }
-  };
+  console.log(imageresults);
   const handleImageDelete = (id) => {
     setimageresults(
       imageresults.filter((data) => {
@@ -694,36 +688,15 @@ const Postrentroom = (props) => {
       })
     );
   };
-  const Submithandler = (e) => {
+  const submithandler = (e) => {
     e.preventDefault();
-    if (!postcredential.houseType) {
-      alert('집유형을 선택해주세요');
-      return;
-    }
-    if (!postcredential.rentType) {
-      alert('렌트 유형을 선택해주세요');
-      return;
-    }
-    if (!lat) {
-      alert('주소에 검색 버튼을 눌러주세요.');
-    } else {
-      setNext(true);
-    }
-  };
-  const handlebackboutton = () => {
-    setNext(false);
-    setActive(true);
-  };
-
-  const searchOptions = {
-    componentRestrictions: { country: ['ca'] },
+    setNext(true);
   };
 
   const handleadditinal = (e) => {
     e.preventDefault();
     setAdditionalContact(e.target.value);
   };
-  const isbigMobile = useMediaQuery({ query: '(max-width: 476px)' });
 
   const filter = [
     {
@@ -737,55 +710,54 @@ const Postrentroom = (props) => {
       title: 'utility',
     },
     {
-      name: '가구 포함',
+      name: 'funished',
       button: ['네', '아니오'],
       title: 'funished',
     },
     {
-      name: '주차장 포함',
+      name: '주차장',
       button: ['네', '아니오'],
       title: 'parking',
     },
     {
-      name: '인터넷 포함',
+      name: '인터넷',
       button: ['네', '아니오'],
       title: 'internet',
     },
     {
-      name: '세탁기 포함',
+      name: '세탁기',
       button: ['네', '아니오'],
       title: 'Laundry',
     },
     {
-      name: '개인 출입문 포함',
+      name: '개인 출입문',
       button: ['네', '아니오'],
       title: 'privateenterance',
     },
-
     {
-      name: '개인 화장실 포함',
-      button: ['네', '아니오'],
-      title: 'privateBathroom',
-    },
-    {
-      name: '개인 냉장고 포함',
-      button: ['네', '아니오'],
-      title: 'Fridge',
-    },
-    {
-      name: '개인 주방 포함',
-      button: ['네', '아니오'],
-      title: 'kitchen',
-    },
-    {
-      name: '흡연 허용',
+      name: '흡연',
       button: ['네', '아니오'],
       title: 'smoking',
     },
     {
-      name: '펫 허용',
+      name: '펫',
       button: ['네', '아니오'],
       title: 'petavailable',
+    },
+    {
+      name: '개인 화장실',
+      button: ['네', '아니오'],
+      title: 'privateBathroom',
+    },
+    {
+      name: '개인 냉장고',
+      button: ['네', '아니오'],
+      title: 'Fridge',
+    },
+    {
+      name: '주방',
+      button: ['네', '아니오'],
+      title: 'kitchen',
     },
   ];
 
@@ -839,8 +811,8 @@ const Postrentroom = (props) => {
               );
             })}
             <div className="submitbutton">
-              <button onClick={handlebackboutton} className="backbutton">
-                뒤로 가기
+              <button onClick={() => setNext(false)} className="backbutton">
+                {'<'}back
               </button>
               <form onSubmit={handlesubmit2}>
                 <button type="submit" className="post">
@@ -853,7 +825,7 @@ const Postrentroom = (props) => {
       )}
       {!next && (
         <Wrapper>
-          <form name="formsubmit" onSubmit={Submithandler}>
+          <form onSubmit={submithandler}>
             <div className="header">
               <h1 className="name">장소를 설명해 주세요!</h1>
             </div>
@@ -863,10 +835,9 @@ const Postrentroom = (props) => {
                   <span className="name">집 유형*</span>
                   <select
                     required
-                    style={{ padding: '0rem 0.5rem' }}
                     onChange={handlecredentialchange}
-                    name="houseType"
-                    value={postcredential?.houseType}
+                    name="properytype"
+                    value={postcredential?.properytype}
                   >
                     <option value="apart">아파트</option>
                     <option value="condo">콘도</option>
@@ -878,9 +849,8 @@ const Postrentroom = (props) => {
                   <span className="name">렌트 유형*</span>
                   <select
                     required
-                    style={{ padding: '0rem 0.5rem' }}
-                    name="rentType"
-                    value={postcredential?.rentType}
+                    name="roomtype"
+                    value={postcredential?.roomtype}
                     onChange={handlecredentialchange}
                   >
                     <option value="whole">전체렌트</option>
@@ -891,15 +861,7 @@ const Postrentroom = (props) => {
                 <div className="propertytypeimage">
                   <span className="name">사진*</span>
                   {imageloading ? (
-                    <>
-                      <Loader
-                        type="TailSpin"
-                        color={CommonStyles.color.Primary}
-                        height={30}
-                        width={30}
-                        timeout={50000}
-                      />
-                    </>
+                    <h1>...loading</h1>
                   ) : (
                     <>
                       <label
@@ -912,10 +874,10 @@ const Postrentroom = (props) => {
                   )}
                   <input
                     id="photoupload"
+                    required
                     type="file"
                     onChange={handleimage}
                     multiple
-                    name="imageloader"
                     accept="image/*"
                   />
                 </div>
@@ -945,7 +907,6 @@ const Postrentroom = (props) => {
                       value={address}
                       onChange={handlechange}
                       onSelect={handleselect}
-                      searchOptions={searchOptions}
                     >
                       {({
                         getInputProps,
@@ -1024,30 +985,26 @@ const Postrentroom = (props) => {
               </div>
               <div className="divider"></div>
               <div className="right">
-                <div className="propertytype2">
+                <div className="propertytype">
                   <span className="name">렌트비(월)*</span>
                   <input
                     required
-                    style={{ padding: '0rem 0.5rem' }}
                     onChange={handlecredentialchange}
-                    value={postcredential?.rentFee}
-                    name="rentFee"
+                    value={postcredential?.monthlyfee}
+                    name="monthlyfee"
                     type="text"
                     placeholder="CAD"
                   />
                 </div>
-                <div className="propertytype2">
+                <div className="propertytype">
                   <span className="name">추가연락처</span>
                   <AdditionalContactSelect onChange={handleadditinal}>
                     <select
-                      style={{ padding: '0rem 0.5rem' }}
                       name="additional"
                       id="additional"
-                      defaultValue=""
+                      defaultValue={postcredential?.additionalContact}
                     >
-                      <option value="">
-                        없음 (가입 시 기재한 이메일 제공)
-                      </option>
+                      <option value="">없음</option>
                       <option value="1">전화번호</option>
                       <option value="2">카카오톡ID</option>
                     </select>
@@ -1070,40 +1027,34 @@ const Postrentroom = (props) => {
                   </AdditionalContactSelect>
                 </div>
 
-                <div className="propertytype3">
+                <div className="propertytype">
                   <span className="name">제목*</span>
                   <input
                     className="titleInputpro"
                     required
                     onChange={handlecredentialchange}
-                    value={postcredential?.postTitle}
-                    name="postTitle"
+                    value={postcredential?.posttitle}
+                    name="posttitle"
                     type="text"
                   />
                 </div>
 
                 <div className="description">
+                  <span className="name">설명</span>
                   <textarea
                     required
                     onChange={handlecredentialchange}
-                    value={postcredential?.postDescription}
-                    name="postDescription"
-                    id="postDescription"
+                    value={postcredential?.description}
+                    name="description"
+                    id="description"
                     cols="30"
-                    rows="20"
+                    rows="10"
                     placeholder=" 
-                      자세한 내용을 입력해주세요"
+                        입력.."
                   ></textarea>
                 </div>
                 <div className="buttoncontainer">
-                  {noImage ? <span>사진을 업로드 해주세요</span> : null}
-                  <button
-                    onClick={handleimageclick}
-                    className="buttoncontinue"
-                    type="submit"
-                  >
-                    계속
-                  </button>
+                  <button type="submit">계속</button>
                 </div>
               </div>
             </div>
@@ -1121,4 +1072,4 @@ const dispathtoprops = (dispatch) => ({
   poststart: (data) => dispatch(rentcondopoststart(data)),
 });
 
-export default withRouter(connect(maptoprops, dispathtoprops)(Postrentroom));
+export default withRouter(connect(maptoprops, dispathtoprops)(Editrentroom));
