@@ -5,8 +5,8 @@ import {ImCancelCircle} from 'react-icons/im'
 
 const MODAL_STYLES = styled.div `
   position: fixed;
-  width: 750px;
-  height: 680px;
+  width: 40%;
+  height: 80%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -16,7 +16,7 @@ const MODAL_STYLES = styled.div `
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  padding: 50px;
+  padding: 60px 0px;
 
   .closebtn{
     position: absolute;
@@ -47,9 +47,11 @@ const OVERLAY_STYLES = styled.div`
 
 
 const TITLE = styled.span`
-color: ${CommonStyles.color.Primary};
+  position: absolute;
+  top: 15px;
+  color: ${CommonStyles.color.Primary};
   width: 100%;
-  text-align:center;
+  text-align: center;
   font-size: 25px;
   font-weight: ${CommonStyles.bold.ExtraBold};
 `;

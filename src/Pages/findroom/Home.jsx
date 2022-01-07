@@ -375,6 +375,9 @@ const Popupscreen = styled.div`
     font-weight: ${CommonStyles.bold.LittleBold};
     color: ${CommonStyles.color.Darkbold4};
   }
+  .optional {
+    margin-top: -40px;
+  }
   .pricetype {
     display: flex;
     flex-direction: column;
@@ -388,7 +391,8 @@ const Popupscreen = styled.div`
     width: 75%;
     justify-content: center;
     align-items: center;
-    margin-top: -40px;
+    margin-top: -60px;
+
     .title {
       font-size: 18px;
       margin: 0 auto;
@@ -450,25 +454,38 @@ const Popupscreen = styled.div`
   .popupcontents {
     padding: 20px;
   }
+  .detailstext {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -30px;
+    color: ${CommonStyles.color.Darkbold4};
+  }
   .options {
     padding-left: 9px;
-    margin-left: 20px;
+    margin-left: 0.5rem;
     border: 1px solid ${CommonStyles.color.Primary};
-    width: 7rem;
+    width: 5.7rem;
     height: 2rem;
-    border-radius: 16px;
+    border-radius: 8px;
     margin-right: 1rem;
+  }
+  .divider{
+    width:80%;
+    height: 1px;
+    background-color: ${CommonStyles.color.Darkbold1};
+    margin: 0 auto;
   }
   .contents {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     font-size: 18px;
-
     width: 600px;
     margin: 0 auto;
-    margin-top: -20px;
     margin-left: 105px;
+    margin-bottom: 30px;
     ul {
       width: 100%;
       margin: 0 auto;
@@ -1015,10 +1032,10 @@ const Home = (props) => {
               <span className="number"></span>
 
               <div className="filter">
-                {FilteredData ? (
+                {FilteredData !== rooms ? (
                   <Filterbutton>필터 지우기</Filterbutton>
                 ) : (
-                  <Filterbutton>필터</Filterbutton>
+                  <>필터</>
                 )}
 
                 <div className="sortContainer">
@@ -1119,10 +1136,10 @@ const Home = (props) => {
                         onChange={HandleFiterChange}
                       >
                         <option value={null}>상관없음</option>
-                        <option value="apart">아파트</option>
-                        <option value="condo">콘도</option>
-                        <option value="house">하우스</option>
-                        <option value="townhouse">타운하우스</option>
+                        <option value="아파트">아파트</option>
+                        <option value="콘도">콘도</option>
+                        <option value="하우스">하우스</option>
+                        <option value="타운하우스">타운하우스</option>
                       </select>
                     </div>
                     <div className="roomtype">
@@ -1135,8 +1152,8 @@ const Home = (props) => {
                         onChange={HandleFiterChange}
                       >
                         <option value={null}>상관없음</option>
-                        <option value="whole">전체렌트</option>
-                        <option value="room">룸렌트</option>
+                        <option value="전체 렌트">전체렌트</option>
+                        <option value="룸 렌트">룸렌트</option>
                       </select>
                     </div>
                     <div className="gendertype">
@@ -1156,7 +1173,8 @@ const Home = (props) => {
                   </div>
 
                   <div className="pricetype">
-                    <span className="title">가격</span>
+                    
+                    <span className="title">가격 설정</span>
                     <Slider.Range
                       onChange={(e) =>
                         setFiltering({ ...Filtering, PriceRange: e })
@@ -1167,6 +1185,8 @@ const Home = (props) => {
                       defaultValue={[20, 40]}
                     />
                   </div>
+                  
+                  <h3 className="detailstext">옵션 설정</h3>
                   <div className="contents">
                     <div className="popupcontents_left">
                       <ul>
