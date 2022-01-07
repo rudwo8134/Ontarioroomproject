@@ -645,8 +645,7 @@ const Home = (props) => {
       return data.petavailable === Filtering.petavailable;
     };
     const filterPrice = (data) => {
-      console.log(Filtering?.PriceRange);
-      if (Filtering.PriceRange[1]) {
+      if (Filtering?.PriceRange && Filtering.PriceRange[1]) {
         return (
           Number(Filtering?.PriceRange[0]) * 30 < Number(data?.rentFee) &&
           Number(data?.rentFee) < Number(Filtering?.PriceRange[1]) * 30
