@@ -868,10 +868,10 @@ const Postrentroom = (props) => {
                     name="houseType"
                     value={postcredential?.houseType}
                   >
-                    <option value="apart">아파트</option>
-                    <option value="condo">콘도</option>
-                    <option value="house">하우스</option>
-                    <option value="townhouse">타운하우스</option>
+                    <option value="아파트">아파트</option>
+                    <option value="콘도">콘도</option>
+                    <option value="하우스">하우스</option>
+                    <option value="타운하우스">타운하우스</option>
                   </select>
                 </div>
                 <div className="propertytype">
@@ -883,8 +883,8 @@ const Postrentroom = (props) => {
                     value={postcredential?.rentType}
                     onChange={handlecredentialchange}
                   >
-                    <option value="whole">전체렌트</option>
-                    <option value="room">룸렌트</option>
+                    <option value="전체 렌트">전체렌트</option>
+                    <option value="룸 렌트">룸렌트</option>
                   </select>
                 </div>
 
