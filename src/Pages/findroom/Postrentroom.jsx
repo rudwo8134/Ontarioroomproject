@@ -600,11 +600,11 @@ const Postrentroom = ({ poststart, user }) => {
     history.push('/');
   };
 
-  useEffect(()=>{
-    if(imageresults.length > 0){
+  useEffect(() => {
+    if (imageresults.length > 0) {
       setNoImage(false);
     }
-  },[imageresults])
+  }, [imageresults]);
   const handleaddressdata = async (address) => {
     try {
       const response = await fetch(
@@ -643,7 +643,6 @@ const Postrentroom = ({ poststart, user }) => {
     Fridge: null,
     kitchen: null,
   });
-  console.log(postcredential);
 
   const handlecredentialchange = (e) => {
     const { name, value } = e.target;
@@ -669,15 +668,15 @@ const Postrentroom = ({ poststart, user }) => {
     setimageresults([...imageresults, ...results]);
     setimageloading(false);
   };
-  const handleimageclick = () =>{
-    if(imageresults.length === 0){
+  const handleimageclick = () => {
+    if (imageresults.length === 0) {
       setNoImage(true);
-      return
+      return;
     }
-    if(backbuttonactive){
+    if (backbuttonactive) {
       setNext(true);
     }
-  }
+  };
   const handleImageDelete = (id) => {
     setimageresults(
       imageresults.filter((data) => {
@@ -687,12 +686,24 @@ const Postrentroom = ({ poststart, user }) => {
   };
   const submithandler = (e) => {
     e.preventDefault();
-    setNext(true);
+    if (!postcredential.houseType) {
+      alert('집유형을 선택해주세요');
+      return;
+    }
+    if (!postcredential.rentType) {
+      alert('렌트 유형을 선택해주세요');
+      return;
+    }
+    if (!lat) {
+      alert('주소에 검색 버튼을 눌러주세요.');
+    } else {
+      setNext(true);
+    }
   };
-  const handlebackboutton = () =>{
+  const handlebackboutton = () => {
     setNext(false);
     setActive(true);
-  }
+  };
 
   const searchOptions = {
     componentRestrictions: { country: ['ca'] },
