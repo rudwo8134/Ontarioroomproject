@@ -858,6 +858,7 @@ const Postrentroom = ({ poststart, user }) => {
                     name="houseType"
                     value={postcredential?.houseType}
                   >
+                    <option value="">선택하기</option>
                     <option value="apart">아파트</option>
                     <option value="condo">콘도</option>
                     <option value="house">하우스</option>
@@ -873,6 +874,7 @@ const Postrentroom = ({ poststart, user }) => {
                     value={postcredential?.rentType}
                     onChange={handlecredentialchange}
                   >
+                    <option value="">선택하기</option>
                     <option value="whole">전체렌트</option>
                     <option value="room">룸렌트</option>
                   </select>
