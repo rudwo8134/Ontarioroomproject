@@ -559,7 +559,7 @@ const Home = (props) => {
     petavailable: null,
   });
   const Closebuttonhandler = () => {
-    setFilteredData(null);
+    setFilteredData(rooms);
     setIsOpen(false);
   };
   const searchbuttonhandler = () => {
@@ -1097,8 +1097,8 @@ const Home = (props) => {
                   <option value="low">가격 낮은순</option>
                 </select>
               </div>
-              {FilteredData ? (
-                <Filterbutton onClick={() => setFilteredData(null)}>
+              {FilteredData !== rooms ? (
+                <Filterbutton onClick={() => setFilteredData(rooms)}>
                   필터 지우기
                 </Filterbutton>
               ) : (

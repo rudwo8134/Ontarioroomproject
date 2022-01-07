@@ -643,6 +643,7 @@ const Postrentroom = ({ poststart, user }) => {
     Fridge: null,
     kitchen: null,
   });
+  console.log(postcredential);
 
   const handlecredentialchange = (e) => {
     const { name, value } = e.target;
