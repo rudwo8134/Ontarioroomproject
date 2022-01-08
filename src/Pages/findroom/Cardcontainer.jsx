@@ -40,6 +40,14 @@ const CardWrapper = styled.div`
     border-radius: 30px;
     background-color: #000000cc;
     transition: all 0.3s ease-in-out;
+    @media screen and (max-width: 490px) {
+      padding: 0.1rem 1rem;
+      font-size: 0.8rem;
+    }
+    @media screen and (max-width: 320px) {
+      padding: 0.1rem 0.7rem;
+      font-size: 0.6rem;
+    }
     :hover {
       background-color: ${CommonStyles.color.Primary};
     }
@@ -50,6 +58,9 @@ const CardWrapper = styled.div`
       top: -100%;
       left: 0;
       color: ${CommonStyles.color.Primary};
+    }
+    @media screen and (max-width: 375px) {
+      top: 220px;
     }
     @media screen and (max-width: 320px) {
       top: 100px;
@@ -65,6 +76,10 @@ const CardWrapper = styled.div`
     object-fit: cover;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
+    @media screen and (max-width: 375px) {
+      height: 250px;
+      object-fit: cover;
+    }
     @media screen and (max-width: 320px) {
       height: 130px;
     }
@@ -95,8 +110,19 @@ const CardWrapper = styled.div`
       font-weight: ${CommonStyles.bold.LittleBold};
       color: ${CommonStyles.color.Primary};
       text-transform: uppercase;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       @media screen and (max-width: 476px) {
+        font-size: 0.9rem;
+      }
+      @media screen and (max-width: 375px) {
         font-size: 1rem;
+        width: 4.2rem;
+      }
+      @media screen and (max-width: 320px) {
+        font-size: 0.7rem;
+        width: 2.7rem;
       }
     }
     .type {
@@ -107,8 +133,15 @@ const CardWrapper = styled.div`
       line-height: 26px;
       color: rgba(35, 31, 32, 0.72);
       text-transform: capitalize;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       @media screen and (max-width: 476px) {
         font-size: 0.7rem;
+      }
+      @media screen and (max-width: 375px) {
+        font-size: 0.7rem;
+        width: 3.3rem;
       }
       @media screen and (max-width: 320px) {
         font-size: 0.5rem;
@@ -116,9 +149,16 @@ const CardWrapper = styled.div`
     }
     .separtator {
       margin: 0px 8px;
-      @media screen and (max-width: 320px) {
-        font-size: 0.5rem;
+      color: ${CommonStyles.color.Darkbold2};
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      @media screen and (max-width: 375px) {
+        font-size: 1rem;
         margin: 0px 4px;
+      }
+      @media screen and (max-width: 320px) {
+        margin-left: -4px;
       }
     }
     .address {
@@ -127,11 +167,23 @@ const CardWrapper = styled.div`
       font-size: 16px;
       line-height: 26px;
       color: rgba(35, 31, 32, 0.72);
+      display: flex;
+      align-items: center;
       @media screen and (max-width: 476px) {
         font-size: 0.8rem;
       }
+      @media screen and (max-width: 375px) {
+        width: 65%;
+        font-size: 0.7rem;
+        align-items: center;
+        display: flex;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
       @media screen and (max-width: 320px) {
-        font-size: 0.5rem;
+        width: 60%;
+        font-size: 0.7rem;
       }
     }
   }
