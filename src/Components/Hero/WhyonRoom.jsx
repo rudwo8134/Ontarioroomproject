@@ -18,11 +18,11 @@ const Why = styled.div`
     font-family: DM Sans;
     font-size: 64px;
     text-align: 'center';
-    @media screen and (max-width: 375px) {
-      font-size: 2rem;
-    }
     @media screen and (max-width: 476px) {
       font-size: 2.5rem;
+    }
+    @media screen and (max-width: 375px) {
+      font-size: 2.0rem;
     }
   }
   .line {
@@ -59,9 +59,9 @@ const Why = styled.div`
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      svg{
+      svg {
         font-size: 2rem;
-        color:${CommonStyles.color.Primary};
+        color: ${CommonStyles.color.Primary};
         margin-bottom: -1.5rem;
       }
     }

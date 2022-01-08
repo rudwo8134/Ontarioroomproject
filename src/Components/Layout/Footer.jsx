@@ -127,10 +127,21 @@ const Footerstyle = styled.footer`
         @media screen and (max-width: 476px) {
           align-items: center;
           justify-content: center;
+          width: 300px;
+          margin: 0 auto;
         }
         @media screen and (max-width: 375px) {
           align-items: center;
           justify-content: center;
+          width: 300px;
+        }
+        a {
+          @media screen and (max-width: 476px) {
+            text-align: 'center';
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
         }
 
         svg {
@@ -138,6 +149,10 @@ const Footerstyle = styled.footer`
           line-height: 18px;
           margin-right: 37px;
           color: #000;
+          @media screen and (max-width: 476px) {
+           margin: 0 auto;
+           margin-right: 16px;
+          }
         }
       }
     }

@@ -38,6 +38,12 @@ const Personcardstyle = styled.div`
   align-items: center;
   box-shadow: 15px 15px 1px #b5b5b5;
   transition: all 0.5s ease-in-out;
+  @media screen and (max-width: 476px) {
+    margin-top: 30px;
+  }
+  @media screen and (max-width: 375px) {
+    margin-top: 50px;
+  }
   :hover {
     box-shadow: 15px 15px 1px ${CommonStyles.color.Primary};
     transform: scale(1.05) translateY(-1rem);

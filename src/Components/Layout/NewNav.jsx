@@ -137,6 +137,10 @@ const NavWrapper = styled.nav`
         color: #6a6a6a;
         width: 70vw;
         margin-top: 3rem;
+        @media screen and (max-width: 375px) {
+          margin-top: 0rem;
+          font-size: 1rem;
+        }
       }
       .mypage {
         display: flex;
@@ -169,8 +173,9 @@ const NavWrapper = styled.nav`
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
+
         a {
-          font-size: 1.4rem;
+          font-size: 1.8rem;
           margin-top: 30px;
           color: ${CommonStyles.color.Dark};
         }
@@ -218,6 +223,9 @@ const NavWrapper = styled.nav`
           font-size: 1.5rem;
           margin-top: 30px;
           color: ${CommonStyles.color.Dark};
+          @media screen and (max-width: 375px) {
+            font-size: 1.3rem;
+          }
         }
         .Username {
           position: absolute;
@@ -233,8 +241,8 @@ const NavWrapper = styled.nav`
         justify-content: space-between;
         align-items: center;
         a {
-          font-size: 1.5rem;
-          margin-top: 30px;
+          font-size: 1.3rem;
+          margin-top: 2rem;
           color: ${CommonStyles.color.Dark};
         }
       }
