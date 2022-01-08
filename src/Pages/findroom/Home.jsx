@@ -147,7 +147,7 @@ const Wrapper = styled.div`
     }
     .mapContainer {
       height: 100%;
-      width: 100%;
+      width: 50%;
       flex: 1.5;
       border-radius: 13px;
       position: relative;
