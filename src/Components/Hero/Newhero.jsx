@@ -142,7 +142,8 @@ const Newherostyle = styled.div`
     margin-bottom: -20px;
     color: rgb(24, 47, 67);
     @media screen and (max-width: 476px) {
-      font-size: 2rem;
+      font-size: 1.6rem;
+      width: 90%;
       margin-bottom: -20px;
       .hidden {
         display: none;
