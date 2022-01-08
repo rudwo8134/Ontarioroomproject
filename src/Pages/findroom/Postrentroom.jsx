@@ -53,6 +53,11 @@ const Wrapper = styled.div`
       @media screen and (max-width: 476px) {
         width: 140px;
       }
+      @media screen and (max-width: 320px) {
+        width: 150px;
+        font-size: 12px;
+        
+      }
       :hover {
         transform: scale(1.05) translateY(-3px);
         color: ${CommonStyles.color.White};
@@ -146,6 +151,7 @@ const Wrapper = styled.div`
           display: flex;
           align-items: center;
         }
+
         button {
           width: 131px;
           height: 30px;
@@ -156,6 +162,16 @@ const Wrapper = styled.div`
           margin: 10px;
           @media screen and (max-width: 476px) {
             width: 30vw;
+          }
+          @media screen and (max-width: 375px) {
+            width: 26vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+          }
+          @media screen and (max-width: 320px) {
+            font-size: 0.5rem;
           }
         }
       }
@@ -247,12 +263,29 @@ const Wrapper = styled.div`
       margin-left: 20px;
       margin-bottom: 20px;
       @media screen and (max-width: 476px) {
-        width: 85vw;
+        width: 80vw;
+        align-items: center;
       }
+      @media screen and (max-width: 375px) {
+        align-items: center;
+      }
+
       .name {
         font-weight: ${CommonStyles.bold.bold};
         font-size: 17px;
         color: rgba(35, 31, 32, 0.61);
+        @media screen and (max-width: 476px) {
+          width: 15vw;
+          font-size: 16px;
+        }
+        @media screen and (max-width: 375px) {
+          width: 20vw;
+          font-size: 16px;
+        }
+        @media screen and (max-width: 320px) {
+          width: 30vw;
+          font-size: 16px;
+        }
       }
       select,
       input {
@@ -262,6 +295,10 @@ const Wrapper = styled.div`
         box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
         background-color: rgba(255, 255, 255, 0.6);
         border-radius: 10px;
+        @media screen and (max-width: 476px) {
+          width: 100%;
+          font-size: 16px;
+        }
       }
     }
     .propertytype2 {
@@ -274,12 +311,17 @@ const Wrapper = styled.div`
       margin-left: 20px;
       margin-bottom: 20px;
       @media screen and (max-width: 476px) {
+        align-items: center;
         width: 85vw;
       }
       .name {
         font-weight: ${CommonStyles.bold.bold};
         font-size: 17px;
         color: rgba(35, 31, 32, 0.61);
+        @media screen and (max-width: 320px) {
+          width: 40vw;
+          font-size: 15px;
+        }
       }
       select,
       input {
@@ -289,6 +331,9 @@ const Wrapper = styled.div`
         box-shadow: 0px 4px 4px rgba(223, 27, 82, 0.25);
         background-color: rgba(255, 255, 255, 0.6);
         border-radius: 10px;
+        @media screen and (max-width: 320px) {
+          width: 100%;
+        }
       }
     }
     .propertytype {
@@ -546,7 +591,13 @@ const Searchbutton = styled.button`
   font-weight: 800;
   font-size: 0.8rem;
   @media screen and (max-width: 476px) {
-    width: 10vw;
+    width: 15vw;
+  }
+  @media screen and (max-width: 375px) {
+    font-size: 0.7rem;
+  }
+  @media screen and (max-width: 320px) {
+    font-size: 0.55rem;
   }
 `;
 
@@ -714,7 +765,8 @@ const Postrentroom = ({ poststart, user }) => {
     setAdditionalContact(e.target.value);
   };
   const isbigMobile = useMediaQuery({ query: '(max-width: 476px)' });
-
+  const isSmallMobile = useMediaQuery({ query: '(max-width: 375px)' });
+   const isverySmallMobile = useMediaQuery({ query: '(max-width: 320px)' });
   const filter = [
     {
       name: '선호 성별',
@@ -995,7 +1047,15 @@ const Postrentroom = ({ poststart, user }) => {
                   <div className="mapcontainer">
                     <StaticGoogleMap
                       apiKey={process.env.REACT_APP_GOOGLEAPI}
-                      size={isbigMobile ? '350x200' : '525x300'}
+                      size={
+                        isverySmallMobile
+                          ? '260x200'
+                          : isSmallMobile
+                          ? '300x200'
+                          : isbigMobile
+                          ? '350x200'
+                          : '525x300'
+                      }
                       className="img-fluid"
                       zoom="17"
                     >

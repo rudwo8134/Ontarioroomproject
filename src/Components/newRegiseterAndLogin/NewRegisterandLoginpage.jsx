@@ -18,17 +18,17 @@ const Wrapper = styled.div`
   height: 100vh;
   margin-top: 80px;
 
-  @media screen and (max-width: 320px) {
-    margin-top: 0px;
-    height: 150vh;
-  }
-  @media screen and (max-width: 375px) {
-    margin-top: 0px;
-    height: 150vh;
-  }
   @media screen and (max-width: 476px) {
     margin-top: 0px;
     height: 170vh;
+  }
+  @media screen and (max-width: 380px) {
+    margin-top: 0px;
+    height: 200vh;
+  }
+  @media screen and (max-width: 320px) {
+    margin-top: 0px;
+    height: 240vh;
   }
 
   .loginheaderimg {
@@ -200,11 +200,11 @@ const Wrapper = styled.div`
         .password {
           margin-bottom: 23px;
         }
-        .passwordwrong{
+        .passwordwrong {
           margin-bottom: 1rem;
           font-size: 1rem;
-          color:${CommonStyles.color.Primary}
-        } 
+          color: ${CommonStyles.color.Primary};
+        }
         .description {
           font-size: ${CommonStyles.fontSize.ExtraSmall1};
           margin-bottom: 33px;
@@ -326,6 +326,7 @@ const NewRegisterandLoginpage = (props) => {
   const { googlelogin, User, emailSignin, signupstart, error } = props;
   const [Errorhandle, setError] = useState(null);
   const history = useHistory();
+  console.log(history)
   const handlesubmit = (e) => {
     e.preventDefault();
     emailSignin({
@@ -366,7 +367,6 @@ const NewRegisterandLoginpage = (props) => {
       phonenumber,
     });
   };
-
   useEffect(() => {
     if (User) {
       history.push('/');

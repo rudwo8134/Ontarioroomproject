@@ -48,6 +48,13 @@ const Wrapper = styled.div`
     @media screen and (max-width: 476px) {
       width: 80vw;
     }
+    @media screen and (max-width: 375px) {
+      width: 90vw;
+    }
+    @media screen and (max-width: 320px) {
+      width: 90vw;
+      font-size: 12px;
+    }
   }
   form {
     display: flex;
