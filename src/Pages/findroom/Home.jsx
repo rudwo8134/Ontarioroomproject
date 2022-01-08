@@ -88,6 +88,12 @@ const Wrapper = styled.div`
       flex-direction: column;
       position: relative;
     }
+    @media screen and (max-width: 375px) {
+      height: 80vh;
+    }
+    @media screen and (max-width: 320px) {
+      height: 76vh;
+    }
     .ListViewMobile {
       display: none;
       @media screen and (max-width: 476px) {
@@ -98,6 +104,12 @@ const Wrapper = styled.div`
         top: 0;
         left: 0;
         z-index: 20;
+      }
+      @media screen and (max-width: 375px) {
+        padding-top: 1.8rem;
+      }
+      @media screen and (max-width: 340px) {
+        padding-top: 2.7rem;
       }
       .textContainer {
         @media screen and (max-width: 476px) {
@@ -140,8 +152,8 @@ const Wrapper = styled.div`
       border-radius: 13px;
       position: relative;
       @media screen and (max-width: 476px) {
-        height: 100vh;
         width: 100vw;
+        height: 100vh;
       }
       .showList {
         display: none;
@@ -360,6 +372,12 @@ const Filterbutton = styled.button`
   :hover {
     background-color: ${CommonStyles.color.PrimaryLight2};
   }
+  @media screen and (max-width: 475px) {
+    font-size: 11px;
+  }
+  @media screen and (max-width: 340px) {
+    font-size: 10px;
+  }
 `;
 
 const Popupscreen = styled.div`
@@ -471,8 +489,8 @@ const Popupscreen = styled.div`
     border-radius: 8px;
     margin-right: 1rem;
   }
-  .divider{
-    width:80%;
+  .divider {
+    width: 80%;
     height: 1px;
     background-color: ${CommonStyles.color.Darkbold1};
     margin: 0 auto;
@@ -539,7 +557,7 @@ const Marker = ({ children }) => children;
 
 const Home = (props) => {
   const { rooms, getData } = props;
-  const isbigMobile = useMediaQuery({ query: '(max-width: 476px)' });
+  const isbigMobile = useMediaQuery({ query: '(max-width: 490px)' });
   const ismediumMobile = useMediaQuery({ query: '(max-width: 375px)' });
   const [loading, setLoading] = useState(false);
   const location = useLocation();
@@ -914,7 +932,10 @@ const Home = (props) => {
               </div>
             </AutoCompletediv>
             <GoogleMapReact
-              style={{ height: isbigMobile && '92vh' }}
+              style={{
+                width: '100vw',
+                height: ismediumMobile ? '60vh' : isbigMobile && '70vh',
+              }}
               bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLEAPI }}
               defaultCenter={
                 searchLatlng ? searchLatlng : { lat: 43.6532, lng: -79.3832 }
@@ -1173,7 +1194,6 @@ const Home = (props) => {
                   </div>
 
                   <div className="pricetype">
-                    
                     <span className="title">가격 설정</span>
                     <Slider.Range
                       onChange={(e) =>
@@ -1185,7 +1205,7 @@ const Home = (props) => {
                       defaultValue={[20, 40]}
                     />
                   </div>
-                  
+
                   <h3 className="detailstext">옵션 설정</h3>
                   <div className="contents">
                     <div className="popupcontents_left">
