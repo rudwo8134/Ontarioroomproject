@@ -53,6 +53,16 @@ const Background = styled.section`
             width: 3rem;
             height: 3rem;
             background-color: #ffe812;
+            @media screen and (max-width: 390px) {
+              margin-top: 5px;
+              width: 1.5rem;
+              height: 1.5rem;
+            }
+            @media screen and (max-width: 320px) {
+              margin-top: 5px;
+              width: 1.3rem;
+              height: 1.3rem;
+            }
           }
         }
         .contactcontainer {
@@ -67,6 +77,16 @@ const Background = styled.section`
             width: 3rem;
             height: 3rem;
             color: ${CommonStyles.color.Primary};
+            @media screen and (max-width: 390px) {
+              margin-top: 5px;
+              width: 1.5rem;
+              height: 1.5rem;
+            }
+            @media screen and (max-width: 320px) {
+              margin-top: 5px;
+              width: 1.3rem;
+              height: 1.3rem;
+            }
           }
         }
       }
@@ -152,6 +172,10 @@ const Xbutton = styled(GiCancel)`
   z-index: 30;
   color: ${CommonStyles.color.Primary};
   @media screen and (max-width: 476px) {
+    font-size: 1.5rem;
+  }
+  @media screen and (max-width: 390px) {
+    font-size: 1.5rem;
   }
 `;
 const Roominformation = styled.div`
