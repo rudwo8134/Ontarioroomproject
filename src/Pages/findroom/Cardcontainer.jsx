@@ -116,7 +116,7 @@ const CardWrapper = styled.div`
       @media screen and (max-width: 476px) {
         font-size: 0.9rem;
       }
-      @media screen and (max-width: 375px) {
+      @media screen and (max-width: 390px) {
         font-size: 1rem;
         width: 4.2rem;
       }
@@ -139,7 +139,7 @@ const CardWrapper = styled.div`
       @media screen and (max-width: 476px) {
         font-size: 0.7rem;
       }
-      @media screen and (max-width: 375px) {
+      @media screen and (max-width: 390px) {
         font-size: 0.7rem;
         width: 3.3rem;
       }
@@ -153,7 +153,7 @@ const CardWrapper = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      @media screen and (max-width: 375px) {
+      @media screen and (max-width: 390px) {
         font-size: 1rem;
         margin: 0px 4px;
       }
@@ -172,7 +172,7 @@ const CardWrapper = styled.div`
       @media screen and (max-width: 476px) {
         font-size: 0.8rem;
       }
-      @media screen and (max-width: 375px) {
+      @media screen and (max-width: 390px) {
         width: 65%;
         font-size: 0.7rem;
         align-items: center;

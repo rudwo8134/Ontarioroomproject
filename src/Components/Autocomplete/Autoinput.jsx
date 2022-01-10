@@ -58,6 +58,9 @@ const Responsivediv = styled.div`
         width: 20vw;
         font-size: 0.8rem;
       }
+      @media screen and (max-width: 390px) {
+        font-size: 0.7rem;
+      }
       @media screen and (max-width: 320px) {
         font-size: 0.6rem;
       }
