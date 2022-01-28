@@ -19,10 +19,10 @@ import Contactuspage from './Pages/ContactUs/Contactuspage';
 import Postrentroom from './Pages/findroom/Postrentroom';
 import ScrooltoTop from './staticFiles/ScrooltoTop';
 import Mypage from './Pages/Mypage/Mypage';
-import Postedit from './Pages/Mypage/Postupdate'
+import Postedit from './Pages/Mypage/Postupdate';
 import { Helmet } from 'react-helmet';
 import SEO from './staticFiles/SeoTag';
-import LOGO from './assets/nav/LOGO.png'
+import LOGO from './assets/nav/LOGO.png';
 function App(props) {
   const { checkUserSession, current } = props;
   useEffect(() => {
@@ -37,7 +37,6 @@ function App(props) {
           </title>
           <meta name="description" content={`${SEO.description}`} />
           <meta name="keywords" content={SEO.keyword} />
-
           <meta name="description" content={SEO.description} />
           <meta
             property="og:title"
@@ -47,6 +46,9 @@ function App(props) {
           <meta property="og:image" itemProp="image" content={LOGO} />
           <meta property="og:type" content="website" />
           <meta property="og:url" content={'onroom.ca'} />
+          <meta property="og:site_name" content={SEO.title} />
+          <meta property="og:image:width" content="800" />
+          <meta property="og:image:height" content="400" />
           <meta
             property="twitter:title"
             content={`${SEO.title} | ${SEO.secondtitle}`}
