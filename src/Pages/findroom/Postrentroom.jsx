@@ -15,6 +15,8 @@ import { withRouter } from 'react-router-dom';
 import { MdCancel } from 'react-icons/md';
 import { useMediaQuery } from 'react-responsive';
 import Loader from 'react-loader-spinner';
+import { Helmet } from 'react-helmet';
+import SEO from '../../staticFiles/SeoTag';
 
 const Wrapper = styled.div`
   border-top: 1px solid ${CommonStyles.color.Darkbold1};
@@ -56,7 +58,6 @@ const Wrapper = styled.div`
       @media screen and (max-width: 320px) {
         width: 150px;
         font-size: 12px;
-        
       }
       :hover {
         transform: scale(1.05) translateY(-3px);
@@ -766,7 +767,7 @@ const Postrentroom = ({ poststart, user }) => {
   };
   const isbigMobile = useMediaQuery({ query: '(max-width: 476px)' });
   const isSmallMobile = useMediaQuery({ query: '(max-width: 375px)' });
-   const isverySmallMobile = useMediaQuery({ query: '(max-width: 320px)' });
+  const isverySmallMobile = useMediaQuery({ query: '(max-width: 320px)' });
   const filter = [
     {
       name: '선호 성별',
@@ -833,6 +834,11 @@ const Postrentroom = ({ poststart, user }) => {
 
   return (
     <>
+      <Helmet>
+        <title>{SEO.title} | Post a room</title>
+        <meta name="description" content={`${SEO.description}`} />
+        <meta name="keywords" content={SEO.keyword} />
+      </Helmet>
       {next && (
         <Wrapper>
           <div className="nextheader">

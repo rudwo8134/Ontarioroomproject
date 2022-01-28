@@ -20,6 +20,8 @@ import Postrentroom from './Pages/findroom/Postrentroom';
 import ScrooltoTop from './staticFiles/ScrooltoTop';
 import Mypage from './Pages/Mypage/Mypage';
 import Postedit from './Pages/Mypage/Postupdate'
+import { Helmet } from 'react-helmet';
+import SEO from './staticFiles/SeoTag';
 function App(props) {
   const { checkUserSession, current } = props;
   useEffect(() => {
@@ -28,6 +30,13 @@ function App(props) {
   return (
     <>
       <Layout>
+        <Helmet>
+          <title>
+            {SEO.title} | {SEO.secondtitle}
+          </title>
+          <meta name="description" content={`${SEO.description}`} />
+          <meta name="keywords" content={SEO.keyword} />
+        </Helmet>
         <ScrooltoTop />
         <Switch>
           <Route exact path="/" render={() => <Mainhomepage />} />

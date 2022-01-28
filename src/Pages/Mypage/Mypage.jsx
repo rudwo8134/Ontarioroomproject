@@ -10,6 +10,8 @@ import {
   removeretcondoppost,
   Sendpasswordreset,
 } from '../../Firebase/firebase.utils';
+import { Helmet } from 'react-helmet';
+import SEO from '../../staticFiles/SeoTag';
 
 const Wrapper = styled.div`
   max-width: 1300px;
@@ -330,6 +332,11 @@ const Mypage = ({ rooms }) => {
 
   return (
     <Wrapper>
+      <Helmet>
+        <title>{SEO.title} | MyPage</title>
+        <meta name="description" content={`${SEO.description}`} />
+        <meta name="keywords" content={SEO.keyword} />
+      </Helmet>
       <div className="cover">
         <h3 className="name">나의 정보</h3>
         <div className="divider"></div>

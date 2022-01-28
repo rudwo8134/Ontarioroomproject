@@ -18,6 +18,8 @@ import { withRouter } from 'react-router-dom';
 import { MdCancel } from 'react-icons/md';
 import { useMediaQuery } from 'react-responsive';
 import Loader from 'react-loader-spinner';
+import { Helmet } from 'react-helmet';
+import SEO from '../../staticFiles/SeoTag';
 
 const Wrapper = styled.div`
   border-top: 1px solid ${CommonStyles.color.Darkbold1};
@@ -791,6 +793,11 @@ const Postrentroom = (props) => {
 
   return (
     <>
+      <Helmet>
+        <title>{SEO.title} | Edit Posted room</title>
+        <meta name="description" content={`${SEO.description}`} />
+        <meta name="keywords" content={SEO.keyword} />
+      </Helmet>
       {next && (
         <Wrapper>
           <div className="nextheader">
