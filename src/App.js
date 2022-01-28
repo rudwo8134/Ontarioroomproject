@@ -22,6 +22,7 @@ import Mypage from './Pages/Mypage/Mypage';
 import Postedit from './Pages/Mypage/Postupdate'
 import { Helmet } from 'react-helmet';
 import SEO from './staticFiles/SeoTag';
+import LOGO from './assets/nav/LOGO.png'
 function App(props) {
   const { checkUserSession, current } = props;
   useEffect(() => {
@@ -36,6 +37,23 @@ function App(props) {
           </title>
           <meta name="description" content={`${SEO.description}`} />
           <meta name="keywords" content={SEO.keyword} />
+
+          <meta name="description" content={SEO.description} />
+          <meta
+            property="og:title"
+            content={`${SEO.title} | ${SEO.secondtitle}`}
+          />
+          <meta property="og:description" content={SEO.description} />
+          <meta property="og:image" itemProp="image" content={LOGO} />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content={'onroom.ca'} />
+          <meta
+            property="twitter:title"
+            content={`${SEO.title} | ${SEO.secondtitle}`}
+          />
+          <meta property="twitter:description" content={SEO.description} />
+          <meta property="twitter:image" itemProp="image" content={LOGO} />
+          <meta property="twitter:card" content="summary_large_image" />
         </Helmet>
         <ScrooltoTop />
         <Switch>
